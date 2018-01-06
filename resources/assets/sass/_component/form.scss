@@ -1,0 +1,24 @@
+.m{
+  margin:0 auto;
+  float:none;
+}
+
+.error{
+  label{
+    color:red;
+  }
+  select:focus, select, input:focus, input{
+    border: 2px solid red;
+  }
+  select:focus, input:focus{
+    box-shadow: 1px 1px 1px 1px red;
+  }
+}
+
+.form-error{
+  border: 2px solid red;
+}
+
+.label-error{
+  color:red;
+}

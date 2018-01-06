@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('coba');
+    return view('login');
 });
+
+Route::resource('admin/kunci','KunciController');
+Route::resource('admin/sekolah','SekolahController');
+Route::resource('admin/pengguna','PenggunaController');
+Route::resource('admin/dashboard','DashboardController');
+Route::resource('admin/kuisioner','KuisionerController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

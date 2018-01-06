@@ -8350,11 +8350,63 @@ button.close {
   }
 }
 
+.table-custom thead th {
+  background: #2980b9;
+  color: white;
+  text-align: center;
+}
+
+.action {
+  width: 130px;
+}
+
+label {
+  font-size: 18px;
+}
+
 .ukuranHuruf li a {
   font-size: 20px;
 }
 
 .brand {
   font-size: 30px;
+}
+
+.tombol-atas {
+  margin-top: 17px;
+}
+
+.oke {
+  margin-top: 29px;
+}
+
+.m {
+  margin: 0 auto;
+  float: none;
+}
+
+.error label {
+  color: red;
+}
+
+.error select:focus,
+.error select,
+.error input:focus,
+.error input {
+  border: 2px solid red;
+}
+
+.error select:focus,
+.error input:focus {
+  -webkit-box-shadow: 1px 1px 1px 1px red;
+          box-shadow: 1px 1px 1px 1px red;
+}
+
+.form-error {
+  border: 2px solid red;
+}
+
+.label-error {
+  color: red;
 }
 

@@ -1,0 +1,17 @@
+$primary: #2980b9;
+
+.table-custom{
+  thead th{
+    background: $primary;
+    color:white;
+    text-align:center;
+  }
+}
+
+.action{
+  width:130px ;
+}
+
+label{
+  font-size: 18px;
+}
