@@ -1,4 +1,4 @@
-$primary: #2980b9;
+$primary: #2C3E50;
 
 .table-custom{
   thead th{
@@ -6,10 +6,20 @@ $primary: #2980b9;
     color:white;
     text-align:center;
   }
+  tbody{
+    tr{
+      td{
+        // text-align: center;
+      }
+    }
+  }
 }
 
 .action{
-  width:130px ;
+  width:130px;
+}
+.no{
+  width:20px;
 }
 
 label{

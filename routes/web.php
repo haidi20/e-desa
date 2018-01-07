@@ -16,11 +16,15 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace' => 'admin'], function (){
-  Route::resource('admin/kunci','KunciController');
   Route::resource('admin/sekolah','SekolahController');
   Route::resource('admin/pengguna','PenggunaController');
   Route::resource('admin/dashboard','DashboardController');
   Route::resource('admin/kuisioner','KuisionerController');
+
+  //kunci
+  Route::get('admin/kunci','KunciController@index')->name('kunci.index');
+  Route::get('admin/kunci/detail','KunciController@detail')->name('kunci.detail');
+  Route::get('admin/kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 });
 
 Auth::routes();

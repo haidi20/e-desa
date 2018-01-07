@@ -7065,6 +7065,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-checkbox-radio@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/vue-checkbox-radio/-/vue-checkbox-radio-0.6.0.tgz#616d83aaab60dbcad9ae18ffb7d9d471f4746f76"
+
 vue-hot-reload-api@^2.2.0:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
