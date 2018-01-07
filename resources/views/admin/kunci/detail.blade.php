@@ -12,6 +12,19 @@
     </div>
     <hr>
     <div class="row">
+      <div class="col-md-3 col-md-offset-8">
+        <div class="form-group">
+          <label for="sekolah">Sekolah</label>
+          <select name="sekolah" id="sekolah" class="form-control">
+            <option value="">Semua Sekolah</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-1 text-right oke">
+        <a href="{{route('kunci.simpan')}}" class="btn btn-md btn-success">Oke</a>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12">
         <table class="table table-bordered table-custome">
           <thead>
