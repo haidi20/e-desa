@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-1 text-right oke">
         <div class="form-group">
-          <button type="button" class="btn btn-md btn-success">Oke</button>
+          <a href="{{route('kunci.index')}}" class="btn btn-md btn-success">Oke</a>
         </div>
       </div>
     </div>

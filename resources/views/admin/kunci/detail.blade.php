@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="col-md-1 text-right oke">
-        <a href="{{route('kunci.simpan')}}" class="btn btn-md btn-success">Oke</a>
+        <a href="{{route('kunci.detail')}}" class="btn btn-md btn-success">Oke</a>
       </div>
     </div>
     <div class="row">
