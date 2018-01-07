@@ -9,12 +9,5 @@
   <body>
     @yield('tubuh')
     <script src="{{mix('js/app.js')}}"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-          $('[data-toggle="popover"]').popover({
-              placement : 'top'
-          });
-      });
-    </script>
   </body>
 </html>

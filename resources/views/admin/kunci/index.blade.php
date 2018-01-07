@@ -40,9 +40,15 @@
             <tr>
               <td>1</td>
               <td>Samarinda Ulu</td>
-              <td id="app">
-                <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
-                <onoff></onoff>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <td><a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a></td>
+                    <td id="app">
+                      <onoff></onoff>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </tbody>
