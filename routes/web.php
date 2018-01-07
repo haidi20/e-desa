@@ -12,14 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
 
-Route::resource('admin/kunci','KunciController');
-Route::resource('admin/sekolah','SekolahController');
-Route::resource('admin/pengguna','PenggunaController');
-Route::resource('admin/dashboard','DashboardController');
-Route::resource('admin/kuisioner','KuisionerController');
+Route::group(['namespace' => 'admin'], function (){
+  Route::resource('admin/kunci','KunciController');
+  Route::resource('admin/sekolah','SekolahController');
+  Route::resource('admin/pengguna','PenggunaController');
+  Route::resource('admin/dashboard','DashboardController');
+  Route::resource('admin/kuisioner','KuisionerController');
+});
 
 Auth::routes();
 

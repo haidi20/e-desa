@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav ukuranHuruf">
         <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
         <li><a href="{{route('sekolah.index')}}">Daftar Sekolah</a></li>
-        <li><a href="{{route('kuisioner.index')}}">Kuisioner</a></li>
+        <li><a href="{{route('kuisioner.index')}}">Input Data</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right ukuranHuruf">
         <li class="dropdown">

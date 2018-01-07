@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav ukuranHuruf">
           <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Kuisioner</a></li>
+          <li><a href="#">Input Data</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right ukuranHuruf">
           <li class="dropdown">
