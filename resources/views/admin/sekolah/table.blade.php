@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12 ">
+  <div class="col-md-12">
     <table class="table table-bordered table-custom">
       <thead>
         <tr>

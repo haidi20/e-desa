@@ -44,8 +44,10 @@
                 <table width="100%">
                   <tr>
                     <td><a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a></td>
-                    <td id="app">
-                      <onoff></onoff>
+                    <td>
+                      <div id="app">
+                        <onoff></onoff>
+                      </div>
                     </td>
                   </tr>
                 </table>

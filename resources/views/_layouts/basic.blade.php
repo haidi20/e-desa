@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="csrf-token">
     <title>Standar Pelayanan Minimal</title>
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
-    <meta name="csrf-token">
   </head>
   <body>
     @yield('tubuh')
