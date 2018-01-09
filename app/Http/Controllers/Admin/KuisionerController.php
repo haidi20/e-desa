@@ -10,4 +10,8 @@ class KuisionerController extends Controller
     public function index(){
       return view('admin.kuisioner.index');
     }
+
+    public function store(){
+      return 'kuisioner store';
+    }
 }

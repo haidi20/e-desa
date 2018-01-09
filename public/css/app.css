@@ -8386,6 +8386,10 @@ button.close {
   text-align: center;
 }
 
+.table-custom tbody tr .form {
+  width: 130px;
+}
+
 .action {
   width: 130px;
 }

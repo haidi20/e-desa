@@ -25,7 +25,10 @@ Route::group(['namespace' => 'admin','prefix' => 'admin'], function (){
   Route::resource('sekolah','SekolahController');
   Route::resource('pengguna','PenggunaController');
   Route::resource('dashboard','DashboardController');
-  Route::resource('kuisioner','KuisionerController');
+
+  //kuisioner
+  Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
+  Route::post('kuisioner/store','KuisionerController@store')->name('kuisioner.store');
 
   //kunci
   Route::get('kunci','KunciController@index')->name('kunci.index');
