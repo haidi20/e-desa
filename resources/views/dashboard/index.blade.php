@@ -79,6 +79,7 @@
             <tr>
               <td>No</td>
               <td>Indikator Pencapaian (IP)</td>
+              <td>Persen</td>
             </tr>
           </thead>
         </table>
