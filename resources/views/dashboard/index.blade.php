@@ -1,7 +1,7 @@
 @extends('_layouts.default')
 
 @section('konten')
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-md-12">
         <h1>Dashboard Admin</h1>
@@ -9,10 +9,10 @@
     </div>
     <hr>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <a href="#">Download Panduan Aplikasi</a>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <a href="#">Penjelasan Indikator Pencapaian</a>
       </div>
       <div class="col-md-4">
@@ -21,7 +21,7 @@
     </div>
     <br>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -73,8 +73,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-
+      <div class="col-md-6">
+        <table class="table table-bordered table-custom">
+          <thead>
+            <tr>
+              <td>No</td>
+              <td>Indikator Pencapaian (IP)</td>
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
   </div>
