@@ -10,7 +10,7 @@
         <a href="{{route('pengguna.create')}}" class="btn btn-md btn-success tombol-atas">Tambah</a>
       </div>
     </div>
-    {{-- <hr> --}}
+    <hr>
     <div class="row">
       <form action="{{route('pengguna.index')}}" method="get">
         <div class="col-md-3 col-md-offset-5">
