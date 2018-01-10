@@ -61,6 +61,6 @@
       </div>
     </div>
     <br>
-    @include('admin.pengguna.table')
+    @include('pengguna.table')
   </div>
 @endsection

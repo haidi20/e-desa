@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class SekolahController extends Controller
 {
     public function index(){
-      return view('admin.sekolah.index');
+      return view('sekolah.index');
     }
 
     public function create(){
@@ -20,6 +20,6 @@ class SekolahController extends Controller
     }
 
     public function form($id = null){
-      return view('admin.sekolah.form');
+      return view('sekolah.form');
     }
 }

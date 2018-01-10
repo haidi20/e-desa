@@ -3,13 +3,16 @@
 @section('konten')
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <h1>Input Data</h1>
+      <div class="col-md-6">
+        <h1>Daftar Sekolah</h1>
+      </div>
+      <div class="col-md-6 text-right tombol-atas">
+        <a href="{{route('sekolah.create')}}" class="btn btn-success btn-md">Tambah</a>
       </div>
     </div>
     <hr>
     <div class="row">
-      <form action="{{route('kuisioner.index')}}" method="get">
+      <form action="{{route('sekolah.index')}}" method="get">
         <div class="col-md-3 col-md-offset-2">
           <div class="form-group">
             <label for="kecamatan">Kecamatan</label>
@@ -34,13 +37,12 @@
             </select>
           </div>
         </div>
-        <div class="col-md-1 text-right">
-          <button type="submit" class="btn btn-md btn-success oke">Oke</button>
+        <div class="col-md-1 oke">
+          <button type="submit" class="btn btn-success btn-md">Oke</button>
         </div>
       </form>
     </div>
-    @include('admin.kuisioner.info')
     <br>
-    @include('admin.kuisioner.table')
+    @include('sekolah.table')
   </div>
 @endsection

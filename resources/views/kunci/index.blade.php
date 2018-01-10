@@ -12,19 +12,19 @@
     </div>
     <hr>
     <div class="row">
-      <div class="col-md-3 col-md-offset-8">
-        <div class="form-group">
-          <label for="kecamatan" class="control-label">Kecamatan</label>
-          <select name="kecamatan" id="kecamatan" class="form-control">
-            <option value="">Semua Kecamatan</option>
-          </select>
+      <form action="{{route('kunci.index')}}" method="get">
+        <div class="col-md-3 col-md-offset-8">
+          <div class="form-group">
+            <label for="kecamatan" class="control-label">Kecamatan</label>
+            <select name="kecamatan" id="kecamatan" class="form-control">
+              <option value="">Semua Kecamatan</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="col-md-1 text-right oke">
-        <div class="form-group">
-          <a href="{{route('kunci.index')}}" class="btn btn-md btn-success">Oke</a>
+        <div class="col-md-1 text-right oke">
+          <button type="submit" class="btn btn-md btn-success">Oke</button>
         </div>
-      </div>
+      </form>
     </div>
     <div class="row">
       <div class="col-md-12">

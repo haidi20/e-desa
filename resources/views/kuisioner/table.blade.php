@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">
-        Pelayanan Pendidikan oleh Pemerinda Kota
+        Pelayanan Pendidikan oleh Pemerintah Kota
       </a></li>
       <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">
         Pelayanan Pendidikan Dasar oleh Satuan Pendidikan
