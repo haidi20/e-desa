@@ -21,9 +21,9 @@
     </div>
     <br>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="tahun" class="form-label">Tahun</label>
               <select name="tahun" id="tahun" class="form-control">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="periode" class="form-label">Periode</label>
               <select name="periode" id="periode" class="form-control">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="kecamatan" class="form-label">Kecamatan</label>
               <select name="kecamatan" id="kecamatan" class="form-control">
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="pendidikan" class="form-label">Jenjang Pendidikan</label>
               <select name="pendidikan" id="pendidikan" class="form-control">
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="sekolah" class="form-label">Sekolah</label>
               <select name="sekolah" id="sekolah" class="form-control">
@@ -73,15 +73,24 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <table class="table table-bordered table-custom">
           <thead>
             <tr>
-              <td>No</td>
-              <td>Indikator Pencapaian (IP)</td>
-              <td>Persen</td>
+              <th class="no">No</th>
+              <th>Indikator Pencapaian (IP)</th>
+              <th class="action">Persen</th>
             </tr>
           </thead>
+          <tbody>
+            @for ($i=1; $i <=10 ; $i++)
+              <tr align="center">
+                <td>{{$i}}</td>
+                <td>IP {{$i}}</td>
+                <td>{{rand(80,100)}}%</td>
+              </tr>
+            @endfor
+          </tbody>
         </table>
       </div>
     </div>
