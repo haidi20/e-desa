@@ -68,7 +68,7 @@
               <div class="form-group">
                 <label for="sekolah" class="form-label">Sekolah</label>
                 <select name="sekolah" id="sekolah" class="form-control">
-                  {{-- <option value="">Pilih Sekolah</option> --}}
+                  <option value="">Pilih Sekolah</option>
                 </select>
               </div>
             </div>
