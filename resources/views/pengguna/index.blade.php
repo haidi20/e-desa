@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Pengguna Admin</h1>
+        <h1>Pengguna</h1>
       </div>
       <div class="col-md-6 text-right">
         <a href="{{route('pengguna.create')}}" class="btn btn-md btn-success tombol-atas">Tambah</a>
@@ -12,8 +12,11 @@
     </div>
     <hr>
     <div class="row">
-      <form action="{{route('pengguna.index')}}" method="get" id="app">
-        <kecamatan></kecamatan>
+      <form action="{{route('pengguna.index')}}" method="get">
+        <div id="app">
+          <kondisi></kondisi>
+        </div>
+        {{-- <kecamatan></kecamatan> --}}
         {{-- <sekolah></sekolah> --}}
         <div class="col-md-1 text-right">
           <button type="submit" class="btn btn-md btn-success oke">Oke</button>

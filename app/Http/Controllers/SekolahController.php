@@ -9,8 +9,8 @@ use App\Models\Sekolah;
 
 class SekolahController extends Controller
 {
-    public function muncul(){
-      return sekolah::all();
+    public function baca(){
+      return Sekolah::where('kecamatan_id',request('kecamatan_id'))->get();
     }
 
     public function index(){

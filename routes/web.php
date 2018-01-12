@@ -22,7 +22,7 @@ Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 Route::get('kecamatan/vue','KecamatanController@index');
 
 //get Sekolah
-Route::get('sekolah/vue','SekolahController@muncul');
+Route::get('sekolah/vue','SekolahController@baca');
 
 //resource
 Route::resource('sekolah','SekolahController');

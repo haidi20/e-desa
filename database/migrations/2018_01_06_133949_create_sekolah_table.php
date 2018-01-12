@@ -16,7 +16,7 @@ class CreateSekolahTable extends Migration
         Schema::create('sekolah', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kunci')->default(0);
-            $table->integer('hp')->unsigned();
+            $table->integer('hp')->unsigned()->nullable();
             $table->string('operator')->nullable();
             $table->string('alamat')->nullable();
             $table->string('nama')->nullable();

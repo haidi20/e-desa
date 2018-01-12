@@ -13,18 +13,19 @@
 <script>
 export default {
   props:['item'],
-  data(){
-    return{
-      sekolahs:'',
-      kecamatan:''
+  data: () => ({
+    sekolahs: [],
+    item:{
+      id: ''
     }
-  },
+  }),
   mounted(){
-    this.muncul();
+    this.baca();
   },
   methods: {
-    muncul: function(){
-      axios.get('sekolah/vue').then(response => {
+    baca: function(){
+      const data = this.item.id
+      axios.get('sekolah/vue?kecamatan_id='+data).then(response => {
         this.sekolahs = response.data;
       });
     }
