@@ -18,6 +18,9 @@ Route::get('kunci','KunciController@index')->name('kunci.index');
 Route::get('kunci/detail','KunciController@detail')->name('kunci.detail');
 Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 
+//get pendidikan
+Route::get('pendidikan/vue','PendidikanController@index');
+
 //get kecamatan
 Route::get('kecamatan/vue','KecamatanController@index');
 
