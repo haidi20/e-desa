@@ -15,7 +15,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('onoff', require('./components/OnOff.vue'));
+// Vue.component('sekolah',require('./components/Sekolah.vue'));
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('kecamatan',require('./components/Kecamatan.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -18,6 +18,12 @@ Route::get('kunci','KunciController@index')->name('kunci.index');
 Route::get('kunci/detail','KunciController@detail')->name('kunci.detail');
 Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 
+//get kecamatan
+Route::get('kecamatan/vue','KecamatanController@index');
+
+//get Sekolah
+Route::get('sekolah/vue','SekolahController@muncul');
+
 //resource
 Route::resource('sekolah','SekolahController');
 Route::resource('pengguna','PenggunaController');

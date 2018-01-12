@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Sekolah;
+
 class SekolahController extends Controller
 {
+    public function muncul(){
+      return sekolah::all();
+    }
+
     public function index(){
       return view('sekolah.index');
     }

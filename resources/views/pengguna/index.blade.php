@@ -12,23 +12,9 @@
     </div>
     <hr>
     <div class="row">
-      <form action="{{route('pengguna.index')}}" method="get">
-        <div class="col-md-3 col-md-offset-5">
-          <div class="form-group">
-            <label for="kecamatan">Kecamatan</label>
-            <select name="kecamatan" id="kecamatan" class="form-control">
-              <option value="">Semua kecamatan</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="sekolah">Sekolah</label>
-            <select name="sekolah" id="sekolah" class="form-control">
-              <option value="">Semua Sekolah</option>
-            </select>
-          </div>
-        </div>
+      <form action="{{route('pengguna.index')}}" method="get" id="app">
+        <kecamatan></kecamatan>
+        {{-- <sekolah></sekolah> --}}
         <div class="col-md-1 text-right">
           <button type="submit" class="btn btn-md btn-success oke">Oke</button>
         </div>
