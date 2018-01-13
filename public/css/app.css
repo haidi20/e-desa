@@ -8402,6 +8402,25 @@ label {
   font-size: 18px;
 }
 
+hr {
+  margin: 5px 0;
+  border: 0;
+  width: 100%;
+  border-top: 1px solid #2C3E50;
+}
+
+hr.dashed {
+  border-top-style: dashed;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
 .ukuranHuruf li a {
   font-size: 20px;
 }

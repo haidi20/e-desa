@@ -7,7 +7,7 @@
         <h1>Input Data</h1>
       </div>
     </div>
-    <hr>
+    <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('kuisioner.index')}}" method="get">
         <div class="col-md-3 col-md-offset-2">

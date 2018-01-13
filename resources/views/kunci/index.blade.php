@@ -10,7 +10,7 @@
         {{-- <a href="{{route('kunci.create')}}" class="btn btn-success btn-md tombol-atas">Tambah</a> --}}
       </div>
     </div>
-    <hr>
+    <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('kunci.index')}}" method="get">
         <div class="col-md-3 col-md-offset-8">

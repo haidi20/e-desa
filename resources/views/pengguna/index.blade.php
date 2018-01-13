@@ -10,7 +10,7 @@
         <a href="{{route('pengguna.create')}}" class="btn btn-md btn-success tombol-atas">Tambah</a>
       </div>
     </div>
-    <hr>
+    <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('pengguna.index')}}" method="get">
         <div id="app">

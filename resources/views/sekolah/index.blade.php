@@ -10,7 +10,7 @@
         <a href="{{route('sekolah.create')}}" class="btn btn-success btn-md">Tambah</a>
       </div>
     </div>
-    <hr>
+    <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('sekolah.index')}}" method="get">
         <div id="app">

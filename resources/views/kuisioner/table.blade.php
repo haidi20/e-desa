@@ -1,17 +1,18 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">
+      <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true">
         Pelayanan Pendidikan oleh Pemerintah Kota
       </a></li>
-      <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">
+      <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false">
         Pelayanan Pendidikan Dasar oleh Satuan Pendidikan
       </a></li>
     </ul>
     <form action="{{route('kuisioner.store')}}" method="post">
       {{ csrf_field() }}
+      <input type="hidden" name="_method" value="post">
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active in" id="home">
+        <div class="tab-pane fade active in" id="satu">
           <table class="table table-bordered table-custom">
             <thead>
               <tr>
@@ -29,7 +30,7 @@
             </tbody>
           </table>
         </div>
-        <div class="tab-pane fade" id="profile">
+        <div class="tab-pane fade" id="dua">
           <table class="table table-bordered table-custom">
             <thead>
               <tr>

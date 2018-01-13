@@ -7,7 +7,7 @@
         <h1>Dashboard Admin</h1>
       </div>
     </div>
-    <hr>
+    <hr class="dashed mb20 mt20">
     <div class="row">
       <div class="col-md-3">
         <a href="#">Download Panduan Aplikasi</a>
