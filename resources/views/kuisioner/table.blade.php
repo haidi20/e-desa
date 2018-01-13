@@ -17,7 +17,7 @@
             <thead>
               <tr>
                 <th class="no">No</th>
-                <th>Penjelasan</th>
+                <th>Pertanyaan</th>
                 <th>Isi</th>
               </tr>
             </thead>
