@@ -43331,19 +43331,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      status: true
+      status: true,
+      on: 'btn-success',
+      off: 'btn-default'
     };
   },
 
   methods: {
-    cek: function cek() {
-      if (this.status == true) {
+    cek: function cek(data) {
+      if (data == 'off') {
+        this.on = 'btn-default';
+        this.off = 'btn-danger';
         this.status = false;
       } else {
+        this.on = 'btn-success';
+        this.off = 'btn-default';
         this.status = true;
       }
       console.log(this.status);
@@ -43360,25 +43370,45 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.status
-      ? _c(
-          "a",
-          {
-            staticClass: "btn btn-sm btn-info",
-            attrs: { "data-toggle": "modal", "data-target": "#myModal" },
-            on: { click: _vm.cek }
+    _c("div", { staticClass: "btn-group btn-group-justified m" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-sm",
+          class: [_vm.on],
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#myModal"
           },
-          [_vm._v("On")]
-        )
-      : _c(
-          "a",
-          {
-            staticClass: "btn btn-sm btn-danger",
-            attrs: { "data-toggle": "modal", "data-target": "#myModal" },
-            on: { click: _vm.cek }
+          on: {
+            click: function($event) {
+              _vm.cek("on")
+            }
+          }
+        },
+        [_vm._v("On")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-sm",
+          class: [_vm.off],
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#myModal"
           },
-          [_vm._v("Off")]
-        ),
+          on: {
+            click: function($event) {
+              _vm.cek("off")
+            }
+          }
+        },
+        [_vm._v("Off")]
+      )
+    ]),
     _vm._v(" "),
     _vm._m(0)
   ])

@@ -33,7 +33,7 @@
             <tr>
               <th class="no">No</th>
               <th>Nama Kecamatan</th>
-              <th class="action">Action</th>
+              <th width="200px">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -43,10 +43,12 @@
               <td>
                 <table width="100%">
                   <tr>
-                    <td><a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a></td>
+                    <td>
+                      <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
+                    </td>
                     <td>
                       <div id="app">
-                        <onoff></onoff>
+                        <onoff style="margin-left: 7px;"></onoff>
                       </div>
                     </td>
                   </tr>

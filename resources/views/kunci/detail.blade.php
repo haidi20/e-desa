@@ -31,7 +31,7 @@
             <tr>
               <th class="no">No</th>
               <th>Nama Sekolah</th>
-              <th width="20px">Action</th>
+              <th width="150px">Action</th>
             </tr>
           </thead>
           <tbody>
