@@ -47,9 +47,23 @@
                       <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
                     </td>
                     <td>
-                      <div id="app">
-                        <onoff style="margin-left: 7px;"></onoff>
-                      </div>
+                      <onoff style="margin-left: 7px;" nomor="true"></onoff>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Samarinda Ilir</td>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <td>
+                      <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
+                    </td>
+                    <td>
+                      <onoff style="margin-left: 7px;" nomor="false"></onoff>
                     </td>
                   </tr>
                 </table>

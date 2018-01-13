@@ -38,7 +38,7 @@
             <tr>
               <td>1</td>
               <td>SD Muhammadiyah 2 Samarinda</td>
-              <td id="app">
+              <td>
                 <onoff></onoff>
               </td>
             </tr>

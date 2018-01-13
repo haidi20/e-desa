@@ -43335,8 +43335,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    nomor: {
+      default: 'true',
+      type: String
+    }
+  },
   data: function data() {
     return {
       status: true,
@@ -43344,9 +43351,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       off: 'btn-default'
     };
   },
+  mounted: function mounted() {
+    this.cek();
+  },
 
   methods: {
-    cek: function cek(data) {
+    pilih: function pilih(data) {
       if (data == 'off') {
         this.on = 'btn-default';
         this.off = 'btn-danger';
@@ -43356,7 +43366,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.off = 'btn-default';
         this.status = true;
       }
-      console.log(this.status);
+      console.log(this.nomor);
+    },
+    cek: function cek() {
+      if (this.nomor == 'true') {
+        this.on = 'btn-default';
+        this.off = 'btn-danger';
+        this.status = false;
+      }
+      if (this.nomor == 'false') {
+        this.on = 'btn-success';
+        this.off = 'btn-default';
+        this.status = true;
+      }
     }
   }
 });
@@ -43374,39 +43396,43 @@ var render = function() {
       _c(
         "a",
         {
+          ref: "hidup",
           staticClass: "btn btn-sm",
           class: [_vm.on],
           attrs: {
             href: "#",
             "data-toggle": "modal",
-            "data-target": "#myModal"
+            "data-target": "#myModal",
+            value: _vm.nomor
           },
           on: {
             click: function($event) {
-              _vm.cek("on")
+              _vm.pilih("on")
             }
           }
         },
-        [_vm._v("On")]
+        [_vm._v("On\n      ")]
       ),
       _vm._v(" "),
       _c(
         "a",
         {
+          ref: "mati",
           staticClass: "btn btn-sm",
           class: [_vm.off],
           attrs: {
             href: "#",
             "data-toggle": "modal",
-            "data-target": "#myModal"
+            "data-target": "#myModal",
+            value: _vm.nomor
           },
           on: {
             click: function($event) {
-              _vm.cek("off")
+              _vm.pilih("off")
             }
           }
         },
-        [_vm._v("Off")]
+        [_vm._v("Off\n      ")]
       )
     ]),
     _vm._v(" "),

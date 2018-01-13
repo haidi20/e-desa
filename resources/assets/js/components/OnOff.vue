@@ -1,12 +1,14 @@
 <template>
   <div>
-    <!-- <a class="btn btn-sm btn-info" v-if="status" v-on:click="cek"
-      data-toggle="modal" data-target="#myModal">On</a>
-    <a class="btn btn-sm btn-danger" v-else="!status" v-on:click="cek"
-      data-toggle="modal" data-target="#myModal">Off</a> -->
       <div class="btn-group btn-group-justified m" >
-        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#myModal" v-bind:class="[on]" v-on:click="cek('on')">On</a>
-        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#myModal" v-bind:class="[off]" v-on:click="cek('off')">Off</a>
+        <a href="#"
+          class="btn btn-sm" data-toggle="modal" data-target="#myModal"
+          v-bind:class="[on]" v-on:click="pilih('on')" v-bind:value="nomor" ref="hidup">On
+        </a>
+        <a href="#"
+          class="btn btn-sm" data-toggle="modal" data-target="#myModal"
+          v-bind:class="[off]" v-on:click="pilih('off')" v-bind:value="nomor" ref="mati">Off
+        </a>
       </div>
 
     <!-- Modal -->
@@ -26,7 +28,6 @@
               <button type="button" class="btn btn-success" data-dismiss="modal">Oke</button>
             </div>
           </div>
-
         </div>
       </div>
   </div>
@@ -34,15 +35,24 @@
 
 <script>
 export default {
+  props:{
+    nomor: {
+      default: 'true',
+      type: String
+    }
+  },
   data(){
     return{
       status: true,
       on: 'btn-success',
-      off: 'btn-default'
+      off: 'btn-default',
     }
   },
+  mounted(){
+    this.cek()
+  },
   methods:{
-    cek: function(data){
+    pilih: function(data){
       if (data == 'off') {
         this.on = 'btn-default';
         this.off= 'btn-danger';
@@ -52,7 +62,19 @@ export default {
         this.off='btn-default';
         this.status = true;
       }
-      console.log(this.status);
+      console.log(this.nomor);
+    },
+    cek: function(){
+      if (this.nomor == 'true') {
+        this.on = 'btn-default';
+        this.off= 'btn-danger';
+        this.status = false;
+      }
+      if(this.nomor == 'false'){
+        this.on='btn-success';
+        this.off='btn-default';
+        this.status = true;
+      }
     }
   }
 }
