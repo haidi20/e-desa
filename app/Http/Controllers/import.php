@@ -25,13 +25,17 @@ class import extends Controller {
       $inputKategori[] = array('id' => $index, 'nama' => $item->nama);
     }
 
-    $masukKecamatan = DB::table('kecamatan')->insert($inputKecamatan);
-    $masukKategori = DB::table('kategori')->insert($inputKategori);
+    $masukKecamatan   = DB::table('kecamatan')->insert($inputKecamatan);
+    $masukKategori    = DB::table('kategori')->insert($inputKategori);
+    $masukPendidikan  = DB::table('pendidikan')->insert([
+      ['id' => 1,'nama' => 'Sekolah Dasar'],
+      ['id' => 2'nama' => 'Sekolah Menengah Pertama']
+    ]);
 
-    if ($masukKecamatan && $masukKategori) {
-      return 'berhasil 2 table';
+    if ($masukKecamatan && $masukKategori && $masukPendidikan) {
+      return 'berhasil 3 table';
     }else{
-      return 'gagal 2 table';
+      return 'gagal 3 table';
     }
   }
 }
