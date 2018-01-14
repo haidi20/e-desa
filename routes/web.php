@@ -32,6 +32,8 @@ Route::resource('sekolah','SekolahController');
 Route::resource('pengguna','PenggunaController');
 Route::resource('dashboard','DashboardController');
 
+Route::get('import','import@run');
+
 //auth laravel
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

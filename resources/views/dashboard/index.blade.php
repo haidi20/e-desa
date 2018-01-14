@@ -93,9 +93,10 @@
             @for ($i=1; $i <=10 ; $i++)
               <tr align="center">
                 <td>{{$i}}</td>
-                <td>IP {{$i}}</td>
-                <td>{{rand(80,100)}}%</td>
+                <td data-toggle="modal" data-target="#myIp">IP {{$i}}</td>
+                <td data-toggle="modal" data-target="#myPersen">{{rand(80,100)}}%</td>
               </tr>
+              @include('dashboard.modal')
             @endfor
           </tbody>
         </table>
