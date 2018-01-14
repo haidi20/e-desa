@@ -8413,6 +8413,10 @@ hr.dashed {
   border-top-style: dashed;
 }
 
+#modal {
+  cursor: pointer;
+}
+
 .mt20 {
   margin-top: 20px;
 }

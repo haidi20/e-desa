@@ -25,7 +25,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Penjelasan Jumlah berdasarkan keterangan :</h4>
+          <h4 class="modal-title">Penjelasan Jumlah sekolah pad IP 1 :</h4>
         </div>
         <div class="modal-body">
           <div>Jumlah sekolah sudah memenuhi IP 1 : 6</div><br>
