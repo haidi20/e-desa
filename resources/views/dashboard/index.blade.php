@@ -81,25 +81,7 @@
         </form>
       </div>
       <div class="col-md-8">
-        <table class="table table-bordered table-custom">
-          <thead>
-            <tr>
-              <th class="no">No</th>
-              <th>Indikator Pencapaian (IP)</th>
-              <th class="action">Persen</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for ($i=1; $i <=10 ; $i++)
-              <tr align="center">
-                <td>{{$i}}</td>
-                <td id="modal" data-toggle="modal" data-target="#myIp">IP {{$i}}</td>
-                <td id="modal" data-toggle="modal" data-target="#myPersen">{{rand(80,100)}}%</td>
-              </tr>
-              @include('dashboard.modal')
-            @endfor
-          </tbody>
-        </table>
+        <tabledashboard></tabledashboard>
       </div>
     </div>
   </div>

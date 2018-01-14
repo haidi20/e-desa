@@ -23,14 +23,7 @@
           <ul class="dropdown-menu ukuranHuruf" role="menu">
             <li><a href="{{route('kunci.index')}}">Kunci</a></li>
             <li><a href="{{route('pengguna.index')}}">Pengguna</a></li>
-            <li><a href="{{url('/logout')}}"
-              onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
-              Keluar</a>
-            </li>
-            <form action="{{url('/logout')}}" method="POST">
-              {{ csrf_field() }}
-            </form>
+            <li><a href="#">Keluar</a></li>
           </ul>
         </li>
       </ul>
