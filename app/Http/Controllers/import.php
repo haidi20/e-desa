@@ -29,7 +29,7 @@ class import extends Controller {
     $masukKategori    = DB::table('kategori')->insert($inputKategori);
     $masukPendidikan  = DB::table('pendidikan')->insert([
       ['id' => 1,'nama' => 'Sekolah Dasar'],
-      ['id' => 2'nama' => 'Sekolah Menengah Pertama']
+      ['id' => 2,'nama' => 'Sekolah Menengah Pertama']
     ]);
 
     if ($masukKecamatan && $masukKategori && $masukPendidikan) {
