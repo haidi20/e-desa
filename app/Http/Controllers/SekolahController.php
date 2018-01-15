@@ -10,9 +10,7 @@ use App\Models\Sekolah;
 class SekolahController extends Controller
 {
     public function baca(){
-      return Sekolah::where('kecamatan_id',request('kecamatan_id'))
-                    ->where('pendidikan_id', request('pendidikan_id'))
-                    ->get();
+      return Sekolah::kondisi()->get();
     }
 
     public function index(){

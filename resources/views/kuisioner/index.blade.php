@@ -10,30 +10,7 @@
     <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('kuisioner.index')}}" method="get">
-        <div class="col-md-3 col-md-offset-2">
-          <div class="form-group">
-            <label for="kecamatan">Kecamatan</label>
-            <select name="kecamatan" id="kecamatan" class="form-control">
-              <option value="">Semua Kecamatan</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="pendidikan">Jenjang Pendidikan</label>
-            <select name="pendidikan" id="pendidikan" class="form-control">
-              <option value="">Semua Jenjang Pendidikan</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="sekolah">Sekolah</label>
-            <select name="sekolah" id="sekolah" class="form-control">
-              <option value="">Semua Sekolah</option>
-            </select>
-          </div>
-        </div>
+        <kondisikui></kondisikui>
         <div class="col-md-1 text-right">
           <button type="submit" class="btn btn-md btn-success oke">Oke</button>
         </div>

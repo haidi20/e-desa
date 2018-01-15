@@ -14,11 +14,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('onoff', require('./components/kunci/OnOff.vue'));
-Vue.component('kondisi', require('./components/sekolah/Kondisi.vue'));
-Vue.component('tabledashboard',require('./components/dashboard/Table.vue'));
-Vue.component('modaldashboard',require('./components/dashboard/Modal.vue'));
-Vue.component('kondisilengkap', require('./components/sekolah/KondisiLengkap.vue'));
+require('./komponent');
 
 const app = new Vue({
     el: '#app',
