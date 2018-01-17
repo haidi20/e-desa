@@ -37,7 +37,7 @@
           <div class="form-group">
             <label for="kecamatan" class="form-label">Kecamatan</label>
             <select name="kecamatan" v-on:change="bacaSekolah" v-model="item.kecamatan_id" id="kecamatan" class="form-control">
-              <option value="">Pilih Kecamatan</option>
+              <option value="">Kota Samarinda</option>
               <option v-for="kecamatan in kecamatans" v-bind:value="kecamatan.id">{{kecamatan.nama}}</option>
             </select>
           </div>

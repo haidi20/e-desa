@@ -10,7 +10,7 @@
     <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('kuisioner.index')}}" method="get">
-        <kondisikui></kondisikui>
+        <kondisikuisioner></kondisikuisioner>
         <div class="col-md-1 text-right">
           <button type="submit" class="btn btn-md btn-success oke">Oke</button>
         </div>

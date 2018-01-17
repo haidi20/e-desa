@@ -25,7 +25,7 @@
           <option v-for="sekolah in sekolahs"  v-bind:value="sekolah.id">{{sekolah.nama}}</option>
         </select>
         <select v-else name="" id="" class="form-control">
-          <option value="" >Data tidak ditemukan</option>
+          <option value="" >Data Kosong</option>
         </select>
       </div>
     </div>
@@ -63,7 +63,7 @@ export default {
     bacaSekolah:function(){
       const kec = this.item.kecamatan_id;
       const pen = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan_id='+kec+'&&pendidikan_id='+pen).then(response =>{
+      axios.get('sekolah/vue?kecamatan_id='+kec+'&&pendidikan_id='+pen+'&&kuisioner="true"').then(response =>{
         this.sekolahs = response.data;
       })
     }

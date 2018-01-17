@@ -13,9 +13,7 @@
     <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('pengguna.index')}}" method="get">
-        <div id="app">
-          <kondisi></kondisi>
-        </div>
+        <kondisipengguna></kondisipengguna>
         {{-- <kecamatan></kecamatan> --}}
         {{-- <sekolah></sekolah> --}}
         <div class="col-md-1 text-right">

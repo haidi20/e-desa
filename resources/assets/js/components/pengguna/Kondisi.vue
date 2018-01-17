@@ -12,9 +12,11 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="sekolah">Sekolah</label>
-        <select name="sekolah" id="sekolah" class="form-control">
-          <option value="">Semua Sekolah</option>
+        <select name="sekolah" id="sekolah" v-if="sekolahs.length" class="form-control">
           <option v-for="sekolah in sekolahs" v-bind:value="sekolah.id">{{sekolah.nama}}</option>
+        </select>
+        <select v-else class="form-control">
+          <option value="">Data Kosong</option>
         </select>
       </div>
     </div>

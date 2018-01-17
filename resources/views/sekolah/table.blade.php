@@ -8,7 +8,7 @@
           <th>jenjang</th>
           <th>Kecamatan</th>
           <th>Alamat</th>
-          <th class="action">Action</th>
+          <th width="200px">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -19,9 +19,11 @@
           <td>samarinda ulu</td>
           <td>telok lerong</td>
           <td>
+            <a href="#" class="btn btn-info btn-sm" id="modal" data-toggle="modal" data-target="#myIp2">Detail</a>
             <a href="#" class="btn btn-warning btn-sm">Edit</a>
             <a href="#" class="btn btn-danger btn-sm">Delete</a>
           </td>
+          <modalsekolah></modalsekolah>
         </tr>
       </tbody>
     </table>

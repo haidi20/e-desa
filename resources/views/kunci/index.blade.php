@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Kunci Admin</h1>
+        <h1>Kunci</h1>
       </div>
       <div class="col-md-6 text-right">
         {{-- <a href="{{route('kunci.create')}}" class="btn btn-success btn-md tombol-atas">Tambah</a> --}}

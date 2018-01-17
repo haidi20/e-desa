@@ -13,9 +13,7 @@
     <hr class="dashed mt20 mb20">
     <div class="row">
       <form action="{{route('sekolah.index')}}" method="get">
-        <div id="app">
-          <kondisiLengkap></kondisiLengkap>
-        </div>
+        <kondisisekolah></kondisisekolah>
         <div class="col-md-1 oke">
           <button type="submit" class="btn btn-success btn-md">Oke</button>
         </div>

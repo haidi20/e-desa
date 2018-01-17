@@ -1426,7 +1426,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(73);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
@@ -43227,15 +43227,21 @@ exports.clearImmediate = clearImmediate;
 Vue.component('onoff', __webpack_require__(43));
 
 //sekolah
-Vue.component('kondisi', __webpack_require__(49));
-Vue.component('kondisilengkap', __webpack_require__(54));
+Vue.component('modalsekolah', __webpack_require__(49));
+Vue.component('kondisisekolah', __webpack_require__(54));
 
 //dashboard
 Vue.component('modaldashboard', __webpack_require__(12));
 Vue.component('dashboard', __webpack_require__(63));
 
 //kuisioner
-Vue.component('kondisikui', __webpack_require__(68));
+Vue.component('kondisikuisioner', __webpack_require__(68));
+
+//pengguna
+Vue.component('kondisipengguna', __webpack_require__(73));
+
+//kunci
+Vue.component('kondisikunci', __webpack_require__(78));
 
 /***/ }),
 /* 43 */
@@ -43594,7 +43600,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\sekolah\\KondisiSek.vue"
+Component.options.__file = "resources\\assets\\js\\components\\sekolah\\Modal.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -43603,9 +43609,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fd5e3a6c", Component.options)
+    hotAPI.createRecord("data-v-684f53c7", Component.options)
   } else {
-    hotAPI.reload("data-v-fd5e3a6c", Component.options)
+    hotAPI.reload("data-v-684f53c7", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43626,13 +43632,13 @@ var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("4af0919c", content, false);
+var update = __webpack_require__(2)("cb4bc2cc", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fd5e3a6c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiSek.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fd5e3a6c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiSek.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-684f53c7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-684f53c7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -43650,7 +43656,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43682,42 +43688,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      sekolahs: [],
-      kecamatans: [],
-      item: {
-        id: ''
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.bacaKecamatan();
-  },
-
-  methods: {
-    bacaKecamatan: function bacaKecamatan() {
-      var _this = this;
-
-      axios.get('kecamatan/vue').then(function (response) {
-        _this.kecamatans = response.data;
-      });
-    },
-    pilihKecamatan: function pilihKecamatan() {
-      var _this2 = this;
-
-      var data = this.item.id;
-      axios.get('sekolah/vue?kecamatan_id=' + data).then(function (response) {
-        // console.log(response.data);
-        _this2.sekolahs = response.data;
-      });
-    }
-  }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 /* 53 */
@@ -43727,91 +43699,64 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "col-md-3 col-md-offset-5" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "kecamatan" } }, [_vm._v("Kecamatan")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.id,
-                expression: "item.id"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "kecamatan", id: "kecamatan" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.item,
-                    "id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                },
-                _vm.pilihKecamatan
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Semua kecamatan")]),
-            _vm._v(" "),
-            _vm._l(_vm.kecamatans, function(item) {
-              return _c("option", { domProps: { value: item.id } }, [
-                _vm._v(_vm._s(item.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "sekolah" } }, [_vm._v("Sekolah")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { name: "sekolah", id: "sekolah" }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Semua Sekolah")]),
-            _vm._v(" "),
-            _vm._l(_vm.sekolahs, function(sekolah) {
-              return _c("option", { domProps: { value: sekolah.id } }, [
-                _vm._v(_vm._s(sekolah.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ])
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "modal fade", attrs: { id: "myIp2", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("×")]
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "modal-title" }, [
+                _vm._v("Penjelasan Indikator Pencapaian (IP)")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("p", [
+                _vm._v(
+                  "Jumlah Kelompok permukiman permanen yang sudah dilayani SD/MI dalam jarak kurang dari 3 KM."
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Oke")]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-fd5e3a6c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-684f53c7", module.exports)
   }
 }
 
@@ -43845,7 +43790,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\sekolah\\KondisiLengkapSek.vue"
+Component.options.__file = "resources\\assets\\js\\components\\sekolah\\Kondisi.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -43854,9 +43799,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-72101730", Component.options)
+    hotAPI.createRecord("data-v-40847cbf", Component.options)
   } else {
-    hotAPI.reload("data-v-72101730", Component.options)
+    hotAPI.reload("data-v-40847cbf", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43877,13 +43822,13 @@ var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("5b5cecba", content, false);
+var update = __webpack_require__(2)("199523c0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72101730\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiLengkapSek.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72101730\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiLengkapSek.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40847cbf\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40847cbf\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -44148,7 +44093,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-72101730", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-40847cbf", module.exports)
   }
 }
 
@@ -44187,7 +44132,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44198,6 +44143,58 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44287,7 +44284,9 @@ var render = function() {
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -44344,13 +44343,53 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
-      _c("div", [_vm._v("Jumlah sekolah sudah memenuhi IP 1 : 6")]),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", [_vm._v("Jumlah sekolah belum memenuhi IP 1 : 7")]),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", [_vm._v("Jumlah sekolah di Kota Samarinda : 13")])
+      _c("table", { staticClass: "table", staticStyle: { border: "none" } }, [
+        _c("tbody", [
+          _c("tr", [
+            _c(
+              "td",
+              {
+                attrs: {
+                  id: "modal",
+                  "data-toggle": "modal",
+                  "data-target": "#myDetail"
+                }
+              },
+              [_vm._v("Jumlah sekolah sudah memenuhi IP 1")]
+            ),
+            _vm._v(" "),
+            _c("td", [_vm._v(":")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("6")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              {
+                attrs: {
+                  id: "modal",
+                  "data-toggle": "modal",
+                  "data-target": "#myDetail"
+                }
+              },
+              [_vm._v("Jumlah sekolah belum memenuhi IP 1")]
+            ),
+            _vm._v(" "),
+            _c("td", [_vm._v(":")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("7")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("Jumlah sekolah di Kota Samarinda")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(":")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("13")])
+          ])
+        ])
+      ])
     ])
   },
   function() {
@@ -44367,6 +44406,76 @@ var staticRenderFns = [
         [_vm._v("Oke")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "modal fade", attrs: { id: "myDetail", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("×")]
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "modal-title" }, [
+                _vm._v("Daftar sekolah sudah/belum memenuhi syarat IP :")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-custom" },
+                [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", { staticClass: "no" }, [_vm._v("No")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Nama Sekolah")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SD Muh 2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("2")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("SMP Muh 2")])
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Oke")]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -44742,7 +44851,7 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Pilih Kecamatan")
+                  _vm._v("Kota Samarinda")
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.kecamatans, function(kecamatan) {
@@ -44961,7 +45070,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\kuisioner\\KondisiKui.vue"
+Component.options.__file = "resources\\assets\\js\\components\\kuisioner\\Kondisi.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -44970,9 +45079,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-58758228", Component.options)
+    hotAPI.createRecord("data-v-5943cb03", Component.options)
   } else {
-    hotAPI.reload("data-v-58758228", Component.options)
+    hotAPI.reload("data-v-5943cb03", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -44993,13 +45102,13 @@ var content = __webpack_require__(70);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("ac7da124", content, false);
+var update = __webpack_require__(2)("2999a903", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58758228\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiKui.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58758228\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./KondisiKui.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5943cb03\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5943cb03\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -45099,7 +45208,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var kec = this.item.kecamatan_id;
       var pen = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan_id=' + kec + '&&pendidikan_id=' + pen).then(function (response) {
+      axios.get('sekolah/vue?kecamatan_id=' + kec + '&&pendidikan_id=' + pen + '&&kuisioner="true"').then(function (response) {
         _this3.sekolahs = response.data;
       });
     }
@@ -45251,11 +45360,7 @@ var render = function() {
           : _c(
               "select",
               { staticClass: "form-control", attrs: { name: "", id: "" } },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Data tidak ditemukan")
-                ])
-              ]
+              [_c("option", { attrs: { value: "" } }, [_vm._v("Data Kosong")])]
             )
       ])
     ])
@@ -45267,12 +45372,438 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-58758228", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5943cb03", module.exports)
   }
 }
 
 /***/ }),
 /* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(74)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(76)
+/* template */
+var __vue_template__ = __webpack_require__(77)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\pengguna\\Kondisi.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-800689e2", Component.options)
+  } else {
+    hotAPI.reload("data-v-800689e2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(75);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("1e88c13c", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-800689e2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-800689e2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sekolahs: [],
+      kecamatans: [],
+      item: {
+        id: ''
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.bacaKecamatan();
+  },
+
+  methods: {
+    bacaKecamatan: function bacaKecamatan() {
+      var _this = this;
+
+      axios.get('kecamatan/vue').then(function (response) {
+        _this.kecamatans = response.data;
+      });
+    },
+    pilihKecamatan: function pilihKecamatan() {
+      var _this2 = this;
+
+      var data = this.item.id;
+      axios.get('sekolah/vue?kecamatan_id=' + data).then(function (response) {
+        // console.log(response.data);
+        _this2.sekolahs = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "col-md-3 col-md-offset-5" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "kecamatan" } }, [_vm._v("Kecamatan")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.item.id,
+                expression: "item.id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "kecamatan", id: "kecamatan" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.item,
+                    "id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.pilihKecamatan
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("Semua kecamatan")]),
+            _vm._v(" "),
+            _vm._l(_vm.kecamatans, function(item) {
+              return _c("option", { domProps: { value: item.id } }, [
+                _vm._v(_vm._s(item.nama))
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "sekolah" } }, [_vm._v("Sekolah")]),
+        _vm._v(" "),
+        _vm.sekolahs.length
+          ? _c(
+              "select",
+              {
+                staticClass: "form-control",
+                attrs: { name: "sekolah", id: "sekolah" }
+              },
+              _vm._l(_vm.sekolahs, function(sekolah) {
+                return _c("option", { domProps: { value: sekolah.id } }, [
+                  _vm._v(_vm._s(sekolah.nama))
+                ])
+              })
+            )
+          : _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Data Kosong")])
+            ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-800689e2", module.exports)
+  }
+}
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(79)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(81)
+/* template */
+var __vue_template__ = __webpack_require__(82)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\kunci\\Kondisi.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dbf33ae8", Component.options)
+  } else {
+    hotAPI.reload("data-v-dbf33ae8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(80);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("2863de48", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-dbf33ae8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-dbf33ae8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['old'],
+  data: function data() {
+    return {
+      kecamatans: ''
+    };
+  },
+  mounted: function mounted() {
+    this.bacaKecamatan();
+  },
+
+  methods: {
+    bacaKecamatan: function bacaKecamatan() {
+      var _this = this;
+
+      axios.get('kecamatan/vue').then(function (response) {
+        _this.kecamatans = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-3 col-md-offset-8" }, [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "kecamatan" } }, [_vm._v("Kecamatan")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-control",
+          attrs: { name: "kecamatan", id: "kecamatan" }
+        },
+        [
+          _c("option", { attrs: { value: "" } }, [_vm._v("Semua kecamatan")]),
+          _vm._v(" "),
+          _vm._l(_vm.kecamatans, function(kecamatan) {
+            return _c("option", { domProps: { value: kecamatan.id } }, [
+              _vm._v(_vm._s(kecamatan.nama))
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dbf33ae8", module.exports)
+  }
+}
+
+/***/ }),
+/* 83 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
