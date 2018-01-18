@@ -9,7 +9,22 @@
           <h4 class="modal-title">Penjelasan Indikator Pencapaian (IP)</h4>
         </div>
         <div class="modal-body">
-          <p>Jumlah Kelompok permukiman permanen yang sudah dilayani SD/MI dalam jarak kurang dari 3 KM.</p>
+          <table class="table table-bordered table-custom">
+            <thead>
+              <tr>
+                <th class="no">No</th>
+                <th>Indikator Pencapaian (IP)</th>
+                <th>Persen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="i in 10" align="center">
+                <td>{{i}}</td>
+                <td>IP {{i}}</td>
+                <td>{{hitung()}}%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Oke</button>
@@ -21,6 +36,14 @@
 
 <script>
 export default {
+  mounted(){
+    this.hitung()
+  },
+  methods:{
+    hitung:function(){
+      return Math.floor(Math.random() * (100-80+1)) + 80;
+    }
+  }
 }
 </script>
 

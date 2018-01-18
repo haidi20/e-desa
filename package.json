@@ -20,6 +20,7 @@
     "vue": "^2.5.13"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "laravel-vue-pagination": "^1.1.0"
   }
 }

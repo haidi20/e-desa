@@ -17,20 +17,38 @@
             <thead>
               <tr>
                 <th class="no">No</th>
-                <th>Pertanyaan</th>
+                <th>Penjelasan</th>
                 <th>Isi</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Berapa Jumlah siswa di sekolah ini ?</td>
-                <td class="form"><input type="text" class="form-control" name="isi" value="{{old('isi')}}"></td>
-              </tr>
+              @forelse ($pertanyaan as $index => $item)
+                <tr>
+                  <td>{{$index + 1}}</td>
+                  <td {{$item->tanya == '0'?'colspan=2':''}}>{{$item->keterangan->nama}}</td>
+                  @if ($item->pilihan == '1' && $item->tanya == '1' && $item->penyedia_id == '1')
+                    <td>
+                      <select name="isi" class="form-control">
+                        <option value="Ya">Ya</option>
+                        <option value="Tidak">Tidak</option>
+                      </select>
+                    </td>
+                  @elseif($item->pilihan == '0' && $item->tanya == '1' && $item->penyedia_id == '1')
+                    <td class="form">
+                      <input type="text" name="isi" value="{{old('isi')}}" class="form-control">
+                    </td>
+                  @endif
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="3">Data Tidak Ada</td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
+          {{$pertanyaan->links()}}
         </div>
-        <div class="tab-pane fade" id="dua">
+        <div class="tab-pane fade in" id="dua">
           <table class="table table-bordered table-custom">
             <thead>
               <tr>
@@ -40,24 +58,31 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Berapa jumlah rombongan belajar sekolah ini ?</td>
-                <td class="form"><input type="text" class="form-control" name="isi" value="{{old('isi')}}12"></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Apakah jumlah rombongan belajar yang jumlah siswanya tidak melebihi 32 siswa ?
-                </td>
-                <td class="form">
-                  <select name="isi" class="form-control">
-                    <option value="Ya">Ya</option>
-                    <option value="Tidak">Tidak</option>
-                  </select>
-                </td>
-              </tr>
+              @forelse ($pertanyaan as $index => $item)
+                <tr>
+                  <td>{{$index + 1}}</td>
+                  <td {{$item->tanya == '0'?'colspan=2':''}}>{{$item->keterangan->nama}}</td>
+                  @if ($item->pilihan == '1' && $item->tanya == '1' && $item->penyedia_id == '2')
+                    <td>
+                      <select name="isi" class="form-control">
+                        <option value="Ya">Ya</option>
+                        <option value="Tidak">Tidak</option>
+                      </select>
+                    </td>
+                  @elseif($item->pilihan == '0' && $item->tanya == '1' && $item->penyedia_id == '2')
+                    <td class="form">
+                      <input type="text" name="isi" value="{{old('isi')}}" class="form-control">
+                    </td>
+                  @endif
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="3">Data Tidak Ada</td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
+          {{$pertanyaan->links()}}
         </div>
       </div>
       <div class="col-md-1 col-md-offset-11">

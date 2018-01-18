@@ -11,14 +11,17 @@ class Sekolah extends Model
     public function scopeKondisi($query){
 
       if (request('kuisioner')) {
-        $query->where('kecamatan_id',request('kecamatan_id'))
-              ->where('pendidikan_id',request('pendidikan_id'));
+        $query->where('kecamatan_id',request('kecamatan'))
+              ->where('pendidikan_id',request('pendidikan'));
       }else{
-        if (request('kecamatan_id')) {
-          $query->where('kecamatan_id',request('kecamatan_id'));
+        if (request('pendidikan')) {
+          $query->where('pendidikan_id',request('pendidikan'));
         }
-        if (request('pendidikan_id')) {
-          $query->where('pendidikan_id',request('pendidikan_id'));
+        if (request('kecamatan')) {
+          $query->where('kecamatan_id',request('kecamatan'));
+        }
+        if (request('sekolah')) {
+          $query->where('id',request('sekolah'));
         }
       }
 

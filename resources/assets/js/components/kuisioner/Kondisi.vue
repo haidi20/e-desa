@@ -63,7 +63,7 @@ export default {
     bacaSekolah:function(){
       const kec = this.item.kecamatan_id;
       const pen = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan_id='+kec+'&&pendidikan_id='+pen+'&&kuisioner="true"').then(response =>{
+      axios.get('sekolah/vue?kecamatan='+kec+'&&pendidikan='+pen+'&&kuisioner="true"').then(response =>{
         this.sekolahs = response.data;
       })
     }

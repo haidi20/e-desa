@@ -26,7 +26,7 @@
           <div class="form-group">
             <label for="pendidikan" class="form-label">Jenjang Pendidikan</label>
             <select name="pendidikan" v-on:change="bacaSekolah" v-model="item.pendidikan_id" id="pendidikan" class="form-control">
-              <option value="">Pilih Jenjang Pendidikan</option>
+              <option value="">Semua Jenjang Pendidikan</option>
               <option v-for="pendidikan in pendidikans" v-bind:value="pendidikan.id">{{pendidikan.nama}}</option>
             </select>
           </div>
@@ -48,6 +48,7 @@
           <div class="form-group">
             <label for="sekolah" class="form-label">Sekolah</label>
             <select name="sekolah" id="sekolah" v-if="sekolahs.length" class="form-control">
+              <option value="">Semua Sekolah</option>
               <option v-for="sekolah in sekolahs"  v-bind:value="sekolah.id">{{sekolah.nama}}</option>
             </select>
             <select v-else name="" id="" class="form-control">
@@ -122,7 +123,7 @@ export default {
     bacaSekolah: function(){
       const kec = this.item.kecamatan_id;
       const pend = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan_id='+kec+'&&pendidikan_id='+pend).then(response => {
+      axios.get('sekolah/vue?kecamatan='+kec+'&&pendidikan='+pend).then(response => {
         this.sekolahs = response.data;
       })
     },

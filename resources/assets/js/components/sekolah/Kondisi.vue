@@ -3,7 +3,7 @@
     <div class="col-md-3 col-md-offset-2">
       <div class="form-group">
         <label for="pendidikan">Jenjang Pendidikan</label>
-        <select name="pendidikan" v-on:change="bacaSekolah" v-model="item.pendidikan_id" id="pendidikan" class="form-control">
+        <select name="pendidikan" v-on:change="pilihSekolah" v-model="item.pendidikan_id" id="pendidikan" class="form-control">
           <option value="">Semua Jenjang Pendidikan</option>
           <option v-for="pendidikan in pendidikans" v-bind:value="pendidikan.id">{{pendidikan.nama}}</option>
         </select>
@@ -12,7 +12,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="kecamatan">Kecamatan</label>
-        <select name="kecamatan" v-on:change="bacaSekolah" v-model="item.kecamatan_id" id="kecamatan" class="form-control">
+        <select name="kecamatan" v-on:change="pilihSekolah" v-model="item.kecamatan_id" id="kecamatan" class="form-control">
           <option value="">Semua Kecamatan</option>
           <option v-for="kecamatan in kecamatans" v-bind:value="kecamatan.id">{{kecamatan.nama}}</option>
         </select>
@@ -21,14 +21,12 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="sekolah">Sekolah</label>
-        <select name="sekolah" v-if="sekolahs.length" id="sekolah" class="form-control">
+        <select name="sekolah" id="sekolah" class="form-control">
+          <option value="">Semua Sekolah</option>
           <option
             v-for="sekolah in sekolahs"
             v-bind:value="sekolah.id">{{sekolah.nama}}
           </option>
-        </select>
-        <select v-else name="sekolah" id="sekolah" class="form-control">
-          <option value="">Data Kosong</option>
         </select>
       </div>
     </div>
@@ -51,7 +49,8 @@ export default {
   },
   mounted(){
     this.bacaPendidikan(),
-    this.bacaKecamatan()
+    this.bacaKecamatan(),
+    this.bacaSekolah()
   },
   methods:{
     bacaPendidikan: function(){
@@ -66,9 +65,16 @@ export default {
       })
     },
     bacaSekolah: function(){
-      const kec  = this.item.kecamatan_id;
-      const pend = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan_id='+kec+'&&pendidikan_id='+pend).then(response => {
+      axios.get('sekolah/vue').then(response => {
+        this.sekolahs = response.data;
+      })
+    },
+    pilihSekolah: function(){
+      const pen   = this.item.pendidikan_id;
+      const kec   = this.item.kecamatan_id;
+      const sek   = this.item.sekolah_id;
+      console.log(pen);
+      axios.get('sekolah/vue?pendidikan='+pen+'&&kecamatan='+kec+'&&sekolah='+sek).then(response => {
         this.sekolahs = response.data;
         // console.log(response.data);
       })

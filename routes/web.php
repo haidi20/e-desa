@@ -10,6 +10,7 @@ Route::get('pengguna/reset','PenggunaController@reset')->name('pengguna.reset');
 Route::get('pengguna/konfirmasi','PenggunaController@konfirmasi')->name('pengguna.konfirmasi');
 
 //get kuisioner
+Route::get('kuisioner/vue','KuisionerController@baca');
 Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
 Route::post('kuisioner/store','KuisionerController@store')->name('kuisioner.store');
 

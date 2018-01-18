@@ -1,3 +1,6 @@
+//paginate
+Vue.component('vue-pagination', require('laravel-vue-pagination'));
+
 //kunci
 Vue.component('onoff', require('./components/kunci/OnOff.vue'));
 
@@ -11,6 +14,7 @@ Vue.component('dashboard',require('./components/dashboard/Index.vue'));
 
 //kuisioner
 Vue.component('kondisikuisioner',require('./components/kuisioner/Kondisi.vue'));
+Vue.component('kuisioner',require('./components/kuisioner/Index.vue'));
 
 //pengguna
 Vue.component('kondisipengguna',require('./components/pengguna/Kondisi.vue'));

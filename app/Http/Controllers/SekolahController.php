@@ -14,7 +14,10 @@ class SekolahController extends Controller
     }
 
     public function index(){
-      return view('sekolah.index');
+
+      $sekolah = Sekolah::kondisi()->paginate(10);
+
+      return view('sekolah.index',compact('sekolah'));
     }
 
     public function create(){

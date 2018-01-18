@@ -18,6 +18,6 @@
     </div>
     @include('kuisioner.info')
     <br>
-    @include('kuisioner.table')
+    <kuisioner></kuisioner>
   </div>
 @endsection
