@@ -45620,7 +45620,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45690,7 +45690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       kuisioners: [],
       kuisionerData: {},
-      url: window.location.origin + window.location.pathname
+      tab: ''
     };
   },
   mounted: function mounted() {
@@ -45698,12 +45698,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    bacaKuisioner: function bacaKuisioner(page) {
+    bacaKuisioner: function bacaKuisioner(page, tab) {
       var _this = this;
 
       if (typeof page === 'undefined') {
         page = 1;
       }
+      console.log(tab);
       axios.get('kuisioner/vue?page=' + page).then(function (response) {
         _this.kuisioners = response.data.data;
         _this.kuisionerData = response.data;
@@ -45724,7 +45725,67 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-12" }, [
-      _vm._m(0),
+      _c("ul", { staticClass: "nav nav-tabs" }, [
+        _c("li", { staticClass: "active" }, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "#satu",
+                "data-toggle": "tab",
+                "aria-expanded": "true"
+              },
+              on: {
+                click: function($event) {
+                  _vm.bacaKuisioner(_vm.page, "satu")
+                }
+              },
+              model: {
+                value: _vm.tab,
+                callback: function($$v) {
+                  _vm.tab = $$v
+                },
+                expression: "tab"
+              }
+            },
+            [
+              _vm._v(
+                "\n        Pelayanan Pendidikan oleh Pemerintah Kota\n      "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", {}, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "#dua",
+                "data-toggle": "tab",
+                "aria-expanded": "false"
+              },
+              on: {
+                click: function($event) {
+                  _vm.bacaKuisioner(_vm.page, "dua")
+                }
+              },
+              model: {
+                value: _vm.tab,
+                callback: function($$v) {
+                  _vm.tab = $$v
+                },
+                expression: "tab"
+              }
+            },
+            [
+              _vm._v(
+                "\n        Pelayanan Pendidikan Dasar oleh Satuan Pendidikan\n      "
+              )
+            ]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "tab-content", attrs: { id: "myTabContent" } }, [
         _c(
@@ -45732,7 +45793,7 @@ var render = function() {
           { staticClass: "tab-pane fade active in", attrs: { id: "satu" } },
           [
             _c("table", { staticClass: "table table-bordered table-custom" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _vm.kuisioners.length
                 ? _c(
@@ -45740,7 +45801,7 @@ var render = function() {
                     _vm._l(_vm.kuisioners, function(kuisioner, index) {
                       return kuisioner.tanya == "1"
                         ? _c("tr", [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _c("td", [_vm._v(_vm._s(kuisioner.id))]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(_vm._s(kuisioner.keterangan.nama))
@@ -45754,11 +45815,11 @@ var render = function() {
                                   })
                                 ])
                               : kuisioner.pilihan == "1"
-                                ? _c("td", [_vm._m(2, true)])
+                                ? _c("td", [_vm._m(1, true)])
                                 : _c("td")
                           ])
                         : _c("tr", [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _c("td", [_vm._v(_vm._s(kuisioner.id))]),
                             _vm._v(" "),
                             _c(
                               "td",
@@ -45768,12 +45829,12 @@ var render = function() {
                           ])
                     })
                   )
-                : _c("tbody", [_vm._m(3)])
+                : _c("tbody", [_vm._m(2)])
             ]),
             _vm._v(" "),
             _c(
               "div",
-              { attrs: { align: "right" } },
+              { attrs: { align: "center" } },
               [
                 _c("vue-pagination", {
                   attrs: { data: _vm.kuisionerData },
@@ -45786,53 +45847,11 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(3)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav nav-tabs" }, [
-      _c("li", { staticClass: "active" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#satu",
-              "data-toggle": "tab",
-              "aria-expanded": "true"
-            }
-          },
-          [
-            _vm._v(
-              "\n        Pelayanan Pendidikan oleh Pemerintah Kota\n      "
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", {}, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#dua",
-              "data-toggle": "tab",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _vm._v(
-              "\n        Pelayanan Pendidikan Dasar oleh Satuan Pendidikan\n      "
-            )
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

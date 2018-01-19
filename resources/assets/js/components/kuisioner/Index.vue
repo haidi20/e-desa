@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true">
+        <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true" v-model="tab" v-on:click="bacaKuisioner(page,'satu')">
           Pelayanan Pendidikan oleh Pemerintah Kota
         </a></li>
-        <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false">
+        <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false" v-model="tab" v-on:click="bacaKuisioner(page,'dua')">
           Pelayanan Pendidikan Dasar oleh Satuan Pendidikan
         </a></li>
       </ul>
@@ -21,7 +21,7 @@
             </thead>
             <tbody v-if="kuisioners.length">
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
-                <td>{{index + 1}}</td>
+                <td>{{kuisioner.id}}</td>
                 <td>{{kuisioner.keterangan.nama}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
                   <input type="text" class="form-control" >
@@ -34,14 +34,14 @@
                 </td>
                 <td v-else></td>
               </tr>
-              <tr v-else >
-                <td>{{index + 1}}</td>
+              <tr v-else>
+                <td>{{kuisioner.id}}</td>
                 <td colspan="2" class="form">{{kuisioner.keterangan.nama}}</td>
               </tr>
             </tbody>
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
           </table>
-          <div align="right"> <vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination> </div>
+          <div align="center"> <vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination> </div>
         </div>
       </div>
       <div class="col-md-1 col-md-offset-11">
@@ -57,17 +57,18 @@ export default {
     return {
       kuisioners: [],
       kuisionerData: {},
-      url : window.location.origin + window.location.pathname,
+      tab: ''
     }
   },
   mounted(){
     this.bacaKuisioner()
   },
   methods:{
-    bacaKuisioner: function(page){
+    bacaKuisioner: function(page, tab){
       if (typeof page === 'undefined') {
         page = 1;
       }
+      console.log(tab);
       axios.get('kuisioner/vue?page='+page).then(response => {
         this.kuisioners = response.data.data;
         this.kuisionerData = response.data;
