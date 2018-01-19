@@ -11,4 +11,10 @@ class Pertanyaan extends Model
     public function keterangan(){
       return $this->belongsTo('App\Models\Keterangan');
     }
+
+    public function scopeKondisi($query){
+      if (request('tab')) {
+        $query->where('penyedia_id',request('tab'));
+      }
+    }
 }

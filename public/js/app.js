@@ -45620,7 +45620,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45684,13 +45684,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       kuisioners: [],
       kuisionerData: {},
-      tab: ''
+      noTab: ''
+      // url:window.location.origin + window.location.pathname + window.location.request
     };
   },
   mounted: function mounted() {
@@ -45704,13 +45736,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (typeof page === 'undefined') {
         page = 1;
       }
-      console.log(tab);
-      axios.get('kuisioner/vue?page=' + page).then(function (response) {
+      if (typeof tab === 'undefined') {
+        tab = 1;
+      }
+      console.log('tab = ' + tab);
+      axios.get('kuisioner/vue?page=' + page + '&&tab=' + tab).then(function (response) {
         _this.kuisioners = response.data.data;
         _this.kuisionerData = response.data;
-      }).catch(function (response) {
-        console.log(response);
       });
+    },
+    klikTab: function klikTab(data) {
+      this.noTab = data;
+      console.log('noTab = ' + this.noTab);
     }
   }
 });
@@ -45737,15 +45774,8 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.bacaKuisioner(_vm.page, "satu")
+                  _vm.bacaKuisioner(0, 1)
                 }
-              },
-              model: {
-                value: _vm.tab,
-                callback: function($$v) {
-                  _vm.tab = $$v
-                },
-                expression: "tab"
               }
             },
             [
@@ -45767,15 +45797,8 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.bacaKuisioner(_vm.page, "dua")
+                  _vm.bacaKuisioner(0, 2)
                 }
-              },
-              model: {
-                value: _vm.tab,
-                callback: function($$v) {
-                  _vm.tab = $$v
-                },
-                expression: "tab"
               }
             },
             [
@@ -45819,11 +45842,9 @@ var render = function() {
                                 : _c("td")
                           ])
                         : _c("tr", [
-                            _c("td", [_vm._v(_vm._s(kuisioner.id))]),
-                            _vm._v(" "),
                             _c(
                               "td",
-                              { staticClass: "form", attrs: { colspan: "2" } },
+                              { staticClass: "form", attrs: { colspan: "3" } },
                               [_vm._v(_vm._s(kuisioner.keterangan.nama))]
                             )
                           ])
@@ -45834,7 +45855,14 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { attrs: { align: "center" } },
+              {
+                attrs: { align: "center" },
+                on: {
+                  click: function($event) {
+                    _vm.bacaKuisioner(0, 1)
+                  }
+                }
+              },
               [
                 _c("vue-pagination", {
                   attrs: { data: _vm.kuisionerData },
@@ -45844,14 +45872,103 @@ var render = function() {
               1
             )
           ]
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-pane fade in", attrs: { id: "dua" } }, [
+          _c("table", { staticClass: "table table-bordered table-custom" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm.kuisioners.length
+              ? _c(
+                  "tbody",
+                  _vm._l(_vm.kuisioners, function(kuisioner, index) {
+                    return kuisioner.tanya == "1"
+                      ? _c("tr", [
+                          _c("td", [_vm._v(_vm._s(index + 1))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(kuisioner.keterangan.nama))]),
+                          _vm._v(" "),
+                          kuisioner.pilihan == "0"
+                            ? _c("td", { staticClass: "form" }, [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: { type: "text" }
+                                })
+                              ])
+                            : kuisioner.pilihan == "1"
+                              ? _c("td", [_vm._m(4, true)])
+                              : _c("td")
+                        ])
+                      : _c("tr", [
+                          _c(
+                            "td",
+                            { staticClass: "form", attrs: { colspan: "3" } },
+                            [_vm._v(_vm._s(kuisioner.keterangan.nama))]
+                          )
+                        ])
+                  })
+                )
+              : _c("tbody", [_vm._m(5)])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              attrs: { align: "center" },
+              on: {
+                click: function($event) {
+                  _vm.bacaKuisioner(0, 2)
+                }
+              }
+            },
+            [
+              _c("vue-pagination", {
+                attrs: { data: _vm.kuisionerData },
+                on: { "pagination-change-page": _vm.bacaKuisioner }
+              })
+            ],
+            1
+          )
+        ])
       ]),
       _vm._v(" "),
-      _vm._m(3)
+      _vm._m(6)
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "no" }, [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Penjelasan")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Isi")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { staticClass: "form-control" }, [
+      _c("option", { attrs: { value: "Ya" } }, [_vm._v("Ya")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Tidak" } }, [_vm._v("Tidak")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { attrs: { colspan: "3" } }, [_vm._v("Data Kosong / loading")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

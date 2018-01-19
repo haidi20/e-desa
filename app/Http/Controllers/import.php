@@ -108,12 +108,4 @@ class import extends Controller {
     //   return 'gagal 3 table';
     // }
   }
-
-  public function hapus(){
-
-  }
-
-  public function truncate(){
-
-  }
 }

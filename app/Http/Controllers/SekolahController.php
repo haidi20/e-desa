@@ -14,7 +14,6 @@ class SekolahController extends Controller
     }
 
     public function index(){
-
       $sekolah = Sekolah::kondisi()->paginate(10);
 
       return view('sekolah.index',compact('sekolah'));
