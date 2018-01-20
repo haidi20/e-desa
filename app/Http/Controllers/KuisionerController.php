@@ -11,6 +11,7 @@ class KuisionerController extends Controller
 {
     public function baca(){
       return Pertanyaan::with('keterangan')->kondisi()->paginate(10);
+      // return response()->json($pertanyaan);
     }
 
     public function index(){
