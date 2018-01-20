@@ -88,6 +88,7 @@ export default {
     return{
       kuisioners: [],
       kuisionerData: {},
+      refresh: false,
       noTab: ''
     }
   },
@@ -99,8 +100,10 @@ export default {
       if (typeof page === 'undefined') {
 				page = 1;
 			}
-      if (typeof tab === 'undefined' && !this.$session.has('no')) {
+      if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
+        this.$session.clear();
         this.noTab = 1;
+        this.refresh = true;
         console.log('no tab yang tab kosong dan tidak ada session = '+this.noTab);
       }else if(typeof tab === 'undefined' && this.$session.has('no')){
         this.noTab = this.$session.get('no');
@@ -118,7 +121,7 @@ export default {
       .catch(() => {
         console.log('server bermasalah');
       });
-    },
+    }
   }
 }
 </script>

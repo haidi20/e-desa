@@ -45732,7 +45732,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45833,6 +45833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       kuisioners: [],
       kuisionerData: {},
+      refresh: false,
       noTab: ''
     };
   },
@@ -45847,8 +45848,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (typeof page === 'undefined') {
         page = 1;
       }
-      if (typeof tab === 'undefined' && !this.$session.has('no')) {
+      if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
+        this.$session.clear();
         this.noTab = 1;
+        this.refresh = true;
         console.log('no tab yang tab kosong dan tidak ada session = ' + this.noTab);
       } else if (typeof tab === 'undefined' && this.$session.has('no')) {
         this.noTab = this.$session.get('no');
