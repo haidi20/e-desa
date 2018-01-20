@@ -22,7 +22,7 @@
             <tbody v-if="kuisioners.length">
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
                 <td>{{index + 1}}</td>
-                <td>{{kuisioner.keterangan.nama}}</td>
+                <td>{{kuisioner.keterangan}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
                   <input type="text" class="form-control" >
                 </td>
@@ -35,7 +35,7 @@
                 <td v-else></td>
               </tr>
               <tr v-else>
-                <td colspan="3" class="form">{{kuisioner.keterangan.nama}}</td>
+                <td colspan="3" class="form">{{kuisioner.keterangan}}</td>
               </tr>
             </tbody>
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
@@ -54,7 +54,7 @@
             <tbody v-if="kuisioners.length">
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
                 <td>{{index + 1}}</td>
-                <td>{{kuisioner.keterangan.nama}}</td>
+                <td>{{kuisioner.keterangan}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
                   <input type="text" class="form-control" >
                 </td>
@@ -67,7 +67,7 @@
                 <td v-else></td>
               </tr>
               <tr v-else>
-                <td colspan="3" class="form">{{kuisioner.keterangan.nama}}</td>
+                <td colspan="3" class="form">{{kuisioner.keterangan}}</td>
               </tr>
             </tbody>
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
@@ -114,7 +114,7 @@ export default {
         console.log('ini no tab pakai session = '+this.noTab);
       }
       console.log('session no = '+this.$session.get('no'));
-      axios.get('kuisioner/vue?page='+page+'&&tab='+this.noTab).then(response => {
+      axios.get('kuisioner/vue?page='+page+'&tab='+this.noTab).then(response => {
         this.kuisioners = response.data.data;
         this.kuisionerData = response.data;
       })

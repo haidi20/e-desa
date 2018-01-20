@@ -45862,7 +45862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('ini no tab pakai session = ' + this.noTab);
       }
       console.log('session no = ' + this.$session.get('no'));
-      axios.get('kuisioner/vue?page=' + page + '&&tab=' + this.noTab).then(function (response) {
+      axios.get('kuisioner/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
         _this.kuisioners = response.data.data;
         _this.kuisionerData = response.data;
       }).catch(function () {
@@ -45948,9 +45948,7 @@ var render = function() {
                         ? _c("tr", [
                             _c("td", [_vm._v(_vm._s(index + 1))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(kuisioner.keterangan.nama))
-                            ]),
+                            _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
                             _vm._v(" "),
                             kuisioner.pilihan == "0"
                               ? _c("td", { staticClass: "form" }, [
@@ -45967,7 +45965,7 @@ var render = function() {
                             _c(
                               "td",
                               { staticClass: "form", attrs: { colspan: "3" } },
-                              [_vm._v(_vm._s(kuisioner.keterangan.nama))]
+                              [_vm._v(_vm._s(kuisioner.keterangan))]
                             )
                           ])
                     })
@@ -46001,7 +45999,7 @@ var render = function() {
                       ? _c("tr", [
                           _c("td", [_vm._v(_vm._s(index + 1))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(kuisioner.keterangan.nama))]),
+                          _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
                           _vm._v(" "),
                           kuisioner.pilihan == "0"
                             ? _c("td", { staticClass: "form" }, [
@@ -46018,7 +46016,7 @@ var render = function() {
                           _c(
                             "td",
                             { staticClass: "form", attrs: { colspan: "3" } },
-                            [_vm._v(_vm._s(kuisioner.keterangan.nama))]
+                            [_vm._v(_vm._s(kuisioner.keterangan))]
                           )
                         ])
                   })

@@ -17,11 +17,10 @@ class CreatePertanyaanTable extends Migration
             $table->increments('id');
             $table->string('ip')->nullable();
             $table->string('kode_ip')->nullable();
-            $table->integer('penyedia_id')->unsigned()->nullable();
-            $table->integer('pendidikan_id')->unsigned()->nullable();
-            $table->integer('sekolah_id')->unsigned()->nullable();
-            $table->integer('kategori_id')->unsigned()->nullable();
-            $table->integer('keterangan_id')->unsigned()->nullable();
+            $table->integer('penyedia_id')->unsigned();
+            $table->integer('pendidikan_id')->unsigned();
+            $table->integer('kategori_id')->unsigned();
+            $table->string('keterangan',500)->nullable();
             $table->string('pilihan')->nullable();
             $table->string('tanya')->nullable();
             $table->string('satuan')->nullable();

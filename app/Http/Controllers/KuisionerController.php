@@ -10,7 +10,7 @@ use App\Models\Pertanyaan;
 class KuisionerController extends Controller
 {
     public function baca(){
-      return Pertanyaan::with('keterangan')->kondisi()->paginate(10);
+      return Pertanyaan::kondisi()->paginate(10);
       // return response()->json($pertanyaan);
     }
 
