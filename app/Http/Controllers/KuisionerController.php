@@ -19,6 +19,10 @@ class KuisionerController extends Controller
     }
 
     public function store(){
-      return 'kuisioner store';
+      $isi = request()->input('isi');
+      foreach ($isi as $index => $item) {
+        return $item ;
+      }
+      // return 'kuisioner store';
     }
 }

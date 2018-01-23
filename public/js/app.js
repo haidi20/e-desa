@@ -45732,7 +45732,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45827,6 +45827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45834,6 +45835,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       kuisioners: [],
       kuisionerData: {},
       refresh: false,
+      item: {
+        isi: []
+      },
       noTab: ''
     };
   },
@@ -45852,21 +45856,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$session.clear();
         this.noTab = 1;
         this.refresh = true;
-        console.log('no tab yang tab kosong dan tidak ada session = ' + this.noTab);
+        // console.log('no tab yang tab kosong dan tidak ada session = '+this.noTab);
       } else if (typeof tab === 'undefined' && this.$session.has('no')) {
         this.noTab = this.$session.get('no');
-        console.log('no tab kosong dan ada session no =' + this.noTab);
+        // console.log('no tab kosong dan ada session no =' + this.noTab);
       } else {
         this.$session.set('no', tab);
         this.noTab = this.$session.get('no');
-        console.log('ini no tab pakai session = ' + this.noTab);
+        // console.log('ini no tab pakai session = '+this.noTab);
       }
-      console.log('session no = ' + this.$session.get('no'));
+      // console.log('session no = '+this.$session.get('no'));
       axios.get('kuisioner/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
         _this.kuisioners = response.data.data;
         _this.kuisionerData = response.data;
       }).catch(function () {
         console.log('server bermasalah');
+      });
+    },
+    kirimKuisioner: function kirimKuisioner() {
+      axios.post('kuisioner/vue/store', this.isi).then(function (response) {
+        // console.log('berhasil kirim data');
+        console.log(response.data);
+      }).catch(function (resp) {
+        console.log(resp.response.data.errors);
       });
     }
   }
@@ -45953,24 +45965,100 @@ var render = function() {
                             kuisioner.pilihan == "0"
                               ? _c("td", { staticClass: "form" }, [
                                   _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.item.isi,
+                                        expression: "item.isi"
+                                      }
+                                    ],
                                     staticClass: "form-control",
-                                    attrs: { type: "text" }
+                                    attrs: { type: "text" },
+                                    domProps: { value: _vm.item.isi },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.item,
+                                          "isi",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
                                   })
                                 ])
                               : kuisioner.pilihan == "1"
-                                ? _c("td", [_vm._m(1, true)])
+                                ? _c("td", [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.item.isi,
+                                            expression: "item.isi"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.item,
+                                              "isi",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Ya" } },
+                                          [_vm._v("Ya")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Tidak" } },
+                                          [_vm._v("Tidak")]
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 : _c("td")
                           ])
                         : _c("tr", [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _vm._v(" "),
                             _c(
                               "td",
-                              { staticClass: "form", attrs: { colspan: "3" } },
+                              { staticClass: "form", attrs: { colspan: "2" } },
                               [_vm._v(_vm._s(kuisioner.keterangan))]
                             )
                           ])
                     })
                   )
-                : _c("tbody", [_vm._m(2)])
+                : _c("tbody", [_vm._m(1)])
             ]),
             _vm._v(" "),
             _c(
@@ -45985,60 +46073,24 @@ var render = function() {
               1
             )
           ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "tab-pane fade in", attrs: { id: "dua" } }, [
-          _c("table", { staticClass: "table table-bordered table-custom" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _vm.kuisioners.length
-              ? _c(
-                  "tbody",
-                  _vm._l(_vm.kuisioners, function(kuisioner, index) {
-                    return kuisioner.tanya == "1"
-                      ? _c("tr", [
-                          _c("td", [_vm._v(_vm._s(index + 1))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
-                          _vm._v(" "),
-                          kuisioner.pilihan == "0"
-                            ? _c("td", { staticClass: "form" }, [
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: { type: "text" }
-                                })
-                              ])
-                            : kuisioner.pilihan == "1"
-                              ? _c("td", [_vm._m(4, true)])
-                              : _c("td")
-                        ])
-                      : _c("tr", [
-                          _c(
-                            "td",
-                            { staticClass: "form", attrs: { colspan: "3" } },
-                            [_vm._v(_vm._s(kuisioner.keterangan))]
-                          )
-                        ])
-                  })
-                )
-              : _c("tbody", [_vm._m(5)])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { attrs: { align: "right" } },
-            [
-              _c("vue-pagination", {
-                attrs: { data: _vm.kuisionerData },
-                on: { "pagination-change-page": _vm.bacaKuisioner }
-              })
-            ],
-            1
-          )
-        ])
+        )
       ]),
       _vm._v(" "),
-      _vm._m(6)
+      _c("div", { staticClass: "col-md-1 col-md-offset-11" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-md btn-success",
+            attrs: { type: "submit" },
+            on: {
+              click: function($event) {
+                _vm.kirimKuisioner()
+              }
+            }
+          },
+          [_vm._v("Kirim")]
+        )
+      ])
     ])
   ])
 }
@@ -46061,62 +46113,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("select", { staticClass: "form-control" }, [
-      _c("option", { attrs: { value: "Ya" } }, [_vm._v("Ya")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Tidak" } }, [_vm._v("Tidak")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("tr", [
       _c("td", { attrs: { colspan: "3" } }, [_vm._v("Data Kosong / loading")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "no" }, [_vm._v("No")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Penjelasan")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Isi")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("select", { staticClass: "form-control" }, [
-      _c("option", { attrs: { value: "Ya" } }, [_vm._v("Ya")]),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Tidak" } }, [_vm._v("Tidak")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", { attrs: { colspan: "3" } }, [_vm._v("Data Kosong / loading")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-1 col-md-offset-11" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-md btn-success", attrs: { type: "submit" } },
-        [_vm._v("Kirim")]
-      )
     ])
   }
 ]

@@ -24,10 +24,10 @@
                 <td>{{index + 1}}</td>
                 <td>{{kuisioner.keterangan}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
-                  <input type="text" class="form-control" >
+                  <input type="text" class="form-control" v-model="item.isi">
                 </td>
                 <td v-else-if="kuisioner.pilihan == '1'">
-                  <select class="form-control">
+                  <select class="form-control" v-model="item.isi">
                     <option value="Ya">Ya</option>
                     <option value="Tidak">Tidak</option>
                   </select>
@@ -35,14 +35,15 @@
                 <td v-else></td>
               </tr>
               <tr v-else>
-                <td colspan="3" class="form">{{kuisioner.keterangan}}</td>
+                <td>{{index + 1}}</td>
+                <td colspan="2" class="form">{{kuisioner.keterangan}}</td>
               </tr>
             </tbody>
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
           </table>
           <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination></div>
         </div>
-        <div class="tab-pane fade in" id="dua">
+        <!-- <div class="tab-pane fade in" id="dua">
           <table class="table table-bordered table-custom">
             <thead>
               <tr>
@@ -56,10 +57,10 @@
                 <td>{{index + 1}}</td>
                 <td>{{kuisioner.keterangan}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
-                  <input type="text" class="form-control" >
+                  <input type="text" class="form-control" v-model="isi" >
                 </td>
                 <td v-else-if="kuisioner.pilihan == '1'">
-                  <select class="form-control">
+                  <select class="form-control" v-model="isi">
                     <option value="Ya">Ya</option>
                     <option value="Tidak">Tidak</option>
                   </select>
@@ -73,10 +74,10 @@
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
           </table>
           <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination></div>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-1 col-md-offset-11">
-        <button type="submit" class="btn btn-md btn-success">Kirim</button>
+        <button type="submit" v-on:click="kirimKuisioner()" class="btn btn-md btn-success">Kirim</button>
       </div>
     </div>
   </div>
@@ -89,6 +90,9 @@ export default {
       kuisioners: [],
       kuisionerData: {},
       refresh: false,
+      item:{
+        isi: []
+      },
       noTab: ''
     }
   },
@@ -104,16 +108,16 @@ export default {
         this.$session.clear();
         this.noTab = 1;
         this.refresh = true;
-        console.log('no tab yang tab kosong dan tidak ada session = '+this.noTab);
+        // console.log('no tab yang tab kosong dan tidak ada session = '+this.noTab);
       }else if(typeof tab === 'undefined' && this.$session.has('no')){
         this.noTab = this.$session.get('no');
-        console.log('no tab kosong dan ada session no =' + this.noTab);
+        // console.log('no tab kosong dan ada session no =' + this.noTab);
       }else{
         this.$session.set('no',tab);
         this.noTab = this.$session.get('no');
-        console.log('ini no tab pakai session = '+this.noTab);
+        // console.log('ini no tab pakai session = '+this.noTab);
       }
-      console.log('session no = '+this.$session.get('no'));
+      // console.log('session no = '+this.$session.get('no'));
       axios.get('kuisioner/vue?page='+page+'&tab='+this.noTab).then(response => {
         this.kuisioners = response.data.data;
         this.kuisionerData = response.data;
@@ -121,6 +125,15 @@ export default {
       .catch(() => {
         console.log('server bermasalah');
       });
+    },
+    kirimKuisioner: function(){
+      axios.post('kuisioner/vue/store',this.isi).then(response =>{
+        // console.log('berhasil kirim data');
+        console.log(response.data);
+      })
+      .catch(resp => {
+        console.log(resp.response.data.errors);
+      })
     }
   }
 }

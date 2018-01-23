@@ -12,14 +12,14 @@ Route::get('pengguna/konfirmasi','PenggunaController@konfirmasi')->name('penggun
 //get kuisioner
 Route::get('kuisioner/vue','KuisionerController@baca');
 Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
-Route::post('kuisioner/store','KuisionerController@store')->name('kuisioner.store');
+Route::post('kuisioner/vue/store','KuisionerController@store')->name('kuisioner.store');
 
 //get kunci
 Route::get('kunci','KunciController@index')->name('kunci.index');
 Route::get('kunci/detail','KunciController@detail')->name('kunci.detail');
 Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 
-//kebutuhan vue
+//kebutuhan vue tunggal
 //get pendidikan
 Route::get('pendidikan/vue','PendidikanController@index');
 //get kecamatan

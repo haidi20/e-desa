@@ -8350,11 +8350,6 @@ button.close {
   }
 }
 
-.m {
-  margin: 0 auto;
-  float: none;
-}
-
 .error label {
   color: red;
 }
@@ -8415,6 +8410,11 @@ hr.dashed {
 
 #modal {
   cursor: pointer;
+}
+
+.m {
+  margin: 0 auto;
+  float: none;
 }
 
 .mt20 {
