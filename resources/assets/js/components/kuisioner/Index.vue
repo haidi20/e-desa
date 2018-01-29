@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true" v-on:click.prevent="bacaKuisioner('','1')">
+        <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true" v-on:click="bacaKuisioner('','1')">
           Pelayanan Pendidikan oleh Pemerintah Kota
         </a></li>
-        <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false" v-on:click.prevent="bacaKuisioner('','2')">
+        <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false" v-on:click="bacaKuisioner('','2')">
           Pelayanan Pendidikan Dasar oleh Satuan Pendidikan
         </a></li>
       </ul>
@@ -127,13 +127,13 @@ export default {
       });
     },
     kirimKuisioner: function(){
-      axios.post('kuisioner/vue/store',this.isi).then(response =>{
-        // console.log('berhasil kirim data');
-        console.log(response.data);
-      })
-      .catch(resp => {
-        console.log(resp.response.data.errors);
-      })
+      // axios.post('kuisioner/vue/store',this.isi).then(response =>{
+      //   // console.log('berhasil kirim data');
+      //   console.log(response.data);
+      // })
+      // .catch(resp => {
+      //   console.log(resp.response.data.errors);
+      // })
     }
   }
 }

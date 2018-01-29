@@ -45874,12 +45874,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     kirimKuisioner: function kirimKuisioner() {
-      axios.post('kuisioner/vue/store', this.isi).then(function (response) {
-        // console.log('berhasil kirim data');
-        console.log(response.data);
-      }).catch(function (resp) {
-        console.log(resp.response.data.errors);
-      });
+      // axios.post('kuisioner/vue/store',this.isi).then(response =>{
+      //   // console.log('berhasil kirim data');
+      //   console.log(response.data);
+      // })
+      // .catch(resp => {
+      //   console.log(resp.response.data.errors);
+      // })
     }
   }
 });
@@ -45906,7 +45907,6 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  $event.preventDefault()
                   _vm.bacaKuisioner("", "1")
                 }
               }
@@ -45930,7 +45930,6 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  $event.preventDefault()
                   _vm.bacaKuisioner("", "2")
                 }
               }
