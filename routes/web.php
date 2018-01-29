@@ -5,32 +5,36 @@ Route::get('/', function () {
     return redirect()->route('dashboard.index');
 });
 
-//get pengguna
+// pengguna
 Route::get('pengguna/reset','PenggunaController@reset')->name('pengguna.reset');
 Route::get('pengguna/konfirmasi','PenggunaController@konfirmasi')->name('pengguna.konfirmasi');
 
-//get kuisioner
+// kuisioner
 Route::get('kuisioner/vue','KuisionerController@baca');
 Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
 Route::post('kuisioner/vue/store','KuisionerController@store')->name('kuisioner.store');
 
-//get kunci
+// kunci
 Route::get('kunci','KunciController@index')->name('kunci.index');
 Route::get('kunci/detail','KunciController@detail')->name('kunci.detail');
 Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 
+// dashboard
+Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
+
 //kebutuhan vue tunggal
-//get pendidikan
+// pendidikan
 Route::get('pendidikan/vue','PendidikanController@index');
-//get kecamatan
+// kecamatan
 Route::get('kecamatan/vue','KecamatanController@index');
-//get Sekolah
+// Sekolah
 Route::get('sekolah/vue','SekolahController@baca');
 
-//resource
+// resource :
+// sekolah
 Route::resource('sekolah','SekolahController');
+// pengguna
 Route::resource('pengguna','PenggunaController');
-Route::resource('dashboard','DashboardController');
 
 Route::get('import','import@run');
 
