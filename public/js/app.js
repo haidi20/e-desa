@@ -45835,9 +45835,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       kuisioners: [],
       kuisionerData: {},
       refresh: false,
-      item: {
-        isi: []
-      },
+      item: [{
+        isi: ''
+      }],
       noTab: ''
     };
   },

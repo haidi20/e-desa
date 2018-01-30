@@ -90,9 +90,9 @@ export default {
       kuisioners: [],
       kuisionerData: {},
       refresh: false,
-      item:{
-        isi: []
-      },
+      item: [{
+        isi: ''
+      }],
       noTab: ''
     }
   },
