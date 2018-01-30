@@ -18,7 +18,6 @@ class CreateJawabanTable extends Migration
             $table->integer('isi')->unsigned();
             $table->integer('sekolah_id')->unsigned();
             $table->integer('pertanyaan_id')->unsigned();
-            $table->date('tanggal')->nullable();
             $table->timestamps();
         });
     }

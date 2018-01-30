@@ -12,6 +12,7 @@ class import extends Controller {
 
     //delete
     DB::table('sekolah')->delete();
+    DB::table('jawaban')->delete();
     DB::table('kategori')->delete();
     DB::table('penyedia')->delete();
     DB::table('kecamatan')->delete();
@@ -21,6 +22,7 @@ class import extends Controller {
 
     //truncate
     DB::table('sekolah')->truncate();
+    DB::table('jawaban')->truncate();
     DB::table('kategori')->truncate();
     DB::table('penyedia')->truncate();
     DB::table('kecamatan')->truncate();
@@ -30,6 +32,7 @@ class import extends Controller {
 
     //baca file
     $sekolah        = storage_path('file/sekolah.xlsx');
+    $jawaban        = storage_path('file/jawaban.xlsx');
     $kategori       = storage_path('file/kategori.xlsx');
     $penyedia       = storage_path('file/penyedia.xlsx');
     $kecamatan      = storage_path('file/kecamatan.xlsx');
@@ -37,6 +40,7 @@ class import extends Controller {
     $pertanyaan     = storage_path('file/pertanyaan.xlsx');
 
     $datasekolah    = Excel::load($sekolah)->get();
+    $datajawaban    = Excel::load($jawaban)->get();
     $datakategori   = Excel::load($kategori)->get();
     $datapenyedia   = Excel::load($penyedia)->get();
     $datakecamatan  = Excel::load($kecamatan)->get();
@@ -46,6 +50,7 @@ class import extends Controller {
 
     //proses file
     $inputsekolah     = [];
+    $inputjawaban     = [];
     $inputkategori    = [];
     $inputkecamatan   = [];
     $inputpendidikan  = [];
@@ -54,10 +59,20 @@ class import extends Controller {
     $inputpenyedia    = [];
 
     foreach ($datasekolah as $index => $item) {
-      $inputsekolah[]     = array('nama' => $item->nama,
+      $inputsekolah[]     = array(
+                                'nama' => $item->nama,
                                 'pendidikan_id' => $item->pendidikan_id,
                                 'kecamatan_id' => $item->kecamatan_id,
-                                'user_id' => $item->user_id);
+                                'user_id' => $item->user_id
+                            );
+    }
+    foreach ($datajawaban as $index => $item) {
+      $inputjawaban[]     = array(
+                                'isi' => $item->isi,
+                                'sekolah_id' => $item->sekolah_id,
+                                'pertanyaan_id'=> $item->pertanyaan_id,
+                                'tanggal' => $item->tanggal
+                            );
     }
     foreach ($datakategori as $index => $item) {
       $inputkategori[]    = array( 'nama' => $item->nama);
@@ -85,6 +100,7 @@ class import extends Controller {
     //end proses file
 
     $masuksekolah      = DB::table('sekolah')->insert($inputsekolah);
+    $masukjawaban      = DB::table('jawaban')->insert($inputjawaban);
     $masukkategori     = DB::table('kategori')->insert($inputkategori);
     $masukpenyedia     = DB::table('penyedia')->insert($inputpenyedia);
     $masukkecamatan    = DB::table('kecamatan')->insert($inputkecamatan);
