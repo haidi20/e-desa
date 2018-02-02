@@ -10,7 +10,9 @@ use App\Models\Pertanyaan;
 class KuisionerController extends Controller
 {
     public function baca(){
-      return Pertanyaan::kondisi()->paginate(10);
+      return Pertanyaan::kondisi()
+                        ->with('jawaban')
+                        ->paginate(10);
       // return response()->json($pertanyaan);
     }
 
@@ -19,10 +21,7 @@ class KuisionerController extends Controller
     }
 
     public function store(){
-      $isi = request()->input('isi');
-      foreach ($isi as $index => $item) {
-        return $item ;
-      }
-      // return 'kuisioner store';
+        return request()->input('isi');
+        // return 'kuisioner store';
     }
 }

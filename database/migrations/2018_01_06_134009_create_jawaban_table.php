@@ -15,7 +15,7 @@ class CreateJawabanTable extends Migration
     {
         Schema::create('jawaban', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('isi')->unsigned();
+            $table->integer('isi')->unsigned()->nullable();
             $table->integer('sekolah_id')->unsigned();
             $table->integer('pertanyaan_id')->unsigned();
             $table->timestamps();

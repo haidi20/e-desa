@@ -14,7 +14,7 @@ class DashboardController extends Controller
     }
 
     public function index(){
-      return response()->json($this->ip->limaBelas()) ;
-      // return view('dashboard.index');
+      // return response()->json($this->ip->limaBelas()) ;
+      return view('dashboard.index');
     }
 }

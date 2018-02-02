@@ -148,6 +148,68 @@ class IndikatorPencapaian {
       return $hasil;
   }
 
+  public function tujuhBelas(){
+      $jawSatu              = $this->jawaban->kondisi(58,1);
+      $jawDua               = $this->jawaban->kondisi(59,1);
+      $jawTiga              = $this->jawaban->kondisi(60,1);
+      $jawEmpat             = $this->jawaban->kondisi(61,1);
+      $jawLima              = $this->jawaban->kondisi(62,1);
+      $jawEnam              = $this->jawaban->kondisi(63,1);
+
+      $data                 = [
+          $jawSatu, $jawDua, $jawTiga,
+          $jawEmpat, $jawLima, $jawEnam
+      ];
+
+      $rumus                = $this->rumus->tujuhBelas($data);
+      $hasil                = $rumus == 1?1:0;
+      return $hasil;
+  }
+
+  public function delapanBelas(){
+      $jawSatu              = $this->jawaban->kondisi(65,1);
+      $jawDua               = $this->jawaban->kondisi(67,1);
+
+      $rumus                = $this->rumus->delapanBelas($jawSatu,$jawDua);
+      $hasil                = $rumus == 1?1:0;
+      return $hasil;
+  }
+
+  public function sembilanBelas(){
+      $jawSatu              = $this->jawaban->kondisi(68,1);
+      $jawDua               = $this->jawaban->kondisi(69,1);
+
+      $rumus                = $this->rumus->sembilanBelas($jawSatu,$jawDua);
+      $hasil                = $rumus == 1?1:0;
+      return $hasil;
+  }
+
+  public function duaPuluh(){
+      $jawSatu              = $this->jawaban->kondisi(72,1);
+      $jawDua               = $this->jawaban->kondisi(73,1);
+      $jawTiga              = $this->jawaban->kondisi(74,1);
+      $jawEmpat             = $this->jawaban->kondisi(75,1);
+      $jawLima              = $this->jawaban->kondisi(76,1);
+      $jawEnam              = $this->jawaban->kondisi(77,1);
+
+      $data                 = [
+          $jawSatu, $jawDua, $jawTiga,
+          $jawEmpat, $jawLima, $jawEnam
+      ];
+
+      $rumus                = $this->rumus->duaPuluh($data);
+      $hasil                = $rumus == 1?1:0;
+      return $hasil;
+  }
+
+  public function duaPuluhSatu(){
+      $jawSatu              = $this->jawaban->kondisi(78,1);
+
+      $rumus                = $this->rumus->duaPuluhSatu($jawSatu);
+      $hasil                = $rumus == 1 ?1:0;
+      return $hasil;
+  }
+
 }
 
 // $jawSatu, $jawDua, $jawTiga, $jawEmpat, $jawLima,

@@ -19,27 +19,40 @@
                 <th>Isi</th>
               </tr>
             </thead>
-            <tbody v-if="kuisioners.length">
+            <!-- <tbody v-if="kuisioners.length">
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
                 <td>{{index + 1}}</td>
                 <td>{{kuisioner.keterangan}}</td>
                 <td class="form" v-if="kuisioner.pilihan == '0'">
-                  <input type="text" class="form-control" v-model="item.isi">
+                  <div v-if="kuisioner.jawaban.length">
+                    <input type="text" class="form-control" v-for="jawaban in kuisioner.jawaban" v-model="jawaban.isi">
+                  </div>
+                  <div v-else>
+                    <input type="text" class="form-control" v-model="kuisioner.jawaban.isi">
+                  </div>
                 </td>
                 <td v-else-if="kuisioner.pilihan == '1'">
-                  <select class="form-control" v-model="item.isi">
-                    <option value="Ya">Ya</option>
-                    <option value="Tidak">Tidak</option>
-                  </select>
+                  <div v-if="kuisioner.jawaban.length">
+                    <select class="form-control" v-for="jawaban in kuisioner.jawaban" v-model="jawaban.isi">
+                      <option value="1">Ya</option>
+                      <option value="0">Tidak</option>
+                    </select>
+                  </div>
+                  <div else>
+                    <select class="form-control" v-model="kuisioner.jawaban.isi">
+                      <option value="1">Ya</option>
+                      <option value="0">Tidak</option>
+                    </select>
+                  </div>
                 </td>
-                <td v-else></td>
               </tr>
               <tr v-else>
                 <td>{{index + 1}}</td>
                 <td colspan="2" class="form">{{kuisioner.keterangan}}</td>
               </tr>
             </tbody>
-            <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
+            <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody> -->
+            <input type="text" v-model="kuisioners.jawaban.isi">
           </table>
           <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination></div>
         </div>
@@ -87,12 +100,16 @@
 export default {
   data() {
     return{
-      kuisioners: [],
+      kuisioners: {
+        keterangan: '',
+        pilihan: '',
+        tanya: '',
+        jawaban: {
+          isi: ''
+        }
+      },
       kuisionerData: {},
       refresh: false,
-      item: [{
-        isi: ''
-      }],
       noTab: ''
     }
   },
@@ -104,6 +121,26 @@ export default {
       if (typeof page === 'undefined') {
 				page = 1;
 			}
+      this.kondisiSession(tab);
+      // console.log('session no = '+this.$session.get('no'));
+      axios.get('kuisioner/vue?page='+page+'&tab='+this.noTab).then(response => {
+        this.kuisioners = response.data.data;
+        this.kuisionerData = response.data;
+      })
+      .catch(() => {
+        alert('server bermasalah');
+      });
+    },
+    kirimKuisioner: function(){
+      axios.post('kuisioner/vue/store',this.kuisioners.jawaban).then(response =>{
+        // console.log('berhasil kirim data');
+        console.log(response.data);
+      })
+      .catch(resp => {
+        console.log(resp.response.data.errors);
+      })
+    },
+    kondisiSession: function(tab){
       if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
         this.$session.clear();
         this.noTab = 1;
@@ -117,23 +154,6 @@ export default {
         this.noTab = this.$session.get('no');
         // console.log('ini no tab pakai session = '+this.noTab);
       }
-      // console.log('session no = '+this.$session.get('no'));
-      axios.get('kuisioner/vue?page='+page+'&tab='+this.noTab).then(response => {
-        this.kuisioners = response.data.data;
-        this.kuisionerData = response.data;
-      })
-      .catch(() => {
-        console.log('server bermasalah');
-      });
-    },
-    kirimKuisioner: function(){
-      // axios.post('kuisioner/vue/store',this.isi).then(response =>{
-      //   // console.log('berhasil kirim data');
-      //   console.log(response.data);
-      // })
-      // .catch(resp => {
-      //   console.log(resp.response.data.errors);
-      // })
     }
   }
 }

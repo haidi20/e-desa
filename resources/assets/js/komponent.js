@@ -21,3 +21,6 @@ Vue.component('kondisipengguna',require('./components/pengguna/Kondisi.vue'));
 
 //kunci
 Vue.component('kondisikunci',require('./components/kunci/Kondisi.vue'));
+
+// array
+Vue.component('banyak',require('./components/Array.vue'));

@@ -1426,7 +1426,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(90);
+module.exports = __webpack_require__(95);
 
 
 /***/ }),
@@ -43358,6 +43358,9 @@ Vue.component('kondisipengguna', __webpack_require__(80));
 //kunci
 Vue.component('kondisikunci', __webpack_require__(85));
 
+// array
+Vue.component('banyak', __webpack_require__(90));
+
 /***/ }),
 /* 44 */
 /***/ (function(module, exports) {
@@ -45732,7 +45735,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45828,16 +45831,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      kuisioners: [],
+      kuisioners: {
+        keterangan: '',
+        pilihan: '',
+        tanya: '',
+        jawaban: {
+          isi: ''
+        }
+      },
       kuisionerData: {},
       refresh: false,
-      item: [{
-        isi: ''
-      }],
       noTab: ''
     };
   },
@@ -45852,6 +45872,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (typeof page === 'undefined') {
         page = 1;
       }
+      this.kondisiSession(tab);
+      // console.log('session no = '+this.$session.get('no'));
+      axios.get('kuisioner/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
+        _this.kuisioners = response.data.data;
+        _this.kuisionerData = response.data;
+      }).catch(function () {
+        alert('server bermasalah');
+      });
+    },
+    kirimKuisioner: function kirimKuisioner() {
+      axios.post('kuisioner/vue/store', this.kuisioners.jawaban).then(function (response) {
+        // console.log('berhasil kirim data');
+        console.log(response.data);
+      }).catch(function (resp) {
+        console.log(resp.response.data.errors);
+      });
+    },
+    kondisiSession: function kondisiSession(tab) {
       if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
         this.$session.clear();
         this.noTab = 1;
@@ -45865,22 +45903,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.noTab = this.$session.get('no');
         // console.log('ini no tab pakai session = '+this.noTab);
       }
-      // console.log('session no = '+this.$session.get('no'));
-      axios.get('kuisioner/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
-        _this.kuisioners = response.data.data;
-        _this.kuisionerData = response.data;
-      }).catch(function () {
-        console.log('server bermasalah');
-      });
-    },
-    kirimKuisioner: function kirimKuisioner() {
-      // axios.post('kuisioner/vue/store',this.isi).then(response =>{
-      //   // console.log('berhasil kirim data');
-      //   console.log(response.data);
-      // })
-      // .catch(resp => {
-      //   console.log(resp.response.data.errors);
-      // })
     }
   }
 });
@@ -45951,113 +45973,26 @@ var render = function() {
             _c("table", { staticClass: "table table-bordered table-custom" }, [
               _vm._m(0),
               _vm._v(" "),
-              _vm.kuisioners.length
-                ? _c(
-                    "tbody",
-                    _vm._l(_vm.kuisioners, function(kuisioner, index) {
-                      return kuisioner.tanya == "1"
-                        ? _c("tr", [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
-                            _vm._v(" "),
-                            kuisioner.pilihan == "0"
-                              ? _c("td", { staticClass: "form" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.item.isi,
-                                        expression: "item.isi"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { type: "text" },
-                                    domProps: { value: _vm.item.isi },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.item,
-                                          "isi",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : kuisioner.pilihan == "1"
-                                ? _c("td", [
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.item.isi,
-                                            expression: "item.isi"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.item,
-                                              "isi",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "option",
-                                          { attrs: { value: "Ya" } },
-                                          [_vm._v("Ya")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "option",
-                                          { attrs: { value: "Tidak" } },
-                                          [_vm._v("Tidak")]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                : _c("td")
-                          ])
-                        : _c("tr", [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticClass: "form", attrs: { colspan: "2" } },
-                              [_vm._v(_vm._s(kuisioner.keterangan))]
-                            )
-                          ])
-                    })
-                  )
-                : _c("tbody", [_vm._m(1)])
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.kuisioners.jawaban.isi,
+                    expression: "kuisioners.jawaban.isi"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.kuisioners.jawaban.isi },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.kuisioners.jawaban, "isi", $event.target.value)
+                  }
+                }
+              })
             ]),
             _vm._v(" "),
             _c(
@@ -46106,14 +46041,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Isi")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", { attrs: { colspan: "3" } }, [_vm._v("Data Kosong / loading")])
     ])
   }
 ]
@@ -46586,6 +46513,225 @@ if (false) {
 
 /***/ }),
 /* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(91)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(93)
+/* template */
+var __vue_template__ = __webpack_require__(94)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Array.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-137380f2", Component.options)
+  } else {
+    hotAPI.reload("data-v-137380f2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(92);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("2064801d", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-137380f2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Array.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-137380f2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Array.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      items: [{
+        nama: ''
+      }]
+    };
+  },
+
+  methods: {
+    tmbh: function tmbh() {
+      this.items.push({
+        nama: ''
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success btn-md",
+              attrs: { type: "submit" },
+              on: { click: _vm.tmbh }
+            },
+            [_vm._v("Tambah")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-6" },
+        _vm._l(_vm.items, function(item) {
+          return _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.items.nama,
+                  expression: "items.nama"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "nama" },
+              domProps: { value: _vm.items.nama },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.items, "nama", $event.target.value)
+                }
+              }
+            })
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("pre", [_vm._v("        " + _vm._s(_vm.items.nama) + "\n      ")])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-137380f2", module.exports)
+  }
+}
+
+/***/ }),
+/* 95 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

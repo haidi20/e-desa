@@ -67,10 +67,57 @@ class Rumus
       $r_bukuEmpat  = $bukuEmpat>= (10 * 5)? 1: 0;
       $r_bukuLima   = $bukuLima >= (10 * 5)? 1: 0;
       $r_bukuEnam   = $bukuEnam >= (10 * 5)? 1: 0;
-      
+
       $s_buku       = array($r_bukuSatu,$r_bukuDua,$r_bukuTiga,$r_bukuEmpat,$r_bukuLima,$r_bukuEnam);
 
       return array_sum($s_buku) == 6?1:0;
+  }
+
+  public function tujuhBelas($data){
+      $jawSatu      = $data[0] >= 1 ?1:0;
+      $jawDua       = $data[1] >= 1 ?1:0;
+      $jawTiga      = $data[2] >= 1 ?1:0;
+      $jawEmpat     = $data[3] >= 1 ?1:0;
+      $jawLima      = $data[4] >= 1 ?1:0;
+      $jawEnam      = $data[5] >= 1 ?1:0;
+
+      if ($jawSatu == 1 && $jawDua == 1 && $jawTiga == 1 && $jawEmpat == 1 && $jawLima == 1 && $jawEnam == 1){
+          return 1;
+      }else{
+          return 0;
+      }
+  }
+
+  public function delapanBelas($jawSatu, $jawDua){
+      if ($jawSatu >= 100 && $jawDua >= 10) {
+          return 1;
+      }else{
+          return 0;
+      }
+  }
+
+  public function sembilanBelas($jawSatu, $jawDua){
+      if ($jawSatu == $jawDua) {
+          return 1;
+      }else{
+          if ($jawDua > $jawSatu) {
+              return 0;
+          }else{
+              return 1;
+          } // belum fiks
+      }
+  }
+
+  public function duaPuluh($data){
+      if ($data[0] >= 18 && $data[1] >= 18 && $data[2] >= 24 && $data[3] >= 27 && $data[4] >= 27 && $data[5] >= 27) {
+          return 1;
+      }else{
+          return 0;
+      }
+  }
+
+  public function duaPuluhSatu($jawSatu){
+      return $jawSatu == 1 ?1:0;
   }
 
 }
