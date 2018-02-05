@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#satu" data-toggle="tab" aria-expanded="true" v-on:click="bacaKuisioner('','1')">
+        <li class="active"><a href="#satu" data-toggle="tab" v-on:click="pertanyaan('','1')">
           Pelayanan Pendidikan oleh Pemerintah Kota
         </a></li>
-        <li class=""><a href="#dua" data-toggle="tab" aria-expanded="false" v-on:click="bacaKuisioner('','2')">
+        <li class=""><a href="#dua" data-toggle="tab" v-on:click="pertanyaan('','2')">
           Pelayanan Pendidikan Dasar oleh Satuan Pendidikan
         </a></li>
       </ul>
@@ -19,42 +19,28 @@
                 <th>Isi</th>
               </tr>
             </thead>
-            <!-- <tbody v-if="kuisioners.length">
+            <tbody v-if="kuisioners.length">
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
                 <td>{{index + 1}}</td>
                 <td>{{kuisioner.keterangan}}</td>
-                <td class="form" v-if="kuisioner.pilihan == '0'">
-                  <div v-if="kuisioner.jawaban.length">
-                    <input type="text" class="form-control" v-for="jawaban in kuisioner.jawaban" v-model="jawaban.isi">
-                  </div>
-                  <div v-else>
-                    <input type="text" class="form-control" v-model="kuisioner.jawaban.isi">
-                  </div>
+                <td class="form" v-for="jawaban in jawabans" v-if="jawaban.id == kuisioner.id && kuisioner.pilihan == '0'">
+                  <input type="text" class="form-control input-kuisioner" v-model="jawaban.isi">
                 </td>
-                <td v-else-if="kuisioner.pilihan == '1'">
-                  <div v-if="kuisioner.jawaban.length">
-                    <select class="form-control" v-for="jawaban in kuisioner.jawaban" v-model="jawaban.isi">
-                      <option value="1">Ya</option>
-                      <option value="0">Tidak</option>
-                    </select>
-                  </div>
-                  <div else>
-                    <select class="form-control" v-model="kuisioner.jawaban.isi">
-                      <option value="1">Ya</option>
-                      <option value="0">Tidak</option>
-                    </select>
-                  </div>
+                <td class="form" v-else-if="jawaban.id == kuisioner.id && kuisioner.pilihan == '1'">
+                  <select class="form-control" v-model="jawaban.isi">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                  </select>
                 </td>
               </tr>
               <tr v-else>
-                <td>{{index + 1}}</td>
-                <td colspan="2" class="form">{{kuisioner.keterangan}}</td>
+                <!-- <td>{{index + 1}}</td> -->
+                <td colspan="3" class="form">{{kuisioner.keterangan}}</td>
               </tr>
             </tbody>
-            <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody> -->
-            <input type="text" v-model="kuisioners.jawaban.isi">
+            <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
           </table>
-          <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination></div>
+          <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="pertanyaan"></vue-pagination></div>
         </div>
         <!-- <div class="tab-pane fade in" id="dua">
           <table class="table table-bordered table-custom">
@@ -69,16 +55,15 @@
               <tr v-for="(kuisioner, index) in kuisioners" v-if="kuisioner.tanya == '1'">
                 <td>{{index + 1}}</td>
                 <td>{{kuisioner.keterangan}}</td>
-                <td class="form" v-if="kuisioner.pilihan == '0'">
-                  <input type="text" class="form-control" v-model="isi" >
+                <td v-for="jawaban in jawabans" v-if="jawaban.id == kuisioner.id && kuisioner.pilihan == '0'">
+                  <input type="text" class="form-control input-kuisioner" v-model="jawaban.isi">
                 </td>
-                <td v-else-if="kuisioner.pilihan == '1'">
-                  <select class="form-control" v-model="isi">
-                    <option value="Ya">Ya</option>
-                    <option value="Tidak">Tidak</option>
+                <td v-else-if="jawaban.id == kuisioner.id && kuisioner.pilihan == '1'">
+                  <select class="form-control select-kuisioner" v-model="jawaban.isi">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
                   </select>
                 </td>
-                <td v-else></td>
               </tr>
               <tr v-else>
                 <td colspan="3" class="form">{{kuisioner.keterangan}}</td>
@@ -86,7 +71,7 @@
             </tbody>
             <tbody v-else><tr><td colspan="3">Data Kosong / loading</td></tr></tbody>
           </table>
-          <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="bacaKuisioner"></vue-pagination></div>
+          <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="pertanyaan"></vue-pagination></div>
         </div> -->
       </div>
       <div class="col-md-1 col-md-offset-11">
@@ -100,47 +85,61 @@
 export default {
   data() {
     return{
-      kuisioners: {
-        keterangan: '',
-        pilihan: '',
-        tanya: '',
-        jawaban: {
-          isi: ''
-        }
-      },
+      kuisioners: [],
+      jawabans: [],
       kuisionerData: {},
       refresh: false,
+      pindah: false,
       noTab: ''
     }
   },
   mounted(){
-    this.bacaKuisioner()
+    this.pertanyaan()
   },
   methods:{
-    bacaKuisioner: function(page,tab){
+    pertanyaan: function(page,tab){
       if (typeof page === 'undefined') {
 				page = 1;
 			}
-      this.kondisiSession(tab);
-      // console.log('session no = '+this.$session.get('no'));
-      axios.get('kuisioner/vue?page='+page+'&tab='+this.noTab).then(response => {
-        this.kuisioners = response.data.data;
-        this.kuisionerData = response.data;
+      this.kondisiJawaban(page,tab); // jawban fieldnya di hapus jika pindah tempat
+      this.kondisiTabulasi(tab);     // data berganti sesuai tab dan paginate
+      axios.get('kuisioner/pertanyaan/vue?page='+page+'&tab='+this.noTab).then(response => {
+        this.kuisioners       = response.data.data;
+        this.kuisionerData    = response.data;
+        this.jawaban(this.kuisioners);
       })
       .catch(() => {
-        alert('server bermasalah');
+        alert('server pertanyaan bermasalah');
       });
     },
+    jawaban: function(data){
+      if (this.pindah) {
+        this.jawabans.splice(0,10);
+      }
+      for (var i = 0; i < data.length; i++) {
+        if (!data[i].jawaban.length) {
+          this.jawabans.push({
+            id: data[i].id,
+            isi: ''
+          })
+        }else{
+          this.jawabans.push({
+            id: data[i].id,
+            isi: data[i].jawaban[0].isi
+          })
+        }
+      }
+    },
     kirimKuisioner: function(){
-      axios.post('kuisioner/vue/store',this.kuisioners.jawaban).then(response =>{
-        // console.log('berhasil kirim data');
-        console.log(response.data);
+      const data = this.jawabans ;
+      axios.post('kuisioner/vue/store',data).then(response =>{
+        console.log('return value dari kuisioner store = '+response.data);
       })
       .catch(resp => {
         console.log(resp.response.data.errors);
       })
     },
-    kondisiSession: function(tab){
+    kondisiTabulasi: function(tab){
       if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
         this.$session.clear();
         this.noTab = 1;
@@ -152,7 +151,13 @@ export default {
       }else{
         this.$session.set('no',tab);
         this.noTab = this.$session.get('no');
+        this.pindah = true;
         // console.log('ini no tab pakai session = '+this.noTab);
+      }
+    },
+    kondisiJawaban: function(page,tab){
+      if (typeof tab !== 'undefined' || typeof page) {
+        this.pindah = true;
       }
     }
   }

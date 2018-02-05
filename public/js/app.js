@@ -45735,7 +45735,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45746,21 +45746,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 //
 //
 //
@@ -45848,48 +45835,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      kuisioners: {
-        keterangan: '',
-        pilihan: '',
-        tanya: '',
-        jawaban: {
-          isi: ''
-        }
-      },
+      kuisioners: [],
+      jawabans: [],
       kuisionerData: {},
       refresh: false,
+      pindah: false,
       noTab: ''
     };
   },
   mounted: function mounted() {
-    this.bacaKuisioner();
+    this.pertanyaan();
   },
 
   methods: {
-    bacaKuisioner: function bacaKuisioner(page, tab) {
+    pertanyaan: function pertanyaan(page, tab) {
       var _this = this;
 
       if (typeof page === 'undefined') {
         page = 1;
       }
-      this.kondisiSession(tab);
-      // console.log('session no = '+this.$session.get('no'));
-      axios.get('kuisioner/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
+      this.kondisiJawaban(page, tab); // jawban fieldnya di hapus jika pindah tempat
+      this.kondisiTabulasi(tab); // data berganti sesuai tab dan paginate
+      axios.get('kuisioner/pertanyaan/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
         _this.kuisioners = response.data.data;
         _this.kuisionerData = response.data;
+        _this.jawaban(_this.kuisioners);
       }).catch(function () {
-        alert('server bermasalah');
+        alert('server pertanyaan bermasalah');
       });
     },
+    jawaban: function jawaban(data) {
+      if (this.pindah) {
+        this.jawabans.splice(0, 10);
+      }
+      for (var i = 0; i < data.length; i++) {
+        if (!data[i].jawaban.length) {
+          this.jawabans.push({
+            id: data[i].id,
+            isi: ''
+          });
+        } else {
+          this.jawabans.push({
+            id: data[i].id,
+            isi: data[i].jawaban[0].isi
+          });
+        }
+      }
+    },
     kirimKuisioner: function kirimKuisioner() {
-      axios.post('kuisioner/vue/store', this.kuisioners.jawaban).then(function (response) {
-        // console.log('berhasil kirim data');
-        console.log(response.data);
+      var data = this.jawabans;
+      axios.post('kuisioner/vue/store', data).then(function (response) {
+        console.log('return value dari kuisioner store = ' + response.data);
       }).catch(function (resp) {
         console.log(resp.response.data.errors);
       });
     },
-    kondisiSession: function kondisiSession(tab) {
+    kondisiTabulasi: function kondisiTabulasi(tab) {
       if (typeof tab === 'undefined' && !this.$session.has('no') || !this.refresh) {
         this.$session.clear();
         this.noTab = 1;
@@ -45901,7 +45902,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         this.$session.set('no', tab);
         this.noTab = this.$session.get('no');
+        this.pindah = true;
         // console.log('ini no tab pakai session = '+this.noTab);
+      }
+    },
+    kondisiJawaban: function kondisiJawaban(page, tab) {
+      if (typeof tab !== 'undefined' || (typeof page === 'undefined' ? 'undefined' : _typeof(page))) {
+        this.pindah = true;
       }
     }
   }
@@ -45922,14 +45929,10 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: {
-                href: "#satu",
-                "data-toggle": "tab",
-                "aria-expanded": "true"
-              },
+              attrs: { href: "#satu", "data-toggle": "tab" },
               on: {
                 click: function($event) {
-                  _vm.bacaKuisioner("", "1")
+                  _vm.pertanyaan("", "1")
                 }
               }
             },
@@ -45945,14 +45948,10 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: {
-                href: "#dua",
-                "data-toggle": "tab",
-                "aria-expanded": "false"
-              },
+              attrs: { href: "#dua", "data-toggle": "tab" },
               on: {
                 click: function($event) {
-                  _vm.bacaKuisioner("", "2")
+                  _vm.pertanyaan("", "2")
                 }
               }
             },
@@ -45973,26 +45972,120 @@ var render = function() {
             _c("table", { staticClass: "table table-bordered table-custom" }, [
               _vm._m(0),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.kuisioners.jawaban.isi,
-                    expression: "kuisioners.jawaban.isi"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.kuisioners.jawaban.isi },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.kuisioners.jawaban, "isi", $event.target.value)
-                  }
-                }
-              })
+              _vm.kuisioners.length
+                ? _c(
+                    "tbody",
+                    _vm._l(_vm.kuisioners, function(kuisioner, index) {
+                      return kuisioner.tanya == "1"
+                        ? _c(
+                            "tr",
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
+                              _vm._v(" "),
+                              _vm._l(_vm.jawabans, function(jawaban) {
+                                return jawaban.id == kuisioner.id &&
+                                  kuisioner.pilihan == "0"
+                                  ? _c("td", { staticClass: "form" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: jawaban.isi,
+                                            expression: "jawaban.isi"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "form-control input-kuisioner",
+                                        attrs: { type: "text" },
+                                        domProps: { value: jawaban.isi },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              jawaban,
+                                              "isi",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : jawaban.id == kuisioner.id &&
+                                    kuisioner.pilihan == "1"
+                                    ? _c("td", { staticClass: "form" }, [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: jawaban.isi,
+                                                expression: "jawaban.isi"
+                                              }
+                                            ],
+                                            staticClass: "form-control",
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  jawaban,
+                                                  "isi",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "1" } },
+                                              [_vm._v("Ya")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "0" } },
+                                              [_vm._v("Tidak")]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    : _vm._e()
+                              })
+                            ],
+                            2
+                          )
+                        : _c("tr", [
+                            _c(
+                              "td",
+                              { staticClass: "form", attrs: { colspan: "3" } },
+                              [_vm._v(_vm._s(kuisioner.keterangan))]
+                            )
+                          ])
+                    })
+                  )
+                : _c("tbody", [_vm._m(1)])
             ]),
             _vm._v(" "),
             _c(
@@ -46001,7 +46094,7 @@ var render = function() {
               [
                 _c("vue-pagination", {
                   attrs: { data: _vm.kuisionerData },
-                  on: { "pagination-change-page": _vm.bacaKuisioner }
+                  on: { "pagination-change-page": _vm.pertanyaan }
                 })
               ],
               1
@@ -46041,6 +46134,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Isi")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { attrs: { colspan: "3" } }, [_vm._v("Data Kosong / loading")])
     ])
   }
 ]

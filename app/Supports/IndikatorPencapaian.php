@@ -23,8 +23,8 @@ class IndikatorPencapaian {
   public function duaSatu (){
       $jawSatu              = [];
       $jawDua               = [];
-      $jawSatu              = $this->jawaban->kondisi(2,1);
-      $jawDua               = $this->jawaban->kondisi(3,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(2,1);
+      $jawDua               = $this->jawaban->kondisiRumus(3,1);
       $rumus                = $this->rumus->duaSatu(
                                   $jawSatu,$jawDua
                             );
@@ -33,8 +33,8 @@ class IndikatorPencapaian {
   }
 
   public function duaDua(){
-      $jawSatu              = $this->jawaban->kondisi(9,1);
-      $jawDua               = $this->jawaban->kondisi(10,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(9,1);
+      $jawDua               = $this->jawaban->kondisiRumus(10,1);
       $rumus                = $this->rumus->DuaDua(
                                   $jawSatu,$jawDua
                               );
@@ -43,43 +43,43 @@ class IndikatorPencapaian {
   }
 
   public function empat(){
-      $jawSatu              = $this->jawaban->kondisi(11,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(11,1);
       $rumus                = $jawSatu;
       $hasil                = $rumus == 1?1:0;
       return $hasil;
   }
 
   public function limaSatu(){
-      $jawSatu              = $this->jawaban->kondisi(12,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(12,1);
       $rumus                = $jawSatu;
       $hasil                = $rumus == 1?1:0;
       return $hasil;
   }
 
   public function limaDua(){
-      $jawSatu              = $this->jawaban->kondisi(13,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(13,1);
       $rumus                = $this->rumus->LimaDua($jawSatu);
       $hasil                = $rumus == 1?1:0;
       return $hasil;
   }
 
   public function tujuhSatu(){
-      $jawSatu              = $this->jawaban->kondisi(14,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(14,1);
       $rumus                = $this->rumus->TujuhSatu($jawSatu);
       $hasil                = $rumus == 1?1:0;
       return $hasil;
   }
 
   public function tujuhDua(){
-      $jawSatu              = $this->jawaban->kondisi(15,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(15,1);
       $rumus                = $this->rumus->TujuhDua($jawSatu);
       $hasil                = $rumus == 1?1:0;
       return $hasil;
   }
 
   public function sepuluh(){
-      $jawSatu              = $this->jawaban->kondisi(16,1);
-      $jawDua               = $this->jawaban->kondisi(17,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(16,1);
+      $jawDua               = $this->jawaban->kondisiRumus(17,1);
       $rumus                = $this->$rumus->Sepuluh(
                                   $jawSatu,$jawDua
                               );
@@ -88,8 +88,8 @@ class IndikatorPencapaian {
   }
 
   public function empatBelas(){
-      $jawSatu              = $this->jawaban->kondisi(18,1);
-      $jawDua               = $this->jawaban->kondisi(19,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(18,1);
+      $jawDua               = $this->jawaban->kondisiRumus(19,1);
       $rumus                = $this->rumus->empatBelas(
                                   $jawSatu,$jawDua
                               );
@@ -103,36 +103,36 @@ class IndikatorPencapaian {
       $variable             = [];
       $data                 = [];
 
-      $jawSatu              = $this->jawaban->kondisi(27,1);
-      $jawDua               = $this->jawaban->kondisi(28,1);
-      $jawTiga              = $this->jawaban->kondisi(29,1);
-      $jawEmpat             = $this->jawaban->kondisi(30,1);
-      $jawLima              = $this->jawaban->kondisi(31,1);
-      $jawEnam              = $this->jawaban->kondisi(32,1);
-      $jawTujuh             = $this->jawaban->kondisi(33,1);
-      $jawDelapan           = $this->jawaban->kondisi(34,1);
-      $jawSembilan          = $this->jawaban->kondisi(35,1);
-      $jawSepuluh           = $this->jawaban->kondisi(36,1);
-      $jawSebelas           = $this->jawaban->kondisi(37,1);
-      $jawDuabelas          = $this->jawaban->kondisi(38,1);
-      $jawTigabelas         = $this->jawaban->kondisi(39,1);
-      $jawEmpatbelas        = $this->jawaban->kondisi(40,1);
-      $jawLimabelas         = $this->jawaban->kondisi(41,1);
-      $jawEnambelas         = $this->jawaban->kondisi(42,1);
-      $jawTujuhbelas        = $this->jawaban->kondisi(43,1);
-      $jawDelapanbelas      = $this->jawaban->kondisi(44,1);
-      $jawSembilanbelas     = $this->jawaban->kondisi(45,1);
-      $jawDuapuluh          = $this->jawaban->kondisi(46,1);
-      $jawDuasatu           = $this->jawaban->kondisi(47,1);
-      $jawDuadua            = $this->jawaban->kondisi(48,1);
-      $jawDuatiga           = $this->jawaban->kondisi(49,1);
-      $jawDuaempat          = $this->jawaban->kondisi(50,1);
-      $jawDualima           = $this->jawaban->kondisi(51,1);
-      $jawDuaenam           = $this->jawaban->kondisi(52,1);
-      $jawDuatujuh          = $this->jawaban->kondisi(53,1);
-      $jawDuadelapan        = $this->jawaban->kondisi(54,1);
-      $jawDuasembilan       = $this->jawaban->kondisi(55,1);
-      $jawTigapuluh         = $this->jawaban->kondisi(56,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(27,1);
+      $jawDua               = $this->jawaban->kondisiRumus(28,1);
+      $jawTiga              = $this->jawaban->kondisiRumus(29,1);
+      $jawEmpat             = $this->jawaban->kondisiRumus(30,1);
+      $jawLima              = $this->jawaban->kondisiRumus(31,1);
+      $jawEnam              = $this->jawaban->kondisiRumus(32,1);
+      $jawTujuh             = $this->jawaban->kondisiRumus(33,1);
+      $jawDelapan           = $this->jawaban->kondisiRumus(34,1);
+      $jawSembilan          = $this->jawaban->kondisiRumus(35,1);
+      $jawSepuluh           = $this->jawaban->kondisiRumus(36,1);
+      $jawSebelas           = $this->jawaban->kondisiRumus(37,1);
+      $jawDuabelas          = $this->jawaban->kondisiRumus(38,1);
+      $jawTigabelas         = $this->jawaban->kondisiRumus(39,1);
+      $jawEmpatbelas        = $this->jawaban->kondisiRumus(40,1);
+      $jawLimabelas         = $this->jawaban->kondisiRumus(41,1);
+      $jawEnambelas         = $this->jawaban->kondisiRumus(42,1);
+      $jawTujuhbelas        = $this->jawaban->kondisiRumus(43,1);
+      $jawDelapanbelas      = $this->jawaban->kondisiRumus(44,1);
+      $jawSembilanbelas     = $this->jawaban->kondisiRumus(45,1);
+      $jawDuapuluh          = $this->jawaban->kondisiRumus(46,1);
+      $jawDuasatu           = $this->jawaban->kondisiRumus(47,1);
+      $jawDuadua            = $this->jawaban->kondisiRumus(48,1);
+      $jawDuatiga           = $this->jawaban->kondisiRumus(49,1);
+      $jawDuaempat          = $this->jawaban->kondisiRumus(50,1);
+      $jawDualima           = $this->jawaban->kondisiRumus(51,1);
+      $jawDuaenam           = $this->jawaban->kondisiRumus(52,1);
+      $jawDuatujuh          = $this->jawaban->kondisiRumus(53,1);
+      $jawDuadelapan        = $this->jawaban->kondisiRumus(54,1);
+      $jawDuasembilan       = $this->jawaban->kondisiRumus(55,1);
+      $jawTigapuluh         = $this->jawaban->kondisiRumus(56,1);
 
       $data = [
           $jawSatu, $jawDua, $jawTiga, $jawEmpat, $jawLima,
@@ -149,12 +149,12 @@ class IndikatorPencapaian {
   }
 
   public function tujuhBelas(){
-      $jawSatu              = $this->jawaban->kondisi(58,1);
-      $jawDua               = $this->jawaban->kondisi(59,1);
-      $jawTiga              = $this->jawaban->kondisi(60,1);
-      $jawEmpat             = $this->jawaban->kondisi(61,1);
-      $jawLima              = $this->jawaban->kondisi(62,1);
-      $jawEnam              = $this->jawaban->kondisi(63,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(58,1);
+      $jawDua               = $this->jawaban->kondisiRumus(59,1);
+      $jawTiga              = $this->jawaban->kondisiRumus(60,1);
+      $jawEmpat             = $this->jawaban->kondisiRumus(61,1);
+      $jawLima              = $this->jawaban->kondisiRumus(62,1);
+      $jawEnam              = $this->jawaban->kondisiRumus(63,1);
 
       $data                 = [
           $jawSatu, $jawDua, $jawTiga,
@@ -167,8 +167,8 @@ class IndikatorPencapaian {
   }
 
   public function delapanBelas(){
-      $jawSatu              = $this->jawaban->kondisi(65,1);
-      $jawDua               = $this->jawaban->kondisi(67,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(65,1);
+      $jawDua               = $this->jawaban->kondisiRumus(67,1);
 
       $rumus                = $this->rumus->delapanBelas($jawSatu,$jawDua);
       $hasil                = $rumus == 1?1:0;
@@ -176,8 +176,8 @@ class IndikatorPencapaian {
   }
 
   public function sembilanBelas(){
-      $jawSatu              = $this->jawaban->kondisi(68,1);
-      $jawDua               = $this->jawaban->kondisi(69,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(68,1);
+      $jawDua               = $this->jawaban->kondisiRumus(69,1);
 
       $rumus                = $this->rumus->sembilanBelas($jawSatu,$jawDua);
       $hasil                = $rumus == 1?1:0;
@@ -185,12 +185,12 @@ class IndikatorPencapaian {
   }
 
   public function duaPuluh(){
-      $jawSatu              = $this->jawaban->kondisi(72,1);
-      $jawDua               = $this->jawaban->kondisi(73,1);
-      $jawTiga              = $this->jawaban->kondisi(74,1);
-      $jawEmpat             = $this->jawaban->kondisi(75,1);
-      $jawLima              = $this->jawaban->kondisi(76,1);
-      $jawEnam              = $this->jawaban->kondisi(77,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(72,1);
+      $jawDua               = $this->jawaban->kondisiRumus(73,1);
+      $jawTiga              = $this->jawaban->kondisiRumus(74,1);
+      $jawEmpat             = $this->jawaban->kondisiRumus(75,1);
+      $jawLima              = $this->jawaban->kondisiRumus(76,1);
+      $jawEnam              = $this->jawaban->kondisiRumus(77,1);
 
       $data                 = [
           $jawSatu, $jawDua, $jawTiga,
@@ -203,7 +203,7 @@ class IndikatorPencapaian {
   }
 
   public function duaPuluhSatu(){
-      $jawSatu              = $this->jawaban->kondisi(78,1);
+      $jawSatu              = $this->jawaban->kondisiRumus(78,1);
 
       $rumus                = $this->rumus->duaPuluhSatu($jawSatu);
       $hasil                = $rumus == 1 ?1:0;

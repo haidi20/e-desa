@@ -8382,7 +8382,12 @@ button.close {
 }
 
 .table-custom tbody tr .form {
-  width: 130px;
+  width: 110px;
+}
+
+.table-custom tbody tr .input-kuisioner {
+  align: center;
+  padding-left: 20px;
 }
 
 .action {
