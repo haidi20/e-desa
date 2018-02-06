@@ -7,11 +7,19 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Pertanyaan;
 use App\Models\Jawaban;
+use App\Models\Sekolah;
 
 class KuisionerController extends Controller
 {
     public function index(){
         return view('kuisioner.index',compact('pertanyaan'));
+    }
+
+    public function info(){
+        $info       = Sekolah::kondisi()
+                             ->with('kecamatan')
+                             ->get();
+        return $info;
     }
 
     public function pertanyaan(){

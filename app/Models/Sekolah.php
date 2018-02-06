@@ -8,8 +8,17 @@ class Sekolah extends Model
 {
     protected $table = 'sekolah';
 
-    public function scopeKondisi($query){
+    public function kecamatan(){
+        return $this->belongsTo('App\Models\Kecamatan');
+    }
 
+    public function kondisiKecamatan($query){
+        $query->with(array('kecamatan' => function($kecamatan){
+              $kecamatan->select('nama');
+        }));
+    }
+
+    public function scopeKondisi($query){
       if (request('kuisioner')) {
         $query->where('kecamatan_id',request('kecamatan'))
               ->where('pendidikan_id',request('pendidikan'));
@@ -24,7 +33,5 @@ class Sekolah extends Model
           $query->where('id',request('sekolah'));
         }
       }
-
-
     }
 }

@@ -10,10 +10,11 @@ Route::get('pengguna/reset','PenggunaController@reset')->name('pengguna.reset');
 Route::get('pengguna/konfirmasi','PenggunaController@konfirmasi')->name('pengguna.konfirmasi');
 
 // kuisioner
-Route::get('kuisioner/pertanyaan/vue','KuisionerController@pertanyaan')->name('kuisioner.pertanyaan');
-Route::get('kuisioner/jawaban/vue','KuisionerController@jawaban');
-Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
 Route::post('kuisioner/vue/store','KuisionerController@store');
+Route::get('kuisioner/jawaban/vue','KuisionerController@jawaban');
+Route::get('kuisioner/info/vue','KuisionerController@info');
+Route::get('kuisioner','KuisionerController@index')->name('kuisioner.index');
+Route::get('kuisioner/pertanyaan/vue','KuisionerController@pertanyaan')->name('kuisioner.pertanyaan');
 
 // kunci
 Route::get('kunci','KunciController@index')->name('kunci.index');
@@ -24,12 +25,12 @@ Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
 
 //kebutuhan vue
-// pendidikan
-Route::get('pendidikan/vue','PendidikanController@index');
-// kecamatan
-Route::get('kecamatan/vue','KecamatanController@index');
 // Sekolah
 Route::get('sekolah/vue','SekolahController@baca');
+// kecamatan
+Route::get('kecamatan/vue','KecamatanController@index');
+// pendidikan
+Route::get('pendidikan/vue','PendidikanController@index');
 
 // resource :
 // sekolah
@@ -37,13 +38,9 @@ Route::resource('sekolah','SekolahController');
 // pengguna
 Route::resource('pengguna','PenggunaController');
 
+//import dari excel
 Route::get('import','import@run');
 
 //auth laravel
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
-//laithan vue array
-Route::get('array',function(){
-  return view('latihan');
-});

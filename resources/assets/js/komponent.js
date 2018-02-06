@@ -13,7 +13,6 @@ Vue.component('modaldashboard',require('./components/dashboard/Modal.vue'));
 Vue.component('dashboard',require('./components/dashboard/Index.vue'));
 
 //kuisioner
-Vue.component('kondisikuisioner',require('./components/kuisioner/Kondisi.vue'));
 Vue.component('kuisioner',require('./components/kuisioner/Index.vue'));
 
 //pengguna

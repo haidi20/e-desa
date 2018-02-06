@@ -43349,7 +43349,6 @@ Vue.component('modaldashboard', __webpack_require__(12));
 Vue.component('dashboard', __webpack_require__(65));
 
 //kuisioner
-Vue.component('kondisikuisioner', __webpack_require__(70));
 Vue.component('kuisioner', __webpack_require__(75));
 
 //pengguna
@@ -45314,387 +45313,11 @@ if (false) {
 }
 
 /***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(71)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(73)
-/* template */
-var __vue_template__ = __webpack_require__(74)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\kuisioner\\Kondisi.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5943cb03", Component.options)
-  } else {
-    hotAPI.reload("data-v-5943cb03", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(72);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("2999a903", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5943cb03\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5943cb03\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Kondisi.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      item: {
-        kecamatan_id: '',
-        pendidikan_id: '',
-        sekolah_id: ''
-      },
-      sekolahs: '',
-      kecamatans: '',
-      pendidikans: ''
-    };
-  },
-  mounted: function mounted() {
-    this.bacaKecamatan(), this.bacaPendidikan();
-  },
-
-  methods: {
-    bacaKecamatan: function bacaKecamatan() {
-      var _this = this;
-
-      axios.get('kecamatan/vue').then(function (response) {
-        _this.kecamatans = response.data;
-      });
-    },
-    bacaPendidikan: function bacaPendidikan() {
-      var _this2 = this;
-
-      axios.get('pendidikan/vue').then(function (response) {
-        _this2.pendidikans = response.data;
-      });
-    },
-    bacaSekolah: function bacaSekolah() {
-      var _this3 = this;
-
-      var kec = this.item.kecamatan_id;
-      var pen = this.item.pendidikan_id;
-      axios.get('sekolah/vue?kecamatan=' + kec + '&&pendidikan=' + pen + '&&kuisioner="true"').then(function (response) {
-        _this3.sekolahs = response.data;
-      });
-    },
-    kirim: function kirim() {
-      var sek = this.item.sekolah_id;
-      axios.get('kuisioner/pertanyaan/vue?sekolah=' + sek).then(function (response) {});
-    }
-  }
-});
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "col-md-3 col-md-offset-2" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "pendidikan" } },
-          [_vm._v("Jenjang Pendidikan")]
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.pendidikan_id,
-                expression: "item.pendidikan_id"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "pendidikan", id: "pendidikan" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.item,
-                    "pendidikan_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                },
-                _vm.bacaSekolah
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [
-              _vm._v("Pilih Jenjang Pendidikan")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.pendidikans, function(pendidikan) {
-              return _c("option", { domProps: { value: pendidikan.id } }, [
-                _vm._v(_vm._s(pendidikan.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "kecamatan" } },
-          [_vm._v("Kecamatan")]
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.item.kecamatan_id,
-                expression: "item.kecamatan_id"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "kecamatan", id: "kecamatan" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.item,
-                    "kecamatan_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                },
-                _vm.bacaSekolah
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Pilih Kecamatan")]),
-            _vm._v(" "),
-            _vm._l(_vm.kecamatans, function(kecamatan) {
-              return _c("option", { domProps: { value: kecamatan.id } }, [
-                _vm._v(_vm._s(kecamatan.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "form-label", attrs: { for: "sekolah" } }, [
-          _vm._v("Sekolah")
-        ]),
-        _vm._v(" "),
-        _vm.sekolahs.length
-          ? _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.item.sekolah_id,
-                    expression: "item.sekolah_id"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { name: "sekolah", id: "sekolah" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.item,
-                      "sekolah_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              _vm._l(_vm.sekolahs, function(sekolah) {
-                return _c("option", { domProps: { value: 1 } }, [
-                  _vm._v(_vm._s(sekolah.nama))
-                ])
-              })
-            )
-          : _c(
-              "select",
-              { staticClass: "form-control", attrs: { name: "", id: "" } },
-              [_c("option", { attrs: { value: "" } }, [_vm._v("Data Kosong")])]
-            )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-1 text-right" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-md btn-success oke",
-          attrs: { type: "submit" },
-          on: { click: _vm.kirim }
-        },
-        [_vm._v("Oke")]
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5943cb03", module.exports)
-  }
-}
-
-/***/ }),
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
 /* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45780,7 +45403,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45912,6 +45535,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45921,6 +45572,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         pendidikan_id: '',
         sekolah_id: ''
       },
+      info: [],
       sekolahs: '',
       kecamatans: '',
       pendidikans: '',
@@ -45960,8 +45612,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _this3.sekolahs = response.data;
       });
     },
-    pertanyaan: function pertanyaan(page, tab) {
+    bacaInfo: function bacaInfo() {
       var _this4 = this;
+
+      axios.get('kuisioner/info/vue?sekolah=' + this.item.sekolah_id).then(function (response) {
+        _this4.info = response.data;
+      });
+    },
+    pertanyaan: function pertanyaan(page, tab) {
+      var _this5 = this;
 
       if (typeof page === 'undefined') {
         page = 1;
@@ -45969,13 +45628,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       this.kondisiPindah(page, tab); // jawban fieldnya di hapus jika pindah tempat
       this.kondisiTabulasi(tab); // data berganti sesuai tab dan paginate
       axios.get('kuisioner/pertanyaan/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
-        _this4.kuisioners = response.data.data;
-        _this4.kuisionerData = response.data;
+        _this5.kuisioners = response.data.data;
+        _this5.kuisionerData = response.data;
       }).catch(function () {
         alert('server pertanyaan bermasalah');
       });
       axios.get('kuisioner/jawaban/vue?sekolah=' + this.item.sekolah_id).then(function (response) {
-        _this4.kondisiJawaban(response.data);
+        _this5.kondisiJawaban(response.data);
       });
     },
     kondisiJawaban: function kondisiJawaban(data) {
@@ -46180,6 +45839,7 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: { name: "sekolah", id: "sekolah" },
                   on: {
+                    click: _vm.bacaInfo,
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
                         .call($event.target.options, function(o) {
@@ -46227,6 +45887,58 @@ var render = function() {
           },
           [_vm._v("Oke")]
         )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", [
+          _c(
+            "tr",
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("td", [_vm._v("  : ")]),
+              _vm._v(" "),
+              _vm._l(_vm.info, function(info) {
+                return _c("td", [_c("h5", [_vm._v(_vm._s(info.nama))])])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "tr",
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("td", [_vm._v(":  ")]),
+              _vm._v(" "),
+              _vm._l(_vm.info, function(info) {
+                return _c("td", [_c("h5", [_vm._v(_vm._s(info.alamat))])])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "tr",
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("td", [_vm._v(":  ")]),
+              _vm._v(" "),
+              _vm._l(_vm.info, function(info) {
+                return _c("td", [
+                  _c("h5", [_vm._v(_vm._s(info.kecamatan.nama))])
+                ])
+              })
+            ],
+            2
+          )
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -46284,7 +45996,7 @@ var render = function() {
                   "table",
                   { staticClass: "table table-bordered table-custom" },
                   [
-                    _vm._m(0),
+                    _vm._m(3),
                     _vm._v(" "),
                     _vm.kuisioners.length
                       ? _c(
@@ -46404,7 +46116,7 @@ var render = function() {
                                 ])
                           })
                         )
-                      : _c("tbody", [_vm._m(1)])
+                      : _c("tbody", [_vm._m(4)])
                   ]
                 ),
                 _vm._v(" "),
@@ -46444,6 +46156,24 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("h5", [_vm._v("Nama Sekolah")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("h5", [_vm._v("Alamat ")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("h5", [_vm._v("Kecamatan ")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -46846,7 +46576,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -46871,7 +46601,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['old'],
   data: function data() {
     return {
       kecamatans: ''

@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  props:['old'],
   data(){
     return{
       kecamatans:''

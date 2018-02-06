@@ -22,7 +22,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="sekolah" class="form-label">Sekolah</label>
-          <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" class="form-control">
+          <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" v-on:click="bacaInfo" class="form-control">
             <option v-for="sekolah in sekolahs" v-bind:value="sekolah.id">{{sekolah.nama}}</option>
           </select>
           <select v-else name="" id="" class="form-control">
@@ -32,6 +32,34 @@
       </div>
       <div class="col-md-1 text-right">
         <button type="submit" class="btn btn-md btn-success oke" v-on:click="pertanyaan">Oke</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <table>
+          <tr>
+            <td><h5>Nama Sekolah</h5></td>
+            <td> &nbsp;:&nbsp;</td>
+            <td  v-for="info in info">
+              <h5>{{info.nama}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td><h5>Alamat </h5></td>
+            <td>: &nbsp;</td>
+            <td v-for="info in info">
+              <h5>{{info.alamat}}</h5>
+            </td>
+          </tr>
+          <tr>
+            <td><h5>Kecamatan </h5></td>
+            <td>: &nbsp;</td>
+            <td v-for="info in info">
+              <h5>{{info.kecamatan.nama}}</h5>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="row">
@@ -126,6 +154,7 @@ export default {
         pendidikan_id: '',
         sekolah_id: ''
       },
+      info:[],
       sekolahs: '',
       kecamatans:'',
       pendidikans:'',
@@ -159,6 +188,11 @@ export default {
       axios.get('sekolah/vue?kecamatan='+kec+'&&pendidikan='+pen+'&&kuisioner="true"').then(response =>{
         this.sekolahs = response.data;
       })
+    },
+    bacaInfo: function(){
+      axios.get('kuisioner/info/vue?sekolah='+this.item.sekolah_id).then(response => {
+        this.info = response.data;
+      });
     },
     pertanyaan: function(page,tab){
       if (typeof page === 'undefined') {
