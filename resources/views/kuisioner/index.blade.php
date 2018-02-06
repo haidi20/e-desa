@@ -9,14 +9,11 @@
     </div>
     <hr class="dashed mt20 mb20">
     <div class="row">
-      <form action="{{route('kuisioner.index')}}" method="get">
-        <kondisikuisioner></kondisikuisioner>
-        <div class="col-md-1 text-right">
-          <button type="submit" class="btn btn-md btn-success oke">Oke</button>
-        </div>
-      </form>
+      {{-- <form action="{{route('kuisioner.pertanyaan')}}" method="get"> --}}
+        {{-- <kondisikuisioner></kondisikuisioner> --}}
+      {{-- </form> --}}
     </div>
-    @include('kuisioner.info')
+    {{-- @include('kuisioner.info') --}}
     <br>
     <kuisioner></kuisioner>
   </div>

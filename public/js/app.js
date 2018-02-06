@@ -45399,7 +45399,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45444,13 +45444,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       item: {
         kecamatan_id: '',
-        pendidikan_id: ''
+        pendidikan_id: '',
+        sekolah_id: ''
       },
       sekolahs: '',
       kecamatans: '',
@@ -45484,6 +45488,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.get('sekolah/vue?kecamatan=' + kec + '&&pendidikan=' + pen + '&&kuisioner="true"').then(function (response) {
         _this3.sekolahs = response.data;
       });
+    },
+    kirim: function kirim() {
+      var sek = this.item.sekolah_id;
+      axios.get('kuisioner/pertanyaan/vue?sekolah=' + sek).then(function (response) {});
     }
   }
 });
@@ -45621,11 +45629,36 @@ var render = function() {
           ? _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.item.sekolah_id,
+                    expression: "item.sekolah_id"
+                  }
+                ],
                 staticClass: "form-control",
-                attrs: { name: "sekolah", id: "sekolah" }
+                attrs: { name: "sekolah", id: "sekolah" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.item,
+                      "sekolah_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
               },
               _vm._l(_vm.sekolahs, function(sekolah) {
-                return _c("option", { domProps: { value: sekolah.id } }, [
+                return _c("option", { domProps: { value: 1 } }, [
                   _vm._v(_vm._s(sekolah.nama))
                 ])
               })
@@ -45636,6 +45669,18 @@ var render = function() {
               [_c("option", { attrs: { value: "" } }, [_vm._v("Data Kosong")])]
             )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-1 text-right" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-md btn-success oke",
+          attrs: { type: "submit" },
+          on: { click: _vm.kirim }
+        },
+        [_vm._v("Oke")]
+      )
     ])
   ])
 }
@@ -45735,7 +45780,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45831,10 +45876,54 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      item: {
+        kecamatan_id: '',
+        pendidikan_id: '',
+        sekolah_id: ''
+      },
+      sekolahs: '',
+      kecamatans: '',
+      pendidikans: '',
       kuisioners: [],
       jawabans: [],
       kuisionerData: {},
@@ -45844,46 +45933,74 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
   },
   mounted: function mounted() {
-    this.pertanyaan();
+    this.bacaKecamatan(), this.bacaPendidikan(), this.pertanyaan();
   },
 
   methods: {
-    pertanyaan: function pertanyaan(page, tab) {
+    bacaKecamatan: function bacaKecamatan() {
       var _this = this;
+
+      axios.get('kecamatan/vue').then(function (response) {
+        _this.kecamatans = response.data;
+      });
+    },
+    bacaPendidikan: function bacaPendidikan() {
+      var _this2 = this;
+
+      axios.get('pendidikan/vue').then(function (response) {
+        _this2.pendidikans = response.data;
+      });
+    },
+    bacaSekolah: function bacaSekolah() {
+      var _this3 = this;
+
+      var kec = this.item.kecamatan_id;
+      var pen = this.item.pendidikan_id;
+      axios.get('sekolah/vue?kecamatan=' + kec + '&&pendidikan=' + pen + '&&kuisioner="true"').then(function (response) {
+        _this3.sekolahs = response.data;
+      });
+    },
+    pertanyaan: function pertanyaan(page, tab) {
+      var _this4 = this;
 
       if (typeof page === 'undefined') {
         page = 1;
       }
-      this.kondisiJawaban(page, tab); // jawban fieldnya di hapus jika pindah tempat
+      this.kondisiPindah(page, tab); // jawban fieldnya di hapus jika pindah tempat
       this.kondisiTabulasi(tab); // data berganti sesuai tab dan paginate
       axios.get('kuisioner/pertanyaan/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
-        _this.kuisioners = response.data.data;
-        _this.kuisionerData = response.data;
-        _this.jawaban(_this.kuisioners);
+        _this4.kuisioners = response.data.data;
+        _this4.kuisionerData = response.data;
       }).catch(function () {
         alert('server pertanyaan bermasalah');
       });
+      axios.get('kuisioner/jawaban/vue?sekolah=' + this.item.sekolah_id).then(function (response) {
+        _this4.kondisiJawaban(response.data);
+      });
     },
-    jawaban: function jawaban(data) {
+    kondisiJawaban: function kondisiJawaban(data) {
       if (this.pindah) {
-        this.jawabans.splice(0, 10);
+        this.jawabans.splice(0, data.length);
       }
+      // console.log(data[1].jawaban[0].length);
       for (var i = 0; i < data.length; i++) {
-        if (!data[i].jawaban.length) {
+        if (!data[i].jawaban[0]) {
           this.jawabans.push({
-            id: data[i].id,
+            pertanyaan: data[i].id,
+            sekolah: this.item.sekolah_id,
             isi: ''
           });
         } else {
           this.jawabans.push({
-            id: data[i].id,
+            pertanyaan: data[i].id,
+            sekolah: data[i].jawaban[0].sekolah_id,
             isi: data[i].jawaban[0].isi
           });
         }
       }
     },
     kirimKuisioner: function kirimKuisioner() {
-      var data = this.jawabans;
+      var data = { jawaban: this.jawabans };
       axios.post('kuisioner/vue/store', data).then(function (response) {
         console.log('return value dari kuisioner store = ' + response.data);
       }).catch(function (resp) {
@@ -45906,7 +46023,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         // console.log('ini no tab pakai session = '+this.noTab);
       }
     },
-    kondisiJawaban: function kondisiJawaban(page, tab) {
+    kondisiPindah: function kondisiPindah(page, tab) {
       if (typeof tab !== 'undefined' || (typeof page === 'undefined' ? 'undefined' : _typeof(page))) {
         this.pindah = true;
       }
@@ -45922,201 +46039,406 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-12" }, [
-      _c("ul", { staticClass: "nav nav-tabs" }, [
-        _c("li", { staticClass: "active" }, [
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3 col-md-offset-2" }, [
+        _c("div", { staticClass: "form-group" }, [
           _c(
-            "a",
+            "label",
+            { staticClass: "form-label", attrs: { for: "pendidikan" } },
+            [_vm._v("Jenjang Pendidikan")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
             {
-              attrs: { href: "#satu", "data-toggle": "tab" },
-              on: {
-                click: function($event) {
-                  _vm.pertanyaan("", "1")
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.item.pendidikan_id,
+                  expression: "item.pendidikan_id"
                 }
+              ],
+              staticClass: "form-control",
+              attrs: { name: "pendidikan", id: "pendidikan" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.item,
+                      "pendidikan_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.bacaSekolah
+                ]
               }
             },
             [
-              _vm._v(
-                "\n        Pelayanan Pendidikan oleh Pemerintah Kota\n      "
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#dua", "data-toggle": "tab" },
-              on: {
-                click: function($event) {
-                  _vm.pertanyaan("", "2")
-                }
-              }
-            },
-            [
-              _vm._v(
-                "\n        Pelayanan Pendidikan Dasar oleh Satuan Pendidikan\n      "
-              )
-            ]
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Pilih Jenjang Pendidikan")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.pendidikans, function(pendidikan) {
+                return _c("option", { domProps: { value: pendidikan.id } }, [
+                  _vm._v(_vm._s(pendidikan.nama))
+                ])
+              })
+            ],
+            2
           )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "tab-content", attrs: { id: "myTabContent" } }, [
-        _c(
-          "div",
-          { staticClass: "tab-pane fade active in", attrs: { id: "satu" } },
-          [
-            _c("table", { staticClass: "table table-bordered table-custom" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm.kuisioners.length
-                ? _c(
-                    "tbody",
-                    _vm._l(_vm.kuisioners, function(kuisioner, index) {
-                      return kuisioner.tanya == "1"
-                        ? _c(
-                            "tr",
-                            [
-                              _c("td", [_vm._v(_vm._s(index + 1))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(kuisioner.keterangan))]),
-                              _vm._v(" "),
-                              _vm._l(_vm.jawabans, function(jawaban) {
-                                return jawaban.id == kuisioner.id &&
-                                  kuisioner.pilihan == "0"
-                                  ? _c("td", { staticClass: "form" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: jawaban.isi,
-                                            expression: "jawaban.isi"
-                                          }
-                                        ],
-                                        staticClass:
-                                          "form-control input-kuisioner",
-                                        attrs: { type: "text" },
-                                        domProps: { value: jawaban.isi },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              jawaban,
-                                              "isi",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ])
-                                  : jawaban.id == kuisioner.id &&
-                                    kuisioner.pilihan == "1"
-                                    ? _c("td", { staticClass: "form" }, [
-                                        _c(
-                                          "select",
-                                          {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: jawaban.isi,
-                                                expression: "jawaban.isi"
-                                              }
-                                            ],
-                                            staticClass: "form-control",
-                                            on: {
-                                              change: function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  jawaban,
-                                                  "isi",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "option",
-                                              { attrs: { value: "1" } },
-                                              [_vm._v("Ya")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "option",
-                                              { attrs: { value: "0" } },
-                                              [_vm._v("Tidak")]
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    : _vm._e()
-                              })
-                            ],
-                            2
-                          )
-                        : _c("tr", [
-                            _c(
-                              "td",
-                              { staticClass: "form", attrs: { colspan: "3" } },
-                              [_vm._v(_vm._s(kuisioner.keterangan))]
-                            )
-                          ])
-                    })
-                  )
-                : _c("tbody", [_vm._m(1)])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { attrs: { align: "right" } },
-              [
-                _c("vue-pagination", {
-                  attrs: { data: _vm.kuisionerData },
-                  on: { "pagination-change-page": _vm.pertanyaan }
-                })
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "label",
+            { staticClass: "form-label", attrs: { for: "kecamatan" } },
+            [_vm._v("Kecamatan")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.item.kecamatan_id,
+                  expression: "item.kecamatan_id"
+                }
               ],
-              1
-            )
-          ]
-        )
+              staticClass: "form-control",
+              attrs: { name: "kecamatan", id: "kecamatan" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.item,
+                      "kecamatan_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.bacaSekolah
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Pilih Kecamatan")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.kecamatans, function(kecamatan) {
+                return _c("option", { domProps: { value: kecamatan.id } }, [
+                  _vm._v(_vm._s(kecamatan.nama))
+                ])
+              })
+            ],
+            2
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-1 col-md-offset-11" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "label",
+            { staticClass: "form-label", attrs: { for: "sekolah" } },
+            [_vm._v("Sekolah")]
+          ),
+          _vm._v(" "),
+          _vm.sekolahs.length
+            ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.item.sekolah_id,
+                      expression: "item.sekolah_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "sekolah", id: "sekolah" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.item,
+                        "sekolah_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.sekolahs, function(sekolah) {
+                  return _c("option", { domProps: { value: sekolah.id } }, [
+                    _vm._v(_vm._s(sekolah.nama))
+                  ])
+                })
+              )
+            : _c(
+                "select",
+                { staticClass: "form-control", attrs: { name: "", id: "" } },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Data Kosong")
+                  ])
+                ]
+              )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-1 text-right" }, [
         _c(
           "button",
           {
-            staticClass: "btn btn-md btn-success",
+            staticClass: "btn btn-md btn-success oke",
             attrs: { type: "submit" },
-            on: {
-              click: function($event) {
-                _vm.kirimKuisioner()
-              }
-            }
+            on: { click: _vm.pertanyaan }
           },
-          [_vm._v("Kirim")]
+          [_vm._v("Oke")]
         )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("ul", { staticClass: "nav nav-tabs" }, [
+          _c("li", { staticClass: "active" }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#satu", "data-toggle": "tab" },
+                on: {
+                  click: function($event) {
+                    _vm.pertanyaan("", "1")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n          Pelayanan Pendidikan oleh Pemerintah Kota\n        "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", {}, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#dua", "data-toggle": "tab" },
+                on: {
+                  click: function($event) {
+                    _vm.pertanyaan("", "2")
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n          Pelayanan Pendidikan Dasar oleh Satuan Pendidikan\n        "
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tab-content", attrs: { id: "myTabContent" } },
+          [
+            _c(
+              "div",
+              { staticClass: "tab-pane fade active in", attrs: { id: "satu" } },
+              [
+                _c(
+                  "table",
+                  { staticClass: "table table-bordered table-custom" },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm.kuisioners.length
+                      ? _c(
+                          "tbody",
+                          _vm._l(_vm.kuisioners, function(kuisioner, index) {
+                            return kuisioner.tanya == "1"
+                              ? _c(
+                                  "tr",
+                                  [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(kuisioner.keterangan))
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.jawabans, function(jawaban) {
+                                      return jawaban.pertanyaan ==
+                                        kuisioner.id && kuisioner.pilihan == "0"
+                                        ? _c("td", { staticClass: "form" }, [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: jawaban.isi,
+                                                  expression: "jawaban.isi"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "form-control input-kuisioner",
+                                              attrs: { type: "text" },
+                                              domProps: { value: jawaban.isi },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    jawaban,
+                                                    "isi",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ])
+                                        : jawaban.pertanyaan == kuisioner.id &&
+                                          kuisioner.pilihan == "1"
+                                          ? _c("td", { staticClass: "form" }, [
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: jawaban.isi,
+                                                      expression: "jawaban.isi"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        jawaban,
+                                                        "isi",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "1" } },
+                                                    [_vm._v("Ya")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "0" } },
+                                                    [_vm._v("Tidak")]
+                                                  )
+                                                ]
+                                              )
+                                            ])
+                                          : _vm._e()
+                                    })
+                                  ],
+                                  2
+                                )
+                              : _c("tr", [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "form",
+                                      attrs: { colspan: "3" }
+                                    },
+                                    [_vm._v(_vm._s(kuisioner.keterangan))]
+                                  )
+                                ])
+                          })
+                        )
+                      : _c("tbody", [_vm._m(1)])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { attrs: { align: "right" } },
+                  [
+                    _c("vue-pagination", {
+                      attrs: { data: _vm.kuisionerData },
+                      on: { "pagination-change-page": _vm.pertanyaan }
+                    })
+                  ],
+                  1
+                )
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-1 col-md-offset-11" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-md btn-success",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.kirimKuisioner()
+                }
+              }
+            },
+            [_vm._v("Kirim")]
+          )
+        ])
       ])
     ])
   ])

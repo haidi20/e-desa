@@ -21,13 +21,16 @@
     <div class="col-md-3">
       <div class="form-group">
         <label for="sekolah" class="form-label">Sekolah</label>
-        <select name="sekolah" id="sekolah" v-if="sekolahs.length" class="form-control">
-          <option v-for="sekolah in sekolahs"  v-bind:value="sekolah.id">{{sekolah.nama}}</option>
+        <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" class="form-control">
+          <option v-for="sekolah in sekolahs" v-bind:value="1">{{sekolah.nama}}</option>
         </select>
         <select v-else name="" id="" class="form-control">
           <option value="" >Data Kosong</option>
         </select>
       </div>
+    </div>
+    <div class="col-md-1 text-right">
+      <button type="submit" class="btn btn-md btn-success oke" v-on:click="kirim">Oke</button>
     </div>
   </div>
 </template>
@@ -38,7 +41,8 @@ export default {
     return{
       item:{
         kecamatan_id: '',
-        pendidikan_id: ''
+        pendidikan_id: '',
+        sekolah_id: ''
       },
       sekolahs: '',
       kecamatans:'',
@@ -65,6 +69,12 @@ export default {
       const pen = this.item.pendidikan_id;
       axios.get('sekolah/vue?kecamatan='+kec+'&&pendidikan='+pen+'&&kuisioner="true"').then(response =>{
         this.sekolahs = response.data;
+      })
+    },
+    kirim:function(){
+      const sek = this.item.sekolah_id;
+      axios.get('kuisioner/pertanyaan/vue?sekolah='+sek).then(response =>{
+        
       })
     }
   }
