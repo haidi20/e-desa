@@ -71,7 +71,7 @@ class import extends Controller {
                                 'isi' => $item->isi,
                                 'sekolah_id' => $item->sekolah_id,
                                 'pertanyaan_id'=> $item->pertanyaan_id,
-                                'tanggal' => $item->tanggal
+                                'created_at' => $item->tanggal
                             );
     }
     foreach ($datakategori as $index => $item) {
