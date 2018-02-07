@@ -52,6 +52,7 @@ class Rumus
       /r = rumus
       /s = semua
       /j = jumlah
+      /h = hasil akhir
       */
 
       foreach ($data as $index => $item) {
@@ -79,16 +80,10 @@ class Rumus
                                   $r_bukuEmpat[$index] + $r_bukuLima [$index] + $r_bukuEnam [$index] ;
 
           $r_buku     [$index]  = ($j_buku[$index] / 6) * 100;
-          $a_buku     [$index]  = kondisi_sekolah($r_buku[$index]);
+          $h_buku     [$index]  = kondisi_sekolah($r_buku[$index]);
       }
 
-      return $a_buku;
-
-
-      //
-      // return array_sum($s_buku) == 6?1:0;
-
-
+      return $h_buku;
   }
 
   public function tujuhBelas($data){

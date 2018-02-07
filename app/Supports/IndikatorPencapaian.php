@@ -113,8 +113,10 @@ class IndikatorPencapaian {
 
           }
       }
-      $rumus       = kondisi_jumlah_data($this->rumus->limaBelas($data));
-      return $rumus;
+      $rumus       = $this->rumus->limaBelas($data);
+      $hasil       = kondisi_jumlah_data($rumus);
+      
+      return $hasil;
   }
 
   public function tujuhBelas(){
