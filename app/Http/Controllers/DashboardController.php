@@ -10,11 +10,15 @@ use App\Supports\IndikatorPencapaian;
 class DashboardController extends Controller
 {
     function __construct(IndikatorPencapaian $ip){
-      $this->ip = $ip;
+        $this->ip = $ip;
     }
 
     public function index(){
-      // return response()->json($this->ip->limaBelas()) ;
-      return view('dashboard.index');
+        return view('dashboard.index');
+    }
+
+    public function persen(){
+        $persen = $this->ip->limaBelas();
+        return $persen;
     }
 }

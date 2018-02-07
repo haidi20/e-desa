@@ -24,9 +24,4 @@ class Pertanyaan extends Model
             $jawaban->where('sekolah_id',request('sekolah'));
         }));
     }
-
-    // public function scopeJawaban($query){
-    //     $query->join('jawaban','pertanyaan.id','=','jawaban.pertanyaan_id');
-    // }
-    // end scope
 }

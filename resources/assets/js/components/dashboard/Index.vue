@@ -78,7 +78,7 @@
               <td id="modal" data-toggle="modal" data-target="#myIp">IP {{i}}</td>
               <td
                 id="modal" data-toggle="modal" data-target="#myPersen"
-                v-on:click="nilaiIp(i)" >{{hitung()}}%</td>
+                v-on:click="nilaiIp(i)"></td>
                 <modaldashboard v-bind:ip="ip"></modaldashboard>
             </tr>
         </tbody>
@@ -98,9 +98,10 @@ export default {
         pendidikan_id:''
       },
       ip: '',
-      pendidikans:'',
-      kecamatans: '',
       sekolahs: '',
+      kecamatans: '',
+      pendidikans:'',
+      persen: []
     }
   },
   mounted(){
@@ -128,7 +129,10 @@ export default {
       })
     },
     klikTombol:function(){
-
+      axios.get('dashboard/persen/vue?sekolah=1').then(response => {
+        this.persen = response.data;
+        console.log(this.persen);
+      });
     },
     hitung:function(){
       return Math.floor(Math.random() * (100 - 80 + 1)) + 80;

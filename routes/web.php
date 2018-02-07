@@ -23,6 +23,7 @@ Route::get('kunci/simpan','KunciController@simpan')->name('kunci.simpan');
 
 // dashboard
 Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
+Route::get('dashboard/persen/vue','DashboardController@persen');
 
 //kebutuhan vue
 // Sekolah

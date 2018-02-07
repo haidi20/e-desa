@@ -1,112 +1,38 @@
 <?php
 
-use Carbon\Carbon;
-
-if( ! function_exists('build_url') ){
-    function build_url($appends=[], $only='*', $except=null)
-    {
-        $vars = request()->except('_token');
-        if(is_array($only)) $vars = request()->only($only);
-        if(is_array($except)){
-            array_push($except, '_token');
-            $vars = request()->except($except);
-        }
-
-        $vars = array_merge($vars, $appends);
-
-        return http_build_query($vars);
-    }
-}
-
-if( ! function_exists('formatted_year') ){
-    function formatted_year($value, $format='Y'){
-        if($value == '0000-00-00' or $value == null) return null;
-        return Carbon::parse($value)->format($format);
-    }
-}
-
-
-if( ! function_exists('formatted_date') ){
-    function formatted_date($value, $format='d/m/Y'){
-        if($value == '0000-00-00' or $value == null) return null;
-        return Carbon::parse($value)->format($format);
-    }
-}
-
-if( ! function_exists('plain_date') ){
-    function plain_date($value){
-        return !$value ? null : Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-    }
-}
-
-if( ! function_exists('format_angka') ) {
-    function format_angka($value){
-        return !$value ? null : number_format($value,2);
-    }
-}
-
-
-if( ! function_exists('fa') ){
-    function fa($icon='pencil')
-    {
-        return '<i class="fa fa-'.$icon.'"></i>';
-    }
-}
-
-if( ! function_exists('show_bs_message') )
+if ( ! function_exists('kondisi_rumus') )
 {
-    function show_bs_message($messages, $type='info', $icon='info-circle'){
-
-        if(empty($messages)){
-            return null;
-        }
-
-        if( isset($messages['text']) && isset($messages['type']) )
-        {
-            $type = $messages['type'];
-            if( isset($messages['icon']) )
-            {
-                $icon = $messages['icon'];
-            }
-
-            $messages = $messages['text'];
-        }
-
-        if(is_array($messages)){
-            $messages = implode('<br>', $messages);
-        }
-
-        $template = '<div class="alert alert-%s">%s %s</div>';
-        return sprintf($template, $type, fa($icon),  $messages);
-    }
-}
-
-if ( ! function_exists('show_inline_error') )
-{
-    function show_inline_error($errors, $key, $type='first'){
-        if($errors->has($key)){
-            $template = '<div class="invalid-feedback" style="display: block">%s</div>';
-            if('all' === $type){
-                return sprintf($template, implode('<br>', $errors->all($key)));
-            }else{
-                return sprintf($template, $errors->first($key));
-            }
+    function kondisi_sekolah($rumus){
+        if (request('sekolah')) {
+            return $rumus;
         }else{
-            return null;
+            if ($rumus == 100) {
+                return 1;
+            }else{
+                return 0;
+            }
         }
     }
 }
 
-if ( ! function_exists('has_error') )
+if ( ! function_exists('kondisi_jumlah_data') )
 {
-    function has_error($errors, $key){
-        return $errors->has($key) ? 'has-danger' : '';
+    function kondisi_jumlah_data($data){
+        if (count($data) > 1) {
+            return number_format((array_sum($data) / count($data)) * 100,0);
+        }else{
+            return array_sum($data);
+        }
     }
 }
 
-if ( ! function_exists('is_invalid') )
+if ( ! function_exists('kondisi_null') )
 {
-    function is_invalid($errors, $key){
-        return $errors->has($key) ? 'is-invalid' : '';
+    function kondisi_null($data){
+        if ($data == null) {
+            return 0;
+        }else{
+            return $data;
+        }
     }
 }

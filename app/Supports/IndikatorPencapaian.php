@@ -4,6 +4,7 @@ namespace App\Supports;
 
 use App\Models\Jawaban;
 use App\Supports\Rumus;
+use App\Models\Sekolah;
 
 class IndikatorPencapaian {
 
@@ -15,20 +16,25 @@ class IndikatorPencapaian {
   public $rumus             = [];
   public $hasil             = [];
 
-  function __construct(Jawaban $jawaban,Rumus $rumus){
-    $this->jawaban          = $jawaban;
+  function __construct(Jawaban $jawaban,Rumus $rumus, Sekolah $sekolah){
     $this->rumus            = $rumus;
+    $this->jawaban          = $jawaban;
+    $this->sekolah          = $sekolah::kondisi()->get();
   }
 
   public function duaSatu (){
       $jawSatu              = [];
       $jawDua               = [];
-      $jawSatu              = $this->jawaban->kondisiRumus(2,1);
-      $jawDua               = $this->jawaban->kondisiRumus(3,1);
-      $rumus                = $this->rumus->duaSatu(
-                                  $jawSatu,$jawDua
-                            );
-      $hasil                = $rumus == 1?1:0 ;
+
+      foreach ($this->sekolah as $index => $item) {
+          $jawSatu[$item->id]         = kondisi_null($this->jawaban->kondisiJawaban(2,$item->id)->value('isi'));
+          $jawDua[$item->id]          = kondisi_null($this->jawaban->kondisiJawaban(3,$item->id)->value('isi'));
+
+          $rumus[$item->id]           = number_format($this->rumus->duaSatu($jawSatu[$item->id],$jawDua[$item->id]));
+      }
+
+      $hasil = kondisi_jumlah_data($rumus);
+
       return $hasil;
   }
 
@@ -98,54 +104,17 @@ class IndikatorPencapaian {
   }
 
   public function limaBelas(){
-
-      $item                 = [];
-      $variable             = [];
       $data                 = [];
 
-      $jawSatu              = $this->jawaban->kondisiRumus(27,1);
-      $jawDua               = $this->jawaban->kondisiRumus(28,1);
-      $jawTiga              = $this->jawaban->kondisiRumus(29,1);
-      $jawEmpat             = $this->jawaban->kondisiRumus(30,1);
-      $jawLima              = $this->jawaban->kondisiRumus(31,1);
-      $jawEnam              = $this->jawaban->kondisiRumus(32,1);
-      $jawTujuh             = $this->jawaban->kondisiRumus(33,1);
-      $jawDelapan           = $this->jawaban->kondisiRumus(34,1);
-      $jawSembilan          = $this->jawaban->kondisiRumus(35,1);
-      $jawSepuluh           = $this->jawaban->kondisiRumus(36,1);
-      $jawSebelas           = $this->jawaban->kondisiRumus(37,1);
-      $jawDuabelas          = $this->jawaban->kondisiRumus(38,1);
-      $jawTigabelas         = $this->jawaban->kondisiRumus(39,1);
-      $jawEmpatbelas        = $this->jawaban->kondisiRumus(40,1);
-      $jawLimabelas         = $this->jawaban->kondisiRumus(41,1);
-      $jawEnambelas         = $this->jawaban->kondisiRumus(42,1);
-      $jawTujuhbelas        = $this->jawaban->kondisiRumus(43,1);
-      $jawDelapanbelas      = $this->jawaban->kondisiRumus(44,1);
-      $jawSembilanbelas     = $this->jawaban->kondisiRumus(45,1);
-      $jawDuapuluh          = $this->jawaban->kondisiRumus(46,1);
-      $jawDuasatu           = $this->jawaban->kondisiRumus(47,1);
-      $jawDuadua            = $this->jawaban->kondisiRumus(48,1);
-      $jawDuatiga           = $this->jawaban->kondisiRumus(49,1);
-      $jawDuaempat          = $this->jawaban->kondisiRumus(50,1);
-      $jawDualima           = $this->jawaban->kondisiRumus(51,1);
-      $jawDuaenam           = $this->jawaban->kondisiRumus(52,1);
-      $jawDuatujuh          = $this->jawaban->kondisiRumus(53,1);
-      $jawDuadelapan        = $this->jawaban->kondisiRumus(54,1);
-      $jawDuasembilan       = $this->jawaban->kondisiRumus(55,1);
-      $jawTigapuluh         = $this->jawaban->kondisiRumus(56,1);
+      foreach ($this->sekolah as $index => $item) {
+          for ($i=1; $i <= 30 ; $i++) {
+              $id = $i + 26 ;
+              $data[$item->id][$i]      = $this->jawaban->kondisiJawaban($id,$item->id)->value('isi');
 
-      $data = [
-          $jawSatu, $jawDua, $jawTiga, $jawEmpat, $jawLima,
-          $jawEnam, $jawTujuh, $jawDelapan, $jawSembilan, $jawSepuluh,
-          $jawSebelas, $jawDuabelas, $jawTigabelas, $jawEmpatbelas, $jawLimabelas,
-          $jawEnambelas, $jawTujuhbelas, $jawDelapanbelas, $jawSembilanbelas, $jawDuapuluh,
-          $jawDuasatu,$jawDuadua, $jawDuatiga, $jawDuaempat, $jawDualima,
-          $jawDuaenam, $jawDuatujuh, $jawDuadelapan, $jawDuasembilan, $jawTigapuluh
-      ];
-
-      $rumus                = $this->rumus->limaBelas($data);
-      $hasil                = $rumus == 1?1:0;
-      return $hasil;
+          }
+      }
+      $rumus       = kondisi_jumlah_data($this->rumus->limaBelas($data));
+      return $rumus;
   }
 
   public function tujuhBelas(){
@@ -232,3 +201,34 @@ class IndikatorPencapaian {
 // ['jawEnambelas'=>$jawEnambelas], ['jawTujuhbelas'=>$jawTujuhbelas], ['jawDelapanbelas'=>$jawDelapanbelas], ['jawSembilanbelas'=>$jawSembilanbelas], ['jawDuapuluh'=>$jawDuapuluh],
 // ['jawDuasatu'=>$jawDuasatu],['jawDuadua'=>$jawDuadua], ['jawDuatiga'=>$jawDuatiga], ['jawDuaempat'=>$jawDuaempat], ['jawDualima'=>$jawDualima],
 // ['jawDuaenam'=>$jawDuaenam], ['jawDuatujuh'=>$jawDuatujuh], ['jawDuadelapan'=>$jawDuadelapan], ['jawDuasembilan'=>$jawDuasembilan], ['jawTigapuluh'=>$jawTigapuluh]
+
+// $jawSatu              = $this->jawaban->kondisiJawaban(27,$item->id)->value('isi');
+// $jawDua               = $this->jawaban->kondisiJawaban(28,$item->id)->value('isi');
+// $jawTiga              = $this->jawaban->kondisiJawaban(29,$item->id)->value('isi');
+// $jawEmpat             = $this->jawaban->kondisiJawaban(30,$item->id)->value('isi');
+// $jawLima              = $this->jawaban->kondisiJawaban(31,$item->id)->value('isi');
+// $jawEnam              = $this->jawaban->kondisiJawaban(32,$item->id)->value('isi');
+// $jawTujuh             = $this->jawaban->kondisiJawaban(33,$item->id)->value('isi');
+// $jawDelapan           = $this->jawaban->kondisiJawaban(34,$item->id)->value('isi');
+// $jawSembilan          = $this->jawaban->kondisiJawaban(35,$item->id)->value('isi');
+// $jawSepuluh           = $this->jawaban->kondisiJawaban(36,$item->id)->value('isi');
+// $jawSebelas           = $this->jawaban->kondisiJawaban(37,$item->id)->value('isi');
+// $jawDuabelas          = $this->jawaban->kondisiJawaban(38,$item->id)->value('isi');
+// $jawTigabelas         = $this->jawaban->kondisiJawaban(39,$item->id)->value('isi');
+// $jawEmpatbelas        = $this->jawaban->kondisiJawaban(40,$item->id)->value('isi');
+// $jawLimabelas         = $this->jawaban->kondisiJawaban(41,$item->id)->value('isi');
+// $jawEnambelas         = $this->jawaban->kondisiJawaban(42,$item->id)->value('isi');
+// $jawTujuhbelas        = $this->jawaban->kondisiJawaban(43,$item->id)->value('isi');
+// $jawDelapanbelas      = $this->jawaban->kondisiJawaban(44,$item->id)->value('isi');
+// $jawSembilanbelas     = $this->jawaban->kondisiJawaban(45,$item->id)->value('isi');
+// $jawDuapuluh          = $this->jawaban->kondisiJawaban(46,$item->id)->value('isi');
+// $jawDuasatu           = $this->jawaban->kondisiJawaban(47,$item->id)->value('isi');
+// $jawDuadua            = $this->jawaban->kondisiJawaban(48,$item->id)->value('isi');
+// $jawDuatiga           = $this->jawaban->kondisiJawaban(49,$item->id)->value('isi');
+// $jawDuaempat          = $this->jawaban->kondisiJawaban(50,$item->id)->value('isi');
+// $jawDualima           = $this->jawaban->kondisiJawaban(51,$item->id)->value('isi');
+// $jawDuaenam           = $this->jawaban->kondisiJawaban(52,$item->id)->value('isi');
+// $jawDuatujuh          = $this->jawaban->kondisiJawaban(53,$item->id)->value('isi');
+// $jawDuadelapan        = $this->jawaban->kondisiJawaban(54,$item->id)->value('isi');
+// $jawDuasembilan       = $this->jawaban->kondisiJawaban(55,$item->id)->value('isi');
+// $jawTigapuluh         = $this->jawaban->kondisiJawaban(56,$item->id)->value('isi');

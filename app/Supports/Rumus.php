@@ -4,9 +4,14 @@ namespace App\Supports;
 
 class Rumus
 {
-
   public function DuaSatu($jawSatu,$jawDua){
-      return $jawDua / $jawSatu;
+      if ($jawSatu != 0 && $jawDua != 0) {
+          $rumus = ($jawDua / $jawSatu) * 100 ;
+      }else{
+          $rumus = 0;
+      }
+
+      return kondisi_sekolah($rumus,$jawSatu,$jawDua);
   }
 
   public function DuaDua($jawSatu, $jawDua){
@@ -46,31 +51,44 @@ class Rumus
       /*CATATAN
       /r = rumus
       /s = semua
+      /j = jumlah
       */
 
-      $bukuSatu = $data[0] + $data[6] + $data[12] +
-                  $data[18]+ $data[24];
-      $bukuDua  = $data[1] + $data[7] + $data[13] +
-                  $data[19]+ $data[25];
-      $bukuTiga = $data[2] + $data[8] + $data[14] +
-                  $data[20]+ $data[26];
-      $bukuEmpat= $data[3] + $data[9] + $data[15] +
-                  $data[21]+ $data[27];
-      $bukuLima = $data[4] + $data[10] + $data[16] +
-                  $data[22]+ $data[28];
-      $bukuEnam = $data[5] + $data[11] + $data[17] +
-                  $data[23]+ $data[29];
+      foreach ($data as $index => $item) {
+          $bukuSatu[$index]   = $data[$index][1] + $data[$index][7] + $data[$index][13] +
+                      $data[$index][19]+ $data[$index][25];
+          $bukuDua[$index]    = $data[$index][2] + $data[$index][8] + $data[$index][14] +
+                      $data[$index][20]+ $data[$index][26];
+          $bukuTiga[$index]   = $data[$index][3] + $data[$index][9] + $data[$index][15] +
+                      $data[$index][21]+ $data[$index][27];
+          $bukuEmpat[$index]  = $data[$index][4] + $data[$index][10] + $data[$index][16] +
+                      $data[$index][22]+ $data[$index][28];
+          $bukuLima[$index]   = $data[$index][5] + $data[$index][11] + $data[$index][17] +
+                      $data[$index][23]+ $data[$index][29];
+          $bukuEnam[$index]   = $data[$index][6] + $data[$index][12] + $data[$index][18] +
+                      $data[$index][24]+ $data[$index][30];
 
-      $r_bukuSatu   = $bukuSatu >= (10 * 5)? 1: 0;
-      $r_bukuDua    = $bukuDua  >= (10 * 5)? 1: 0;
-      $r_bukuTiga   = $bukuTiga >= (10 * 5)? 1: 0;
-      $r_bukuEmpat  = $bukuEmpat>= (10 * 5)? 1: 0;
-      $r_bukuLima   = $bukuLima >= (10 * 5)? 1: 0;
-      $r_bukuEnam   = $bukuEnam >= (10 * 5)? 1: 0;
+          $r_bukuSatu [$index]  = $bukuSatu [$index]>= (10 * 5)? 1: 0;
+          $r_bukuDua  [$index]  = $bukuDua  [$index]>= (10 * 5)? 1: 0;
+          $r_bukuTiga [$index]  = $bukuTiga [$index]>= (10 * 5)? 1: 0;
+          $r_bukuEmpat[$index]  = $bukuEmpat[$index]>= (10 * 5)? 1: 0;
+          $r_bukuLima [$index]  = $bukuLima [$index]>= (10 * 5)? 1: 0;
+          $r_bukuEnam [$index]  = $bukuEnam [$index]>= (10 * 5)? 1: 0;
 
-      $s_buku       = array($r_bukuSatu,$r_bukuDua,$r_bukuTiga,$r_bukuEmpat,$r_bukuLima,$r_bukuEnam);
+          $j_buku     [$index]  = $r_bukuSatu [$index] + $r_bukuDua  [$index] + $r_bukuTiga [$index] +
+                                  $r_bukuEmpat[$index] + $r_bukuLima [$index] + $r_bukuEnam [$index] ;
 
-      return array_sum($s_buku) == 6?1:0;
+          $r_buku     [$index]  = ($j_buku[$index] / 6) * 100;
+          $a_buku     [$index]  = kondisi_sekolah($r_buku[$index]);
+      }
+
+      return $a_buku;
+
+
+      //
+      // return array_sum($s_buku) == 6?1:0;
+
+
   }
 
   public function tujuhBelas($data){
@@ -121,3 +139,27 @@ class Rumus
   }
 
 }
+
+// $bukuSatu = $data[0] + $data[6] + $data[12] +
+//             $data[18]+ $data[24];
+// $bukuDua  = $data[1] + $data[7] + $data[13] +
+//             $data[19]+ $data[25];
+// $bukuTiga = $data[2] + $data[8] + $data[14] +
+//             $data[20]+ $data[26];
+// $bukuEmpat= $data[3] + $data[9] + $data[15] +
+//             $data[21]+ $data[27];
+// $bukuLima = $data[4] + $data[10] + $data[16] +
+//             $data[22]+ $data[28];
+// $bukuEnam = $data[5] + $data[11] + $data[17] +
+//             $data[23]+ $data[29];
+//
+// $r_bukuSatu   = $bukuSatu >= (10 * 5)? 1: 0;
+// $r_bukuDua    = $bukuDua  >= (10 * 5)? 1: 0;
+// $r_bukuTiga   = $bukuTiga >= (10 * 5)? 1: 0;
+// $r_bukuEmpat  = $bukuEmpat>= (10 * 5)? 1: 0;
+// $r_bukuLima   = $bukuLima >= (10 * 5)? 1: 0;
+// $r_bukuEnam   = $bukuEnam >= (10 * 5)? 1: 0;
+//
+// $s_buku       = array($r_bukuSatu,$r_bukuDua,$r_bukuTiga,$r_bukuEmpat,$r_bukuLima,$r_bukuEnam);
+//
+// return array_sum($s_buku) == 6?1:0;
