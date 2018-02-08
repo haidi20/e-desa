@@ -28,6 +28,12 @@ class DashboardController extends Controller
           ['nama' => 'IP 7.2'],
           ['nama' => 'IP 10.1'],
           ['nama' => 'IP 14.1'],
+          ['nama' => 'IP 15.1'],
+          ['nama' => 'IP 17.1'],
+          ['nama' => 'IP 18.1'],
+          ['nama' => 'IP 19.1'],
+          ['nama' => 'IP 20.1'],
+          ['nama' => 'IP 21.1'],
         ];
 
         return response()->json($data);
@@ -45,7 +51,7 @@ class DashboardController extends Controller
         $empatBelas     = $this->ip->empatBelas();
         $limaBelas      = $this->ip->limaBelas();
         $tujuhBelas     = $this->ip->tujuhBelas();
-        $delpanBelas    = $this->ip->delapanBelas();
+        $delapanBelas    = $this->ip->delapanBelas();
         $sembilanBelas  = $this->ip->sembilanBelas();
         $duaPuluh       = $this->ip->duaPuluh();
         $duaPuluhSatu   = $this->ip->duaPuluhSatu();
@@ -59,6 +65,13 @@ class DashboardController extends Controller
             ['nama' => 'IP 7.1','isi' => $tujuhSatu],
             ['nama' =>'IP 7.2','isi' => $tujuhDua],
             ['nama' => 'IP 10.1','isi' => $sepuluh],
+            ['nama' => 'IP 14.1','isi' => $empatBelas],
+            ['nama' => 'IP 15.1','isi' => $limaBelas],
+            ['nama' => 'IP 17.1','isi' => $tujuhBelas],
+            ['nama' => 'IP 18.1','isi' => $delapanBelas],
+            ['nama' => 'IP 19.1','isi' => $sembilanBelas],
+            ['nama' => 'IP 20.1','isi' => $duaPuluh],
+            ['nama' => 'IP 21.1','isi' => $duaPuluhSatu]
         ];
 
         return response()->json($data);

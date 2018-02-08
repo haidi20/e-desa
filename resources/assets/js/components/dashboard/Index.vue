@@ -110,6 +110,7 @@ export default {
   mounted(){
     this.bacaKecamatan(),
     this.bacaPendidikan(),
+    this.bacaSekolah(),
     this.bacaIp()
   },
   methods:{
