@@ -65,7 +65,7 @@ class IndikatorPencapaian {
 
       $hasil = kondisi_jumlah_data($rumus);
 
-      return $rumus;
+      return $hasil;
 
   }
 
@@ -106,7 +106,7 @@ class IndikatorPencapaian {
 
       $hasil = kondisi_jumlah_data($rumus);
 
-      return $rumus;
+      return $hasil;
 
   }
 
@@ -238,5 +238,7 @@ class IndikatorPencapaian {
       $hasil = kondisi_jumlah_data($rumus);
 
       return $rumus;
+
+  }
 
 }

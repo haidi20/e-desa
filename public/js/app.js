@@ -44837,7 +44837,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44939,6 +44939,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -44947,17 +44949,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       item: {
         kecamatan_id: '',
-        pendidikan_id: ''
+        pendidikan_id: '',
+        sekolah_id: ''
       },
-      ip: '',
+      ip: [],
+      persen: [],
       sekolahs: '',
       kecamatans: '',
-      pendidikans: '',
-      persen: []
+      pendidikans: ''
     };
   },
   mounted: function mounted() {
-    this.hitung(), this.nilaiIp(), this.bacaKecamatan(), this.bacaPendidikan();
+    this.bacaKecamatan(), this.bacaPendidikan(), this.bacaIp();
   },
 
   methods: {
@@ -44984,19 +44987,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this3.sekolahs = response.data;
       });
     },
-    klikTombol: function klikTombol() {
+    bacaIp: function bacaIp() {
       var _this4 = this;
 
-      axios.get('dashboard/persen/vue?sekolah=1').then(function (response) {
-        _this4.persen = response.data;
-        console.log(_this4.persen);
+      axios.get('dashboard/ip/vue').then(function (response) {
+        _this4.ip = response.data;
+        console.log(_this4.ip);
       });
     },
-    hitung: function hitung() {
-      return Math.floor(Math.random() * (100 - 80 + 1)) + 80;
-    },
-    nilaiIp: function nilaiIp(id) {
-      this.ip = id;
+    klikTombol: function klikTombol() {
+      var _this5 = this;
+
+      var sekolah = this.item.sekolah_id;
+      var kecamatan = this.item.kecamatan_id;
+      var pendidikan = this.item.pendidikan_id;
+      axios.get('dashboard/persen/vue?sekolah=' + sekolah + '&pendidikan=' + pendidikan + '&kecamatan=' + kecamatan).then(function (response) {
+        _this5.persen = response.data;
+        console.log(_this5.persen);
+      });
     }
   }
 });
@@ -45152,8 +45160,35 @@ var render = function() {
               ? _c(
                   "select",
                   {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.item.sekolah_id,
+                        expression: "item.sekolah_id"
+                      }
+                    ],
                     staticClass: "form-control",
-                    attrs: { name: "sekolah", id: "sekolah" }
+                    attrs: { name: "sekolah", id: "sekolah" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.item,
+                          "sekolah_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
                   },
                   [
                     _c("option", { attrs: { value: "" } }, [
@@ -45199,46 +45234,33 @@ var render = function() {
       _c("table", { staticClass: "table table-bordered table-custom" }, [
         _vm._m(2),
         _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(10, function(i) {
-            return _c(
-              "tr",
-              { attrs: { align: "center" } },
-              [
-                _c("td", [_vm._v(_vm._s(i))]),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  {
-                    attrs: {
-                      id: "modal",
-                      "data-toggle": "modal",
-                      "data-target": "#myIp"
-                    }
-                  },
-                  [_vm._v("IP " + _vm._s(i))]
-                ),
-                _vm._v(" "),
-                _c("td", {
-                  attrs: {
-                    id: "modal",
-                    "data-toggle": "modal",
-                    "data-target": "#myPersen"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.nilaiIp(i)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("modaldashboard", { attrs: { ip: _vm.ip } })
-              ],
-              1
+        _vm.ip.length
+          ? _c(
+              "tbody",
+              _vm._l(_vm.ip, function(ip, index) {
+                return _c("tr", { attrs: { align: "center" } }, [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(ip.nama))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    _vm._l(_vm.persen, function(persen) {
+                      return persen.nama == ip.nama
+                        ? _c("div", [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(persen.isi) +
+                                " %\n            "
+                            )
+                          ])
+                        : _vm._e()
+                    })
+                  )
+                ])
+              })
             )
-          })
-        )
+          : _vm._e()
       ])
     ])
   ])
@@ -45402,7 +45424,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45629,6 +45651,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       axios.get('kuisioner/pertanyaan/vue?page=' + page + '&tab=' + this.noTab).then(function (response) {
         _this5.kuisioners = response.data.data;
         _this5.kuisionerData = response.data;
+        console.log(_this5.kuisionerData);
       }).catch(function () {
         alert('server pertanyaan bermasalah');
       });

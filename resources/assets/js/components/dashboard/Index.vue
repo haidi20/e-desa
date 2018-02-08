@@ -47,7 +47,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="sekolah" class="form-label">Sekolah</label>
-            <select name="sekolah" id="sekolah" v-if="sekolahs.length" class="form-control">
+            <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" class="form-control">
               <option value="">Semua Sekolah</option>
               <option v-for="sekolah in sekolahs"  v-bind:value="sekolah.id">{{sekolah.nama}}</option>
             </select>
@@ -72,17 +72,19 @@
             <th class="action">Persen</th>
           </tr>
         </thead>
-        <tbody>
-            <tr align="center" v-for="i in 10">
-              <td>{{i}}</td>
-              <td id="modal" data-toggle="modal" data-target="#myIp">IP {{i}}</td>
-              <td
-                id="modal" data-toggle="modal" data-target="#myPersen"
-                v-on:click="nilaiIp(i)"></td>
-                <modaldashboard v-bind:ip="ip"></modaldashboard>
-            </tr>
+        <tbody v-if="ip.length">
+          <tr v-for="(ip, index) in ip" align="center">
+            <td>{{index + 1}}</td>
+            <td>{{ip.nama}}</td>
+            <td>
+              <div v-for="persen in persen" v-if="persen.nama == ip.nama">
+                {{persen.isi}} %
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
+      <!-- <div align="right"><vue-pagination :data="kuisionerData" v-on:pagination-change-page="pertanyaan"></vue-pagination></div> -->
     </div>
   </div>
 </template>
@@ -95,20 +97,20 @@ export default {
     return{
       item:{
         kecamatan_id: '',
-        pendidikan_id:''
+        pendidikan_id:'',
+        sekolah_id: ''
       },
-      ip: '',
+      ip: [],
+      persen: [],
       sekolahs: '',
       kecamatans: '',
       pendidikans:'',
-      persen: []
     }
   },
   mounted(){
-    this.hitung(),
-    this.nilaiIp(),
     this.bacaKecamatan(),
-    this.bacaPendidikan()
+    this.bacaPendidikan(),
+    this.bacaIp()
   },
   methods:{
     bacaPendidikan:function(){
@@ -128,17 +130,20 @@ export default {
         this.sekolahs = response.data;
       })
     },
+    bacaIp: function(){
+      axios.get('dashboard/ip/vue').then(response => {
+        this.ip = response.data;
+        console.log(this.ip);
+      });
+    },
     klikTombol:function(){
-      axios.get('dashboard/persen/vue?sekolah=1').then(response => {
+      const sekolah     = this.item.sekolah_id;
+      const kecamatan   = this.item.kecamatan_id;
+      const pendidikan  = this.item.pendidikan_id;
+      axios.get('dashboard/persen/vue?sekolah='+sekolah+'&pendidikan='+pendidikan+'&kecamatan='+kecamatan).then(response => {
         this.persen = response.data;
         console.log(this.persen);
       });
-    },
-    hitung:function(){
-      return Math.floor(Math.random() * (100 - 80 + 1)) + 80;
-    },
-    nilaiIp: function(id){
-      this.ip = id ;
     }
   }
 }

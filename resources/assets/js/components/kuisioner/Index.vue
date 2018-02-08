@@ -203,6 +203,7 @@ export default {
       axios.get('kuisioner/pertanyaan/vue?page='+page+'&tab='+this.noTab).then(response => {
         this.kuisioners       = response.data.data;
         this.kuisionerData    = response.data;
+        console.log(this.kuisionerData);
       })
       .catch(() => {
         alert('server pertanyaan bermasalah');
