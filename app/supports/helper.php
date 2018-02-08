@@ -1,6 +1,7 @@
 <?php
 
-if ( ! function_exists('kondisi_rumus') )
+// kebutuhan rumus
+if ( ! function_exists('kondisi_sekolah') )
 {
     function kondisi_sekolah($rumus){
         if (request('sekolah')) {
@@ -36,3 +37,4 @@ if ( ! function_exists('kondisi_null') )
         }
     }
 }
+// end kubutuhan rumus

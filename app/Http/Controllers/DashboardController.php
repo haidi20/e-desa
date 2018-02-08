@@ -18,7 +18,7 @@ class DashboardController extends Controller
     }
 
     public function persen(){
-        $persen = $this->ip->limaBelas();
+        $persen = $this->ip->duaPuluhSatu();
         return $persen;
     }
 }
