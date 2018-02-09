@@ -4,7 +4,7 @@ namespace App\Supports;
 
 class Rumus
 {
-  
+
   public function duaSatu($jawSatu,$jawDua){
       if ($jawSatu != 0 && $jawDua != 0) {
           $rumus = ($jawDua / $jawSatu) * 100 ;
@@ -171,8 +171,12 @@ class Rumus
   }
 
   public function sembilanBelas($jawSatu, $jawDua){
-      if ($jawSatu == $jawDua) {
-          $rumus = 100;
+      if ($jawSatu != 0 && $jawDua != 0) {
+          if ($jawSatu == $jawDua) {
+              $rumus = 100;
+          }else{
+              $rumus = 0;
+          }
       }else{
           $rumus = 0;
       }

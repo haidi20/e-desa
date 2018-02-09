@@ -20,7 +20,7 @@ if ( ! function_exists('kondisi_jumlah_data') )
 {
     function kondisi_jumlah_data($data){
         if (count($data) > 1) {
-            return number_format((array_sum($data) / count($data)) * 100,0);
+            return number_format((array_sum($data) / count($data)) * 100);
         }else{
             return array_sum($data);
         }

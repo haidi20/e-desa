@@ -22,7 +22,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="sekolah" class="form-label">Sekolah</label>
-          <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" v-on:click="bacaInfo" class="form-control">
+          <select name="sekolah" id="sekolah" v-if="sekolahs.length" v-model="item.sekolah_id" class="form-control">
             <option v-for="sekolah in sekolahs" v-bind:value="sekolah.id">{{sekolah.nama}}</option>
           </select>
           <select v-else name="" id="" class="form-control">
@@ -211,6 +211,9 @@ export default {
       axios.get('kuisioner/jawaban/vue?sekolah='+this.item.sekolah_id).then(response =>{
         this.kondisiJawaban(response.data);
       });
+      if (this.item.sekolah_id) {
+        this.bacaInfo();
+      }
     },
     kondisiJawaban: function(data){
       if (this.pindah) {
