@@ -44396,7 +44396,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44503,9 +44503,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['ip']
+  props: ['modal'],
+  methods: {
+    nomor: function nomor(item) {
+      for (var i = 0; i < item.length; i++) {
+        this.no = i + 1;
+      }
+      return this.no;
+    }
+  }
 });
 
 /***/ }),
@@ -44525,32 +44566,155 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [_vm._v("×")]
-              ),
-              _vm._v(" "),
-              _c("h4", { staticClass: "modal-title" }, [
-                _vm._v(
-                  "Penjelasan Jumlah sekolah pada IP " + _vm._s(_vm.ip) + " :"
-                )
-              ])
-            ]),
-            _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
-            _vm._m(2)
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "table",
+                { staticClass: "table", staticStyle: { border: "none" } },
+                [
+                  _c("tbody", [
+                    _c(
+                      "tr",
+                      [
+                        _c(
+                          "td",
+                          {
+                            attrs: {
+                              id: "modal",
+                              "data-toggle": "modal",
+                              "data-target": "#myDetailLolos"
+                            }
+                          },
+                          [_vm._v("Jumlah sekolah sudah memenuhi IP 1")]
+                        ),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(":")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.modal, function(data) {
+                          return _c("td", [_vm._v(_vm._s(data.lolos))])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      [
+                        _c(
+                          "td",
+                          {
+                            attrs: {
+                              id: "modal",
+                              "data-toggle": "modal",
+                              "data-target": "#myDetailTidak"
+                            }
+                          },
+                          [_vm._v("Jumlah sekolah belum memenuhi IP 1")]
+                        ),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(":")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.modal, function(data) {
+                          return _c("td", [_vm._v(_vm._s(data.tidak))])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(3)
           ])
         ])
       ]
     ),
     _vm._v(" "),
-    _vm._m(3)
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "myDetailLolos", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-custom" },
+                [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._l(_vm.modal, function(data) {
+                    return _c(
+                      "tbody",
+                      _vm._l(data.sekolahlolos, function(item, index) {
+                        return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(index))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.nama))])
+                        ])
+                      })
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(6)
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "myDetailTidak", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(7),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-custom" },
+                [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _vm._l(_vm.modal, function(data) {
+                    return _c(
+                      "tbody",
+                      _vm._l(data.sekolahtidak, function(item, index) {
+                        return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(index))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.nama))])
+                        ])
+                      })
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(9)
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -44606,53 +44770,78 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("table", { staticClass: "table", staticStyle: { border: "none" } }, [
-        _c("tbody", [
-          _c("tr", [
-            _c(
-              "td",
-              {
-                attrs: {
-                  id: "modal",
-                  "data-toggle": "modal",
-                  "data-target": "#myDetail"
-                }
-              },
-              [_vm._v("Jumlah sekolah sudah memenuhi IP 1")]
-            ),
-            _vm._v(" "),
-            _c("td", [_vm._v(":")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("6")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c(
-              "td",
-              {
-                attrs: {
-                  id: "modal",
-                  "data-toggle": "modal",
-                  "data-target": "#myDetail"
-                }
-              },
-              [_vm._v("Jumlah sekolah belum memenuhi IP 1")]
-            ),
-            _vm._v(" "),
-            _c("td", [_vm._v(":")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("7")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("Jumlah sekolah di Kota Samarinda")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(":")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("13")])
-          ])
-        ])
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("Penjelasan Jumlah sekolah pada IP :")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("Jumlah sekolah di Kota Samarinda")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(":")]),
+      _vm._v(" "),
+      _c("td")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Oke")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v(
+          "\n            Daftar sekolah sudah memenuhi syarat IP :\n          "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "no" }, [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nama Sekolah")])
       ])
     ])
   },
@@ -44675,71 +44864,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "modal fade", attrs: { id: "myDetail", role: "dialog" } },
-      [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [_vm._v("×")]
-              ),
-              _vm._v(" "),
-              _c("h4", { staticClass: "modal-title" }, [
-                _vm._v("Daftar sekolah sudah/belum memenuhi syarat IP :")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c(
-                "table",
-                { staticClass: "table table-bordered table-custom" },
-                [
-                  _c("thead", [
-                    _c("tr", [
-                      _c("th", { staticClass: "no" }, [_vm._v("No")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Nama Sekolah")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("SD Muh 2")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("2")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("SMP Muh 2")])
-                    ])
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [_vm._v("Oke")]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      ),
+      _vm._v(" "),
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v(
+          "\n            Daftar sekolah belum memenuhi syarat IP :\n          "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "no" }, [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nama Sekolah")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Oke")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -44837,7 +45004,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44941,6 +45108,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -44951,6 +45120,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         kecamatan_id: '',
         pendidikan_id: '',
         sekolah_id: ''
+      },
+      modal: {
+        pencapaians: []
       },
       ip: [],
       persen: [],
@@ -44964,46 +45136,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    bacaPendidikan: function bacaPendidikan() {
+    bacaPencapaian: function bacaPencapaian() {
       var _this = this;
 
+      var kec = this.item.kecamatan_id;
+      axios.get('dashboard/pencapaian/vue?kecamatan=' + kec).then(function (response) {
+        _this.modal.pencapaians = response.data;
+      });
+    },
+    bacaIp: function bacaIp() {
+      var _this2 = this;
+
+      axios.get('dashboard/ip/vue').then(function (response) {
+        _this2.ip = response.data;
+      });
+    },
+    bacaPendidikan: function bacaPendidikan() {
+      var _this3 = this;
+
       axios.get('pendidikan/vue').then(function (response) {
-        _this.pendidikans = response.data;
+        _this3.pendidikans = response.data;
       });
     },
     bacaKecamatan: function bacaKecamatan() {
-      var _this2 = this;
+      var _this4 = this;
 
       axios.get('kecamatan/vue').then(function (response) {
-        _this2.kecamatans = response.data;
+        _this4.kecamatans = response.data;
       });
     },
     bacaSekolah: function bacaSekolah() {
-      var _this3 = this;
+      var _this5 = this;
 
       var kec = this.item.kecamatan_id;
       var pend = this.item.pendidikan_id;
       axios.get('sekolah/vue?kecamatan=' + kec + '&&pendidikan=' + pend).then(function (response) {
-        _this3.sekolahs = response.data;
-      });
-    },
-    bacaIp: function bacaIp() {
-      var _this4 = this;
-
-      axios.get('dashboard/ip/vue').then(function (response) {
-        _this4.ip = response.data;
-        console.log(_this4.ip);
+        _this5.sekolahs = response.data;
       });
     },
     klikTombol: function klikTombol() {
-      var _this5 = this;
+      var _this6 = this;
 
       var sekolah = this.item.sekolah_id;
       var kecamatan = this.item.kecamatan_id;
       var pendidikan = this.item.pendidikan_id;
       axios.get('dashboard/persen/vue?sekolah=' + sekolah + '&pendidikan=' + pendidikan + '&kecamatan=' + kecamatan).then(function (response) {
-        _this5.persen = response.data;
-        console.log(_this5.persen);
+        _this6.persen = response.data;
       });
     }
   }
@@ -45238,26 +45416,60 @@ var render = function() {
           ? _c(
               "tbody",
               _vm._l(_vm.ip, function(ip, index) {
-                return _c("tr", { attrs: { align: "center" } }, [
-                  _c("td", [_vm._v(_vm._s(index + 1))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(ip.nama))]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    _vm._l(_vm.persen, function(persen) {
-                      return persen.nama == ip.nama
-                        ? _c("div", [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(persen.isi) +
-                                " %\n            "
+                return _c(
+                  "tr",
+                  { attrs: { align: "center" } },
+                  [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        attrs: {
+                          id: "modal",
+                          "data-toggle": "modal",
+                          "data-target": "#myIp"
+                        }
+                      },
+                      [_vm._v(_vm._s(ip.nama))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.bacaPencapaian(ip.nama)
+                          }
+                        }
+                      },
+                      _vm._l(_vm.persen, function(persen) {
+                        return persen.nama == ip.nama
+                          ? _c(
+                              "div",
+                              {
+                                attrs: {
+                                  id: "modal",
+                                  "data-toggle": "modal",
+                                  "data-target": "#myPersen"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(persen.isi) +
+                                    " %\n            "
+                                )
+                              ]
                             )
-                          ])
-                        : _vm._e()
-                    })
-                  )
-                ])
+                          : _vm._e()
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c("modaldashboard", { attrs: { modal: _vm.modal } })
+                  ],
+                  1
+                )
               })
             )
           : _vm._e()

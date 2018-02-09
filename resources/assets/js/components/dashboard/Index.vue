@@ -75,12 +75,14 @@
         <tbody v-if="ip.length">
           <tr v-for="(ip, index) in ip" align="center">
             <td>{{index + 1}}</td>
-            <td>{{ip.nama}}</td>
-            <td>
-              <div v-for="persen in persen" v-if="persen.nama == ip.nama">
+            <td id="modal" data-toggle="modal" data-target="#myIp">{{ip.nama}}</td>
+            <td v-on:click="bacaPencapaian(ip.nama)">
+              <div id="modal" data-toggle="modal" data-target="#myPersen"
+                   v-for="persen in persen" v-if="persen.nama == ip.nama">
                 {{persen.isi}} %
               </div>
             </td>
+            <modaldashboard v-bind:modal="modal"></modaldashboard>
           </tr>
         </tbody>
       </table>
@@ -100,6 +102,9 @@ export default {
         pendidikan_id:'',
         sekolah_id: ''
       },
+      modal: {
+        pencapaians: [],
+      },
       ip: [],
       persen: [],
       sekolahs: '',
@@ -114,6 +119,17 @@ export default {
     this.bacaIp()
   },
   methods:{
+    bacaPencapaian: function(){
+      const kec = this.item.kecamatan_id;
+      axios.get('dashboard/pencapaian/vue?kecamatan='+kec).then(response => {
+        this.modal.pencapaians = response.data;
+      });
+    },
+    bacaIp: function(){
+      axios.get('dashboard/ip/vue').then(response => {
+        this.ip = response.data;
+      });
+    },
     bacaPendidikan:function(){
       axios.get('pendidikan/vue').then(response =>{
         this.pendidikans = response.data;
@@ -131,19 +147,12 @@ export default {
         this.sekolahs = response.data;
       })
     },
-    bacaIp: function(){
-      axios.get('dashboard/ip/vue').then(response => {
-        this.ip = response.data;
-        console.log(this.ip);
-      });
-    },
     klikTombol:function(){
       const sekolah     = this.item.sekolah_id;
       const kecamatan   = this.item.kecamatan_id;
       const pendidikan  = this.item.pendidikan_id;
       axios.get('dashboard/persen/vue?sekolah='+sekolah+'&pendidikan='+pendidikan+'&kecamatan='+kecamatan).then(response => {
         this.persen = response.data;
-        console.log(this.persen);
       });
     }
   }
