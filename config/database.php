@@ -1,6 +1,6 @@
 <?php
 
-$db = 2;
+$db = 1;
 
 if ($db == 1) {
   return [
