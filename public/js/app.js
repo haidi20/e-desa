@@ -44396,7 +44396,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44536,15 +44536,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['modal'],
+  mounted: function mounted() {
+    this.nomor();
+  },
+
   methods: {
     nomor: function nomor(item) {
-      for (var i = 0; i < item.length; i++) {
-        this.no = i + 1;
-      }
-      return this.no;
+      return item;
     }
   }
 });
@@ -44592,7 +44599,7 @@ var render = function() {
                         _c("td", [_vm._v(":")]),
                         _vm._v(" "),
                         _vm._l(_vm.modal, function(data) {
-                          return _c("td", [_vm._v(_vm._s(data.lolos))])
+                          return _c("td", [_vm._v(_vm._s(data.sudah))])
                         })
                       ],
                       2
@@ -44616,7 +44623,7 @@ var render = function() {
                         _c("td", [_vm._v(":")]),
                         _vm._v(" "),
                         _vm._l(_vm.modal, function(data) {
-                          return _c("td", [_vm._v(_vm._s(data.tidak))])
+                          return _c("td", [_vm._v(_vm._s(data.belum))])
                         })
                       ],
                       2
@@ -44655,12 +44662,21 @@ var render = function() {
                   _vm._l(_vm.modal, function(data) {
                     return _c(
                       "tbody",
-                      _vm._l(data.sekolahlolos, function(item, index) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(index))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.nama))])
-                        ])
+                      _vm._l(data.sekolahSudah, function(item) {
+                        return data.sekolahSudah &&
+                          data.sekolahSudah.length == 1
+                          ? _c("tr", [
+                              _c("td", [_vm._v("1")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.nama))])
+                            ])
+                          : _c("tr", [
+                              _c(
+                                "td",
+                                { attrs: { align: "center", colspan: "2" } },
+                                [_vm._v("Tidak Ada Data")]
+                              )
+                            ])
                       })
                     )
                   })
@@ -44696,12 +44712,22 @@ var render = function() {
                   _vm._l(_vm.modal, function(data) {
                     return _c(
                       "tbody",
-                      _vm._l(data.sekolahtidak, function(item, index) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(index))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.nama))])
-                        ])
+                      _vm._l(data.sekolahBelum, function(item) {
+                        return item.nama !== undefined && item.nama != null
+                          ? _c("tr", [
+                              _c("td", [_vm._v("1")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.nama))])
+                            ])
+                          : item.nama === undefined && item.nama == null
+                            ? _c("tr", [
+                                _c(
+                                  "td",
+                                  { attrs: { align: "center", colspan: "2" } },
+                                  [_vm._v("Tidak Ada Data")]
+                                )
+                              ])
+                            : _vm._e()
                       })
                     )
                   })
@@ -45004,7 +45030,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -45136,12 +45162,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    bacaPencapaian: function bacaPencapaian() {
+    bacaPencapaian: function bacaPencapaian(nama) {
       var _this = this;
 
       var kec = this.item.kecamatan_id;
-      axios.get('dashboard/pencapaian/vue?kecamatan=' + kec).then(function (response) {
+      var sek = this.item.sekolah_id;
+      var ip = nama;
+      axios.get('dashboard/pencapaian/vue?kecamatan=' + kec + '&ip=' + ip + '&sekolah=' + sek).then(function (response) {
         _this.modal.pencapaians = response.data;
+        // console.log(this.modal.pencapaians);
       });
     },
     bacaIp: function bacaIp() {

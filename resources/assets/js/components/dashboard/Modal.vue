@@ -34,12 +34,12 @@
                 <tr>
                   <td id="modal" data-toggle="modal" data-target="#myDetailLolos">Jumlah sekolah sudah memenuhi IP 1</td>
                   <td>:</td>
-                  <td v-for="data in modal">{{data.lolos}}</td>
+                  <td v-for="data in modal">{{data.sudah}}</td>
                 </tr>
                 <tr>
                   <td id="modal" data-toggle="modal" data-target="#myDetailTidak">Jumlah sekolah belum memenuhi IP 1</td>
                   <td>:</td>
-                  <td v-for="data in modal">{{data.tidak}}</td>
+                  <td v-for="data in modal">{{data.belum}}</td>
                 </tr>
                 <tr>
                   <td>Jumlah sekolah di Kota Samarinda</td>
@@ -77,9 +77,12 @@
                 </tr>
               </thead>
               <tbody v-for="data in modal">
-                <tr v-for="(item, index) in data.sekolahlolos">
-                  <td>{{index}}</td>
+                <tr v-for="item in data.sekolahSudah" v-if="data.sekolahSudah && data.sekolahSudah.length == 1">
+                  <td>1</td>
                   <td>{{item.nama}}</td>
+                </tr>
+                <tr v-else>
+                  <td align="center" colspan="2">Tidak Ada Data</td>
                 </tr>
               </tbody>
             </table>
@@ -111,9 +114,12 @@
                 </tr>
               </thead>
               <tbody v-for="data in modal">
-                <tr v-for="(item, index) in data.sekolahtidak">
-                  <td>{{index}}</td>
+                <tr v-for="item in data.sekolahBelum" v-if="item.nama !== undefined && item.nama != null">
+                  <td>1</td>
                   <td>{{item.nama}}</td>
+                </tr>
+                <tr v-else-if="item.nama === undefined && item.nama == null">
+                  <td align="center" colspan="2">Tidak Ada Data</td>
                 </tr>
               </tbody>
             </table>
@@ -130,12 +136,12 @@
 <script>
 export default {
   props:['modal'],
+  mounted(){
+    this.nomor()
+  },
   methods:{
     nomor: function(item){
-      for (var i = 0; i < item.length; i++) {
-        this.no = i + 1;
-      }
-      return this.no;
+      return item ;
     }
   }
 }

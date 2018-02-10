@@ -18,7 +18,15 @@ class DashboardController extends Controller
     }
 
     public function pencapaian(){
-        $data = $this->ip->duaDua(2);
+        switch (request('ip')) {
+          case 'IP 2.1':
+            $data = $this->ip->duaSatu(2);
+            break;
+
+          default:
+            $data = [];
+            break;
+        }
 
         return response()->json($data);
     }

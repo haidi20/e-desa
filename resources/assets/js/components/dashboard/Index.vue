@@ -119,10 +119,13 @@ export default {
     this.bacaIp()
   },
   methods:{
-    bacaPencapaian: function(){
-      const kec = this.item.kecamatan_id;
-      axios.get('dashboard/pencapaian/vue?kecamatan='+kec).then(response => {
+    bacaPencapaian: function(nama){
+      const kec   = this.item.kecamatan_id;
+      const sek   = this.item.sekolah_id;
+      const ip    = nama ;
+      axios.get('dashboard/pencapaian/vue?kecamatan='+kec+'&ip='+ip+'&sekolah='+sek).then(response => {
         this.modal.pencapaians = response.data;
+        // console.log(this.modal.pencapaians);
       });
     },
     bacaIp: function(){
