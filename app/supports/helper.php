@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Supports ;
+
 // kebutuhan rumus
 if ( ! function_exists('kondisi_sekolah') ) //kondisi untuk request sekolah maupun tidak
 {
