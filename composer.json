@@ -30,7 +30,7 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/Supports/Helper.php"
+            "App/Supports/Helper.php"
         ]
     },
     "scripts": {
