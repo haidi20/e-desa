@@ -23,15 +23,15 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        },
-        "files": [
-            "app/Supports/Helper.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Supports/Helper.php"
+        ]
     },
     "scripts": {
         "post-root-package-install": [
