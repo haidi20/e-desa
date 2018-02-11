@@ -12,6 +12,10 @@ class Sekolah extends Model
         return $this->belongsTo('App\Models\Kecamatan');
     }
 
+    public function pendidikan(){
+        return $this->belongsTo('App\Models\pendidikan');
+    }
+
     public function kondisiKecamatan($query){
         $query->with(array('kecamatan' => function($kecamatan){
               $kecamatan->select('nama');
