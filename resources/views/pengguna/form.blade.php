@@ -54,7 +54,7 @@
           </div>
           <div class="row">
             <div class="col-md-1 col-md-offset-9">
-              <button type="button" class="btn btn-md btn-success">Kirim</button>
+              <button type="button" class="btn btn-md btn-success">Oke</button>
             </div>
           </div>
         </form>
