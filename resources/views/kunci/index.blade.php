@@ -18,6 +18,9 @@
             <label for="kecamatan" class="control-label">Kecamatan</label>
             <select name="kecamatan" id="kecamatan" class="form-control">
               <option value="">Semua Kecamatan</option>
+              @foreach ($d_kecamatan as $index => $item)
+                <option value="{{$item->id}}" {{request('kecamatan') == $item->id?'selected':''}}>{{$item->nama}}</option>
+              @endforeach
             </select>
           </div>
         </div>
@@ -37,40 +40,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Samarinda Ulu</td>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td>
-                      <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
-                    </td>
-                    <td>
-                      <onoff style="margin-left: 7px;" nomor="true"></onoff>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Samarinda Ilir</td>
-              <td>
-                <table width="100%">
-                  <tr>
-                    <td>
-                      <a href="{{route('kunci.detail')}}" class="btn btn-sm btn-warning">Detail</a>
-                    </td>
-                    <td>
-                      <onoff style="margin-left: 7px;" nomor="false"></onoff>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
+            @forelse ($t_kecamatan as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->nama}}</td>
+                <td>
+                  <table width="100%">
+                    <tr>
+                      <td>
+                        <a href="{{route('kunci.detail',['kecamatan' => $item->id])}}" class="btn btn-sm btn-warning">Detail</a>
+                      </td>
+                      <td>
+                        <onoff style="margin-left: 7px;" nomor="false"></onoff>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td align="center" colspan="3">Data Tidak Ada</td>
+              </tr>
+            @endforelse
+            {{-- <onoff style="margin-left: 7px;" nomor="false"></onoff> --}}
           </tbody>
         </table>
+        {!! $t_kecamatan->appends(Request::input()) !!}
       </div>
     </div>
   </div>

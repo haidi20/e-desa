@@ -12,17 +12,22 @@
     </div>
     <hr class="dashed mt20 mb20">
     <div class="row">
-      <div class="col-md-3 col-md-offset-8">
-        <div class="form-group">
-          <label for="sekolah">Sekolah</label>
-          <select name="sekolah" id="sekolah" class="form-control">
-            <option value="">Semua Sekolah</option>
-          </select>
+      <form action="{{route('kunci.detail')}}" method="get">
+        <div class="col-md-3 col-md-offset-8">
+          <div class="form-group">
+            <label for="sekolah">Sekolah</label>
+            <select name="sekolah" id="sekolah" class="form-control">
+              <option value="">Semua Sekolah</option>
+              @foreach ($d_sekolah as $index => $item)
+                <option value="{{$item->id}}" {{request('sekolah') == $item->id?'selected':''}}>{{$item->nama}}</option>
+              @endforeach
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="col-md-1 text-right oke">
-        <a href="{{route('kunci.detail')}}" class="btn btn-md btn-success">Oke</a>
-      </div>
+        <div class="col-md-1 text-right oke">
+          <button type="submit" class="btn btn-md btn-success">Oke</button>
+        </div>
+      </form>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -35,15 +40,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>SD Muhammadiyah 2 Samarinda</td>
-              <td>
-                <onoff></onoff>
-              </td>
-            </tr>
+            @forelse ($t_sekolah as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->nama}}</td>
+                <td>
+                  <onoff></onoff>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td align="center" colspan="3">Data Tidak Ada</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
+        {!! $t_sekolah->appends(Request::input()) !!}
       </div>
     </div>
   </div>

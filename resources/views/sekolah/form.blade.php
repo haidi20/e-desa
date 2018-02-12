@@ -88,5 +88,7 @@
         </form>
       </div>
     </div>
+    <br>
+    @include('sekolah.table');
   </div>
 @endsection

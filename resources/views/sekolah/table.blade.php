@@ -33,6 +33,6 @@
         @endforelse
       </tbody>
     </table>
-    {{-- {!! $sekolah->appends(Request::input()); !!} --}}
+    {!! $sekolah->appends(Request::input()); !!}
   </div>
 </div>

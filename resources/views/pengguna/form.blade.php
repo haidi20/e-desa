@@ -13,7 +13,7 @@
     <hr>
     <div class="row">
       <div class="col-md-4 m">
-        <form action="#" method="POST">
+        <form action="#" method="post">
           {{ csrf_field() }}
           <input type="hidden" name="_method" value="">
           <div class="row">

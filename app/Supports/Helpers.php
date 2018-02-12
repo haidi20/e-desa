@@ -38,7 +38,7 @@ if ( ! function_exists('kondisi_jumlah_data') ) // kondisi apakah datanya 1 atau
         if (count($data) > 1) {
             return number_format((array_sum($data) / count($data)) * 100);
         }else{
-            return array_sum($data);
+            return number_format(array_sum($data));
         }
     }
 }

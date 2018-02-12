@@ -14,8 +14,6 @@
     <div class="row">
       <form action="{{route('pengguna.index')}}" method="get">
         <kondisipengguna></kondisipengguna>
-        {{-- <kecamatan></kecamatan> --}}
-        {{-- <sekolah></sekolah> --}}
         <div class="col-md-1 text-right">
           <button type="submit" class="btn btn-md btn-success oke">Oke</button>
         </div>

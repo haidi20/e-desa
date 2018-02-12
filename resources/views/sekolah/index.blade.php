@@ -12,12 +12,12 @@
     </div>
     <hr class="dashed mt20 mb20">
     <div class="row">
-      {{-- <form action="{{route('sekolah.index')}}" method="get"> --}}
+      <form action="{{route('sekolah.index')}}" method="get">
         <kondisisekolah></kondisisekolah>
         <div class="col-md-1 oke">
           <button type="submit" class="btn btn-success btn-md">Oke</button>
         </div>
-      {{-- </form> --}}
+      </form>
     </div>
     <br>
     @include('sekolah.table')
