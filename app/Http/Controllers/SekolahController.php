@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Sekolah;
 use App\Models\Kecamatan;
-use App\Models\Pendidikan;
+// use App\Models\Pendidikan;
 
 class SekolahController extends Controller
 {
