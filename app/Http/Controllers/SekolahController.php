@@ -41,10 +41,10 @@ class SekolahController extends Controller
             $method = 'POST';
         }
 
-        $pendidikan = Pendidikan::all();
+        // $pendidikan = Pendidikan::all();
         $kecamatan  = Kecamatan::all();
 
-      return view('sekolah.form',compact('action','method','pendidikan','kecamatan'));
+      return view('sekolah.form',compact('action','method','kecamatan'));
     }
 
     public function store(){
