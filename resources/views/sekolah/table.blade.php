@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    {{-- <table class="table table-bordered table-custom">
+    <table class="table table-bordered table-custom">
       <thead>
         <tr>
           <th>No</th>
@@ -33,6 +33,6 @@
         @endforelse
       </tbody>
     </table>
-    {!! $sekolah->appends(Request::input()); !!} --}}
+    {{-- {!! $sekolah->appends(Request::input()); !!} --}}
   </div>
 </div>
