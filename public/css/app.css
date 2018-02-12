@@ -8367,6 +8367,10 @@ button.close {
           box-shadow: 1px 1px 1px 1px red;
 }
 
+.tulisan-error {
+  color: red;
+}
+
 .form-error {
   border: 2px solid red;
 }

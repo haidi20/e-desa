@@ -21,7 +21,7 @@
             <td>{{$item->alamat}}</td>
             <td>
               <a href="#" class="btn btn-info btn-sm" id="modal" data-toggle="modal" data-target="#myIp2">Detail</a>
-              <a href="#" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{{route('sekolah.edit',$item->id)}}" class="btn btn-warning btn-sm">Edit</a>
               <a href="#" class="btn btn-danger btn-sm">Delete</a>
             </td>
             <modalsekolah></modalsekolah>
@@ -33,6 +33,6 @@
         @endforelse
       </tbody>
     </table>
-    {{$sekolah->appends(Request::input())}}
+    {!! $sekolah->appends(Request::input()); !!}
   </div>
 </div>

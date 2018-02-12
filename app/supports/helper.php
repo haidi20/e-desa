@@ -1,6 +1,20 @@
 <?php
 
-namespace App\Supports ;
+// namespace App\Supports ;
+
+if ( ! function_exists('kondisi_tulisan_error') )
+{
+    function kondisi_tulisan_error($errors, $key){
+        return $errors->first($key) ;
+    }
+}
+
+if ( ! function_exists('kondisi_error') )
+{
+    function kondisi_error($errors, $key){
+      return $errors->has($key) ? 'error':'';
+    }
+}
 
 // kebutuhan rumus
 if ( ! function_exists('kondisi_sekolah') ) //kondisi untuk request sekolah maupun tidak
