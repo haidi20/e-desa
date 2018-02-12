@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Sekolah;
 use App\Models\Kecamatan;
-// use App\Models\Pendidikan;
+use App\Models\Pendidikan;
 
 class SekolahController extends Controller
 {
@@ -41,10 +41,10 @@ class SekolahController extends Controller
             $method = 'POST';
         }
 
-        // $pendidikan = Pendidikan::all();
+        $pendidikan = Pendidikan::all();
         $kecamatan  = Kecamatan::all();
 
-      return view('sekolah.form',compact('action','method','kecamatan'));
+      return view('sekolah.form',compact('action','method','pendidikan','kecamatan'));
     }
 
     public function store(){
