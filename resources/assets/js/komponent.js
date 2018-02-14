@@ -17,6 +17,7 @@ Vue.component('kuisioner',require('./components/kuisioner/Index.vue'));
 
 //pengguna
 Vue.component('kondisipengguna',require('./components/pengguna/Kondisi.vue'));
+Vue.component('kecamatansekolah', require('./components/pengguna/KecSek.vue'));
 
 //kunci
 Vue.component('kondisikunci',require('./components/kunci/Kondisi.vue'));

@@ -15,14 +15,14 @@ class CreateSekolahTable extends Migration
     {
         Schema::create('sekolah', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pendidikan_id')->unsigned();
+            $table->integer('kecamatan_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('kunci')->default(0);
             $table->integer('hp')->unsigned()->nullable();
             $table->string('operator')->nullable();
             $table->string('alamat')->nullable();
             $table->string('nama')->nullable();
-            $table->integer('pendidikan_id')->unsigned();
-            $table->integer('kecamatan_id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

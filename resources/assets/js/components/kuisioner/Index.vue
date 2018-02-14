@@ -203,7 +203,7 @@ export default {
       axios.get('kuisioner/pertanyaan/vue?page='+page+'&tab='+this.noTab).then(response => {
         this.kuisioners       = response.data.data;
         this.kuisionerData    = response.data;
-        console.log(this.kuisionerData);
+        // console.log(this.kuisionerData);
       })
       .catch(() => {
         alert('server pertanyaan bermasalah');
@@ -239,7 +239,7 @@ export default {
     kirimKuisioner: function(){
       const data = {jawaban : this.jawabans} ;
       axios.post('kuisioner/vue/store',data).then(response =>{
-        console.log('return value dari kuisioner store = '+response.data);
+        // console.log('return value dari kuisioner store = '+response.data);
       })
       .catch(resp => {
         console.log(resp.response.data.errors);
