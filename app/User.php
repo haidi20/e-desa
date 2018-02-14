@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,13 +32,18 @@ class User extends Authenticatable
     }
 
     public function scopeKondisi($query){
-        $query->with(array('sekolah' => function($sekolah){
-            if (request('kecamatan')) {
-                $sekolah->where('kecamatan_id',request('kecamatan'));
+        if (request()->has('sekolah') || request()->has('kecamatan')) {
+            $query->join('sekolah','users.sekolah_id','=','sekolah.id')
+                  ->select('users.nama as namaUser','sekolah.*');
+            if (request()->has('sekolah')) {
+                $query->where('sekolah.id',request('sekolah'));
             }
-            if (request('sekolah')) {
-                $sekolah->where('id',request('sekolah'));
+            if (request()->has('kecamatan')) {
+                $query->where('sekolah.kecamatan_id',request('kecamatan'));
             }
-        }));
+        }else{
+            $query->join('sekolah','users.sekolah_id','=','sekolah.id')
+                  ->select('users.nama as namaUser','sekolah.*');
+        }
     }
 }

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\User;
+use Auth;
+
+use App\User;
+use App\Models\Sekolah;
 use App\Models\Kecamatan;
 use App\Models\pendidikan;
 
@@ -15,28 +18,56 @@ class PenggunaController extends Controller
         $pengguna = User::kondisi()
                         ->paginate(10);
 
-        return view('pengguna.index',compact('pengguna'));
+        return view('pengguna.index',compact(
+            'pengguna'
+        ));
     }
 
     public function create(){
         $pengguna   = User::paginate(10);
+        $note       = request('note');
 
-        $action     = route('pengguna.store');
-        $method     = 'POST';
+        if ($note) {
+            return $note ;
+        }
 
-        return view('pengguna.form',compact('pengguna','action','method'));
+        return view('pengguna.form',compact('pengguna','note'));
     }
 
     public function store(){
-        $pengguna = new User;
+        $penggunaFind             = User::where('sekolah_id',request('sekolah'))
+                                        ->first();
 
-        $pengguna->nama       = request('nama');
-        $pengguna->email      = request('email');
-        $pengguna->sekolah_id = request('sekolah');
-        $pengguna->password   = bcrypt(request('password'));
-        $pengguna->save();
+        if ($penggunaFind) {
+            $sekolah              = Sekolah::where('id',request('sekolah'))->first();
+            $pengguna             = User::paginate(10);
+            $note                 = 'akun sekolah '.$sekolah->nama.' sudah ada';
 
-        return redirect()->route('pengguna.index');
+            return view('pengguna.form',compact('note','pengguna'));
+        }else{
+            $pengguna             = new User;
+            $pengguna->nama       = $this->random();
+            $pengguna->email      = request('email');
+            $pengguna->sekolah_id = request('sekolah');
+            $pengguna->password   = bcrypt($this->random());
+            $pengguna->save();
+
+            return redirect()->route('pengguna.index');
+        }
+
+
+    }
+
+    public function destroy($id){
+        $pengguna = User::find($id);
+        $pengguna->delete();
+
+        return redirect()->back();
+    }
+
+    public function random(){
+        $random = 'SPM-'.substr(md5(microtime()),rand(1,26),4);
+        return $random ;
     }
 
     public function reset(){

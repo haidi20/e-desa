@@ -10,6 +10,11 @@
     <div id="app">
       @yield('tubuh')
     </div>
+    <script>
+      var Laravel = {
+        csrfToken: '{{ csrf_token() }}'
+      }
+    </script>
     <script src="{{mix('js/app.js')}}"></script>
   </body>
 </html>

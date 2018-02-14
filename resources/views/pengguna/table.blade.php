@@ -16,14 +16,18 @@
         @forelse ($pengguna as $index => $item)
           <tr>
             <td>{{$index + 1}}</td>
-            <td>{{$item->sekolah->operator}}</td>
+            <td>{{$item->operator}}</td>
+            <td>{{$item->namaUser}}</td>
             <td>{{$item->nama}}</td>
-            <td>{{$item->sekolah->nama}}</td>
             <td>{{$item->sekolah->kecamatan->nama}}</td>
-            <td>{{$item->sekolah->alamat}}</td>
+            <td>{{$item->alamat}}</td>
             <td>
               <a href="{{route('pengguna.reset')}}" class="btn btn-sm btn-info">Reset</a>
-              <a href="#" class="btn btn-sm btn-danger">Delete</a>
+              <a href="{{ route('pengguna.destroy',$item->id)}}"
+                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                class="btn btn-sm btn-danger" title="Hapus Data">
+                Delete
+              </a>
             </td>
           </tr>
         @empty

@@ -12,32 +12,25 @@
     </div>
     <hr>
     <div class="row">
+      {{-- @if ($note)
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <p>{{$note}}</p>
+        </div>
+      @endif --}}
+      {{$note}}
+    </div>
+    <div class="row">
       <div class="col-md-4 m">
-        <form action="{{$action}}" method="post">
+        <form action="{{route('pengguna.store')}}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="_method" value="{{$method}}">
+          <input type="hidden" name="_method" value="post">
           <kecamatansekolah></kecamatansekolah>
-          <div class="row">
-            <div class="col-md">
-              <div class="form-group">
-                <label for="nama">Username</label>
-                <input type="text" name="nama" id="nama" class="form-control">
-              </div>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md">
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md">
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control">
               </div>
             </div>
           </div>

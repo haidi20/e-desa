@@ -5,7 +5,11 @@
         <label for="kecamatan">Kecamatan</label>
         <select name="kecamatan" v-on:change="pilihSekolah" v-model="item.kecamatan_id" id="kecamatan" class="form-control">
           <option value="">Semua Kecamatan</option>
-          <option v-for="kecamatan in kecamatans" v-bind:value="kecamatan.id">{{kecamatan.nama}}</option>
+          <option
+            v-for="kecamatan in kecamatans"
+            v-bind:value="kecamatan.id">
+            {{kecamatan.nama}}
+          </option>
         </select>
       </div>
     </div>
