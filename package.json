@@ -22,6 +22,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "laravel-vue-pagination": "^1.1.0",
-    "vue-session": "^0.9.10"
+    "vue-session": "^0.9.10",
+    "yarn": "^1.5.1"
   }
 }
