@@ -20,7 +20,7 @@
         <li class="{{session()->get('aktif') == 'alternatif'?'active':''}}"><a href="{{route('alternatif.index')}}">Data Alternatif</a></li>
         <li class="{{session()->get('aktif') == 'kreteria'?'active':''}}"><a href="{{route('kreteria.index')}}">Informasi Kreteria</a></li>
         <li class="{{session()->get('aktif') == 'analisa'?'active':''}}"><a href="{{route('analisa.index')}}">Hasil Analisa</a></li>
-        <li><a href="#">Berprestasi</a></li>
+        <li class="{{session()->get('aktif') == 'kinerja'?'active':''}}"><a href="{{route('kinerja.index')}}">Penilaian Kinerja</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right ukuran-huruf">
         <li><a href="#">Keluar</a></li>
