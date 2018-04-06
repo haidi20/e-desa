@@ -14,15 +14,15 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav ukuranHuruf">
+      <ul class="nav navbar-nav ukuran-huruf">
         <li class="{{session()->get('aktif') == 'dashboard'?'active':''}}"><a href="{{route('dashboard')}}">Dashboard</a></li>
         <li class="{{session()->get('aktif') == "sekolah"?'active':''}}"><a href="{{route('sekolah.index')}}">Data Sekolah</a></li>
         <li class="{{session()->get('aktif') == 'alternatif'?'active':''}}"><a href="{{route('alternatif.index')}}">Data Alternatif</a></li>
-        <li><a href="#">Informasi Kreteria</a></li>
-        <li><a href="#">Hasil Analisa</a></li>
+        <li class="{{session()->get('aktif') == 'kreteria'?'active':''}}"><a href="{{route('kreteria.index')}}">Informasi Kreteria</a></li>
+        <li class="{{session()->get('aktif') == 'analisa'?'active':''}}"><a href="{{route('analisa.index')}}">Hasil Analisa</a></li>
         <li><a href="#">Berprestasi</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right ukuranHuruf">
+      <ul class="nav navbar-nav navbar-right ukuran-huruf">
         <li><a href="#">Keluar</a></li>
       </ul>
     </div>

@@ -10,6 +10,8 @@ Route::get('dashboard',function(){
 })->name('dashboard');
 
 Route::resource('sekolah','SekolahController');
+Route::resource('kreteria','KreteriaController');
+Route::get('analisa','AnalisaController@index')->name('analisa.index');
 Route::get('alternatif','AlternatifController@index')->name('alternatif.index');
 
 //auth laravel
