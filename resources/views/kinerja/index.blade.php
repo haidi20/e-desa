@@ -19,7 +19,6 @@
               <th>Nama Sekolah</th>
               <th>Nilai</th>
               <th>Ranking</th>
-              <th class="action">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -28,11 +27,7 @@
               <td>kdsf</td>
               <td>jksdf</td>
               <td>0.958384</td>
-              <td>1</td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm ">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm">Delete</a>
-              </td>
+              <td>2</td>
             </tr>
           </tbody>
         </table>

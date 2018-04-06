@@ -20,7 +20,6 @@
               @for ($i=1; $i <= 5; $i++)
                 <th>C{{$i}}</th>
               @endfor
-              <th class="action">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -28,15 +27,11 @@
               <td>1</td>
               <td>kdsf</td>
               <td>jksdf</td>
-              <td>98.45</td>
-              <td>80.34</td>
-              <td>94.23</td>
-              <td>90.23</td>
-              <td>88.33</td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm ">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm">Delete</a>
-              </td>
+              <td>10</td>
+              <td>13</td>
+              <td>45</td>
+              <td>46</td>
+              <td>34</td>
             </tr>
           </tbody>
         </table>

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>Kreteria</h1>
+        <h1>Data Kreteria</h1>
       </div>
     </div>
     <hr class="dashed mb20 mt20">
@@ -17,7 +17,7 @@
               <th class="no">No</th>
               <th>ID</th>
               <th>Kreteria</th>
-              <th>Atribut</th>
+              <th>Attribut</th>
               <th>Bobot</th>
               <th class="action">Action</th>
             </tr>
@@ -25,10 +25,10 @@
           <tbody>
             <tr>
               <td>1</td>
-              <td>kdsf</td>
-              <td>jksdf</td>
-              <td>kdsf</td>
-              <td>jksdf</td>
+              <td>C1</td>
+              <td>Jumlah Kelas </td>
+              <td>Benefit</td>
+              <td>0.23</td>
               <td>
                 <a href="#" class="btn btn-info btn-sm ">Edit</a>
                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
