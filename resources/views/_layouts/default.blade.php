@@ -1,7 +1,7 @@
 @extends('_layouts.basic')
 
 @section('tubuh')
-  @include('_layouts.navbarAdmin')
+  {{-- @include('_layouts.navbar') --}}
+  @include('_layouts.navbar')
   @yield('konten')
-  @include('_layouts.footer')
 @endsection
