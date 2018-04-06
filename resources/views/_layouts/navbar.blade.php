@@ -14,18 +14,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ukuranHuruf">
         <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Daftar Sekolah</a></li>
-        <li><a href="#" >Input Data</a></li>
+        <li><a href="#">Data Sekolah</a></li>
+        <li><a href="#">Data Alternatif</a></li>
+        <li><a href="#">Informasi Kreteria</a></li>
+        <li><a href="#">Hasil Analisa</a></li>
+        <li><a href="#">Berprestasi</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right ukuranHuruf">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Pengaturan <span class="caret"></span></a>
-          <ul class="dropdown-menu ukuranHuruf" role="menu">
-            <li><a href="#">Kunci</a></li>
-            <li><a href="#">Pengguna</a></li>
-            <li><a href="#">Keluar</a></li>
-          </ul>
-        </li>
+        <li><a href="#">Keluar</a></li>
       </ul>
     </div>
   </div>
