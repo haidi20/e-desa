@@ -8350,6 +8350,35 @@ button.close {
   }
 }
 
+.error label {
+  color: red;
+}
+
+.error select:focus,
+.error select,
+.error input:focus,
+.error input {
+  border: 2px solid red;
+}
+
+.error select:focus,
+.error input:focus {
+  -webkit-box-shadow: 1px 1px 1px 1px red;
+          box-shadow: 1px 1px 1px 1px red;
+}
+
+.tulisan-error {
+  color: red;
+}
+
+.form-error {
+  border: 2px solid red;
+}
+
+.label-error {
+  color: red;
+}
+
 p {
   font-size: 25px;
 }
@@ -8402,5 +8431,9 @@ hr.dashed {
 
 .navbar-default {
   border-radius: 0px;
+}
+
+.buat {
+  margin-top: 17px;
 }
 

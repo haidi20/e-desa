@@ -3,8 +3,11 @@
 @section('konten')
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h1>Data Alternatif</h1>
+      </div>
+      <div class="col-md-6 text-right">
+        <a href="{{route('alternatif.create')}}" class="btn btn-success btn-md buat" >Buat</a>
       </div>
     </div>
     <hr class="dashed mb20 mt20">
@@ -21,7 +24,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            @forelse ($alternatif as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->kode}}</td>
+                <td>{{$item->nama}}</td>
+                <td>
+                  <a href="{{route('alternatif.edit',$item->id)}}" class="btn btn-info btn-sm ">Edit</a>
+                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td colspan="4">Data Tidak Ada</td>
+              </tr>
+            @endforelse
+            {{-- <tr>
               <td>1</td>
               <td>kdsf</td>
               <td>jksdf</td>
@@ -29,7 +47,7 @@
                 <a href="#" class="btn btn-info btn-sm ">Edit</a>
                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
               </td>
-            </tr>
+            </tr> --}}
           </tbody>
         </table>
       </div>

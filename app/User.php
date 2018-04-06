@@ -26,24 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function sekolah(){
-        return $this->hasOne('App\Models\Sekolah');
-    }
-
-    public function scopeKondisi($query){
-        if (request()->has('sekolah') || request()->has('kecamatan')) {
-            $query->join('sekolah','users.sekolah_id','=','sekolah.id')
-                  ->select('users.nama as namaUser','sekolah.*');
-            if (request()->has('sekolah')) {
-                $query->where('sekolah.id',request('sekolah'));
-            }
-            if (request()->has('kecamatan')) {
-                $query->where('sekolah.kecamatan_id',request('kecamatan'));
-            }
-        }else{
-            $query->join('sekolah','users.sekolah_id','=','sekolah.id')
-                  ->select('users.nama as namaUser','sekolah.*');
-        }
-    }
 }
