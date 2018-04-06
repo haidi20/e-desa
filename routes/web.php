@@ -14,6 +14,7 @@ Route::resource('kreteria','KreteriaController');
 Route::get('analisa','AnalisaController@index')->name('analisa.index');
 Route::get('kinerja','KinerjaController@index')->name('kinerja.index');
 Route::get('alternatif','AlternatifController@index')->name('alternatif.index');
+Route::get('normalisasi','NormalisasiController@index')->name('normalisasi.index');
 
 //auth laravel
 Auth::routes();

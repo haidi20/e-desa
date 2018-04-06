@@ -5,3 +5,18 @@ p{
 .ukuran-huruf {
   font-size: 20px;
 }
+
+.table-bordered {
+  // background-color: #ecf0f1;
+  th {
+    color:white ;
+    background-color: #2C3E50;
+    text-align:center;
+    &.no {
+      width: 10px;
+    }
+    &.action {
+      width: 130px;
+    }
+  }
+}

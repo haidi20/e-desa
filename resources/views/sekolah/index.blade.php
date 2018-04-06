@@ -8,16 +8,18 @@
       </div>
     </div>
     <hr class="dashed mb20 mt20">
+    <br>
     <div class="row">
-      <div class="col-md-offset-3 col-md-6">
-        <table class="table table-bordered">
-          <thead>
+      <div class="col-md-offset-2 col-md-8">
+        <table class="table table-bordered text-center">
+          <thead >
             <tr>
-              <th>No</th>
+              <th class="no">No</th>
               <th>Nama Sekolah</th>
               <th>Jumlah Ruang Kelas</th>
               <th>Jumlah Murid</th>
               <th>Jumlah Guru</th>
+              <th class="action">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +29,10 @@
               <td>kdsjf</td>
               <td>kdjf</td>
               <td>ksdjf</td>
+              <td>
+                <a href="#" class="btn btn-info btn-sm ">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+              </td>
             </tr>
           </tbody>
         </table>

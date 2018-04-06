@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>Hasil Analisa</h1>
+        <h1>Normalisasi</h1>
       </div>
     </div>
     <hr class="dashed mb20 mt20">

@@ -8358,6 +8358,20 @@ p {
   font-size: 20px;
 }
 
+.table-bordered th {
+  color: white;
+  background-color: #2C3E50;
+  text-align: center;
+}
+
+.table-bordered th.no {
+  width: 10px;
+}
+
+.table-bordered th.action {
+  width: 130px;
+}
+
 hr {
   margin: 5px 0;
   border: 0;
@@ -8384,5 +8398,9 @@ hr.dashed {
 
 .mb20 {
   margin-bottom: 20px;
+}
+
+.navbar-default {
+  border-radius: 0px;
 }
 
