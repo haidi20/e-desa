@@ -37,9 +37,9 @@ class SekolahController extends Controller
     }
 
     public function form($id = null){
-      $hasilFind = Hasil::find($id);
+      $hasilFind = Hasil::where('alternatif_id',$id)->get();
 
-      if ($hasilFind) {
+      if (count($hasilFind)) {
         session()->flashInput($hasilFind->toArray());
         $action = Route('sekolah.update',$id);
         $method = "PUT";
@@ -49,13 +49,13 @@ class SekolahController extends Controller
       }
 
       $alternatif   = Alternatif::all();
-      $kreteria     = Kreteria::all();
-      $hasil        = Hasil::where('alternatif_id',$id)
-                           ->orderBy('kreteria_id')
-                           ->get();
+      $alternatif_id = $id;
+      $kreteria     = Kreteria::orderBy('kode')->get();
+      $hasil        = Hasil::where('alternatif_id',$id)->orderBy('kreteria_id')->get();
+      $nilai        = $this->logika->inputan($id);
 
       return view('sekolah.form',compact(
-        'action','method','alternatif','hasil','kreteria'
+        'action','method','alternatif','hasil','kreteria','nilai','alternatif_id'
       ));
     }
 
@@ -68,18 +68,19 @@ class SekolahController extends Controller
     }
 
     public function save($id = null){
-      if ($id) {
-        $hasil = Hasil::find($id);
-      }else{
-        $hasil = new Hasil;
+      $array = request('nilai');
+      // $alternatif_id = request('alternatif');
+
+      foreach ($array as $index => $item) {
+        $nilai = $item;
+        $jenis = 'analisa';
+        $kreteria_id = $index;
+        $alternatif_id = request('alternatif');
+
+        $hasil = Hasil::updateOrCreate(compact('alternatif_id','kreteria_id','nilai','jenis'));
+        $hasil->save();
       }
-
-      $hasil->alternatif_id = request('alternatif');
-      $hasil->kreteria_id = request('kreteria');
-      $hasil->jenis = 'analisa';
-      $hasil->nilai = request('nilai');
-      $hasil->save();
-
+      // return $hasil ;
       return redirect()->route('sekolah.index');
     }
 
