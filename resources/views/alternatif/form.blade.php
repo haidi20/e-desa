@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Data Alternatif</h1>
+        <h1>Form Alternatif</h1>
       </div>
       <div class="col-md-6 text-right">
         <a href="{{route('alternatif.index')}}" class="btn btn-success btn-md buat">Kembali</a>

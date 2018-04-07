@@ -31,7 +31,11 @@
                 <td>{{$item->nama}}</td>
                 <td>
                   <a href="{{route('alternatif.edit',$item->id)}}" class="btn btn-info btn-sm ">Edit</a>
-                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                  <a href="{{route('alternatif.destroy',$item->id)}}"
+                    data-method="DELETE" data-confirm="Anda yakin akan menghapus data ini?"
+                    class="btn btn-sm btn-danger" title="Hapus Data">
+                    Delete
+                  </a>
                 </td>
               </tr>
             @empty

@@ -3,8 +3,11 @@
 @section('konten')
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h1>Data Kreteria</h1>
+      </div>
+      <div class="col-md-6 text-right">
+        <a href="{{route('kreteria.create')}}" class="btn btn-md btn-success buat">Buat</a>
       </div>
     </div>
     <hr class="dashed mb20 mt20">
@@ -23,17 +26,28 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>C1</td>
-              <td>Jumlah Kelas </td>
-              <td>Benefit</td>
-              <td>0.23</td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm ">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm">Delete</a>
-              </td>
-            </tr>
+            @forelse ($kreteria as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->kode}}</td>
+                <td>{{$item->nama}}</td>
+                <td>{{$item->attribute}}</td>
+                <td>{{$item->bobot}}</td>
+                <td>
+                  <a href="{{route('kreteria.edit',$item->id)}}" class="btn btn-info btn-sm ">Edit</a>
+                  <a href="{{route('kreteria.destroy',$item->id)}}"
+                    data-method="DELETE" data-confirm="Anda yakin akan menghapus data ini?"
+                    class="btn btn-sm btn-danger" title="Hapus Data">
+                    Delete
+                  </a>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td colspan="6">Data Tidak Ada</td>
+              </tr>
+            @endforelse
+
           </tbody>
         </table>
       </div>
