@@ -8401,6 +8401,10 @@ p {
   width: 130px;
 }
 
+body {
+  background-color: #dcdde1;
+}
+
 hr {
   margin: 5px 0;
   border: 0;

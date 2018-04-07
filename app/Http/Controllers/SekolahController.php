@@ -48,10 +48,15 @@ class SekolahController extends Controller
         $method = "POST";
       }
 
-      $alternatif = Alternatif::all();
-      $kreteria = Kreteria::all();
+      $alternatif   = Alternatif::all();
+      $kreteria     = Kreteria::all();
+      $hasil        = Hasil::where('alternatif_id',$id)
+                           ->orderBy('kreteria_id')
+                           ->get();
 
-      return view('sekolah.form',compact('action','method','alternatif','kreteria'));
+      return view('sekolah.form',compact(
+        'action','method','alternatif','hasil','kreteria'
+      ));
     }
 
     public function store(){

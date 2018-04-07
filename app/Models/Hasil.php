@@ -11,4 +11,9 @@ class Hasil extends Model
     public function alternatif(){
       return $this->belongsTo('App\Models\Alternatif');
     }
+
+    public function kreteria(){
+      return $this->belongsTo('App\Models\Kreteria');
+    }
+
 }
