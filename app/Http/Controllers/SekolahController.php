@@ -52,7 +52,7 @@ class SekolahController extends Controller
       $alternatif_id = $id;
       $kreteria     = Kreteria::orderBy('kode')->get();
       $hasil        = Hasil::where('alternatif_id',$id)->orderBy('kreteria_id')->get();
-      $nilai        = $this->logika->inputan($id);
+       $nilai        = $this->logika->inputan($id);
 
       return view('sekolah.form',compact(
         'action','method','alternatif','hasil','kreteria','nilai','alternatif_id'
@@ -77,7 +77,9 @@ class SekolahController extends Controller
         $kreteria_id = $index;
         $alternatif_id = request('alternatif');
 
-        $hasil = Hasil::updateOrCreate(compact('alternatif_id','kreteria_id','nilai','jenis'));
+        $hasil = Hasil::FirstOrCreate(compact('alternatif_id','kreteria_id'));
+        $hasil->nilai = $nilai;
+        $hasil->jenis = $jenis;
         $hasil->save();
       }
       // return $hasil ;

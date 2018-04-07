@@ -37,7 +37,8 @@ class Logika {
     foreach ($kreteria as $index => $item) {
       $nilai[$item->id] = Hasil::where('alternatif_id',$id)
                                 ->where('kreteria_id',$item->id)
-                                ->orderBy('kreteria_id')
+                                // ->orderBy('kreteria_id')
+                                ->orderBy('nilai')
                                 ->value('nilai');
                               // ->get();
     }
