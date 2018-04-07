@@ -9,7 +9,7 @@ use App\Models\Kreteria;
 class KreteriaController extends Controller
 {
     public function index(){
-      $kreteria = Kreteria::all();
+      $kreteria = Kreteria::orderBy('kode')->get();
 
       session()->put('aktif','kreteria');
 
