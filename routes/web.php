@@ -6,6 +6,7 @@ Route::get('/',function(){
 
 Route::get('dashboard',function(){
   session()->put('aktif','dashboard');
+  session()->put('aktiff','');
   return view('dashboard.index');
 })->name('dashboard');
 

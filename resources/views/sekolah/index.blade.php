@@ -13,7 +13,7 @@
     <hr class="dashed mb20 mt20">
     <br>
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-1 col-md-10">
         <table class="table table-bordered text-center">
           <thead >
             <tr>
@@ -28,12 +28,12 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($hasil as $index => $item)
+            @forelse ($sekolah as $index => $item)
               <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{$item->alternatif->nama}}</td>
-                @foreach ($kreteria as $index => $item)
-                  <td>{{array_get($sekolah,$item->id)}}</td>
+                @foreach ($kreteria as $key => $value)
+                  <td>{{array_get($nilai[$item->alternatif_id],$value->id)}}</td>
                 @endforeach
                 <td>
                   <a href="{{route('alternatif.edit',$item->id)}}" class="btn btn-info btn-sm ">Edit</a>

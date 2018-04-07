@@ -11,17 +11,17 @@ class Logika {
     $hasil        = Hasil::all();
     $kreteria     = Kreteria::orderBy('kode')->get();
     $alternatif   = Alternatif::all();
-    $isi          = [];
+    $nilai        = [];
 
     foreach ($alternatif as $index => $item) {
       foreach ($kreteria as $key => $value) {
-        $isi[$value->id] = Hasil::where('alternatif_id',$item->id)
-                                ->where('kreteria_id',$value->id)
-                                ->orderBy('kreteria_id')
-                                ->value('nilai');
+        $nilai[$item->id] = Hasil::where('alternatif_id',$item->id)
+                                  ->orderBy('kreteria_id')
+                                  ->pluck('nilai','kreteria_id');
+                                // ->get();
       }
     }
 
-    return $isi ;
+    return $nilai ;
   }
 }

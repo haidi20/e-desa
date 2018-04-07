@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ukuran-huruf">
         <li class="{{session()->get('aktif') == 'dashboard'?'active':''}}"><a href="{{route('dashboard')}}">Dashboard</a></li>
-        <li class="dropdown">
+        <li class="dropdown {{session()->get('aktiff') == 'dasar'?'active':''}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data Dasar <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="{{session()->get('aktif') == 'alternatif'?'active':''}}"><a href="{{route('alternatif.index')}}">Alternatif</a></li>

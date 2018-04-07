@@ -12,6 +12,7 @@ class KreteriaController extends Controller
       $kreteria = Kreteria::orderBy('kode')->get();
 
       session()->put('aktif','kreteria');
+      session()->put('aktiff','dasar');
 
       return view('kreteria.index',compact('kreteria'));
     }

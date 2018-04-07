@@ -12,6 +12,7 @@ class AlternatifController extends Controller
       $alternatif = Alternatif::all();
 
       session()->put('aktif','alternatif');
+      session()->put('aktiff','dasar');
       return view('alternatif.index',compact('alternatif'));
     }
 

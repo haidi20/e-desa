@@ -18,13 +18,14 @@ class SekolahController extends Controller
     }
 
     public function index(){
-      $kreteria = Kreteria::orderBy('kode')->get();
-      $hasil    = Hasil::orderBy('alternatif_id')->groupBy('alternatif_id')->get();
-      $sekolah  = $this->logika->sekolah() ;
+      $kreteria   = Kreteria::orderBy('kode')->get();
+      $sekolah    = Hasil::orderBy('alternatif_id')->groupBy('alternatif_id')->get();
+      $nilai      = $this->logika->sekolah() ;
 
-      session()->put('aktif','sekolah') ;
+      session()->put('aktif','sekolah');
+      session()->put('aktiff','dasar');
 
-      return view('sekolah.index',compact('hasil','kreteria','sekolah'));
+      return view('sekolah.index',compact('nilai','kreteria','sekolah'));
     }
 
     public function create(){
