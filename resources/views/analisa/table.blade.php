@@ -9,7 +9,7 @@
           @forelse ($kreteria as $index => $item)
             <th>{{$item->kode}}</th>
           @empty
-
+          
           @endforelse
         </tr>
       </thead>
