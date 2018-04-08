@@ -69,7 +69,6 @@ class SekolahController extends Controller
 
     public function save($id = null){
       $array = request('nilai');
-      // $alternatif_id = request('alternatif');
 
       foreach ($array as $index => $item) {
         $nilai = $item;
@@ -82,7 +81,7 @@ class SekolahController extends Controller
         $hasil->jenis = $jenis;
         $hasil->save();
       }
-      // return $hasil ;
+      
       return redirect()->route('sekolah.index');
     }
 
