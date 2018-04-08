@@ -11,32 +11,31 @@ class Logika {
   public function __construct(Kreteria $kreteria,Alternatif $alternatif){
     $this->kreteria   = Kreteria::orderBy('kode')->get();
     $this->alternatif = Alternatif::all();
-
-    $this->cSatu  = Kreteria::where('kode','C1')->first();
-    $this->cDua   = Kreteria::where('kode','C2')->first();
-    $this->cTiga  = Kreteria::where('kode','C3')->first();
-    $this->cEmpat = Kreteria::where('kode','C4')->first();
-    $this->cLima  = Kreteria::where('kode','C5')->first();
   }
 
   public function cariHasilNilai($kode){
-    return Hasil::where('kreteria_id',$kode)->get();
+    return Hasil::where('kreteria_id',$kode)->pluck('nilai');
   }
 
   public function normalisasi(){
-    $cSatuMaks  = [];
-    $cDuaMaks   = [];
-    $cTigaMaks  = [];
-    $cEmpatMaks = [];
-    $cLimaMaks  = [];
+    $ciMaks   = [];
+    $arrayCiMaks = [];
+    $arrayCiNilai = [];
+    $ciHasil  = [];
 
-    $cSatuMaks  = nilai_maksimal($this->cariHasilNilai($this->cSatu->id));
-    $cDuaMaks   = nilai_maksimal($this->cariHasilNilai($this->cDua->id));
-    $cTigaMaks  = nilai_maksimal($this->cariHasilNilai($this->cTiga->id));
-    $cEmpatMaks = nilai_maksimal($this->cariHasilNilai($this->cEmpat->id));
-    $cLimaMaks  = nilai_maksimal($this->cariHasilNilai($this->cLima->id));
+    foreach ($this->kreteria as $index => $item) {
+      $arrayCiMaks[] = [
+        'kode'  => $item->kode,
+        'nilai' => nilai_maksimal($this->cariHasilNilai($item->id))
+      ];
+      // $arrayCiNilai = [
+      //   'kode'  => $item->kode,
+      //   'nilai' => $this->cariHasilNilai($item->id)
+      // ];
+      // $ciMaks[]   = proses_normalisasi('',$arrayCiNilai);
+    }
 
-    return $cSatuMaks;
+    return $arrayCiMaks ;
   }
 
   public function sekolah(){
