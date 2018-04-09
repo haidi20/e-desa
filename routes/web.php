@@ -10,7 +10,9 @@ Route::get('dashboard',function(){
   return view('dashboard.index');
 })->name('dashboard');
 
-Route::get('inputNormalisasi','SekolahController@inputNormalisasi')->name('input.norm');
+Route::get('input/kinerja','DataController@inputKinerja')->name('input.kinerja');
+Route::get('input/peringkat','DataController@inputPeringkat')->name('input.peringkat');
+Route::get('input/normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');
 
 Route::resource('sekolah','SekolahController');
 Route::resource('kreteria','KreteriaController');

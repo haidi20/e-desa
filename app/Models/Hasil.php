@@ -22,17 +22,13 @@ class Hasil extends Model
       $query->orderBy('alternatif_id')->groupBy('alternatif_id');
     }
 
-    public function scopeHasilNilaiKode($query,$kode){
+    public function scopeKreteriaAlternatif($query,$kode){
       $query->where('kreteria_id',$kode)
             ->join('kreteria','hasil.kreteria_id','=','kreteria.id')
             ->join('alternatif','hasil.alternatif_id','=','alternatif.id');
     }
 
-    public function scopeKreteriaAlternatif($query){
-      $query->select('alternatif_id','kreteria_id','nilai');
-    }
-
-    public function scopeAlternatifKreteria($query,$id){
+    public function scopeKondisiAlternatif($query,$id){
       $query->where('alternatif_id',$id)
             ->orderBy('kreteria_id');
     }

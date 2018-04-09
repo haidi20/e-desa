@@ -1,8 +1,46 @@
 <?php
 
-// namespace App\Supports\Helpers ;
+if ( ! function_exists('proses_pengurutan') )
+{
+  function proses_pengurutan($x){
+    for ($i=0; $i < count($x) ; $i++) {
+      for ($j=0; $j < count($x) ; $j++) {
+        if ($x[$i]['nilai'] > $x[$j]['nilai']) {
+          $temp['nilai'] = $x[$i]['nilai'];
+          $x[$i]['nilai'] = $x[$j]['nilai'];
+          $x[$j]['nilai'] = $temp['nilai'];
 
-use App\Models\Hasil ;
+          $temp['alternatif'] = $x[$i]['alternatif'];
+          $x[$i]['alternatif'] = $x[$j]['alternatif'];
+          $x[$j]['alternatif'] = $temp['alternatif'];
+        }
+        $x[$i] = [
+          'nilai'=>$x[$i]['nilai'],
+          'alternatif'=> $x[$i]['alternatif'],
+          'peringkat' => $i + 1
+        ];
+      }
+    }
+
+    return $x ;
+  }
+}
+
+if ( ! function_exists('proses_pengalian_bobot') )
+{
+    function proses_pengalian_bobot($bobot,$nilai){
+      foreach ($nilai as $key => $value) {
+        $hasil = $nilai[$key]['nilai'] * $bobot;
+        $hasill[] = [
+          'alternatif'  => $nilai[$key]['alternatif_id'],
+          'kreteria'    => $nilai[$key]['kreteria_id'],
+          'nilai'       => number_format($hasil,4)
+        ];
+      }
+
+      return $hasill ;
+    }
+}
 
 if ( ! function_exists('proses_normalisasi') )
 {

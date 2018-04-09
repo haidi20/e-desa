@@ -22,13 +22,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>kdsf</td>
-              <td>jksdf</td>
-              <td>0.958384</td>
-              <td>2</td>
-            </tr>
+            @foreach ($kinerja as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->alternatif->kode}}</td>
+                <td>{{$item->alternatif->nama}}</td>
+                <td>{{$item->nilai}}</td>
+                <td>{{$item->peringkat}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

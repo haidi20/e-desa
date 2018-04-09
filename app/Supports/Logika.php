@@ -3,6 +3,7 @@
 namespace App\Supports ;
 
 use App\Models\Hasil;
+use App\Models\Kinerja;
 use App\Models\Kreteria;
 use App\Models\Alternatif;
 use App\Models\Normalisasi;
@@ -14,31 +15,49 @@ class Logika {
     $this->alternatif = Alternatif::all();
   }
 
-  public function hasilNilai($kode){
-    return Hasil::kreteriaAlternatif()->where('kreteria_id',$kode)->get();
+  public function peringkatProses(){
+    $alternatif = Hasil::groupBy('alternatif_id')->get();
+
+    foreach ($alternatif as $index => $item) {
+      $jumlah = Kinerja::where('alternatif_id',$item->alternatif_id)
+                      ->sum('nilai');
+      $x[] = [
+        'nilai'=>number_format($jumlah,4),
+        'alternatif' => $item->alternatif_id,
+     ];
+    }
+
+    $hasil = proses_pengurutan($x);
+
+    return $hasil ;
   }
 
-  public function hasilNilaiKode($kode){
-    return Hasil::kreteriaAlternatif()->hasilNilaiKode($kode)->get();
+  public function kinerjaProses(){
+    foreach ($this->kreteria as $index => $item) {
+      $normalNilai = Normalisasi::where('kreteria_id',$item->id)->get();
+      $ciNilai[] = proses_pengalian_bobot($item->bobot,$normalNilai);
+    }
+
+    return $ciNilai ;
   }
 
   public function normalisasiProses(){
-
     foreach ($this->kreteria as $index => $item) {
+      $hasilNilai     = Hasil::where('kreteria_id',$item->id)->get();
+      $hasilNilaiKode = Hasil::kreteriaAlternatif($item->id)->get();
+
       $ciMaks[] = [
         'kreteria'  => $item->id,
-        'nilai' => nilai_maksimal($this->hasilNilai($item->id),'maksimal')
+        'nilai' => nilai_maksimal($hasilNilai,'maksimal')
       ];
-      $ciHasil = $this->hasilNilaiKode($item->id);
-      $ciNorm[] = proses_normalisasi($ciMaks,$ciHasil) ;
+      $ciNormalisasi[] = proses_normalisasi($ciMaks,$hasilNilaiKode) ;
     }
 
-    return $ciNorm ;
+    return $ciNormalisasi ;
   }
 
   public function normalisasi(){
-    $alternatif   = $this->alternatif;
-    $nilai        = [];
+    $alternatif = $this->alternatif;
 
     foreach ($alternatif as $index => $item) {
       $nilai[$item->id] = Normalisasi::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
@@ -48,11 +67,10 @@ class Logika {
   }
 
   public function sekolah(){
-    $alternatif   = $this->alternatif;
-    $nilai        = [];
+    $alternatif = $this->alternatif;
 
     foreach ($alternatif as $index => $item) {
-      $nilai[$item->id] = Hasil::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
+      $nilai[$item->id] = Hasil::kondisiAlternatif($item->id)->pluck('nilai','kreteria_id');
     }
 
     return $nilai ;
@@ -60,7 +78,6 @@ class Logika {
 
   public function inputan($id){
     $kreteria     = $this->kreteria ;
-    $nilai        = [];
 
     foreach ($kreteria as $index => $item) {
       $nilai[$item->id] = Hasil::where('kreteria_id',$item->id)

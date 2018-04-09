@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Hasil;
+use App\Models\Kinerja;
 use App\Models\Kreteria;
+use App\Models\Peringkat;
 use App\Models\Alternatif;
 use App\Models\Normalisasi;
 
@@ -52,7 +54,7 @@ class SekolahController extends Controller
       $alternatif     = Alternatif::all();
       $alternatif_id  = $id;
       $kreteria       = Kreteria::orderBy('kode')->get();
-      $hasil          = Hasil::alternatifKreteria($id)->get();
+      $hasil          = Hasil::kreteriaAlternatif($id)->get();
       $nilai          = $this->logika->inputan($id);
 
       return view('sekolah.form',compact(
@@ -87,35 +89,14 @@ class SekolahController extends Controller
 
       // return $hasil;
 
-      return redirect()->route('input.norm');
-    }
-
-    public function inputNormalisasi(){
-      $normalisasi = $this->logika->normalisasiProses();
-
-      // inptu data ke table normalisasi
-      foreach ($normalisasi as $index => $item) {
-        foreach ($item as $key => $value) {
-          $nilaii = $value['nilai'];
-          $kreteria = $value['kreteria'];
-          $alternatif = $value['alternatif'];
-
-          $norm = Normalisasi::FirstOrCreate([
-            'kreteria_id' =>$kreteria,
-            'alternatif_id' =>$alternatif,
-          ]);
-          $norm->nilai = $nilaii;
-          $norm->jenis = 'normalisasi';
-          $norm->save();
-        }
-      }
-
-      return redirect()->route('sekolah.index');
+      return redirect()->route('input.normalisasi');
     }
 
     public function destroy($id){
-      $hasil = Hasil::find($id);
+      $hasil = Hasil::where('alternatif_id',$id);
       $hasil->delete();
+      $normalisasi = Normalisasi::where('alternatif_id',$id);
+      $normalisasi->delete();
 
       return redirect()->back();
     }
