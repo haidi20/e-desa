@@ -49,11 +49,11 @@ class SekolahController extends Controller
         $method = "POST";
       }
 
-      $alternatif   = Alternatif::all();
-      $alternatif_id = $id;
-      $kreteria     = Kreteria::orderBy('kode')->get();
-      $hasil        = Hasil::sekolah($id)->get();
-      $nilai        = $this->logika->inputan($id);
+      $alternatif     = Alternatif::all();
+      $alternatif_id  = $id;
+      $kreteria       = Kreteria::orderBy('kode')->get();
+      $hasil          = Hasil::alternatifKreteria($id)->get();
+      $nilai          = $this->logika->inputan($id);
 
       return view('sekolah.form',compact(
         'action','method','alternatif','hasil','kreteria','nilai','alternatif_id'
@@ -69,12 +69,13 @@ class SekolahController extends Controller
     }
 
     public function save($id = null){
-      $array = request('nilai');
       $hasil = [];
 
+      $array = request('nilai');
+
+      // input data ke table hasil
       foreach ($array as $index => $item) {
         $nilai = $item;
-        // $jenis = 'analisa';
         $kreteria_id = $index;
         $alternatif_id = request('alternatif');
 
@@ -84,12 +85,18 @@ class SekolahController extends Controller
         $hasil->save();
       }
 
+      // return $hasil;
+
+      return redirect()->route('input.norm');
+    }
+
+    public function inputNormalisasi(){
       $normalisasi = $this->logika->normalisasiProses();
 
+      // inptu data ke table normalisasi
       foreach ($normalisasi as $index => $item) {
         foreach ($item as $key => $value) {
           $nilaii = $value['nilai'];
-          // $jeniss = 'normalisasi';
           $kreteria = $value['kreteria'];
           $alternatif = $value['alternatif'];
 
@@ -102,7 +109,6 @@ class SekolahController extends Controller
           $norm->save();
         }
       }
-      // return $norm;
 
       return redirect()->route('sekolah.index');
     }
