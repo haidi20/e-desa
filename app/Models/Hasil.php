@@ -18,4 +18,23 @@ class Hasil extends Model
       return $this->belongsTo('App\Models\Kreteria');
     }
 
+    public function scopeBerdasarkanAlternatif($query){
+      $query->orderBy('alternatif_id')->groupBy('alternatif_id');
+    }
+
+    public function scopeHasilNilaiKode($query,$kode){
+      $query->where('kreteria_id',$kode)
+            ->join('kreteria','hasil.kreteria_id','=','kreteria.id')
+            ->join('alternatif','hasil.alternatif_id','=','alternatif.id');
+    }
+
+    public function scopeKreteriaAlternatif($query){
+      $query->select('alternatif_id','kreteria_id','nilai');
+    }
+
+    public function scopeSekolah($query,$id){
+      $query->where('alternatif_id',$id)
+            ->orderBy('kreteria_id');
+    }
+
 }

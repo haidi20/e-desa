@@ -17,22 +17,26 @@
               <th class="no">No</th>
               <th>Kode Sekolah</th>
               <th>Nama Sekolah</th>
-              @for ($i=1; $i <= 5; $i++)
-                <th>C{{$i}}</th>
-              @endfor
+              @forelse ($kreteria as $index => $item)
+                <th>{{$item->kode}}</th>
+              @empty
+
+              @endforelse
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>kdsf</td>
-              <td>jksdf</td>
-              <td>98.45</td>
-              <td>80.34</td>
-              <td>94.23</td>
-              <td>90.23</td>
-              <td>88.33</td>
-            </tr>
+            @forelse ($hasil as $index => $item)
+              <tr>
+                <td>{{$index + 1}}</td>
+                <td>{{$item->alternatif->kode}}</td>
+                <td>{{$item->alternatif->nama}}</td>
+                @foreach ($normalisasi as $key => $value)
+                  <td>{{array_get($value[$item->alternatif_id],$item->kreteria_id)}}</td>
+                @endforeach
+              </tr>
+            @empty
+
+            @endforelse
           </tbody>
         </table>
       </div>

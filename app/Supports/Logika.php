@@ -13,43 +13,38 @@ class Logika {
     $this->alternatif = Alternatif::all();
   }
 
-  public function cariHasilNilai($kode){
-    return Hasil::where('kreteria_id',$kode)->pluck('nilai');
+  public function hasilNilai($kode){
+    return Hasil::kreteriaAlternatif()->where('kreteria_id',$kode)->get();
+  }
+
+  public function hasilNilaiKode($kode){
+    // return Hasil::hasilNilaiKode($kode)
+    //             ->pluck('kreteria.id','nilai');
+    return Hasil::kreteriaAlternatif()->hasilNilaiKode($kode)->get();
   }
 
   public function normalisasi(){
-    $ciMaks   = [];
-    $arrayCiMaks = [];
-    $arrayCiNilai = [];
-    $ciHasil  = [];
 
     foreach ($this->kreteria as $index => $item) {
-      $arrayCiMaks[] = [
-        'kode'  => $item->kode,
-        'nilai' => nilai_maksimal($this->cariHasilNilai($item->id))
+      $ciMaks[] = [
+        'kreteria'  => $item->id,
+        'nilai' => nilai_maksimal($this->hasilNilai($item->id),'maksimal')
       ];
-      // $arrayCiNilai = [
-      //   'kode'  => $item->kode,
-      //   'nilai' => $this->cariHasilNilai($item->id)
-      // ];
-      // $ciMaks[]   = proses_normalisasi('',$arrayCiNilai);
+      $ciHasil = $this->hasilNilaiKode($item->id);
+      $ciNorm[] = proses_normalisasi($ciMaks,$ciHasil) ;
     }
 
-    return $arrayCiMaks ;
+
+
+    return $ciNorm ;
   }
 
   public function sekolah(){
-    $kreteria     = $this->kreteria ;
     $alternatif   = $this->alternatif;
     $nilai        = [];
 
     foreach ($alternatif as $index => $item) {
-      foreach ($kreteria as $key => $value) {
-        $nilai[$item->id] = Hasil::where('alternatif_id',$item->id)
-                                  ->orderBy('kreteria_id')
-                                  ->pluck('nilai','kreteria_id');
-                                // ->get();
-      }
+      $nilai[$item->id] = Hasil::sekolah($item->id)->pluck('nilai','kreteria_id');
     }
 
     return $nilai ;
@@ -60,12 +55,9 @@ class Logika {
     $nilai        = [];
 
     foreach ($kreteria as $index => $item) {
-      $nilai[$item->id] = Hasil::where('alternatif_id',$id)
-                                ->where('kreteria_id',$item->id)
-                                // ->orderBy('kreteria_id')
+      $nilai[$item->id] = Hasil::where('kreteria_id',$item->id)
                                 ->orderBy('nilai')
                                 ->value('nilai');
-                              // ->get();
     }
     return $nilai;
   }
