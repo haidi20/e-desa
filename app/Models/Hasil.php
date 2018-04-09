@@ -32,7 +32,7 @@ class Hasil extends Model
       $query->select('alternatif_id','kreteria_id','nilai');
     }
 
-    public function scopeSekolah($query,$id){
+    public function scopeAlternatifKreteria($query,$id){
       $query->where('alternatif_id',$id)
             ->orderBy('kreteria_id');
     }

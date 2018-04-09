@@ -25,13 +25,13 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($hasil as $index => $item)
+            @forelse ($normalisasi as $index => $item)
               <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{$item->alternatif->kode}}</td>
                 <td>{{$item->alternatif->nama}}</td>
-                @foreach ($normalisasi as $key => $value)
-                  <td>{{array_get($value[$item->alternatif_id],$item->kreteria_id)}}</td>
+                @foreach ($kreteria as $key => $value)
+                  <td>{{array_get($nilai[$item->alternatif_id],$value->id)}}</td>
                 @endforeach
               </tr>
             @empty

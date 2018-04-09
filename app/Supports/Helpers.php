@@ -20,13 +20,13 @@ if ( ! function_exists('proses_normalisasi') )
 
         if ($kreteriaHasil == $kreteriaMaks) {
           if ($nilai != 0) {
-            $hasill[] = [
+            $hasill[$alternatif] = [
               'kreteria' => $kreteriaHasil,
               'alternatif' => $alternatif,
               'nilai' => number_format($nilai / $maksimal,4)
             ] ;
           }else{
-            $hasill[] = [
+            $hasill[$alternatif] = [
               'kreteria' => $kreteriaHasil,
               'alternatif' => $alternatif,
               'nilai' => 0
@@ -35,8 +35,6 @@ if ( ! function_exists('proses_normalisasi') )
         }
       }
     }
-
-
 
     return $hasill ;
   }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Hasil;
 use App\Models\Kreteria;
 use App\Models\Alternatif;
+use App\Models\Normalisasi;
 
 use App\Supports\Logika;
 
@@ -19,7 +20,7 @@ class SekolahController extends Controller
 
     public function index(){
       $kreteria   = Kreteria::orderBy('kode')->get();
-      $sekolah    = Hasil::orderBy('alternatif_id')->groupBy('alternatif_id')->get();
+      $sekolah    = Hasil::berdasarkanAlternatif()->get();
       $nilai      = $this->logika->sekolah() ;
 
       session()->put('aktif','sekolah');
@@ -51,8 +52,8 @@ class SekolahController extends Controller
       $alternatif   = Alternatif::all();
       $alternatif_id = $id;
       $kreteria     = Kreteria::orderBy('kode')->get();
-      $hasil        = Hasil::where('alternatif_id',$id)->orderBy('kreteria_id')->get();
-       $nilai        = $this->logika->inputan($id);
+      $hasil        = Hasil::sekolah($id)->get();
+      $nilai        = $this->logika->inputan($id);
 
       return view('sekolah.form',compact(
         'action','method','alternatif','hasil','kreteria','nilai','alternatif_id'
@@ -69,19 +70,40 @@ class SekolahController extends Controller
 
     public function save($id = null){
       $array = request('nilai');
+      $hasil = [];
 
       foreach ($array as $index => $item) {
         $nilai = $item;
-        $jenis = 'analisa';
+        // $jenis = 'analisa';
         $kreteria_id = $index;
         $alternatif_id = request('alternatif');
 
         $hasil = Hasil::FirstOrCreate(compact('alternatif_id','kreteria_id'));
         $hasil->nilai = $nilai;
-        $hasil->jenis = $jenis;
+        $hasil->jenis = 'analisa';
         $hasil->save();
       }
-      
+
+      $normalisasi = $this->logika->normalisasiProses();
+
+      foreach ($normalisasi as $index => $item) {
+        foreach ($item as $key => $value) {
+          $nilaii = $value['nilai'];
+          // $jeniss = 'normalisasi';
+          $kreteria = $value['kreteria'];
+          $alternatif = $value['alternatif'];
+
+          $norm = Normalisasi::FirstOrCreate([
+            'kreteria_id' =>$kreteria,
+            'alternatif_id' =>$alternatif,
+          ]);
+          $norm->nilai = $nilaii;
+          $norm->jenis = 'normalisasi';
+          $norm->save();
+        }
+      }
+      // return $norm;
+
       return redirect()->route('sekolah.index');
     }
 

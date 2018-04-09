@@ -5,6 +5,7 @@ namespace App\Supports ;
 use App\Models\Hasil;
 use App\Models\Kreteria;
 use App\Models\Alternatif;
+use App\Models\Normalisasi;
 
 class Logika {
 
@@ -18,12 +19,10 @@ class Logika {
   }
 
   public function hasilNilaiKode($kode){
-    // return Hasil::hasilNilaiKode($kode)
-    //             ->pluck('kreteria.id','nilai');
     return Hasil::kreteriaAlternatif()->hasilNilaiKode($kode)->get();
   }
 
-  public function normalisasi(){
+  public function normalisasiProses(){
 
     foreach ($this->kreteria as $index => $item) {
       $ciMaks[] = [
@@ -34,9 +33,18 @@ class Logika {
       $ciNorm[] = proses_normalisasi($ciMaks,$ciHasil) ;
     }
 
-
-
     return $ciNorm ;
+  }
+
+  public function normalisasi(){
+    $alternatif   = $this->alternatif;
+    $nilai        = [];
+
+    foreach ($alternatif as $index => $item) {
+      $nilai[$item->id] = Normalisasi::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
+    }
+
+    return $nilai ;
   }
 
   public function sekolah(){
@@ -44,7 +52,7 @@ class Logika {
     $nilai        = [];
 
     foreach ($alternatif as $index => $item) {
-      $nilai[$item->id] = Hasil::sekolah($item->id)->pluck('nilai','kreteria_id');
+      $nilai[$item->id] = Hasil::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
     }
 
     return $nilai ;
@@ -56,6 +64,7 @@ class Logika {
 
     foreach ($kreteria as $index => $item) {
       $nilai[$item->id] = Hasil::where('kreteria_id',$item->id)
+                                ->where('alternatif_id',$id)
                                 ->orderBy('nilai')
                                 ->value('nilai');
     }

@@ -19,7 +19,7 @@ class AnalisaController extends Controller
     public function index(){
       $kreteria   = Kreteria::orderBy('kode')->get();
       $sekolah    = Hasil::berdasarkanAlternatif()->get();
-      return $nilai      = $this->logika->sekolah();
+      $nilai      = $this->logika->sekolah();
 
       session()->put('aktif','analisa');
       session()->put('aktiff','');
