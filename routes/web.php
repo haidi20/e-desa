@@ -10,6 +10,7 @@ Route::get('dashboard',function(){
   return view('dashboard.index');
 })->name('dashboard');
 
+Route::get('data/sekolah','DataController@dataSekolah')->name('data.sekolah');
 Route::get('input/kinerja','DataController@inputKinerja')->name('input.kinerja');
 Route::get('input/peringkat','DataController@inputPeringkat')->name('input.peringkat');
 Route::get('input/normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');

@@ -33,4 +33,9 @@ class Hasil extends Model
             ->orderBy('kreteria_id');
     }
 
+    public function scopeKondisiKreteria($query,$kreteria_id,$alternatif_id,$keyword){
+      $query->where('kreteria_id',$kreteria_id)
+            ->where('alternatif_id',$alternatif_id);
+    }
+
 }

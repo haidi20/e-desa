@@ -24,7 +24,7 @@ class Logika {
       $x[] = [
         'nilai'=>number_format($jumlah,4),
         'alternatif' => $item->alternatif_id,
-     ];
+      ];
     }
 
     $hasil = proses_pengurutan($x);
@@ -76,15 +76,14 @@ class Logika {
     return $nilai ;
   }
 
-  public function inputan($id){
+  public function inputan($id,$keyword){
     $kreteria     = $this->kreteria ;
 
     foreach ($kreteria as $index => $item) {
-      $nilai[$item->id] = Hasil::where('kreteria_id',$item->id)
-                                ->where('alternatif_id',$id)
-                                ->orderBy('nilai')
+      $nilai[$item->id] = Hasil::kondisiKreteria($item->id,$id,$keyword)
                                 ->value('nilai');
     }
+
     return $nilai;
   }
 }

@@ -30,44 +30,20 @@
               </div>
             </div>
           </div>
-          {{-- @forelse ($hasil as $index => $item) --}}
-            <div class="row">
-              <div class="col-md">
-                <div class="form-group">
-                  @forelse ($kreteria as $index => $item)
-                    <label for="nilai">{{$item->nama}}</label>
-                    <input type="text" name="nilai[{{$item->id}}]" id="nilai" class="form-control" value="{{array_get($nilai,$item->id)}}">
-                    <input type="hidden" name="kreteria[]" value="{{$item->kreteria_id}}">
-                    <input type="hidden" name="konfirm" value="true">
-                  @empty
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                @forelse ($kreteria as $index => $item)
+                  <label for="nilai_{{$item->id}}">{{$item->nama}}</label>
+                  <input type="text" name="nilai[{{$item->id}}]" id="nilai_{{$item->id}}" class="form-control" value="{{array_get($nilai,$item->id)}}">
+                  <input type="hidden" name="kreteria[]" value="{{$item->kreteria_id}}">
+                  <input type="hidden" name="konfirm" value="true">
+                @empty
 
-                  @endforelse
-                </div>
+                @endforelse
               </div>
             </div>
-          {{-- @empty --}}
-            {{-- <div class="row">
-              <div class="col-md">
-                <div class="form-group">
-                  <label for="kreteria">Kreteria</label>
-                  <select name="kreteria" id="kreteria" class="form-control">
-                    <option value="">Pilih Kreteria</option>
-                    @foreach ($kreteria as $index => $item)
-                      <option value="{{$item->id}}">{{$item->nama}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md">
-                <div class="form-group">
-                  <label for="nilai">nilai</label>
-                  <input type="text" name="nilai" id="nilai" class="form-control" value="{{old('nilai')}}">
-                </div>
-              </div>
-            </div> --}}
-          {{-- @endforelse --}}
+          </div>
           <div class="row">
             <div class="col-md-1 col-md-offset-9">
               <button type="submit" class="btn btn-md btn-success">Oke</button>

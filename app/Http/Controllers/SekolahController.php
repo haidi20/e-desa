@@ -21,7 +21,7 @@ class SekolahController extends Controller
     }
 
     public function index(){
-      $kreteria   = Kreteria::orderBy('kode')->get();
+      $kreteria   = Kreteria::berdasarkan()->get();
       $sekolah    = Hasil::berdasarkanAlternatif()->get();
       $nilai      = $this->logika->sekolah() ;
 
@@ -55,7 +55,7 @@ class SekolahController extends Controller
       $alternatif_id  = $id;
       $kreteria       = Kreteria::orderBy('kode')->get();
       $hasil          = Hasil::kreteriaAlternatif($id)->get();
-      $nilai          = $this->logika->inputan($id);
+      $nilai          = $this->logika->inputan($id,'no-ajax');
 
       return view('sekolah.form',compact(
         'action','method','alternatif','hasil','kreteria','nilai','alternatif_id'
@@ -87,7 +87,7 @@ class SekolahController extends Controller
         $hasil->save();
       }
 
-      // return $hasil;
+      session()->put('controller','sekolah');
 
       return redirect()->route('input.normalisasi');
     }

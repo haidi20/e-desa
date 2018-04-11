@@ -15,6 +15,13 @@ class DataController extends Controller
     $this->logika = $logika;
   }
 
+  public function dataSekolah(){
+    $id = request('alter');
+    $nilai  = $this->logika->inputan($id,'ajax');
+
+    return $nilai ;
+  }
+
   public function inputNormalisasi(){
     $normalisasiProses = $this->logika->normalisasiProses();
 
@@ -72,8 +79,13 @@ class DataController extends Controller
       $peringkat->save();
     }
 
-    // return $peringkatProses ;
+    if (session()->get('controller') == 'sekolah') {
+      return redirect()->route('sekolah.index');
+    }
+    else if (session()->get('controller') == 'kreteria') {
+      return redirect()->route('kreteria.index');
+    }
 
-    return redirect()->route('sekolah.index');
+
   }
 }

@@ -9,7 +9,7 @@ use App\Models\Kreteria;
 class KreteriaController extends Controller
 {
     public function index(){
-      $kreteria = Kreteria::orderBy('kode')->get();
+      $kreteria = Kreteria::berdasarkan()->get();
 
       session()->put('aktif','kreteria');
       session()->put('aktiff','dasar');
@@ -61,7 +61,9 @@ class KreteriaController extends Controller
       $kreteria->bobot = request('bobot');
       $kreteria->save();
 
-      return redirect()->route('kreteria.index');
+      session()->put('controller','kreteria');
+
+      return redirect()->route('input.normalisasi');
     }
 
     public function destroy($id){

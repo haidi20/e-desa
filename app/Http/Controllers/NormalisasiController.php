@@ -18,14 +18,12 @@ class NormalisasiController extends Controller
     }
 
     public function index(){
-
-      session()->put('aktif','normalisasi');
-      session()->put('aktiff','');
-
-      $kreteria     = Kreteria::orderBy('kode')->get();
+      $kreteria     = Kreteria::berdasarkan()->get();
       $normalisasi  = Normalisasi::berdasarkanAlternatif()->get();
       $nilai        = $this->logika->normalisasi() ;
 
+      session()->put('aktif','normalisasi');
+      session()->put('aktiff','');
 
       return view('normalisasi.index',compact(
         'kreteria','normalisasi','nilai'

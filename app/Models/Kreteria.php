@@ -11,4 +11,8 @@ class Kreteria extends Model
     public function hasil(){
       return $this->hasMany('App\Models\Hasil');
     }
+
+    public function scopeBerdasarkan($query){
+      $query->orderBy('kode');
+    }
 }
