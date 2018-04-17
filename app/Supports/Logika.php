@@ -17,6 +17,8 @@ class Logika {
 
   public function peringkatProses(){
     $alternatif = Hasil::groupBy('alternatif_id')->get();
+    $jumlah = [];
+    $x      = [];
 
     foreach ($alternatif as $index => $item) {
       $jumlah = Kinerja::where('alternatif_id',$item->alternatif_id)
@@ -33,6 +35,8 @@ class Logika {
   }
 
   public function kinerjaProses(){
+    $ciNilai = [];
+
     foreach ($this->kreteria as $index => $item) {
       $normalNilai = Normalisasi::where('kreteria_id',$item->id)->get();
       $ciNilai[] = proses_pengalian_bobot($item->bobot,$normalNilai);
@@ -42,13 +46,16 @@ class Logika {
   }
 
   public function normalisasiProses(){
+    $ciMaks         = [];
+    $ciNormalisasi  = [];
+
     foreach ($this->kreteria as $index => $item) {
       $hasilNilai     = Hasil::where('kreteria_id',$item->id)->get();
       $hasilNilaiKode = Hasil::kreteriaAlternatif($item->id)->get();
 
       $ciMaks[] = [
         'kreteria'  => $item->id,
-        'nilai' => nilai_maksimal($hasilNilai,'maksimal')
+        'nilai' => nilai_maksimal($hasilNilai)
       ];
       $ciNormalisasi[] = proses_normalisasi($ciMaks,$hasilNilaiKode) ;
     }
@@ -58,6 +65,7 @@ class Logika {
 
   public function normalisasi(){
     $alternatif = $this->alternatif;
+    $nilai      = [];
 
     foreach ($alternatif as $index => $item) {
       $nilai[$item->id] = Normalisasi::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
@@ -68,6 +76,7 @@ class Logika {
 
   public function sekolah(){
     $alternatif = $this->alternatif;
+    $nilai      = [];
 
     foreach ($alternatif as $index => $item) {
       $nilai[$item->id] = Hasil::kondisiAlternatif($item->id)->pluck('nilai','kreteria_id');
@@ -78,6 +87,7 @@ class Logika {
 
   public function inputan($id,$keyword){
     $kreteria     = $this->kreteria ;
+    $nilai        = [];
 
     foreach ($kreteria as $index => $item) {
       $nilai[$item->id] = Hasil::kondisiKreteria($item->id,$id,$keyword)

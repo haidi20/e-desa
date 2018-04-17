@@ -963,7 +963,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(40);
 
 
 /***/ }),
@@ -972,7 +972,7 @@ module.exports = __webpack_require__(41);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_session__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_session__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_session___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_session__);
 
 /**
@@ -981,9 +981,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(11);
-__webpack_require__(36);
+__webpack_require__(35);
 
-window.Vue = __webpack_require__(37);
+window.Vue = __webpack_require__(36);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_session___default.a);
@@ -1055,7 +1055,7 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-__webpack_require__(35);
+__webpack_require__(51);
 
 /***/ }),
 /* 12 */
@@ -27076,40 +27076,6 @@ module.exports = function spread(callback) {
 /* 35 */
 /***/ (function(module, exports) {
 
-$(function () {
-  $(document).ready(function () {
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-      }
-    });
-
-    $('#alternatif').change(function () {
-      var value = $('#alternatif').val();
-      // console.log(value)
-
-      var url = '/data/sekolah?alter=' + value;
-      // console.log(url);
-
-      $.ajax({
-        type: 'GET',
-        url: url,
-        success: function success(data) {
-          // console.log(data);
-          $.each(data, function (index, item) {
-            $('#nilai_' + index).val(item);
-          });
-        }
-      });
-    });
-  });
-});
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
 /*
 <a href="posts/2" data-method="delete"> <---- We want to send an HTTP DELETE request
 
@@ -27204,7 +27170,7 @@ $(function () {
 })();
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38167,10 +38133,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(37).setImmediate))
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -38223,7 +38189,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(39);
+__webpack_require__(38);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -38237,7 +38203,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -38430,7 +38396,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 var VueSession = {
@@ -38535,10 +38501,54 @@ module.exports = VueSession;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(document).ready(function () {
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    });
+
+    $('#alternatif').change(function () {
+      var value = $('#alternatif').val();
+      // console.log(value)
+
+      var url = '/data/sekolah?alter=' + value;
+      // console.log(url);
+
+      $.ajax({
+        type: 'GET',
+        url: url,
+        success: function success(data) {
+          // console.log(data);
+          $.each(data, function (index, item) {
+            $('#nilai_' + index).val(item);
+          });
+        }
+      });
+    });
+  });
+});
 
 /***/ })
 /******/ ]);

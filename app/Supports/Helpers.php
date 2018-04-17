@@ -29,13 +29,24 @@ if ( ! function_exists('proses_pengurutan') )
 if ( ! function_exists('proses_pengalian_bobot') )
 {
     function proses_pengalian_bobot($bobot,$nilai){
+      $hasill = [];
+
       foreach ($nilai as $key => $value) {
-        $hasil = $nilai[$key]['nilai'] * $bobot;
-        $hasill[] = [
-          'alternatif'  => $nilai[$key]['alternatif_id'],
-          'kreteria'    => $nilai[$key]['kreteria_id'],
-          'nilai'       => number_format($hasil,4)
-        ];
+        if ($nilai[$key]['nilai'] == 0 || $nilai[$key]['nilai'] == null) {
+          $hasil = 0;
+          $hasill[] = [
+            'alternatif'  => $nilai[$key]['alternatif_id'],
+            'kreteria'    => $nilai[$key]['kreteria_id'],
+            'nilai'       => number_format($hasil,4)
+          ];
+        }else{
+          $hasil = $nilai[$key]['nilai'] * $bobot;
+          $hasill[] = [
+            'alternatif'  => $nilai[$key]['alternatif_id'],
+            'kreteria'    => $nilai[$key]['kreteria_id'],
+            'nilai'       => number_format($hasil,4)
+          ];
+        }
       }
 
       return $hasill ;
@@ -57,7 +68,7 @@ if ( ! function_exists('proses_normalisasi') )
         $kreteriaMaks = $value['kreteria'];
 
         if ($kreteriaHasil == $kreteriaMaks) {
-          if ($nilai != 0) {
+          if ($nilai != 0 || $nilai != null) {
             $hasill[$alternatif] = [
               'kreteria' => $kreteriaHasil,
               'alternatif' => $alternatif,
@@ -91,6 +102,7 @@ if ( ! function_exists('nilai_maksimal') )
         }
       }
 
-      return max($hasil) ;
+      return $hasil ;
+      // return max($hasil) ;
     }
 }

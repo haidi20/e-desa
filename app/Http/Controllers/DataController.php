@@ -46,7 +46,8 @@ class DataController extends Controller
   }
 
   public function inputKinerja(){
-    $kinerjaProses = $this->logika->kinerjaProses();
+    $kinerjaProses  = $this->logika->kinerjaProses();
+    $kinerja        = [];
 
     foreach ($kinerjaProses as $key => $value) {
       foreach ($value as $index => $item) {
@@ -58,6 +59,7 @@ class DataController extends Controller
         $kinerja->nilai = $nilai;
         $kinerja->jenis = 'kinerja';
         $kinerja->save();
+
       }
     }
 
