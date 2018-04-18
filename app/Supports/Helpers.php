@@ -59,7 +59,7 @@ if ( ! function_exists('proses_normalisasi') )
     $hasill = [];
 
     foreach ($hasil as $index => $item) {
-      $nilai = $hasil[$index]['nilai'] ;
+      $nilai = number_format($hasil[$index]['nilai'],4) ;
       $alternatif = $hasil[$index]['alternatif_id'];
       $kreteriaHasil = $hasil[$index]['kreteria_id'] ;
 
@@ -69,10 +69,12 @@ if ( ! function_exists('proses_normalisasi') )
 
         if ($kreteriaHasil == $kreteriaMaks) {
           if ($nilai != 0 || $nilai != null) {
+            $perhitungan = $nilai / $maksimal ;
             $hasill[$alternatif] = [
               'kreteria' => $kreteriaHasil,
               'alternatif' => $alternatif,
-              'nilai' => number_format($nilai / $maksimal,4)
+              // 'nilai' => number_format($perhitungan,4)
+              'nilai' => number_format($perhitungan,4)
             ] ;
           }else{
             $hasill[$alternatif] = [
@@ -102,7 +104,6 @@ if ( ! function_exists('nilai_maksimal') )
         }
       }
 
-      return $hasil ;
-      // return max($hasil) ;
+      return max($hasil) ;
     }
 }

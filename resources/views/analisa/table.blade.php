@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-offset-2 col-md-8">
     <table class="table table-bordered text-center">
       <thead >
         <tr>
@@ -9,7 +9,7 @@
           @forelse ($kreteria as $index => $item)
             <th>{{$item->kode}}</th>
           @empty
-          
+
           @endforelse
         </tr>
       </thead>
