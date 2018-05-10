@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHasilTable extends Migration
+class CreateTerbobotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHasilTable extends Migration
      */
     public function up()
     {
-        Schema::create('hasil', function (Blueprint $table) {
+        Schema::create('terbobot', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('alternatif_id')->unsigned();
             $table->integer('kreteria_id')->unsigned();
@@ -29,6 +29,6 @@ class CreateHasilTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hasil');
+        Schema::dropIfExists('terbobot');
     }
 }

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Data Kreteria</h1>
+        <h1>Data Kriteria</h1>
       </div>
       <div class="col-md-6 text-right">
         <a href="{{route('kreteria.create')}}" class="btn btn-md btn-success buat">Buat</a>

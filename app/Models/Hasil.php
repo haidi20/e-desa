@@ -18,6 +18,10 @@ class Hasil extends Model
       return $this->belongsTo('App\Models\Kreteria');
     }
 
+    public function scopeBerdasarkanKreteria($query){
+      $query->orderBy('kreteria_id')->groupBy('kreteria_id');
+    }
+
     public function scopeBerdasarkanAlternatif($query){
       $query->orderBy('alternatif_id')->groupBy('alternatif_id');
     }

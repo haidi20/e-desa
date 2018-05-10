@@ -17,7 +17,6 @@ class CreateKinerjaTable extends Migration
           $table->increments('id');
           $table->integer('alternatif_id')->unsigned();
           $table->integer('kreteria_id')->unsigned();
-          $table->string('jenis')->nullable();
           $table->double('nilai')->default(0);
           $table->timestamps();
         });

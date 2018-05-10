@@ -16,7 +16,6 @@ class CreatePeringkatTable extends Migration
         Schema::create('peringkat', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('alternatif_id')->unsigned();
-          $table->string('jenis')->nullable();
           $table->double('nilai')->default(0);
           $table->double('peringkat')->default(0);
           $table->timestamps();

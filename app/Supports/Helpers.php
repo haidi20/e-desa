@@ -1,5 +1,44 @@
 <?php
 
+// perhitungan untuk topsis
+if ( ! function_exists('proses_normalisasi_topsis') )
+{
+  function proses_normalisasi_topsis($pembagi,$hasil){
+    $data = [];
+
+    foreach ($pembagi as $key => $value) {
+      foreach ($hasil as $index => $item) {
+        if ($item->kreteria_id == $key) {
+          if ($item->nilai != 0) {
+            $nilai = number_format($item->nilai / $value,5);
+          }else{
+            $nilai = 0;
+          }
+          $data[] = [
+            'alternatif' => $item->alternatif_id,
+            'kreteria'   => $item->kreteria_id,
+            'nilai'         => $nilai
+          ];
+        }
+      }
+    }
+
+    return $data;
+  }
+}
+
+if ( ! function_exists('proses_pangkat') )
+{
+  function proses_pangkat($nilai){
+    foreach ($nilai as $index => $item) {
+      $nilaii[] = pow($item->nilai,2);
+    }
+
+    return $nilaii ;
+  }
+}
+// perhitungan untuk topsis
+
 if ( ! function_exists('proses_pengurutan') )
 {
   function proses_pengurutan($x){
@@ -34,19 +73,14 @@ if ( ! function_exists('proses_pengalian_bobot') )
       foreach ($nilai as $key => $value) {
         if ($nilai[$key]['nilai'] == 0 || $nilai[$key]['nilai'] == null) {
           $hasil = 0;
-          $hasill[] = [
-            'alternatif'  => $nilai[$key]['alternatif_id'],
-            'kreteria'    => $nilai[$key]['kreteria_id'],
-            'nilai'       => number_format($hasil,4)
-          ];
         }else{
           $hasil = $nilai[$key]['nilai'] * $bobot;
-          $hasill[] = [
-            'alternatif'  => $nilai[$key]['alternatif_id'],
-            'kreteria'    => $nilai[$key]['kreteria_id'],
-            'nilai'       => number_format($hasil,4)
-          ];
         }
+        $hasill[] = [
+          'alternatif'  => $nilai[$key]['alternatif_id'],
+          'kreteria'    => $nilai[$key]['kreteria_id'],
+          'nilai'       => number_format($hasil,4)
+        ];
       }
 
       return $hasill ;
@@ -69,20 +103,15 @@ if ( ! function_exists('proses_normalisasi') )
 
         if ($kreteriaHasil == $kreteriaMaks) {
           if ($nilai != 0 || $nilai != null) {
-            $perhitungan = $nilai / $maksimal ;
-            $hasill[$alternatif] = [
-              'kreteria' => $kreteriaHasil,
-              'alternatif' => $alternatif,
-              // 'nilai' => number_format($perhitungan,4)
-              'nilai' => number_format($perhitungan,4)
-            ] ;
+            $nilai = $nilai / $maksimal ;
           }else{
-            $hasill[$alternatif] = [
-              'kreteria' => $kreteriaHasil,
-              'alternatif' => $alternatif,
-              'nilai' => 0
-            ] ;
+            $nilai = 0;
           }
+          $hasill[$alternatif] = [
+            'kreteria' => $kreteriaHasil,
+            'alternatif' => $alternatif,
+            'nilai' => number_format($nilai,4)
+          ] ;
         }
       }
     }

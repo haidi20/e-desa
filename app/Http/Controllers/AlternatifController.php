@@ -52,9 +52,9 @@ class AlternatifController extends Controller
         $alternatif = Alternatif::find($id);
       }else{
         $alternatif = new Alternatif;
+        $alternatif->kode = rand(100,900);
       }
 
-      $alternatif->kode = rand(1000,1020);
       $alternatif->nama = request('nama');
       $alternatif->save();
 

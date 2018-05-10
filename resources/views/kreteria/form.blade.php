@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Form Kreteria</h1>
+        <h1>Form Kriteria</h1>
       </div>
       <div class="col-md-6 text-right">
         <a href="{{route('kreteria.index')}}" class="btn btn-success btn-md buat">Kembali</a>
@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-md">
               <div class="form-group">
-                <label for="nama">Nama Kreteria</label>
+                <label for="nama">Nama Kriteria</label>
                 <input type="text" name="nama" id="nama" class="form-control" value="{{old('nama')}}">
               </div>
             </div>

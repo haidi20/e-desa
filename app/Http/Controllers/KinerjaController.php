@@ -15,7 +15,7 @@ class KinerjaController extends Controller
     }
 
     public function index(){
-      $kinerja = Peringkat::all();
+      $kinerja = Peringkat::orderBy('alternatif_id')->get();
 
       session()->put('aktif','kinerja');
       session()->put('aktiff','');

@@ -83,7 +83,6 @@ class SekolahController extends Controller
 
         $hasil = Hasil::FirstOrCreate(compact('alternatif_id','kreteria_id'));
         $hasil->nilai = $nilai;
-        $hasil->jenis = 'analisa';
         $hasil->save();
       }
 
