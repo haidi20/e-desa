@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'],function(){
   Route::group(['prefix' => 'topsis','namespace' => 'Topsis'],function(){
     Route::get('pembagi','PembagiController@index')->name('topsis.pembagi.index');
     Route::get('normalisasi','NormalisasiController@index')->name('topsis.normalisasi.index');
+    Route::get('terbobot','TerbobotController@index')->name('topsis.terbobot.index');
   });
 
   // route untuk keperluan input data dan ajax //
@@ -26,6 +27,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');
     // route untuk keperluan input data bagian topsis //
     Route::get('topsis/normalisasi','DataController@inputNormalisasiTopsis')->name('topsis.input.normalisasi');
+    Route::get('topsis/terbobot','DataController@inputTerbobotTopsis')->name('topsis.input.terbobot');
   });
 
   // route untuk keperluan fitur" di aplikasi //

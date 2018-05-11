@@ -10,24 +10,20 @@ class Normalisasi extends Model
 
     public $fillable = ['kreteria_id','alternatif_id','jenis','nilai'];
 
-    public function scopeKondisiJenis($query,$jenis){
-      if ($jenis == 'saw') {
-        $query->where('jenis','saw');
-      }elseif($jenis == 'topsis'){
-        $query->where('jenis','topsis');
-      }
-    }
-
-    public function scopeBerdasarkanAlternatif($query){
-      $query->orderBy('alternatif_id')->groupBy('alternatif_id');
-    }
-
     public function alternatif(){
       return $this->belongsTo('App\Models\Alternatif');
     }
 
     public function kreteria(){
       return $this->belongsTo('App\Models\Kreteria');
+    }
+
+    public function scopeKondisiJenis($query,$jenis){
+      $query->where('jenis',$jenis);
+    }
+
+    public function scopeBerdasarkanAlternatif($query){
+      $query->orderBy('alternatif_id')->groupBy('alternatif_id');
     }
 
     public function scopeALternatifKreteria($query,$id){

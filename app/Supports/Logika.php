@@ -34,11 +34,14 @@ class Logika {
     return $hasil ;
   }
 
-  public function kinerjaProses(){
+// memunculkan data kinerja untuk SAW dan data terbobot untuk TOPSIS //
+  public function kinerjaProses($jenis){
     $ciNilai = [];
 
     foreach ($this->kreteria as $index => $item) {
-      $normalNilai = Normalisasi::where('kreteria_id',$item->id)->get();
+      $normalNilai = Normalisasi::where('kreteria_id',$item->id)
+                                ->kondisiJenis($jenis)
+                                ->get();
       $ciNilai[] = proses_pengalian_bobot($item->bobot,$normalNilai);
     }
 
@@ -63,7 +66,7 @@ class Logika {
     return $ciNormalisasi ;
   }
 
-// memunculkan data normalisasi untuk jenis SAW dan TOPSIS 
+// memunculkan data normalisasi untuk jenis SAW dan TOPSIS
   public function normalisasi($jenis){
     $alternatif = $this->alternatif;
     $nilai      = [];

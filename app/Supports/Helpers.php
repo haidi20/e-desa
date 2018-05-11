@@ -1,6 +1,6 @@
 <?php
 
-// perhitungan untuk topsis
+// mulai perhitungan untuk topsis
 if ( ! function_exists('proses_normalisasi_topsis') )
 {
   function proses_normalisasi_topsis($pembagi,$hasil){
@@ -37,7 +37,7 @@ if ( ! function_exists('proses_pangkat') )
     return $nilaii ;
   }
 }
-// perhitungan untuk topsis
+// akhir perhitungan untuk topsis
 
 if ( ! function_exists('proses_pengurutan') )
 {

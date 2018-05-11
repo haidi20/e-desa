@@ -11,6 +11,8 @@ use App\Models\Normalisasi;
 use App\Supports\Logika;
 use App\Supports\Topsis;
 
+use Auth;
+
 class DataController extends Controller
 {
   public function __construct(Logika $logika,Topsis $topsis){
@@ -25,30 +27,28 @@ class DataController extends Controller
     return $nilai ;
   }
 
-  public function inputNormalisasiTopsis(){
-    $normalisasi  = $this->topsis->normalisasiProses();
-
-    foreach ($normalisasi as $key => $value) {
-      foreach ($value as $index => $item) {
-        $nilai      = $item['nilai'];
-        $kreteria   = $item['kreteria'];
-        $alternatif = $item['alternatif'];
-
-        $normalisasi = Normalisasi::FirstOrCreate([
-          'jenis'         => 'topsis',
-          'kreteria_id'   =>$kreteria,
-          'alternatif_id' =>$alternatif
-        ]);
-        $normalisasi->nilai = $nilai;
-        $normalisasi->save();
+// kondisi untuk jenis
+  public function jenis($jenis){
+    $nama = Auth::user()->nama;
+    if ($jenis == 'nama') {
+      return $nama ;
+    }elseif($jenis == 'status'){
+      if ($nama == 'saw') {
+        return 'kinerja';
+      }else{
+        return 'terbobot';
       }
     }
   }
 
+// NORMALISASI UNTUK SAW DAN TOPSIS
   public function inputNormalisasi(){
-    $normalisasiProses = $this->logika->normalisasiProses();
+    if ($this->jenis('nama') == 'saw') {
+      $normalisasiProses = $this->logika->normalisasiProses();
+    }elseif($this->jenis('nama') == 'topsis'){
+      $normalisasiProses  = $this->topsis->normalisasiProses();
+    }
 
-    // inptu data ke table normalisasi
     foreach ($normalisasiProses as $index => $item) {
       foreach ($item as $key => $value) {
         $nilai      = $value['nilai'];
@@ -56,7 +56,7 @@ class DataController extends Controller
         $alternatif = $value['alternatif'];
 
         $normalisasi = Normalisasi::FirstOrCreate([
-          'jenis'         => 'saw',
+          'jenis'         => $this->jenis('nama'),
           'kreteria_id'   =>$kreteria,
           'alternatif_id' =>$alternatif
         ]);
@@ -68,8 +68,9 @@ class DataController extends Controller
     return redirect()->route('input.kinerja');
   }
 
+// input data KINERJA untuk SAW dan TERBOBOT untuk TOPSIS
   public function inputKinerja(){
-    $kinerjaProses  = $this->logika->kinerjaProses();
+    $kinerjaProses  = $this->logika->kinerjaProses($this->jenis('nama'));
     $kinerja        = [];
 
     foreach ($kinerjaProses as $key => $value) {
@@ -77,8 +78,9 @@ class DataController extends Controller
         $nilai          = $item['nilai'];
         $kreteria_id    = $item['kreteria'];
         $alternatif_id  = $item['alternatif'];
+        $jenis          = $this->jenis('status');
 
-        $kinerja        = Kinerja::firstOrCreate(compact('alternatif_id','kreteria_id'));
+        $kinerja        = Kinerja::firstOrCreate(compact('alternatif_id','kreteria_id','jenis'));
         $kinerja->nilai = $nilai;
         $kinerja->save();
 
@@ -108,7 +110,5 @@ class DataController extends Controller
     else if (session()->get('controller') == 'kreteria') {
       return redirect()->route('kreteria.index');
     }
-
-
   }
 }

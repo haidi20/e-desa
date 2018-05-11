@@ -28,6 +28,7 @@
         @if (\Auth::user()->nama == 'topsis')
           <li class={{session()->get('aktif') == 'pembagi'?'active':''}}><a href="{{route('topsis.pembagi.index')}}">Pembagi</a></li>
           <li class={{session()->get('aktif') == 'normalisasi'?'active':''}}><a href="{{route('topsis.normalisasi.index')}}">Normalisasi</a></li>
+          <li class={{session()->get('aktif') == 'terbobot'?'active':''}}><a href="{{route('topsis.terbobot.index')}}">Terbobot</a></li>
         @endif
         @if (\Auth::user()->nama == 'saw')
           <li class="{{session()->get('aktif') == 'normalisasi'?'active':''}}"><a href="{{route('normalisasi.index')}}">Normalisasi</a></li>

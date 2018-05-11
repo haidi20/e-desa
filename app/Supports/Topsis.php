@@ -3,11 +3,27 @@
 namespace App\Supports;
 
 use App\Models\Hasil;
+use App\Models\Kinerja;
 use App\Models\Kreteria;
+use App\Models\Alternatif;
+use App\Models\Normalisasi;
 
 class Topsis {
   public function __construct(){
     $this->kreteria = Kreteria::orderBy('kode')->get();
+  }
+
+  public function Kinerja($jenis){
+    $alternatif = Alternatif::all();
+    $nilai      = [];
+
+    foreach ($alternatif as $index => $item) {
+      $nilai[$item->id] = Kinerja::alternatifKreteria($item->id)
+                                    ->kondisiJenis($jenis)
+                                    ->pluck('nilai','kreteria_id');
+    }
+
+    return $nilai ;
   }
 
   public function normalisasiProses(){
