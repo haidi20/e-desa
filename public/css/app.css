@@ -8477,6 +8477,10 @@ p {
   width: 130px;
 }
 
+.table-bordered th.pembantu {
+  padding-bottom: 30px;
+}
+
 hr {
   margin: 5px 0;
   border: 0;

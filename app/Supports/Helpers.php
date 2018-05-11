@@ -120,19 +120,23 @@ if ( ! function_exists('proses_normalisasi') )
   }
 }
 
-if ( ! function_exists('nilai_maksimal') )
+if ( ! function_exists('nilai_maksmin') )
 {
-    function nilai_maksimal($nilai){
+    function nilai_maksmin($nilai,$kondisi = null){
       $hasil = [];
 
       foreach ($nilai as $index => $item) {
         if ($item->nilai != 0) {
           $hasil[] = $item->nilai ;
         }else{
-          $hasil[] =0;
+          $hasil[] = 0;
         }
       }
 
-      return max($hasil) ;
+      if ($kondisi == 'maksimal') {
+        return max($hasil);
+      }else{
+        return min($hasil);
+      }
     }
 }

@@ -15,7 +15,8 @@ class CreatePembantuTable extends Migration
     {
         Schema::create('pembantu', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('kreteria_id')->unsigned();
+            $table->integer('alternatif_id')->unsigned()->nullable();
+            $table->integer('kreteria_id')->unsigned()->nullable();
             $table->double('nilai')->default(0);
             // jenis untuk menentukan positif or negatif
             $table->string('jenis')->nullable();

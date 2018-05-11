@@ -4,13 +4,51 @@ namespace App\Supports;
 
 use App\Models\Hasil;
 use App\Models\Kinerja;
+use App\Models\Pembantu;
 use App\Models\Kreteria;
 use App\Models\Alternatif;
-use App\Models\Normalisasi;
 
 class Topsis {
   public function __construct(){
     $this->kreteria = Kreteria::orderBy('kode')->get();
+  }
+
+  public function pembantu($format){
+    $hasil    = [];
+    $positif  = [];
+    $negatif  = [];
+
+    foreach ($this->kreteria as $index => $item) {
+      $positif[] = Pembantu::kondisiSemua('positif',$format,$item->id)->value('nilai');
+      $negatif[] = pembantu::kondisiSemua('negatif',$format,$item->id)->value('nilai');
+
+      $hasil[$item->id] = [
+        $positif,
+        $negatif
+      ];
+    }
+
+    return $hasil;
+  }
+
+  public function alphaPositif(){
+    $kinerja = [];
+
+    foreach ($this->kreteria as $index => $item) {
+      $kinerja[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),'maksim ');
+    }
+
+    return $kinerja;
+  }
+
+  public function alphaNegatif(){
+    $kinerja = [];
+
+    foreach ($this->kreteria as $index => $item) {
+      $kinerja[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get());
+    }
+
+    return $kinerja;
   }
 
   public function Kinerja($jenis){
@@ -19,8 +57,8 @@ class Topsis {
 
     foreach ($alternatif as $index => $item) {
       $nilai[$item->id] = Kinerja::alternatifKreteria($item->id)
-                                    ->kondisiJenis($jenis)
-                                    ->pluck('nilai','kreteria_id');
+                                 ->kondisiJenis($jenis)
+                                 ->pluck('nilai','kreteria_id');
     }
 
     return $nilai ;

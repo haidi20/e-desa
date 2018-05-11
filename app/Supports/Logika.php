@@ -58,7 +58,7 @@ class Logika {
 
       $ciMaks[] = [
         'kreteria'  => $item->id,
-        'nilai' => nilai_maksimal($hasilNilai)
+        'nilai' => nilai_maksmin($hasilNilai,'maksimal')
       ];
       $ciNormalisasi[] = proses_normalisasi($ciMaks,$hasilNilaiKode) ;
     }

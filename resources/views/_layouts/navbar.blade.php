@@ -29,6 +29,13 @@
           <li class={{session()->get('aktif') == 'pembagi'?'active':''}}><a href="{{route('topsis.pembagi.index')}}">Pembagi</a></li>
           <li class={{session()->get('aktif') == 'normalisasi'?'active':''}}><a href="{{route('topsis.normalisasi.index')}}">Normalisasi</a></li>
           <li class={{session()->get('aktif') == 'terbobot'?'active':''}}><a href="{{route('topsis.terbobot.index')}}">Terbobot</a></li>
+          <li class="dropdown {{session()->get('aktiff') == 'pembantu'?'active':''}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pembantu <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="{{session()->get('aktif') == 'A'?'active':''}}"><a href="{{route('topsis.pembantu.alpha')}}">Table A</a></li>
+              <li class="{{session()->get('aktif') == 'D'?'active':''}}"><a href="{{route('topsis.pembantu.delta')}}">Table D</a></li>
+            </ul>
+          </li>
         @endif
         @if (\Auth::user()->nama == 'saw')
           <li class="{{session()->get('aktif') == 'normalisasi'?'active':''}}"><a href="{{route('normalisasi.index')}}">Normalisasi</a></li>

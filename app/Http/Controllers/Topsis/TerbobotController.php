@@ -22,9 +22,7 @@ class TerbobotController extends Controller
       session()->put('aktiff','');
 
       $kreteria     = Kreteria::orderBy('kode')->get();
-      $kinerja      = Kinerja::kondisiJenis('terbobot')
-                              ->groupBy('alternatif_id')
-                              ->get();
+      $kinerja      = Kinerja::kondisiJenis('terbobot')->groupBy('alternatif_id')->get();
       $terbobot     = $this->topsis->kinerja('terbobot');
 
       return view('terbobot.index',compact('kreteria','kinerja','terbobot'));

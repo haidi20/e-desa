@@ -12,25 +12,28 @@ Route::group(['middleware' => 'auth'],function(){
     return view('dashboard.index');
   })->name('dashboard');
 
-  // route untuk keperluan fitur" topsis //
-  Route::group(['prefix' => 'topsis','namespace' => 'Topsis'],function(){
-    Route::get('pembagi','PembagiController@index')->name('topsis.pembagi.index');
-    Route::get('normalisasi','NormalisasiController@index')->name('topsis.normalisasi.index');
-    Route::get('terbobot','TerbobotController@index')->name('topsis.terbobot.index');
-  });
-
   // route untuk keperluan input data dan ajax //
   Route::get('data/sekolah','DataController@dataSekolah')->name('data.sekolah');
   Route::group(['prefix' => 'input'],function(){
     Route::get('kinerja','DataController@inputKinerja')->name('input.kinerja');
     Route::get('peringkat','DataController@inputPeringkat')->name('input.peringkat');
     Route::get('normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');
-    // route untuk keperluan input data bagian topsis //
-    Route::get('topsis/normalisasi','DataController@inputNormalisasiTopsis')->name('topsis.input.normalisasi');
-    Route::get('topsis/terbobot','DataController@inputTerbobotTopsis')->name('topsis.input.terbobot');
+
+    //inputan khusus bagian" topsis
+    Route::get('alphaPositif','DataController@inputAlphaPositif')->name('topsis.input.alphaPositif');
+    Route::get('alphaNegatif','DataController@inputAlphaNegatif')->name('topsis.input.alphaNegatif');
   });
 
-  // route untuk keperluan fitur" di aplikasi //
+  // route untuk keperluan fitur" topsis //
+  Route::group(['prefix' => 'topsis','namespace' => 'Topsis'],function(){
+    Route::get('pembagi','PembagiController@index')->name('topsis.pembagi.index');
+    Route::get('terbobot','TerbobotController@index')->name('topsis.terbobot.index');
+    Route::get('pebantu/delta','PembantuController@delta')->name('topsis.pembantu.delta');
+    Route::get('pembantu/alpha','PembantuController@alpha')->name('topsis.pembantu.alpha');
+    Route::get('normalisasi','NormalisasiController@index')->name('topsis.normalisasi.index');
+  });
+
+  // route untuk keperluan fitur" di saw //
   Route::resource('sekolah','SekolahController');
   Route::resource('kreteria','KreteriaController');
   Route::resource('alternatif','AlternatifController');

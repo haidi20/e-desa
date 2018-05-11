@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Kinerja;
+use App\Models\Pembantu;
 use App\Models\Peringkat;
 use App\Models\Normalisasi;
 
@@ -27,7 +28,25 @@ class DataController extends Controller
     return $nilai ;
   }
 
-// kondisi untuk jenis
+// start function supports
+
+// function jalur
+  public function jalur($lanjut = null){
+    // jika role topsis maka lanjut ke alpha positif
+    if ($this->jenis('nama') == 'topsis' && !$lanjut) {
+      return redirect()->route('topsis.input.alphaPositif');
+    }else{
+      // kalo selain role topsis maka langsung kembali ke fitur aplikasi yang sekolah or kreteria
+      if (session()->get('controller') == 'sekolah') {
+        return redirect()->route('sekolah.index');
+      }
+      else if (session()->get('controller') == 'kreteria') {
+        return redirect()->route('kreteria.index');
+      }
+    }
+  }
+
+// function JENIS
   public function jenis($jenis){
     $nama = Auth::user()->nama;
     if ($jenis == 'nama') {
@@ -40,6 +59,8 @@ class DataController extends Controller
       }
     }
   }
+
+// end function supports
 
 // NORMALISASI UNTUK SAW DAN TOPSIS
   public function inputNormalisasi(){
@@ -104,11 +125,36 @@ class DataController extends Controller
       $peringkat->save();
     }
 
-    if (session()->get('controller') == 'sekolah') {
-      return redirect()->route('sekolah.index');
+// untuk kondisi jika ada perubahan nilai dari kreteria atau sekolah
+// karena sangat mempengaruhi perhitungan
+    return $this->jalur();
+  }
+
+  public function inputAlpha($data,$jenis,$format){
+    foreach ($data as $index => $item) {
+      $pembantu = Pembantu::firstOrCreate([
+        'kreteria_id' => $index,
+        'jenis'       => $jenis,
+        'format'      => $format
+      ]);
+      $pembantu->nilai = $item;
+      $pembantu->save();
     }
-    else if (session()->get('controller') == 'kreteria') {
-      return redirect()->route('kreteria.index');
-    }
+  }
+
+  public function inputAlphaPositif(){
+    $data = $this->topsis->alphaPositif();
+
+    $this->inputAlpha($data,'positif','alpha');
+
+    return redirect()->route('topsis.input.alphaNegatif');
+  }
+
+  public function inputAlphaNegatif(){
+    $data = $this->topsis->alphaNegatif();
+
+    $this->inputAlpha($data,'negatif','alpha');
+
+    return $this->jalur('lanjut');
   }
 }
