@@ -63,12 +63,15 @@ class Logika {
     return $ciNormalisasi ;
   }
 
-  public function normalisasi(){
+// memunculkan data normalisasi untuk jenis SAW dan TOPSIS 
+  public function normalisasi($jenis){
     $alternatif = $this->alternatif;
     $nilai      = [];
 
     foreach ($alternatif as $index => $item) {
-      $nilai[$item->id] = Normalisasi::alternatifKreteria($item->id)->pluck('nilai','kreteria_id');
+      $nilai[$item->id] = Normalisasi::alternatifKreteria($item->id)
+                                    ->kondisiJenis($jenis)
+                                    ->pluck('nilai','kreteria_id');
     }
 
     return $nilai ;

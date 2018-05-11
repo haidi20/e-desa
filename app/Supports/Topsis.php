@@ -10,7 +10,7 @@ class Topsis {
     $this->kreteria = Kreteria::orderBy('kode')->get();
   }
 
-  public function normalisasi(){
+  public function normalisasiProses(){
     $pembagi = $this->pembagiProses();
 
     $normalisasi = [];

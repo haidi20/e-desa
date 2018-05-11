@@ -26,28 +26,23 @@ class DataController extends Controller
   }
 
   public function inputNormalisasiTopsis(){
-    $normalisasi  = $this->topsis->normalisasi();
-    $hasil        = [] ;
+    $normalisasi  = $this->topsis->normalisasiProses();
 
     foreach ($normalisasi as $key => $value) {
       foreach ($value as $index => $item) {
         $nilai      = $item['nilai'];
         $kreteria   = $item['kreteria'];
         $alternatif = $item['alternatif'];
-        $jenis      = 'topsis';
 
         $normalisasi = Normalisasi::FirstOrCreate([
-          // 'jenis'         => $jenis,
+          'jenis'         => 'topsis',
           'kreteria_id'   =>$kreteria,
           'alternatif_id' =>$alternatif
         ]);
         $normalisasi->nilai = $nilai;
-        $normalisasi->jenis = $jenis;
         $normalisasi->save();
       }
     }
-
-    return $hasil;
   }
 
   public function inputNormalisasi(){
@@ -59,15 +54,13 @@ class DataController extends Controller
         $nilai      = $value['nilai'];
         $kreteria   = $value['kreteria'];
         $alternatif = $value['alternatif'];
-        $jenis      = 'saw';
 
         $normalisasi = Normalisasi::FirstOrCreate([
-          // 'jenis'         =>$jenis,
+          'jenis'         => 'saw',
           'kreteria_id'   =>$kreteria,
           'alternatif_id' =>$alternatif
         ]);
         $normalisasi->nilai = $nilai;
-        $normalisasi->jenis = $jenis;
         $normalisasi->save();
       }
     }

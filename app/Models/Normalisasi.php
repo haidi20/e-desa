@@ -8,7 +8,15 @@ class Normalisasi extends Model
 {
     protected $table = 'normalisasi';
 
-    public $fillable = ['kreteria_id','alternatif_id','nilai'];
+    public $fillable = ['kreteria_id','alternatif_id','jenis','nilai'];
+
+    public function scopeKondisiJenis($query,$jenis){
+      if ($jenis == 'saw') {
+        $query->where('jenis','saw');
+      }elseif($jenis == 'topsis'){
+        $query->where('jenis','topsis');
+      }
+    }
 
     public function scopeBerdasarkanAlternatif($query){
       $query->orderBy('alternatif_id')->groupBy('alternatif_id');

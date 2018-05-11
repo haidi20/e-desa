@@ -27,12 +27,12 @@
         <li class="{{session()->get('aktif') == 'analisa'?'active':''}}"><a href="{{route('analisa.index')}}">Hasil Analisa</a></li>
         @if (\Auth::user()->nama == 'topsis')
           <li class={{session()->get('aktif') == 'pembagi'?'active':''}}><a href="{{route('topsis.pembagi.index')}}">Pembagi</a></li>
-          <li class={{session()->get('aktif') == 'topsisNormalisasi'?'active':''}}><a href="{{route('topsis.normalisasi.index')}}">Normalisasi</a></li>
+          <li class={{session()->get('aktif') == 'normalisasi'?'active':''}}><a href="{{route('topsis.normalisasi.index')}}">Normalisasi</a></li>
         @endif
         @if (\Auth::user()->nama == 'saw')
           <li class="{{session()->get('aktif') == 'normalisasi'?'active':''}}"><a href="{{route('normalisasi.index')}}">Normalisasi</a></li>
+          <li class="{{session()->get('aktif') == 'kinerja'?'active':''}}"><a href="{{route('kinerja.index')}}">Penilaian Kinerja</a></li>
         @endif
-        <li class="{{session()->get('aktif') == 'kinerja'?'active':''}}"><a href="{{route('kinerja.index')}}">Penilaian Kinerja</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right ukuran-huruf">
         <li>
