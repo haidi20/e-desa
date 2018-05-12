@@ -1,6 +1,19 @@
 <?php
 
 // mulai perhitungan untuk topsis
+if ( ! function_exists('proses_delta') )
+{
+  function proses_delta($terbobot,$alphaPositif){
+    $hasil = [] ;
+
+    for ($i=0; $i <count($alphaPositif) ; $i++) {
+      $hasil[] = pow($alphaPositif[$i] - $terbobot[$i],2) ;
+    }
+
+    return number_format(sqrt(array_sum($hasil)),4);
+  }
+}
+
 if ( ! function_exists('proses_normalisasi_topsis') )
 {
   function proses_normalisasi_topsis($pembagi,$hasil){

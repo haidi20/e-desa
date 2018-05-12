@@ -18,9 +18,8 @@ class Pembantu extends Model
       $query->where('format',$format);
     }
 
-    public function scopeKondisiSemua($query,$jenis,$format,$kreteria){
+    public function scopeKondisi($query,$format,$jenis){
       $query->where('format',$format)
-            ->where('kreteria_id',$kreteria)
             ->where('jenis',$jenis);
 
     }

@@ -19,9 +19,11 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('peringkat','DataController@inputPeringkat')->name('input.peringkat');
     Route::get('normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');
 
-    //inputan khusus bagian" topsis
+    // inputan khusus bagian" topsis //
     Route::get('alphaPositif','DataController@inputAlphaPositif')->name('topsis.input.alphaPositif');
     Route::get('alphaNegatif','DataController@inputAlphaNegatif')->name('topsis.input.alphaNegatif');
+    Route::get('deltaPositif','DataController@inputDeltaPositif')->name('topsis.input.deltaPositif');
+    Route::get('deltaNegatif','DataController@inputDeltaNegatif')->name('topsis.input.deltaNegatif');
   });
 
   // route untuk keperluan fitur" topsis //

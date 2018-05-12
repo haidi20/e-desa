@@ -18,12 +18,12 @@ class TerbobotController extends Controller
     }
 
     public function index(){
-      session()->put('aktif','terbobot');
       session()->put('aktiff','');
+      session()->put('aktif','terbobot');
 
       $kreteria     = Kreteria::orderBy('kode')->get();
-      $kinerja      = Kinerja::kondisiJenis('terbobot')->groupBy('alternatif_id')->get();
       $terbobot     = $this->topsis->kinerja('terbobot');
+      $kinerja      = Kinerja::where('jenis','terbobot')->groupBy('alternatif_id')->get();
 
       return view('terbobot.index',compact('kreteria','kinerja','terbobot'));
     }

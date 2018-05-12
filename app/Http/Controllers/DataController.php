@@ -130,10 +130,16 @@ class DataController extends Controller
     return $this->jalur();
   }
 
-  public function inputAlpha($data,$jenis,$format){
+// start supports pembantu
+  public function inputPembantu($data,$format,$jenis){
+    if ($format == 'alpha') {
+      $atribut = 'kreteria_id';
+    }else{
+      $atribut = 'alternatif_id';
+    }
     foreach ($data as $index => $item) {
       $pembantu = Pembantu::firstOrCreate([
-        'kreteria_id' => $index,
+        $atribut      => $index,
         'jenis'       => $jenis,
         'format'      => $format
       ]);
@@ -141,19 +147,38 @@ class DataController extends Controller
       $pembantu->save();
     }
   }
+//end supports pembantu
 
   public function inputAlphaPositif(){
-    $data = $this->topsis->alphaPositif();
+    $data = $this->topsis->alpha('maksimal');
 
-    $this->inputAlpha($data,'positif','alpha');
+    $this->inputPembantu($data,'alpha','positif');
 
     return redirect()->route('topsis.input.alphaNegatif');
   }
 
   public function inputAlphaNegatif(){
-    $data = $this->topsis->alphaNegatif();
+    $data   = $this->topsis->alpha('minimal');
 
-    $this->inputAlpha($data,'negatif','alpha');
+    $this->inputPembantu($data,'alpha','negatif');
+
+    return redirect()->route('topsis.input.deltaPositif');
+  }
+
+  public function inputDeltaPositif(){
+    $jenis  = 'positif';
+
+    $data   = $this->topsis->delta($jenis);
+    $this->inputPembantu($data,'delta',$jenis);
+
+    return redirect()->route('topsis.input.deltaNegatif');
+  }
+
+  public function inputDeltaNegatif(){
+    $jenis  = 'negatif';
+
+    $data   = $this->topsis->delta($jenis);
+    $this->inputPembantu($data,'delta',$jenis);
 
     return $this->jalur('lanjut');
   }

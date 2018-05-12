@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Table A</h1>
+        <h1>Table D</h1>
       </div>
     </div>
     <hr class="dashed mb20 mt20">
@@ -19,8 +19,8 @@
               <th colspan="2">Nilai</th>
             </tr>
             <tr>
-              <th>A +</th>
-              <th>A -</th>
+              <th>D +</th>
+              <th>D -</th>
             </tr>
           </thead>
           <tbody>

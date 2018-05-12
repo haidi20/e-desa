@@ -10,70 +10,55 @@ use App\Models\Alternatif;
 
 class Topsis {
   public function __construct(){
-    $this->kreteria = Kreteria::orderBy('kode')->get();
+    $this->kreteria     = Kreteria::orderBy('kode')->get();
+    $this->alternatif   = Alternatif::orderBy('id')->get();
   }
 
-  public function pembantu($format){
-    $hasil    = [];
-    $positif  = [];
-    $negatif  = [];
+  public function delta($jenis){
+    $alphaPositif = Pembantu::kondisi('alpha',$jenis)->pluck('nilai');
 
-    foreach ($this->kreteria as $index => $item) {
-      $positif[] = Pembantu::kondisiSemua('positif',$format,$item->id)->value('nilai');
-      $negatif[] = pembantu::kondisiSemua('negatif',$format,$item->id)->value('nilai');
-
-      $hasil[$item->id] = [
-        $positif,
-        $negatif
-      ];
+    foreach ($this->alternatif as $index => $item) {
+      $terbobot         = Kinerja::where('jenis','terbobot')->where('alternatif_id',$item->id)->pluck('nilai');
+      $hasil[$item->id] = proses_delta($terbobot,$alphaPositif);
     }
 
     return $hasil;
   }
 
-  public function alphaPositif(){
-    $kinerja = [];
+  public function alpha($maksmin){
+    $hasil = [];
 
     foreach ($this->kreteria as $index => $item) {
-      $kinerja[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),'maksim ');
+      $hasil[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),$maksmin);
     }
 
-    return $kinerja;
-  }
-
-  public function alphaNegatif(){
-    $kinerja = [];
-
-    foreach ($this->kreteria as $index => $item) {
-      $kinerja[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get());
-    }
-
-    return $kinerja;
+    return $hasil;
   }
 
   public function Kinerja($jenis){
     $alternatif = Alternatif::all();
-    $nilai      = [];
+    $hasil      = [];
 
     foreach ($alternatif as $index => $item) {
-      $nilai[$item->id] = Kinerja::alternatifKreteria($item->id)
-                                 ->kondisiJenis($jenis)
+      $hasil[$item->id] = Kinerja::alternatifKreteria($item->id)
+                                 ->where('jenis',$jenis)
                                  ->pluck('nilai','kreteria_id');
     }
 
-    return $nilai ;
+    return $hasil ;
   }
 
   public function normalisasiProses(){
-    $pembagi = $this->pembagiProses();
+    $pembagi  = $this->pembagiProses();
+    $hasil    = [];
 
     $normalisasi = [];
     foreach ($pembagi as $index => $item) {
       $hasil = Hasil::where('kreteria_id',$index)->get();
-      $normalisasi[] = proses_normalisasi_topsis($pembagi,$hasil);
+      $hasil[] = proses_normalisasi_topsis($pembagi,$hasil);
     }
 
-    return $normalisasi;
+    return $hasil;
   }
 
   public function pembagiProses(){

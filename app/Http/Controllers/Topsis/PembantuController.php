@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Pembantu;
-use App\Models\Kreteria;
 
 use App\Supports\Topsis;
 
@@ -20,14 +19,19 @@ class PembantuController extends Controller
       session()->put('aktif','A');
       session()->put('aktiff','pembantu');
 
-      $kreteria = Kreteria::all();
       $pembantu = Pembantu::groupBy('kreteria_id')->kondisiJenis('alpha')->get();
-      return $alpha    = $this->topsis->pembantu('alpha');
+      $positif  = Pembantu::kondisi('alpha','positif')->pluck('nilai');
+      $negatif  = Pembantu::kondisi('alpha','negatif')->pluck('nilai');
 
-      return view('pembantu.alpha',compact('pembantu','kreteria','alpha'));
+      return view('pembantu.alpha',compact(
+          'pembantu','positif','negatif'
+      ));
     }
 
     public function delta(){
-      return 'ini function delta';
+      session()->put('aktif','D');
+      session()->put('aktiff','pembantu');
+
+      
     }
 }
