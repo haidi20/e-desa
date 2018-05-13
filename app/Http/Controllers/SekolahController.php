@@ -88,7 +88,8 @@ class SekolahController extends Controller
 
       session()->put('controller','sekolah');
 
-      return redirect()->route('input.normalisasi');
+      // return redirect()->route('input.normalisasi');
+      return redirect()->route('input.index');
     }
 
     public function destroy($id){

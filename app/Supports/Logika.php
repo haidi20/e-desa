@@ -21,7 +21,7 @@ class Logika {
 
     foreach ($alternatif as $index => $item) {
       $jumlah = Kinerja::where('alternatif_id',$item->alternatif_id)
-                      ->sum('nilai');
+                       ->sum('nilai');
       $x[] = [
         'nilai'=>number_format($jumlah,4),
         'alternatif' => $item->alternatif_id,

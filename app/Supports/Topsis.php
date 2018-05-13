@@ -14,7 +14,7 @@ class Topsis {
     $this->alternatif   = Alternatif::orderBy('id')->get();
   }
 
-  public function peringkat(){
+  public function peringkatProses(){
     $x      = [];
 
     foreach ($this->alternatif as $index => $item) {
@@ -71,16 +71,15 @@ class Topsis {
   }
 
   public function normalisasiProses(){
-    $pembagi  = $this->pembagiProses();
-    $hasil    = [];
+    $pembagi      = $this->pembagiProses();
+    $normalisasi  = [];
 
-    $normalisasi = [];
     foreach ($pembagi as $index => $item) {
       $hasil = Hasil::where('kreteria_id',$index)->get();
-      $hasil[] = proses_normalisasi_topsis($pembagi,$hasil);
+      $normalisasi[] = proses_normalisasi_topsis($pembagi,$hasil);
     }
 
-    return $hasil;
+    return $normalisasi;
   }
 
   public function pembagiProses(){

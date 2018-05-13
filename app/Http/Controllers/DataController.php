@@ -21,7 +21,25 @@ class DataController extends Controller
     $this->topsis = $topsis;
   }
 
-// menampilkan data sekolah secara realtime.. 
+  public function index(){
+    $this->inputNormalisasi();
+
+    if ($this->jenis('nama') == 'saw') {
+      $this->inputKinerja();
+
+      return $this->jalur();
+    }elseif($this->jenis('nama') == 'topsis') {
+      $this->inputKinerja();
+      $this->inputAlphaPositif();
+      $this->inputAlphaNegatif();
+      $this->inputDeltaPositif();
+      $this->inputDeltaNegatif();
+
+      return $this->jalur();
+    }
+  }
+
+// menampilkan data sekolah secara realtime..
   public function dataSekolah(){
     $id = request('alter');
     $nilai  = $this->logika->inputan($id,'ajax');
@@ -33,17 +51,12 @@ class DataController extends Controller
 
 // function jalur
   public function jalur($lanjut = null){
-    // jika role topsis maka lanjut ke alpha positif
-    if ($this->jenis('nama') == 'topsis' && !$lanjut) {
-      return redirect()->route('topsis.input.alphaPositif');
-    }else{
-      // kalo selain role topsis maka langsung kembali ke fitur aplikasi yang sekolah or kreteria
-      if (session()->get('controller') == 'sekolah') {
-        return redirect()->route('sekolah.index');
-      }
-      else if (session()->get('controller') == 'kreteria') {
-        return redirect()->route('kreteria.index');
-      }
+    // kalo selain role topsis maka langsung kembali ke fitur aplikasi yang sekolah or kreteria
+    if (session()->get('controller') == 'sekolah') {
+      return redirect()->route('sekolah.index');
+    }
+    else if (session()->get('controller') == 'kreteria') {
+      return redirect()->route('kreteria.index');
     }
   }
 
@@ -54,6 +67,7 @@ class DataController extends Controller
     if ($jenis == 'nama') {
       return $nama ;
     }elseif($jenis == 'status'){
+      // function inutKinerja 
       if ($nama == 'saw') {
         return 'kinerja';
       }else{
@@ -87,8 +101,6 @@ class DataController extends Controller
         $normalisasi->save();
       }
     }
-
-    return redirect()->route('input.kinerja');
   }
 
 // input data KINERJA untuk SAW dan TERBOBOT untuk TOPSIS
@@ -109,34 +121,32 @@ class DataController extends Controller
 
       }
     }
-
-    return redirect()->route('input.peringkat') ;
   }
 
   public function inputPeringkat(){
-    $peringkatProses = $this->logika->peringkatProses();
+    $jenis = $this->jenis('nama') ;
+    if ($jenis == 'saw') {
+      $peringkatProses = $this->logika->peringkatProses();
+    }elseif($jenis == 'topsis'){
+      $peringkatProses = $this->topsis->peringkatProses();
+    }
 
     foreach ($peringkatProses as $key => $value) {
-      $jenis  = $this->jenis('nama');
-      $nilai  = $value['nilai'];
+      $nilai      = $value['nilai'];
       $peringkat  = $value['peringkat'];
       $alternatif = $value['alternatif'];
 
       $peringkat = Peringkat::firstOrCreate([
-        'jenis' => $jenis
+        'jenis' => $jenis,
         'alternatif_id' => $alternatif,
       ]);
       $peringkat->nilai = $nilai;
       $peringkat->peringkat = $peringkat;
       $peringkat->save();
     }
-
-// untuk kondisi jika ada perubahan nilai dari kreteria atau sekolah
-// karena sangat mempengaruhi perhitungan
-    return $this->jalur();
   }
 
-// start supports pembantu
+// start SUPPORTS pembantu
   public function inputPembantu($data,$format,$jenis){
     // alpha = kreteria_id dan delta = alternatif_id
     if ($format == 'alpha') {
@@ -154,22 +164,18 @@ class DataController extends Controller
       $pembantu->save();
     }
   }
-//end supports pembantu
+//end SUPPORTS pembantu alpha dan delta
 
   public function inputAlphaPositif(){
-    $data = $this->topsis->alpha('maksimal');
+    $data = $this->topsis->alphaProses('maksimal');
 
     $this->inputPembantu($data,'alpha','positif');
-
-    return redirect()->route('topsis.input.alphaNegatif');
   }
 
   public function inputAlphaNegatif(){
     $data   = $this->topsis->alphaProses('minimal');
 
     $this->inputPembantu($data,'alpha','negatif');
-
-    return redirect()->route('topsis.input.deltaPositif');
   }
 
   public function inputDeltaPositif(){
@@ -177,16 +183,12 @@ class DataController extends Controller
 
     $data   = $this->topsis->deltaProses($jenis);
     $this->inputPembantu($data,'delta',$jenis);
-
-    return redirect()->route('topsis.input.deltaNegatif');
   }
 
   public function inputDeltaNegatif(){
     $jenis  = 'negatif';
 
-    $data   = $this->topsis->delta($jenis);
+    $data   = $this->topsis->deltaProses($jenis);
     $this->inputPembantu($data,'delta',$jenis);
-
-    return $this->jalur('lanjut');
   }
 }

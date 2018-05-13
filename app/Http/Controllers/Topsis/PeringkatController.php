@@ -14,6 +14,6 @@ class PeringkatController extends Controller
     }
 
     public function index(){
-      return $this->topsis->peringkat();
+      return $this->topsis->peringkatProses();
     }
 }

@@ -11,16 +11,8 @@ Route::group(['middleware' => 'auth'],function(){
   })->name('dashboard');
   // route untuk keperluan input data dan ajax //
   Route::get('data/sekolah','DataController@dataSekolah')->name('data.sekolah');
-  Route::group(['prefix' => 'input'],function(){
-    Route::get('kinerja','DataController@inputKinerja')->name('input.kinerja');
-    Route::get('peringkat','DataController@inputPeringkat')->name('input.peringkat');
-    Route::get('normalisasi','DataController@inputNormalisasi')->name('input.normalisasi');
-    // inputan khusus bagian" topsis //
-    Route::get('alphaPositif','DataController@inputAlphaPositif')->name('topsis.input.alphaPositif');
-    Route::get('alphaNegatif','DataController@inputAlphaNegatif')->name('topsis.input.alphaNegatif');
-    Route::get('deltaPositif','DataController@inputDeltaPositif')->name('topsis.input.deltaPositif');
-    Route::get('deltaNegatif','DataController@inputDeltaNegatif')->name('topsis.input.deltaNegatif');
-  });
+  Route::get('data/input','DataController@index')->name('input.index');
+
   // route untuk keperluan fitur" topsis //
   Route::group(['prefix' => 'topsis','namespace' => 'Topsis'],function(){
     Route::get('pembagi','PembagiController@index')->name('topsis.pembagi.index');

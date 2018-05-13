@@ -23,6 +23,8 @@ class PembantuController extends Controller
       $positif  = Pembantu::formatJenis('alpha','positif')->pluck('nilai');
       $negatif  = Pembantu::formatJenis('alpha','negatif')->pluck('nilai');
 
+      // return $this->topsis->alphaProses('maksimal');
+
       return view('pembantu.alpha',compact(
           'pembantu','positif','negatif'
       ));
