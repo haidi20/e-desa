@@ -80,7 +80,7 @@ if ( ! function_exists('proses_pengurutan') )
         $x[$i] = [
           'nilai'=>$x[$i]['nilai'],
           'alternatif'=> $x[$i]['alternatif'],
-          'peringkat' => $i + 1
+          'rengking' => $i + 1
         ];
       }
     }
@@ -146,7 +146,7 @@ if ( ! function_exists('proses_normalisasi') )
 
 if ( ! function_exists('nilai_maksmin') )
 {
-    function nilai_maksmin($nilai,$kondisi = null){
+    function nilai_maksmin($nilai,$kondisi){
       $hasil = [];
 
       foreach ($nilai as $index => $item) {

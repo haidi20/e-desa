@@ -4,21 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Hasil;
-use App\Supports\Logika;
 use App\Models\Peringkat;
 
+use App\Supports\Topsis;
+
+// metode SAW 
 class KinerjaController extends Controller
 {
-    public function __construct(Logika $logika){
-      $this->logika = $logika;
-    }
-
     public function index(){
-      $kinerja = Peringkat::orderBy('alternatif_id')->get();
-
       session()->put('aktif','kinerja');
       session()->put('aktiff','');
+
+      $kinerja = Peringkat::orderBy('alternatif_id')->where('jenis','saw')->get();
 
       return view('kinerja.index',compact('kinerja'));
     }

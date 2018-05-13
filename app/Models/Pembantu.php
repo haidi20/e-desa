@@ -18,6 +18,7 @@ class Pembantu extends Model
       return $this->belongsTo('App\Models\Alternatif');
     }
 
+    // format untuk alpha or Delta dan jenis positif or negatif
     public function scopeFormatJenis($query,$format = null,$jenis = null){
       if ($format) {
         $query->where('format',$format);
@@ -27,7 +28,3 @@ class Pembantu extends Model
       }
     }
 }
-
-//note
-// format = alpha or delta
-// jenis  = positif or negatif

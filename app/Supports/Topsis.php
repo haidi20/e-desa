@@ -11,7 +11,7 @@ use App\Models\Alternatif;
 class Topsis {
   public function __construct(){
     $this->kreteria     = Kreteria::orderBy('kode')->get();
-    $this->alternatif   = Alternatif::orderBy('id')->get();
+    $this->alternatif   = Alternatif::all();
   }
 
   public function peringkatProses(){
@@ -40,7 +40,8 @@ class Topsis {
     $hasil = [];
 
     foreach ($this->kreteria as $index => $item) {
-      $hasil[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),$maksmin);
+      $kinerja = Kinerja::where('kreteria_id',$item->id)->where('jenis','terbobot')->get();
+      $hasil[$item->id] = nilai_maksmin($kinerja,$maksmin);
     }
 
     return $hasil;
@@ -50,7 +51,7 @@ class Topsis {
     $alphaPositif = Pembantu::formatJenis('alpha',$jenis)->pluck('nilai');
 
     foreach ($this->alternatif as $index => $item) {
-      $terbobot         = Kinerja::where('jenis','terbobot')->where('alternatif_id',$item->id)->pluck('nilai');
+      $terbobot         = Kinerja::where('alternatif_id',$item->id)->where('jenis','terbobot')->pluck('nilai');
       $hasil[$item->id] = proses_delta($terbobot,$alphaPositif);
     }
 

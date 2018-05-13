@@ -36,7 +36,7 @@
               <li class="{{session()->get('aktif') == 'D'?'active':''}}"><a href="{{route('topsis.pembantu.delta')}}">Table D</a></li>
             </ul>
           </li>
-          <li class={{session()->get('aktif') == 'peringkat'?'active':''}}> <a href="{{route('topsis.peringkat.index')}}">Peringkat</a></li>
+          <li class={{session()->get('aktif') == 'peringkat'?'active':''}}> <a href="{{route('topsis.peringkat.index')}}">Penilaian Kinerja</a></li>
         @endif
         @if (\Auth::user()->nama == 'saw')
           <li class="{{session()->get('aktif') == 'normalisasi'?'active':''}}"><a href="{{route('normalisasi.index')}}">Normalisasi</a></li>

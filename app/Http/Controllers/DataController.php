@@ -26,17 +26,16 @@ class DataController extends Controller
 
     if ($this->jenis('nama') == 'saw') {
       $this->inputKinerja();
-
-      return $this->jalur();
     }elseif($this->jenis('nama') == 'topsis') {
       $this->inputKinerja();
       $this->inputAlphaPositif();
       $this->inputAlphaNegatif();
       $this->inputDeltaPositif();
       $this->inputDeltaNegatif();
-
-      return $this->jalur();
     }
+
+    $this->inputPeringkat();
+    return $this->jalur();
   }
 
 // menampilkan data sekolah secara realtime..
@@ -50,8 +49,7 @@ class DataController extends Controller
 // start function supports
 
 // function jalur
-  public function jalur($lanjut = null){
-    // kalo selain role topsis maka langsung kembali ke fitur aplikasi yang sekolah or kreteria
+  public function jalur(){
     if (session()->get('controller') == 'sekolah') {
       return redirect()->route('sekolah.index');
     }
@@ -67,7 +65,7 @@ class DataController extends Controller
     if ($jenis == 'nama') {
       return $nama ;
     }elseif($jenis == 'status'){
-      // function inutKinerja 
+      // function inutKinerja
       if ($nama == 'saw') {
         return 'kinerja';
       }else{
@@ -118,7 +116,6 @@ class DataController extends Controller
         $kinerja        = Kinerja::firstOrCreate(compact('alternatif_id','kreteria_id','jenis'));
         $kinerja->nilai = $nilai;
         $kinerja->save();
-
       }
     }
   }
@@ -133,15 +130,15 @@ class DataController extends Controller
 
     foreach ($peringkatProses as $key => $value) {
       $nilai      = $value['nilai'];
-      $peringkat  = $value['peringkat'];
-      $alternatif = $value['alternatif'];
+      $rengking   = $value['rengking'];
+      $alternatif_id = $value['alternatif'];
 
       $peringkat = Peringkat::firstOrCreate([
         'jenis' => $jenis,
-        'alternatif_id' => $alternatif,
+        'alternatif_id' => $alternatif_id
       ]);
       $peringkat->nilai = $nilai;
-      $peringkat->peringkat = $peringkat;
+      $peringkat->peringkat = $rengking;
       $peringkat->save();
     }
   }
