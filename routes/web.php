@@ -37,5 +37,6 @@ Route::group(['middleware' => 'auth'],function(){
   Route::get('kinerja','KinerjaController@index')->name('kinerja.index');
   Route::get('normalisasi','NormalisasiController@index')->name('normalisasi.index');
 });
+
 //auth laravel
 Auth::routes();
