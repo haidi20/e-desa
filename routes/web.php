@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'],function(){
   Route::group(['prefix' => 'topsis','namespace' => 'Topsis'],function(){
     Route::get('pembagi','PembagiController@index')->name('topsis.pembagi.index');
     Route::get('terbobot','TerbobotController@index')->name('topsis.terbobot.index');
+    Route::get('peringkat','PeringkatController@index')->name('topsis.peringkat.index');
     Route::get('pebantu/delta','PembantuController@delta')->name('topsis.pembantu.delta');
     Route::get('pembantu/alpha','PembantuController@alpha')->name('topsis.pembantu.alpha');
     Route::get('normalisasi','NormalisasiController@index')->name('topsis.normalisasi.index');

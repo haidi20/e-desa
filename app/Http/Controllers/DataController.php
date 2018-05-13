@@ -21,6 +21,7 @@ class DataController extends Controller
     $this->topsis = $topsis;
   }
 
+// menampilkan data sekolah secara realtime.. 
   public function dataSekolah(){
     $id = request('alter');
     $nilai  = $this->logika->inputan($id,'ajax');
@@ -48,6 +49,7 @@ class DataController extends Controller
 
 // function JENIS
   public function jenis($jenis){
+    // nama metode yang di pakai
     $nama = Auth::user()->nama;
     if ($jenis == 'nama') {
       return $nama ;
@@ -115,13 +117,17 @@ class DataController extends Controller
     $peringkatProses = $this->logika->peringkatProses();
 
     foreach ($peringkatProses as $key => $value) {
-      $nilai = $value['nilai'];
-      $juara = $value['peringkat'];
-      $alternatif_id = $value['alternatif'];
+      $jenis  = $this->jenis('nama');
+      $nilai  = $value['nilai'];
+      $peringkat  = $value['peringkat'];
+      $alternatif = $value['alternatif'];
 
-      $peringkat = Peringkat::firstOrCreate(compact('alternatif_id'));
+      $peringkat = Peringkat::firstOrCreate([
+        'jenis' => $jenis
+        'alternatif_id' => $alternatif,
+      ]);
       $peringkat->nilai = $nilai;
-      $peringkat->peringkat = $juara;
+      $peringkat->peringkat = $peringkat;
       $peringkat->save();
     }
 
@@ -132,6 +138,7 @@ class DataController extends Controller
 
 // start supports pembantu
   public function inputPembantu($data,$format,$jenis){
+    // alpha = kreteria_id dan delta = alternatif_id
     if ($format == 'alpha') {
       $atribut = 'kreteria_id';
     }else{
@@ -158,7 +165,7 @@ class DataController extends Controller
   }
 
   public function inputAlphaNegatif(){
-    $data   = $this->topsis->alpha('minimal');
+    $data   = $this->topsis->alphaProses('minimal');
 
     $this->inputPembantu($data,'alpha','negatif');
 
@@ -168,7 +175,7 @@ class DataController extends Controller
   public function inputDeltaPositif(){
     $jenis  = 'positif';
 
-    $data   = $this->topsis->delta($jenis);
+    $data   = $this->topsis->deltaProses($jenis);
     $this->inputPembantu($data,'delta',$jenis);
 
     return redirect()->route('topsis.input.deltaNegatif');

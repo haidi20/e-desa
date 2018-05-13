@@ -17,7 +17,6 @@ class Logika {
 
   public function peringkatProses(){
     $alternatif = Hasil::groupBy('alternatif_id')->get();
-    $jumlah = [];
     $x      = [];
 
     foreach ($alternatif as $index => $item) {

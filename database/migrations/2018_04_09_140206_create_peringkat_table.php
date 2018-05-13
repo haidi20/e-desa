@@ -17,6 +17,7 @@ class CreatePeringkatTable extends Migration
           $table->increments('id');
           $table->integer('alternatif_id')->unsigned();
           $table->double('nilai')->default(0);
+          $table->string('jenis')->nullable();
           $table->double('peringkat')->default(0);
           $table->timestamps();
         });

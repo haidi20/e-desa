@@ -14,22 +14,44 @@ class Topsis {
     $this->alternatif   = Alternatif::orderBy('id')->get();
   }
 
-  public function delta($jenis){
-    $alphaPositif = Pembantu::formatJenis('alpha',$jenis)->pluck('nilai');
+  public function peringkat(){
+    $x      = [];
 
     foreach ($this->alternatif as $index => $item) {
-      $terbobot         = Kinerja::where('jenis','terbobot')->where('alternatif_id',$item->id)->pluck('nilai');
-      $hasil[$item->id] = proses_delta($terbobot,$alphaPositif);
+      $delta  = Pembantu::formatJenis('delta')
+                        ->where('alternatif_id',$item->id)
+                        ->pluck('nilai');
+
+      // peringkat = menjumlahkan delta plus dan delta min pada topsis
+      $peringkat = proses_peringkat_topsis($delta);
+
+      $x[]   = [
+        'nilai' => $peringkat,
+        'alternatif' => $item->id
+      ];
+    }
+
+    $hasil = proses_pengurutan($x);
+
+    return $hasil ;
+  }
+
+  public function alphaProses($maksmin){
+    $hasil = [];
+
+    foreach ($this->kreteria as $index => $item) {
+      $hasil[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),$maksmin);
     }
 
     return $hasil;
   }
 
-  public function alpha($maksmin){
-    $hasil = [];
+  public function deltaProses($jenis){
+    $alphaPositif = Pembantu::formatJenis('alpha',$jenis)->pluck('nilai');
 
-    foreach ($this->kreteria as $index => $item) {
-      $hasil[$item->id] = nilai_maksmin(Kinerja::where('kreteria_id',$item->id)->get(),$maksmin);
+    foreach ($this->alternatif as $index => $item) {
+      $terbobot         = Kinerja::where('jenis','terbobot')->where('alternatif_id',$item->id)->pluck('nilai');
+      $hasil[$item->id] = proses_delta($terbobot,$alphaPositif);
     }
 
     return $hasil;

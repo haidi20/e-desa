@@ -15,7 +15,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ukuran-huruf">
-        <li class="{{session()->get('aktif') == 'dashboard'?'active':''}}"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="{{session()->get('aktif') == 'dashboard'?'active':''}}"><a href="{{route('dashboard')}}" style="font-size:25px">Dashboard</a></li>
         <li class="dropdown {{session()->get('aktiff') == 'dasar'?'active':''}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Data Dasar <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -36,6 +36,7 @@
               <li class="{{session()->get('aktif') == 'D'?'active':''}}"><a href="{{route('topsis.pembantu.delta')}}">Table D</a></li>
             </ul>
           </li>
+          <li class={{session()->get('aktif') == 'peringkat'?'active':''}}> <a href="{{route('topsis.peringkat.index')}}">Peringkat</a></li>
         @endif
         @if (\Auth::user()->nama == 'saw')
           <li class="{{session()->get('aktif') == 'normalisasi'?'active':''}}"><a href="{{route('normalisasi.index')}}">Normalisasi</a></li>

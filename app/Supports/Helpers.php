@@ -1,6 +1,16 @@
 <?php
 
 // mulai perhitungan untuk topsis
+
+if ( ! function_exists('proses_peringkat_topsis') )
+{
+  function proses_peringkat_topsis($jumlah){
+    $hasil = $jumlah[1] / ($jumlah[0] + $jumlah[1]);
+
+    return number_format($hasil,4) ;
+  }
+}
+
 if ( ! function_exists('proses_delta') )
 {
   function proses_delta($terbobot,$alphaPositif){
@@ -50,6 +60,7 @@ if ( ! function_exists('proses_pangkat') )
     return $nilaii ;
   }
 }
+
 // akhir perhitungan untuk topsis
 
 if ( ! function_exists('proses_pengurutan') )
