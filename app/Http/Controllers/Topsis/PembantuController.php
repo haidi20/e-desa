@@ -19,9 +19,9 @@ class PembantuController extends Controller
       session()->put('aktif','A');
       session()->put('aktiff','pembantu');
 
-      $pembantu = Pembantu::groupBy('kreteria_id')->kondisiJenis('alpha')->get();
-      $positif  = Pembantu::kondisi('alpha','positif')->pluck('nilai');
-      $negatif  = Pembantu::kondisi('alpha','negatif')->pluck('nilai');
+      $pembantu = Pembantu::groupBy('kreteria_id')->formatJenis('alpha')->get();
+      $positif  = Pembantu::formatJenis('alpha','positif')->pluck('nilai');
+      $negatif  = Pembantu::formatJenis('alpha','negatif')->pluck('nilai');
 
       return view('pembantu.alpha',compact(
           'pembantu','positif','negatif'
@@ -32,6 +32,12 @@ class PembantuController extends Controller
       session()->put('aktif','D');
       session()->put('aktiff','pembantu');
 
-      
+      $pembantu = Pembantu::GroupBy('alternatif_id')->formatJenis('delta')->get();
+      $positif  = Pembantu::formatJenis('delta','positif')->pluck('nilai');
+      $negatif  = Pembantu::formatJenis('delta','negatif')->pluck('nilai');
+
+      return view('pembantu.delta',compact(
+        'pembantu','positif','negatif'
+      ));
     }
 }

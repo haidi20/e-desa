@@ -27,7 +27,7 @@
             @foreach ($pembantu as $index => $item)
               <tr>
                 <td>{{$index + 1}}</td>
-                <td>{{$item->kreteria->kode}}</td>
+                <td>{{$item->alternatif->nama}}</td>
                 <td>{{$positif[$index]}}</td>
                 <td>{{$negatif[$index]}}</td>
               </tr>

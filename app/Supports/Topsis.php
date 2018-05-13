@@ -15,7 +15,7 @@ class Topsis {
   }
 
   public function delta($jenis){
-    $alphaPositif = Pembantu::kondisi('alpha',$jenis)->pluck('nilai');
+    $alphaPositif = Pembantu::formatJenis('alpha',$jenis)->pluck('nilai');
 
     foreach ($this->alternatif as $index => $item) {
       $terbobot         = Kinerja::where('jenis','terbobot')->where('alternatif_id',$item->id)->pluck('nilai');

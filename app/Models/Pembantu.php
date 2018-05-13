@@ -14,13 +14,20 @@ class Pembantu extends Model
       return $this->belongsTo('App\Models\Kreteria');
     }
 
-    public function scopeKondisiJenis($query,$format){
-      $query->where('format',$format);
+    public function alternatif(){
+      return $this->belongsTo('App\Models\Alternatif');
     }
 
-    public function scopeKondisi($query,$format,$jenis){
-      $query->where('format',$format)
-            ->where('jenis',$jenis);
-
+    public function scopeFormatJenis($query,$format = null,$jenis = null){
+      if ($format) {
+        $query->where('format',$format);
+      }
+      if ($jenis) {
+        $query->where('jenis',$jenis);
+      }
     }
 }
+
+//note
+// format = alpha or delta
+// jenis  = positif or negatif
