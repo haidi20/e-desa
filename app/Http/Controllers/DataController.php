@@ -23,11 +23,9 @@ class DataController extends Controller
 
   public function index(){
     $this->inputNormalisasi();
+    $this->inputKinerja();
 
-    if ($this->jenis('nama') == 'saw') {
-      $this->inputKinerja();
-    }elseif($this->jenis('nama') == 'topsis') {
-      $this->inputKinerja();
+    if($this->jenis('nama') == 'topsis') {
       $this->inputAlphaPositif();
       $this->inputAlphaNegatif();
       $this->inputDeltaPositif();
