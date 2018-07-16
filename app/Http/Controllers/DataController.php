@@ -22,7 +22,7 @@ class DataController extends Controller
   }
 
   public function index(){
-    $this->inputNormalisasi();
+     $this->inputNormalisasi();
     $this->inputKinerja();
 
     if($this->jenis('nama') == 'topsis') {
@@ -81,6 +81,8 @@ class DataController extends Controller
     }elseif($this->jenis('nama') == 'topsis'){
       $normalisasiProses  = $this->topsis->normalisasiProses();
     }
+
+    // return $normalisasiProses;
 
     foreach ($normalisasiProses as $index => $item) {
       foreach ($item as $key => $value) {

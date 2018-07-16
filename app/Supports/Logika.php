@@ -49,21 +49,26 @@ class Logika {
   }
 
   public function normalisasiProses(){
-    $ciMaks         = [];
+    $ciMaksMin      = [];
     $ciNormalisasi  = [];
 
     foreach ($this->kreteria as $index => $item) {
       $hasilNilai     = Hasil::where('kreteria_id',$item->id)->get();
       $hasilNilaiKode = Hasil::kreteriaAlternatif($item->id)->get();
 
-      $ciMaks[] = [
+      $attribute = kondisi_attribute($hasilNilaiKode);
+
+      $ciMaksMin[] = [
         'kreteria'  => $item->id,
-        'nilai' => nilai_maksmin($hasilNilai,'maksimal')
+        // variable attribute untuk menentukan kondisi nilai maks atau min
+        'nilai'     => nilai_maksmin($hasilNilai,$attribute),
+        'attribute' => $attribute
       ];
-      $ciNormalisasi[] = proses_normalisasi($ciMaks,$hasilNilaiKode) ;
+
+      $ciNormalisasi[] = proses_normalisasi($ciMaksMin,$hasilNilaiKode) ;
     }
 
-    return $ciNormalisasi ;
+    return $ciNormalisasi;
   }
 
 // memunculkan data normalisasi untuk jenis SAW dan TOPSIS

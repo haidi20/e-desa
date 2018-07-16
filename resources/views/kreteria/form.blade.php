@@ -37,7 +37,11 @@
             <div class="col-md">
               <div class="form-group">
                 <label for="attribute">Attribute</label>
-                <input type="text" name="attribute" id="attribute" class="form-control" value="{{old('attribute')}}">
+                <select name="attribute" id="attribute" class="form-control">
+                  <option value="">Pilih Attribute</option>
+                  <option value="Benefit" {{old('attribute') == 'Benefit'? 'selected':''}}>Benefit</option>
+                  <option value="Cost" {{old('attribute') == 'Cost'?'selected':''}}>Cost</option>
+                </select>
               </div>
             </div>
           </div>

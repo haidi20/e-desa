@@ -63,6 +63,22 @@ if ( ! function_exists('proses_pangkat') )
 
 // akhir perhitungan untuk topsis
 
+if ( ! function_exists('kondisi_attribute') )
+{
+  function kondisi_attribute($attribute){
+
+    for ($i=0; $i < count($attribute) ; $i++) {
+      if ($attribute[$i]->attribute == 'Benefit') {
+        $nilai = 'maksimal';
+      }else{
+        $nilai = 'minimal';
+      }
+    }
+
+    return $nilai;
+  }
+}
+
 if ( ! function_exists('proses_pengurutan') )
 {
   function proses_pengurutan($x){
@@ -113,7 +129,7 @@ if ( ! function_exists('proses_pengalian_bobot') )
 
 if ( ! function_exists('proses_normalisasi') )
 {
-  function proses_normalisasi($maks,$hasil){
+  function proses_normalisasi($ciMaksMin,$hasil){
     $hasill = [];
 
     foreach ($hasil as $index => $item) {
@@ -121,20 +137,21 @@ if ( ! function_exists('proses_normalisasi') )
       $alternatif = $hasil[$index]['alternatif_id'];
       $kreteriaHasil = $hasil[$index]['kreteria_id'] ;
 
-      foreach ($maks as $key => $value) {
-        $maksimal = $value['nilai'] ;
+      foreach ($ciMaksMin as $key => $value) {
+        $nilaiMaksMin = $value['nilai'] ;
+        $attribute = $value['attribute'];
         $kreteriaMaks = $value['kreteria'];
 
         if ($kreteriaHasil == $kreteriaMaks) {
-          if ($nilai != 0 || $nilai != null) {
-            $nilai = $nilai / $maksimal ;
+          if ($attribute == 'maksimal') {
+            $jawaban = $nilai / $nilaiMaksMin;
           }else{
-            $nilai = 0;
+            $jawaban = $nilaiMaksMin / $nilai;
           }
           $hasill[$alternatif] = [
             'kreteria' => $kreteriaHasil,
             'alternatif' => $alternatif,
-            'nilai' => number_format($nilai,4)
+            'nilai' => number_format($jawaban,4)
           ] ;
         }
       }
@@ -149,12 +166,16 @@ if ( ! function_exists('nilai_maksmin') )
     function nilai_maksmin($nilai,$kondisi){
       $hasil = [];
 
-      foreach ($nilai as $index => $item) {
-        if ($item->nilai != 0) {
-          $hasil[] = $item->nilai ;
-        }else{
-          $hasil[] = 0;
+      if (!empty($nilai)) {
+        foreach ($nilai as $index => $item) {
+          if (!empty($item->nilai)) {
+            $hasil[] = $item->nilai ;
+          }else{
+            $hasil[] = 0;
+          }
         }
+      }else{
+        $hasil[] = 0;
       }
 
       if ($kondisi == 'maksimal') {
