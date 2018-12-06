@@ -1,14 +1,5 @@
 @extends('_layouts.default')
 
-@section('script-top')
-<style type="text/css">
-.forget-password{
-  margin-right: 10px;
-  cursor:pointer;
-}
-</style>
-@endsection
-
 @section('konten')
   <div class="container">
     <div class="row">
@@ -18,13 +9,12 @@
             {{-- <form class="form-signin" action="{{route('login')}}" method="post"> --}}
             <form class="form-signin" action="#" method="post">
               {{ csrf_field() }}
-              <input type="text" name="email" class="form-control" placeholder="email" required autofocus>
-              <input type="password" name="password" class="form-control" placeholder="Password" required>
+              <input type="text" name="email" class="form-control" placeholder="Alamat Email" required autofocus>
+              <h5>Tidak ada akun dengan alamat email yang anda maksud</h5>
               <button class="btn btn-lg btn-primary btn-block" type="submit">
                   Oke
               </button>
             </form>
-              <h6 align="right" class="forget-password">Lupa Kata Sandi ? <a href="{{url('password/reset')}}" align="right"> Klik di sini</a></h6>
           </div>
         </div>
     </div>

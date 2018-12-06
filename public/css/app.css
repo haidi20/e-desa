@@ -8,6 +8,13 @@
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
+/* custom */
+.font-header{
+  font-size: 20px;
+}
+
+/* end custom */
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -8380,7 +8387,7 @@ button.close {
 }
 
 .batas-atas {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .form-signin {
