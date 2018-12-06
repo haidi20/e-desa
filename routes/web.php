@@ -4,12 +4,15 @@ Route::get('/',function(){
   return redirect()->route('login');
 });
 // Route::group(['middleware' => 'auth'],function(){
-  Route::get('dashboard',function(){
+  Route::get('dashboard', function(){
     session()->put('aktif','dashboard');
     session()->put('aktiff','');
     return view('dashboard.index');
   })->name('dashboard');
 // });
+  Route::get('detail', function(){
+  	return view('dashboard.detail');
+  });
 
   Route::get('pengaturan', 'PengaturanController@index');
 

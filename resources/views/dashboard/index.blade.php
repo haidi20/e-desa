@@ -1,5 +1,14 @@
 @extends('_layouts.default')
 
+@section('script-top')
+	<style>
+		a:link, a:visited {
+			color:#0d2244;
+			text-decoration: none;
+		}
+	</style>
+@endsection
+
 @section('konten')
   <div class="container">
     <div class="row">
@@ -36,24 +45,28 @@
         <div class="col-md-8">
         	<div class="row">
         		<div class="col-md-12">
-        			<div class="jumbotron">
-		        		<h3>Nama Perusahaan</h3>
-		        		<h6>nama Bidang | Kota Lowongan | Tanggal</h6> <br>
-		        		<p>
-		        			Penjelasan Lowongan
-		        		</p>
-		        	</div>
+        			<a href="{{url('detail')}}" >
+	        			<div class="jumbotron">
+			        		<h3>Nama Perusahaan</h3>
+			        		<h6>Nama Bidang | Kota Lowongan | Tanggal</h6> <br>
+			        		<p>
+			        			Penjelasan Lowongan
+			        		</p>
+			        	</div>
+			        </a>
         		</div>
         	</div>
         	<div class="row">
         		<div class="col-md-12">
-        			<div class="jumbotron">
-		        		<h3>Nama Perusahaan</h3>
-		        		<h6>nama Bidang | Kota Lowongan | Tanggal</h6> <br>
-		        		<p>
-		        			Penjelasan Lowongan
-		        		</p>
-		        	</div>
+        			<a href="{{url('detail')}}" >
+	        			<div class="jumbotron">
+			        		<h3>Nama Perusahaan</h3>
+			        		<h6>nama Bidang | Kota Lowongan | Tanggal</h6> <br>
+			        		<p>
+			        			Penjelasan Lowongan
+			        		</p>
+			        	</div>
+			        </a>
         		</div>
         	</div>
         </div>
