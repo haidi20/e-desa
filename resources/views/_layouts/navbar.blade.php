@@ -24,7 +24,8 @@
           <a href="#" class="dropdown-toggle font-header" data-toggle="dropdown" role="button" aria-expanded="false">Pengguna <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{url('pengaturan')}}">Pengaturan</a></li>
-            <li><a href="#">Biodata</a></li>
+            <li><a href="{{url('biodata')}}">Biodata</a></li>
+            <li><a href="{{route('lowongan.index')}}">Lowongan</a></li>
           </ul>
         </li>
         <li>
