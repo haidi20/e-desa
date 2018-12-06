@@ -13,8 +13,12 @@ Route::get('/',function(){
   Route::get('detail', function(){
   	return view('dashboard.detail');
   });
-
   Route::get('pengaturan', 'PengaturanController@index');
+
+  // Route::resource('biodata', 'BiodataController');
+  Route::get('biodata/create', function(){
+  	return view('pengguna.form-biodata');
+  });
 
 //auth laravel
 Auth::routes();

@@ -16,7 +16,7 @@
           <div class="account-wall">
             <h2 align="center">Registerasi</h2>
             {{-- <form class="form-signin" action="{{route('login')}}" method="post"> --}}
-            <form class="form-signin" action="#" method="post">
+            <form class="form-signin" action="{{url('biodata/create')}}" method="get">
               {{ csrf_field() }}
               <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
               <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
