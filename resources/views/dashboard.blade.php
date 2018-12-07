@@ -1,6 +1,6 @@
-@extends('_layout.default')
+@extends('_layouts.default')
 
-@section('script-bottom')
+@section('content')
 <div class="content-body">
 	<div class="row">
 		<div class="col-md-12">

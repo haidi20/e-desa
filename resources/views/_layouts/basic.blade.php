@@ -23,13 +23,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  @include('_layout.script-top')
+  @include('_layouts.script-top')
   @yield('script-top')
     
 </head>
 
   @yield('basic-content')
 
-  @include('_layout.script-bottom')
+  @include('_layouts.script-bottom')
   @yield('script-bottom')
 </html>
