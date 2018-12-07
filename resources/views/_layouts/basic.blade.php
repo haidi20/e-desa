@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="csrf-token">
-    <title>Standar Pelayanan Minimal</title>
-    <link rel="stylesheet" href="{{mix('css/app.css')}}">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    @yield('script-top')
-  </head>
-  <body>
-    <div id="app">
-      @yield('tubuh')
-    </div>
-    <script>
-      var Laravel = {
-        csrfToken: '{{ csrf_token() }}'
-      }
-    </script>
-    <script src="{{mix('js/app.js')}}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script>
-    $( function() {
-      $( "#datepicker" ).datepicker();
-      $('#select2').select2();
-    } );
-    </script>
-    @yield('script-bottom')
-  </body>
+<html lang="en" data-textdirection="LTR" class="loading">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+  <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+  <meta name="author" content="PIXINVENT">
+  <title>DESA</title>
+  {{-- 
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('robust/app-assets/images/ico/apple-icon-60.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('robust/app-assets/images/ico/apple-icon-76.png') }}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('robust/app-assets/images/ico/apple-icon-120.png') }}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('robust/app-assets/images/ico/apple-icon-152.png') }}"> 
+  --}}
+  {{-- 
+  <link rel="apple-touch-icon" sizes="30x30" href="{{ asset('img/png/logo-icon-small.png') }}"> 
+  <link rel="shortcut icon" type="image/png" href="{{ asset('img/png/logo-icon-small.png') }}"> 
+  --}}
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+  @include('_layout.script-top')
+  @yield('script-top')
+    
+</head>
+
+  @yield('basic-content')
+
+  @include('_layout.script-bottom')
+  @yield('script-bottom')
 </html>
