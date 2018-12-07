@@ -7,26 +7,29 @@
 				<i data-toggle="tooltip" data-placement="right" data-original-title="Main Menu" class="icon-ellipsis icon-ellipsis"></i>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="menu-item"><i class="icon-home3"></i> Dashboard
+				<a href="{{url('/')}}" class="menu-item"><i class="icon-home3"></i> Dashboard
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
-			</li>
-			<li class="navigation-header">
-				<span data-i18n="nav.category.layouts">temp</span>
 			</li>
 			<li class="nav-item">
 				<a href="javascript:;" class="menu-item"><i class="icon-database"></i> Master</a>
 				<ul class="menu-content">
 					<li class="nav-item">
-						<a href="javascript:;" class="menu-item">Parameter</a>
-						<ul class="menu-content">
+						<a href="{{url('penduduk')}}" class="menu-item">Penduduk</a>
+						{{-- <ul class="menu-content">
 							<li >
 								<a href="#" class="menu-item">Jenis</a>
 							</li>
 							<li>
 								<a href="#" class="menu-item">Pengujian</a>
 							</li>
-						</ul>
+						</ul> --}}
+					</li>
+					<li class="nav-item">
+						<a href="javascript:;" class="menu-item">Dusun</a>
+					</li>
+					<li class="nav-item">
+						<a href="javascript:;" class="menu-item">Kartu Keluarga</a>
 					</li>
 					
 					<!-- <li><a href="#" data-i18n="nav.templates.vert.main" class="menu-item">Vertical</a>
@@ -36,6 +39,26 @@
 						</ul>
 					</li> -->
 				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="menu-item"><i class="icon-flag4"></i> Kematian
+					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="menu-item"><i class="icon-android-add"></i> Kelahiran
+					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="menu-item"><i class="icon-android-clipboard"></i> Mutasi
+					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="menu-item"><i class="icon-android-drafts"></i> Surat
+					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
+				</a>
 			</li>
 		</ul>
 	</div>
