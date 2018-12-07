@@ -19,16 +19,16 @@
 <!-- /build-->
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/raphael-min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/morris.min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/chart.min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/extensions/moment.min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/extensions/underscore-min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/extensions/clndr.min.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/charts/echarts/echarts.js')}}"> </script> --}}
-{{-- <script src="{{asset('robust/app-assets/vendors/js/extensions/unslider-min.js')}}"> </script> --}}
+<script src="{{asset('robust/app-assets/vendors/js/charts/raphael-min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/charts/morris.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/charts/chart.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/extensions/moment.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/extensions/underscore-min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/extensions/clndr.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/charts/echarts/echarts.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/extensions/unslider-min.js')}}"> </script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN ROBUST JS-->
 <!-- build:js app-assets/js/app.min.js -->
@@ -39,14 +39,6 @@
 <!-- END ROBUST JS-->
 
 <script>
-history.pushState(null, null, document.URL);
-window.addEventListener('popstate', function () {
-    history.pushState(null, null, document.URL);
-});
-
-/*if('{{ Auth::user() && !session()->get('group') }}'){
-    $('#group_session').modal('show');
-}*/
 
 function remove(id, action='delete', message='Anda yakin akan menghapus data ini?')
 {

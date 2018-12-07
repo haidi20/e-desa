@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/sliders/slick/slick.css')}}">
 <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/extensions/pace.css')}}">
 <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css')}}">
-{{-- <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/charts/morris.css')}}"> --}}
+<link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/charts/morris.css')}}">
 <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/extensions/unslider.css')}}">
 <link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/weather-icons/climacons.min.css')}}">
 <!-- END VENDOR CSS-->

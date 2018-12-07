@@ -4,50 +4,171 @@
 <div class="content-body">
 	<div class="row">
 		<div class="col-md-12">
+            <div class="card-header">
+                <h3 class="card-title">Dashboard</h3>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        {{-- <li><a data-action="collapse"><i class="icon-minus4"></i></a></li> --}}
+                        {{-- <li><a data-action="expand"><i class="icon-expand2"></i></a></li> --}}
+                    </ul>
+                </div>
+            </div>
 			<div class="card">
 				<div class="card-body">
 					<div class="card-block">
-						<div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">Penduduk</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">25</span>
+                        <!-- start row -->
+					    <div class="row">
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-ios-people cyan font-large-3 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Penduduk</h4>
+                                                    {{-- <span>Monthly blog posts</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>100</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block"></span>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-head teal font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Kepala Keluarga</h4>
+                                                    {{-- <span>Monthly blog comments</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>50</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">Kematian</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">185</span>
+                        <!-- end row -->
+                        <!-- start row -->
+                        <div class="row">
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-flag4 cyan font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Warga Kematian</h4>
+                                                    {{-- <span>Monthly blog posts</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>22</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block"></span>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-android-add teal font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Warga Kelahiran</h4>
+                                                    {{-- <span>Monthly blog comments</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>30</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 border-right-grey border-right-lighten-3 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">Kelahiran</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">64</span>
+                        <!-- end row -->
+                        <!-- start row -->
+                        <div class="row">
+                            <div class="col-xl-4 col-md-12">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-map cyan font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Dusun</h4>
+                                                    {{-- <span>Monthly blog posts</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>5</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block"></span>
-                                {{-- <span class="block"><i class="icon-arrow-down4 deep-orange accent-3"></i></span> --}}
+                            <div class="col-xl-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-loop teal font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Mutasi</h4>
+                                                    {{-- <span>Monthly blog comments</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>6</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-android-drafts teal font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Surat Keluar</h4>
+                                                    {{-- <span>Monthly blog comments</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>10</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-12 clearfix">
-                            <div class="float-xs-left pl-2">
-                                <span class="grey darken-1 block">Surat</span>
-                                <span class="font-large-3 line-height-1 text-bold-300">22.3</span>
-                            </div>
-                            <div class="float-xs-left mt-2">
-                                <span class="grey darken-1 block"></span>
-                                {{-- <span class="block"><i class="icon-arrow-up4 success"></i></span> --}}
-                            </div>
-                        </div>
-                    </div>
-					
+                        <!-- end row -->
 					</div>
 				</div>
 			</div>
