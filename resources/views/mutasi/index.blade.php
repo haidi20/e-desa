@@ -7,7 +7,7 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{url('penduduk/create')}}" class="btn btn-primary float-md-right mt-0">
+            <a href="{{url('mutasi/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
         </div>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card mb-0">
                 <div class="card-header">
-                    <h4 class="card-title">Daftar Penduduk</h4>
+                    <h4 class="card-title">Daftar Mutasi</h4>
                     <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -76,19 +76,11 @@
                             <!-- <thead class="bg-lighten"> -->
                                 <tr>
                                     <th width="20">No.</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Tempat Lahir</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Nama Dusun</th>
-                                    <th>RT / RW</th>
-                                    <th>Kelurahan</th>
-                                    <th>Kecamatan</th>
-                                    <th>Agama</th>
-                                    <th>Status</th>
-                                    <th>Pekerjaan</th>
-                                    <th>Kewarganegaraan</th>
+                                    <th>Nama Penduduk</th>
+                                    <th>Alamat Sebelum</th>
+                                    <th>Alamat Tujuan</th>
+                                    <th>status Mutasi</th>
+                                    <th>Alasan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
                                     <th width="180" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}

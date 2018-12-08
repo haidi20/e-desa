@@ -4,9 +4,13 @@ Route::get('/',function(){
   return view('dashboard');
 });
 
-Route::get('penduduk', function(){
-  return view('penduduk.index');
-});
+Route::resource('penduduk', 'PendudukController');
+Route::resource('dusun', 'DusunController');
+Route::resource('kartukeluarga', 'KartuKeluargaController');
+Route::resource('kematian', 'KematianController');
+Route::resource('kelahiran', 'KelahiranController');
+Route::resource('mutasi', 'MutasiController');
+Route::resource('surat', 'SuratController');
 
 //auth laravel
 // Auth::routes();

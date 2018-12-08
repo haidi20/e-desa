@@ -26,10 +26,10 @@
 						</ul> --}}
 					</li>
 					<li class="nav-item">
-						<a href="javascript:;" class="menu-item">Dusun</a>
+						<a href="{{url('dusun')}}" class="menu-item">Dusun</a>
 					</li>
 					<li class="nav-item">
-						<a href="javascript:;" class="menu-item">Kartu Keluarga</a>
+						<a href="{{url('kartukeluarga')}}" class="menu-item">Kartu Keluarga</a>
 					</li>
 					
 					<!-- <li><a href="#" data-i18n="nav.templates.vert.main" class="menu-item">Vertical</a>
@@ -41,22 +41,22 @@
 				</ul>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="menu-item"><i class="icon-flag4"></i> Kematian
+				<a href="{{url('kematian')}}" class="menu-item"><i class="icon-flag4"></i> Kematian
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="menu-item"><i class="icon-android-add"></i> Kelahiran
+				<a href="{{url('kelahiran')}}" class="menu-item"><i class="icon-android-add"></i> Kelahiran
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="menu-item"><i class="icon-android-clipboard"></i> Mutasi
+				<a href="{{url('mutasi')}}" class="menu-item"><i class="icon-android-clipboard"></i> Mutasi
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="menu-item"><i class="icon-android-drafts"></i> Surat
+				<a href="{{url('surat')}}" class="menu-item"><i class="icon-android-drafts"></i> Surat
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>
