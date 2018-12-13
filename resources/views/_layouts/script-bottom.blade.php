@@ -35,6 +35,7 @@
 <script src="{{asset('robust/app-assets/js/core/app-menu.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/js/core/app.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/js/scripts/ui/fullscreenSearch.min.js')}}"> </script>
+<script src="{{asset('js/laravel-method.js')}}"> </script>
 <!-- /build-->
 <!-- END ROBUST JS-->
 

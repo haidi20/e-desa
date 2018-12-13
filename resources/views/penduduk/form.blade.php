@@ -40,6 +40,9 @@
 					<div class="card-block">
 
 						{{-- {!! Form::open(['class' => 'form form-horizontal', 'novalidate']) !!} --}}
+						<form action="{{$action}}" method="post" class="form form-hotizontal">
+							<input type="hidden" name="_method" value="{{$method}}">
+          					{{ csrf_field() }}
 							<div class="form-body pt-1">
 
 								<div class="form-group row ">
@@ -69,31 +72,36 @@
 								<div class="form-group row ">
 									<label for="tanggal_lahir" class="col-md-2 label-control">Tanggal Lahir</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('tanggal_lahir') }}">
+										<input type="date" class="form-control" name="tanggal_lahir" required value="{{ old('tanggal_lahir') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
-								<div class="form-group row position-relative has-icon-left">
-									<label for="name" class="col-md-2 label-control">Jenis Kelamin</label>
+								<div class="form-group row position-relative">
+									<label for="jenis_kelamin" class="col-md-2 label-control">Jenis Kelamin</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="po_detail_id" required>
+										<select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
 											<option value="">Pilih Jenis Kelamin</option>
-											<option value="">Laki - Laki</option>
-											<option value="">Perempuan</option>
+											@foreach($jenis_kelamin as $item)
+												<option value="{{$item}}" {{terpilih($item, 'jenis_kelamin')}}>{{$item}}</option>
+											@endforeach
 										</select>
-										<div class="form-control-position">
+										{{-- <div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>
-			                            </div>
-										<div class="help-block font-small-3"></div>
+			                            </div> --}}
+										{{-- <div class="help-block font-small-3"></div> --}}
 									</div>
 								</div>
 
-								<div class="form-group row position-relative has-icon-left">
-									<label for="name" class="col-md-2 label-control">Nama Dusun</label>
+								<div class="form-group row position-relative">
+									<label for="dusun_id" class="col-md-2 label-control">Nama Dusun</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="po_detail_id" required>
+										<select class="form-control items" name="dusun_id" required>
 											<option value="">Pilih Nama Dusun</option>
+											{{-- @foreach($dusun as $index => $item)
+												<option value="{{$item->id}}" {{terpilih($item->id, 'dusun_id')}}>{{$item->nama}}</option>
+											@endforeach --}}
+											<option value="1" {{terpilih(1, 'dusun_id')}}>bojo</option>
 										</select>
 										<div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>
@@ -103,44 +111,45 @@
 								</div>
 
 								<div class="form-group row ">
-									<label for="tanggal_lahir" class="col-md-2 label-control">RT</label>
+									<label for="rt" class="col-md-2 label-control">RT</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('rt') }}">
+										<input type="text" class="form-control" name="rt" required value="{{ old('rt') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
 								<div class="form-group row ">
-									<label for="tanggal_lahir" class="col-md-2 label-control">RW</label>
+									<label for="rw" class="col-md-2 label-control">RW</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('rw') }}">
+										<input type="text" class="form-control" name="rw" required value="{{ old('rw') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
 								<div class="form-group row ">
-									<label for="tanggal_lahir" class="col-md-2 label-control">keluarahan</label>
+									<label for="kelurahan" class="col-md-2 label-control">keluarahan</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('keluarahan') }}">
+										<input type="text" class="form-control" name="kelurahan" required value="{{ old('kelurahan') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
 								<div class="form-group row ">
-									<label for="tanggal_lahir" class="col-md-2 label-control">kecamatan</label>
+									<label for="kecamatan" class="col-md-2 label-control">kecamatan</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('kecamatan') }}">
+										<input type="text" class="form-control" name="kecamatan" required value="{{ old('kecamatan') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
-								<div class="form-group row position-relative has-icon-left">
-									<label for="name" class="col-md-2 label-control">Agama</label>
+								<div class="form-group row position-relative">
+									<label for="agama" class="col-md-2 label-control">Agama</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="po_detail_id" required>
+										<select class="form-control items" name="agama" required>
 											<option value="">Pilih Agama</option>
-											<option value="">Islam</option>
-											<option value="">Kristen</option>
+											@foreach($agama as $item)
+												<option value="{{$item}}" {{terpilih($item, 'agama')}}>{{$item}}</option>
+											@endforeach
 										</select>
 										<div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>
@@ -149,13 +158,14 @@
 									</div>
 								</div>
 
-								<div class="form-group row position-relative has-icon-left">
-									<label for="name" class="col-md-2 label-control">Status</label>
+								<div class="form-group row position-relative">
+									<label for="status" class="col-md-2 label-control">Status</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="po_detail_id" required>
+										<select class="form-control items" name="status" required>
 											<option value="">Pilih Status</option>
-											<option value="">Menikah</option>
-											<option value="">Belum Menikah</option>
+											@foreach($status as $item)
+												<option value="{{$item}}" {{terpilih($item, 'status')}}>{{$item}}</option>
+											@endforeach
 										</select>
 										<div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>
@@ -165,25 +175,37 @@
 								</div>
 
 								<div class="form-group row ">
-									<label for="tanggal_lahir" class="col-md-2 label-control">Pekerjaan</label>
+									<label for="pekerjaan" class="col-md-2 label-control">Pekerjaan</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tanggal_lahir" required value="{{ old('pekerjaan') }}">
+										<input type="text" class="form-control" name="pekerjaan" required value="{{ old('pekerjaan') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
 
-								<div class="form-group row position-relative has-icon-left">
-									<label for="name" class="col-md-2 label-control">Kewarganegaraan</label>
+								<div class="form-group row position-relative">
+									<label for="kewarganegaraan" class="col-md-2 label-control">Kewarganegaraan</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="po_detail_id" required>
+										<select class="form-control items" name="kewarganegaraan" required>
 											<option value="">Pilih Kewarganegaraan</option>
-											<option value="">WNI</option>
-											<option value="">WNA</option>
+											@foreach($kewarganegaraan as $item)
+												<option value="{{$item}}" {{terpilih($item, 'kewarganegaraan')}}>{{$item}}</option>
+											@endforeach
 										</select>
 										<div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>
 			                            </div>
 										<div class="help-block font-small-3"></div>
+									</div>
+								</div>
+
+								<div class="form-group row position-relative">
+									<label class="col-md-2 label-control">Kepala Keluarga</label>
+									<div class="col-md-10">
+										<fieldset class="checkboxsas">
+						                {{-- <label> --}}
+						                        <input type="checkbox" name="kk_status[]" value="1" {{old('kk_status') ? 'checked' : ''}}>
+						      			{{-- </label> --}}
+						            	</fieldset>
 									</div>
 								</div>
 
@@ -195,6 +217,7 @@
 									</button>
 								</div>
 							</div>
+						</form>
 						{{-- {!! Form::close() !!} --}}
 
 					</div>

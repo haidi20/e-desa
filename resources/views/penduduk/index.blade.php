@@ -95,7 +95,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @forelse($penduduk as $index => $item)
+                                    <tr>
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{$item->nik}}</td>
+                                        <td>{{$item->nama}}</td>
+                                        <td>{{$item->tempat_lahir}}</td>
+                                        <td>{{$item->tanggal_lahir}}</td>
+                                        <td>{{$item->jenis_kelamin}}</td>
+                                        <td>{{$item->dusun_id}}</td>
+                                        <td>{{$item->rt}}/{{$item->rw}}</td>
+                                        <td>{{$item->kelurahan}}</td>
+                                        <td>{{$item->kecamatan}}</td>
+                                        <td>{{$item->agama}}</td>
+                                        <td>{{$item->status}}</td>
+                                        <td>{{$item->pekerjaan}}</td>
+                                        <td>{{$item->kewarganegaraan}}</td>
+                                        <td class="text-xs-center">
+                                            <a href="{{route('penduduk.edit',$item->id)}}" class="btn btn-sm btn-green">
+                                                <i class="icon-pencil3"></i> edit
+                                            </a>
+                                                <a href="{{ route('penduduk.destroy',$item->id)}}"
+                                                    data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                    class="btn btn-sm btn-danger" title="Hapus Data">
+                                                    <i class="icon-trash3"></i>
+                                                    Delete
+                                                </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="bg-info bg-lighten-4">
+                                        <td colspan="15">
+                                            <strong class="text-info"><center>Data Kosong</center></strong>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
