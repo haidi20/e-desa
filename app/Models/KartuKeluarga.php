@@ -6,5 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class KartuKeluarga extends Model
 {
-    protected $table = 'kartukeluarga'
+    protected $table = 'kartu_keluarga';
+
+    public function penduduk()
+    {
+    	return $this->belongsTo('App\Models\Penduduk');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany('App\Models\DetailKartuKeluarga', 'kartukeluarga_id', 'id');
+    }
+
+    public function getNamaPendudukAttribute()
+    {
+    	if($this->penduduk){
+    		return $this->penduduk->nama;
+    	}
+    }
 }

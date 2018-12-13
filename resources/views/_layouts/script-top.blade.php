@@ -28,6 +28,7 @@
 
 <link rel="stylesheet" href="{{asset('robust/app-assets/css/plugins/loaders/loaders.min.css')}}">
 <link rel="stylesheet" href="{{asset('robust/app-assets/css/core/colors/palette-loader.min.css')}}">
+<link rel="stylesheet" href="{{asset('robust/app-assets/vendors/css/forms/selects/select2.min.css')}}">
 
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" href="{{asset('robust/assets/css/style.css')}}">

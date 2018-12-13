@@ -84,7 +84,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @forelse($dusun as $index => $item)
+                                    <tr>
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{$item->nama}}</td>
+                                        <td>{{$item->alamat}}</td>
+                                        <td class="text-xs-center">
+                                            <a href="{{route('dusun.edit', $item->id)}}" class="btn btn-sm btn-green">
+                                                <i class="icon-pencil3"></i> edit
+                                            </a>
+                                            <a href="{{ route('dusun.destroy', $item->id)}}"
+                                                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                class="btn btn-sm btn-danger" title="Hapus Data">
+                                                <i class="icon-trash3"></i>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="bg-info bg-lighten-4">
+                                        <td colspan="4">
+                                            <strong class="text-info"><center>Data Kosong</center></strong>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

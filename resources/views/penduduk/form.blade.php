@@ -80,7 +80,7 @@
 								<div class="form-group row position-relative">
 									<label for="jenis_kelamin" class="col-md-2 label-control">Jenis Kelamin</label>
 									<div class="col-md-10">
-										<select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+										<select class="form-control select2" id="jenis_kelamin" name="jenis_kelamin" required>
 											<option value="">Pilih Jenis Kelamin</option>
 											@foreach($jenis_kelamin as $item)
 												<option value="{{$item}}" {{terpilih($item, 'jenis_kelamin')}}>{{$item}}</option>
@@ -98,10 +98,10 @@
 									<div class="col-md-10">
 										<select class="form-control items" name="dusun_id" required>
 											<option value="">Pilih Nama Dusun</option>
-											{{-- @foreach($dusun as $index => $item)
+											@foreach($dusun as $index => $item)
 												<option value="{{$item->id}}" {{terpilih($item->id, 'dusun_id')}}>{{$item->nama}}</option>
-											@endforeach --}}
-											<option value="1" {{terpilih(1, 'dusun_id')}}>bojo</option>
+											@endforeach
+											{{-- <option value="1" {{terpilih(1, 'dusun_id')}}>bojo</option> --}}
 										</select>
 										<div class="form-control-position">
 			                                <i class="icon-spinner2 spinner" id="spinner-item" style="display: none;"></i>

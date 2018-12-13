@@ -7,6 +7,7 @@ Route::get('/',function(){
 Route::resource('penduduk', 'PendudukController');
 Route::resource('dusun', 'DusunController');
 Route::resource('kartukeluarga', 'KartuKeluargaController');
+Route::resource('detailkartukeluarga', 'DetailKartuKeluargaController');
 Route::resource('kematian', 'KematianController');
 Route::resource('kelahiran', 'KelahiranController');
 Route::resource('mutasi', 'MutasiController');

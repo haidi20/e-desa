@@ -18,7 +18,7 @@
 
 <!-- /build-->
 <!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->{{-- 
 <script src="{{asset('robust/app-assets/vendors/js/charts/raphael-min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/vendors/js/charts/morris.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/vendors/js/charts/chart.min.js')}}"> </script>
@@ -28,13 +28,15 @@
 <script src="{{asset('robust/app-assets/vendors/js/extensions/underscore-min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/vendors/js/extensions/clndr.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/vendors/js/charts/echarts/echarts.js')}}"> </script>
-<script src="{{asset('robust/app-assets/vendors/js/extensions/unslider-min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/extensions/unslider-min.js')}}"> </script> --}}
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN ROBUST JS-->
 <!-- build:js app-assets/js/app.min.js -->
 <script src="{{asset('robust/app-assets/js/core/app-menu.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/js/core/app.min.js')}}"> </script>
 <script src="{{asset('robust/app-assets/js/scripts/ui/fullscreenSearch.min.js')}}"> </script>
+<script src="{{asset('robust/app-assets/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"> </script>
+<script src="{{asset('robust/app-assets/js/scripts/forms/select/form-select2.min.js')}}" type="text/javascript"> </script>
 <script src="{{asset('js/laravel-method.js')}}"> </script>
 <!-- /build-->
 <!-- END ROBUST JS-->

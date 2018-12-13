@@ -40,6 +40,9 @@
 					<div class="card-block">
 
 						{{-- {!! Form::open(['class' => 'form form-horizontal', 'novalidate']) !!} --}}
+						<form action="{{$action}}" method="post" class="form form-hotizontal">
+							<input type="hidden" name="_method" value="{{$method}}">
+          					{{ csrf_field() }}
 							<div class="form-body pt-1">
 
 								<div class="form-group row ">
@@ -66,6 +69,7 @@
 									</button>
 								</div>
 							</div>
+						</form>
 						{{-- {!! Form::close() !!} --}}
 
 					</div>

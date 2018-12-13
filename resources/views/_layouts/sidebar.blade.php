@@ -15,6 +15,9 @@
 				<a href="javascript:;" class="menu-item"><i class="icon-database"></i> Master</a>
 				<ul class="menu-content">
 					<li class="nav-item">
+						<a href="{{url('dusun')}}" class="menu-item">Dusun</a>
+					</li>
+					<li class="nav-item">
 						<a href="{{url('penduduk')}}" class="menu-item">Penduduk</a>
 						{{-- <ul class="menu-content">
 							<li >
@@ -24,9 +27,6 @@
 								<a href="#" class="menu-item">Pengujian</a>
 							</li>
 						</ul> --}}
-					</li>
-					<li class="nav-item">
-						<a href="{{url('dusun')}}" class="menu-item">Dusun</a>
 					</li>
 					<li class="nav-item">
 						<a href="{{url('kartukeluarga')}}" class="menu-item">Kartu Keluarga</a>

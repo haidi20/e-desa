@@ -90,7 +90,7 @@
                                     <th>Pekerjaan</th>
                                     <th>Kewarganegaraan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
-                                    <th width="180" class="text-xs-center">Actions</th>
+                                    <th width="" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
                                 </tr>
                             </thead>
@@ -103,7 +103,7 @@
                                         <td>{{$item->tempat_lahir}}</td>
                                         <td>{{$item->tanggal_lahir}}</td>
                                         <td>{{$item->jenis_kelamin}}</td>
-                                        <td>{{$item->dusun_id}}</td>
+                                        <td>{{$item->nama_dusun}}</td>
                                         <td>{{$item->rt}}/{{$item->rw}}</td>
                                         <td>{{$item->kelurahan}}</td>
                                         <td>{{$item->kecamatan}}</td>
@@ -115,12 +115,12 @@
                                             <a href="{{route('penduduk.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> edit
                                             </a>
-                                                <a href="{{ route('penduduk.destroy',$item->id)}}"
-                                                    data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
-                                                    class="btn btn-sm btn-danger" title="Hapus Data">
-                                                    <i class="icon-trash3"></i>
-                                                    Delete
-                                                </a>
+                                            <a href="{{ route('penduduk.destroy',$item->id)}}"
+                                                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                class="btn btn-sm btn-danger" title="Hapus Data">
+                                                <i class="icon-trash3"></i>
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
