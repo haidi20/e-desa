@@ -26,7 +26,7 @@ class DetailKartuKeluargaController extends Controller
 
     public function index()
     {
-    	$detailkartukeluarga = $this->detailkartukeluarga->where('kartukeluarga_id', request('kk'))->get();
+    	$detailkartukeluarga = $this->detailkartukeluarga->where('kartukeluarga_id', request('kk'))->paginate(10);
 
         // return $kartukeluarga->toSql();
 

@@ -18,7 +18,7 @@ class PendudukController extends Controller
 
     public function index()
     {
-    	$penduduk 	= $this->penduduk->get();
+    	$penduduk 	= $this->penduduk->paginate(10);
 
     	return view('penduduk.index', compact('penduduk'));
     }

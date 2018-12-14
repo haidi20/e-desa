@@ -139,11 +139,7 @@
 
             <div class="card-block pr-0">
                 <nav aria-label="Page navigation" class="text-xs-right">
-                    {{-- {!! $items->appends([
-                        'perpage' => request('perpage'),
-                        'by'      => request('by'),
-                        'q'       => request('q')
-                    ])->links() !!} --}}
+                    {!! $penduduk->links() !!}
                 </nav>
             </div>
         </div>

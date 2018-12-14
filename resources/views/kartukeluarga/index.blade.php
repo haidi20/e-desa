@@ -85,23 +85,25 @@
                             </thead>
                             <tbody>
                                 @forelse($kartukeluarga as $index => $item)
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{$item->nomor}}</td>
-                                    <td>{{$item->nama_penduduk}}</td>
-                                    <td class="text-xs-center">
-                                        <a href="{{route('detailkartukeluarga.index', ['kk' => $item->id])}}" class="btn btn-sm btn-blue">
-                                            <i class="icon-menu5"></i> Detail
-                                        </a>
-                                        <a href="{{route('kartukeluarga.edit',$item->id)}}" class="btn btn-sm btn-green">
-                                            <i class="icon-pencil3"></i> Edit
-                                        </a>
-                                        <a href="{{ route('kartukeluarga.destroy',$item->id)}}"
-                                            data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
-                                            class="btn btn-sm btn-danger" title="Hapus Data">
-                                            <i class="icon-trash3"></i>
-                                            Delete
-                                        </a>
-                                    </td>
+                                    <tr>
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{$item->nomor}}</td>
+                                        <td>{{$item->nama_penduduk}}</td>
+                                        <td class="text-xs-center">
+                                            <a href="{{route('detailkartukeluarga.index', ['kk' => $item->id])}}" class="btn btn-sm btn-blue">
+                                                <i class="icon-menu5"></i> Detail
+                                            </a>
+                                            <a href="{{route('kartukeluarga.edit',$item->id)}}" class="btn btn-sm btn-green">
+                                                <i class="icon-pencil3"></i> Edit
+                                            </a>
+                                            <a href="{{ route('kartukeluarga.destroy',$item->id)}}"
+                                                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                class="btn btn-sm btn-danger" title="Hapus Data">
+                                                <i class="icon-trash3"></i>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
                                 @empty
                                      <tr class="bg-info bg-lighten-4">
                                         <td colspan="4">
