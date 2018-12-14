@@ -84,7 +84,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @forelse($surat as $index => $item)
+                                    <tr>
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{$item->nama}}</td>
+                                        <td>{{$item->nomor}}</td>
+                                    </tr>
+                                @empty
+                                    <tr class="bg-info bg-lighten-4">
+                                        <td colspan="7">
+                                            <strong class="text-info"><center>Data Kosong</center></strong>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -94,11 +106,7 @@
 
             <div class="card-block pr-0">
                 <nav aria-label="Page navigation" class="text-xs-right">
-                    {{-- {!! $items->appends([
-                        'perpage' => request('perpage'),
-                        'by'      => request('by'),
-                        'q'       => request('q')
-                    ])->links() !!} --}}
+                    {!! $surat->links() !!}
                 </nav>
             </div>
         </div>

@@ -18,6 +18,7 @@ class CreateMutasisTable extends Migration
             $table->integer('penduduk_id')->unsigned();
             $table->string('alamat_pergi')->nullable();
             $table->string('alamat_datang')->nullable();
+            $table->string('status_mutasi')->nullable();
             $table->string('alasan')->nullable();
             $table->string('file')->nullable();
             $table->integer('persetujuan')->default(0);

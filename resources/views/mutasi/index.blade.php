@@ -29,43 +29,7 @@
                 </div>
                 {{-- <div class="card-body collapse in">
                     <div class="card-block pb-0">
-                        <form method="get">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="form-group mb-0">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group mb-0">
-                                        <label class="control-label">Total records : </label>
-                                        <div class="form-control" readonly><strong>{{ number_format_short($total_record) }}</strong></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group mb-0">
-                                        <label class="control-label">Search by : </label>
-                                        <select name="by" id="by" class="form-control">
-                                            <option value="name" {{ (request('by') == 'name') ? 'selected' : '' }}>Nama</option>
-                                            <option value="code" {{ (request('by') == 'code') ? 'selected' : '' }}>Nomor Barang</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <label class="control-label">Search box : </label>
-                                        <div class="input-group">
-                                            <input type="text" name="q" id="search" class="form-control" value="{{ request('q') }}" placeholder="Type here...">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="icon-search"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        
                     </div>
                 </div> --}}
                 <!-- <div class="card-body"> -->
@@ -75,7 +39,7 @@
                             <thead class="bg-primary bg-lighten text-white">
                             <!-- <thead class="bg-lighten"> -->
                                 <tr>
-                                    <th width="20">No.</th>
+                                    <th>No.</th>
                                     <th>Nama Penduduk</th>
                                     <th>Alamat Sebelum</th>
                                     <th>Alamat Tujuan</th>
@@ -87,7 +51,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @forelse($mutasi as $index => $item)
+                                    <tr>
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{$item->nama_penduduk}}</td>
+                                        <td>{{$item->alamat_datang}}</td>
+                                        <td>{{$item->alamat_pergi}}</td>
+                                        <td>{{$item->status_mutasi}}</td>
+                                        <td>{{$item->alasan}}</td>
+                                        <td class="text-xs-center">
+                                            <a href="{{route('mutasi.edit',$item->id)}}" class="btn btn-sm btn-green">
+                                                <i class="icon-pencil3"></i> Edit
+                                            </a>
+                                            <a href="{{ route('mutasi.destroy',$item->id)}}"
+                                                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                class="btn btn-sm btn-danger" title="Hapus Data">
+                                                <i class="icon-trash3"></i>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="bg-info bg-lighten-4">
+                                        <td colspan="7">
+                                            <strong class="text-info"><center>Data Kosong</center></strong>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -97,11 +87,7 @@
 
             <div class="card-block pr-0">
                 <nav aria-label="Page navigation" class="text-xs-right">
-                    {{-- {!! $items->appends([
-                        'perpage' => request('perpage'),
-                        'by'      => request('by'),
-                        'q'       => request('q')
-                    ])->links() !!} --}}
+                    {!! $mutasi->links() !!}
                 </nav>
             </div>
         </div>
