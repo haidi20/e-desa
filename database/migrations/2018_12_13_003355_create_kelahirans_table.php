@@ -17,10 +17,10 @@ class CreateKelahiransTable extends Migration
             $table->increments('id');
             $table->integer('penduduk_id')->unsigned();
             $table->string('nama')->nullable();
-            $table->string('tempat_lahir')->nullable();
+            $table->string('tempat')->nullable();
             $table->integer('anak_ke')->default(0);
             $table->string('jenis_kelamin')->nullable();
-            $table->date('tanggal_lahir')->nullable();
+            $table->date('tanggal')->nullable();
             $table->string('file')->nullable();
             $table->integer('persetujuan')->default(0);
             $table->timestamps();

@@ -51,7 +51,8 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{url('mutasi')}}" class="menu-item"><i class="icon-android-clipboard"></i> Mutasi
+				<a href="{{url('mutasi')}}" class="menu-item"><i class="icon-loop"></i> Mutasi
+
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>

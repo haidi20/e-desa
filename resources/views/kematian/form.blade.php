@@ -48,7 +48,7 @@
 								<div class="form-group row position-relative">
 									<label for="penduduk_id" class="col-md-2 label-control">NIK Penduduk</label>
 									<div class="col-md-10">
-										<select class="form-control items" name="penduduk_id" required>
+										<select class="form-control select2" name="penduduk_id" required>
 											<option value="">Pilih NIK Penduduk</option>
 											@foreach($penduduk as $index => $item)
 												<option value="{{$item->id}}" {{terpilih($item->id, 'penduduk_id')}}>{{$item->nik}} / {{$item->nama}}</option>
