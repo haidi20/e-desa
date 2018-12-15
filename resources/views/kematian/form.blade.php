@@ -85,13 +85,22 @@
 									</div>
 								</div>
 
-								<div class="form-group row ">
-									<label for="file" class="col-md-2 label-control">Masukkan File Berkas</label>
-									<div class="col-md-10">
-										<input type="file" class="form-control" name="file">
-										<div class="help-block font-small-3"></div>
+								@if(old('file'))
+									<div class="form-group row ">
+										<label for="file" class="col-md-2 label-control">Unduh Berkas</label>
+										<div class="col-md-10">
+											<a href="{{asset('storages')}}/{{old('file')}}" class="btn btn-md btn-success">Berkas</a>
+										</div>
 									</div>
-								</div>
+								@else
+									<div class="form-group row ">
+										<label for="file" class="col-md-2 label-control">Masukkan Berkas Pendukung</label>
+										<div class="col-md-10">
+											<input type="file" class="form-control" name="file">
+											<div class="help-block font-small-3"></div>
+										</div>
+									</div>
+								@endif
 
 								<hr>
 

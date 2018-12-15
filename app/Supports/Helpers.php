@@ -20,3 +20,10 @@ if( ! function_exists('format_tanggal') )
         return $year.'-'.$month.'-'.$day;
 	}
 }
+
+if( ! function_exists('tombol_berkas') )
+{
+	function tombol_berkas($item){
+		return $item == 1 ? '' : 'disabled' ;
+	}
+}

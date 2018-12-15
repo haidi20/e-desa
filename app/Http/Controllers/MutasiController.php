@@ -6,18 +6,25 @@ use Illuminate\Http\Request;
 
 use App\Models\Penduduk;
 use App\Models\Mutasi;
+use App\Models\Kematian;
+
+use App\Supports\FileManager;
 
 class MutasiController extends Controller
 {
 	public function __construct(
 								Request $request, 
 								Penduduk $penduduk,
-								Mutasi $mutasi
+								Mutasi $mutasi,
+                                Kematian $kematian,
+                                FileManager $filemanager
 							)
 	{
 		$this->penduduk 	= $penduduk;
 		$this->mutasi 		= $mutasi;
 		$this->request 		= $request;
+        $this->kematian     = $kematian;
+        $this->filemanager  = $filemanager;
 	}
 
     public function index()
@@ -49,7 +56,9 @@ class MutasiController extends Controller
             $method = 'POST';
         }
 
-       	$penduduk 		= $this->penduduk->get();
+       	$kematian       = $this->kematian->pluck('penduduk_id')->all();
+        $pindah         = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+        $penduduk       = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
        	$status_mutasi	= config('library.status_mutasi');
 
         return view('mutasi.form',compact(
@@ -85,6 +94,7 @@ class MutasiController extends Controller
         $mutasi->alamat_pergi	= request('alamat_pergi');
         $mutasi->status_mutasi	= request('status_mutasi');
         $mutasi->alasan			= request('alasan');
+        $mutasi->file         = $this->filemanager->uploadFile(request()->file('file'), $mutasi->file);
         $mutasi->save();
 
         return redirect()->route('mutasi.index');

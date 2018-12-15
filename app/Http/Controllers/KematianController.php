@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Penduduk;
 use App\Models\Kematian;
+use App\Models\Mutasi;
 
 use App\Supports\FileManager;
 
@@ -15,13 +16,15 @@ class KematianController extends Controller
 								Request $request, 
 								Penduduk $penduduk,
 								Kematian $kematian,
+                                Mutasi $mutasi,
                                 FileManager $filemanager
 							)
 	{
-		$this->penduduk 		= $penduduk;
-		$this->kematian 		= $kematian;
-		$this->request 			= $request;
-        $this->filemanager      = $filemanager;
+		$this->penduduk   = $penduduk;
+        $this->kematian   = $kematian;
+		$this->mutasi 	  = $mutasi;
+		$this->request 	  = $request;
+        $this->filemanager= $filemanager;
 	}
 
     public function index()
@@ -53,7 +56,9 @@ class KematianController extends Controller
             $method = 'POST';
         }
 
-       	$penduduk = $this->penduduk->get();
+       	$kematian       = $this->kematian->pluck('penduduk_id')->all();
+        $pindah         = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+        $penduduk       = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
 
         return view('kematian.form',compact(
         	'action', 'method', 'penduduk'
@@ -95,5 +100,14 @@ class KematianController extends Controller
     	$kematian->delete();
 
     	return redirect()->back();
+    }
+
+    public function persetujuan($id)
+    {
+        $kematian = $this->kematian->find($id);
+        $kematian->persetujuan = 1;
+        $kematian->save();
+
+        return redirect()->back();
     }
 }

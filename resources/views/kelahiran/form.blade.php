@@ -40,7 +40,7 @@
 					<div class="card-block">
 
 						{{-- {!! Form::open(['class' => 'form form-horizontal', 'novalidate']) !!} --}}
-						<form action="{{$action}}" method="post" class="form form-hotizontal">
+						<form action="{{$action}}" method="post" class="form form-hotizontal" enctype="multipart/form-data">
 							<input type="hidden" name="_method" value="{{$method}}">
           					{{ csrf_field() }}
 							<div class="form-body pt-1">
@@ -92,6 +92,23 @@
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
+
+								@if(old('file'))
+									<div class="form-group row ">
+										<label for="file" class="col-md-2 label-control">Unduh Berkas</label>
+										<div class="col-md-10">
+											<a href="{{asset('storages')}}/{{old('file')}}" class="btn btn-md btn-success">Berkas</a>
+										</div>
+									</div>
+								@else
+									<div class="form-group row ">
+										<label for="file" class="col-md-2 label-control">Masukkan Berkas Pendukung</label>
+										<div class="col-md-10">
+											<input type="file" class="form-control" name="file">
+											<div class="help-block font-small-3"></div>
+										</div>
+									</div>
+								@endif
 
 								<hr>
 

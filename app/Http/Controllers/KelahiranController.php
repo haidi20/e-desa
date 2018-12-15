@@ -6,18 +6,28 @@ use Illuminate\Http\Request;
 
 use App\Models\Kelahiran;
 use App\Models\Penduduk;
+use App\Models\Kematian;
+use App\Models\Mutasi;
+
+use App\Supports\FileManager;
 
 class KelahiranController extends Controller
 {
 	public function __construct(
 								Request $request, 
 								Penduduk $penduduk,
-								Kelahiran $kelahiran
+								Kelahiran $kelahiran,
+                                FileManager $filemanager,
+                                Kematian $kematian,
+                                Mutasi $mutasi
 							)
 	{
 		$this->penduduk 		= $penduduk;
 		$this->kelahiran 		= $kelahiran;
 		$this->request 			= $request;
+        $this->mutasi           = $mutasi;
+        $this->kematian         = $kematian;
+        $this->filemanager      = $filemanager;
 	}
 
     public function index()
@@ -49,7 +59,9 @@ class KelahiranController extends Controller
             $method = 'POST';
         }
 
-       	$penduduk 		= $this->penduduk->get();
+        $kematian       = $this->kematian->pluck('penduduk_id')->all();
+        $pindah         = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+       	$penduduk 		= $this->penduduk->tidakMuncul($kematian, $pindah)->get();
        	$jenis_kelamin	= config('library.jenis_kelamin');
 
         return view('kelahiran.form',compact(
@@ -84,6 +96,7 @@ class KelahiranController extends Controller
         $kelahiran->tempat			= request('tempat');
         $kelahiran->tanggal			= request('tanggal');
         $kelahiran->jenis_kelamin	= request('jenis_kelamin');
+        $kelahiran->file         = $this->filemanager->uploadFile(request()->file('file'), $kelahiran->file);
         $kelahiran->save();
 
         return redirect()->route('kelahiran.index');

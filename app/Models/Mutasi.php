@@ -13,6 +13,11 @@ class Mutasi extends Model
     	return $this->belongsTo('App\Models\Penduduk');
     }
 
+    public function scopePindah($query)
+    {
+        return $query->where('status_mutasi', 'pindah');
+    }
+
 	public function getNamaPendudukAttribute()
     {
     	if($this->penduduk){

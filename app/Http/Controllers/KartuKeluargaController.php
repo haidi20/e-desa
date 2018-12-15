@@ -6,16 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Models\KartuKeluarga;
 use App\Models\Penduduk;
+use App\Models\Kematian;
+use App\Models\Mutasi;
 
 class KartuKeluargaController extends Controller
 {
 	public function __construct(
 								Request $request, 
 								KartuKeluarga $kartukeluarga, 
-								Penduduk $penduduk
+                                Penduduk $penduduk,
+                                Kematian $kematian,
+								Mutasi $mutasi
 							)
 	{
 		$this->kartukeluarga 	= $kartukeluarga;
+        $this->mutasi           = $mutasi;
+        $this->kematian         = $kematian;
 		$this->penduduk 		= $penduduk;
 		$this->request 			= $request;
 	}
@@ -49,7 +55,10 @@ class KartuKeluargaController extends Controller
             $method = 'POST';
         }
 
-       $penduduk = $this->penduduk->where('kk_status', 1)->get();
+        $kematian   = $this->kematian->pluck('penduduk_id')->all();
+        $pindah     = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+        $kk         = $this->kartukeluarga->pluck('penduduk_id')->all();
+        $penduduk   = $this->penduduk->kepalaKeluarga()->tidakMuncul($kematian, $pindah, $kk)->get();
 
         return view('kartukeluarga.form',compact(
         	'action', 'method', 'penduduk'

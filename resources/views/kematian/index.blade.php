@@ -97,11 +97,11 @@
                                         <td>{{$item->alasan}}</td>
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{$item->kk_status == 1 ? '' : 'disabled'}}">
+                                                <a href="#" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info">
+                                                <a href="{{route('kematian.persetujuan',$item->id)}}" class="btn btn-sm btn-info">
                                                     <i class="icon-eye6"></i> Setujui
                                                 </a>
                                             @endif

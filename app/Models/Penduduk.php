@@ -18,6 +18,30 @@ class Penduduk extends Model
         return $this->hasMany('App\Models\KartuKeluarga', 'penduduk_id');
     }
 
+    public function kematian()
+    {
+        return $this->hasMany('App\Models\Kematian', 'penduduk_id');
+    }
+
+    public function scopeKepalaKeluarga($query)
+    {
+        return $query->where('kk_status', 1);
+    }
+
+    public function scopeBukanKepalaKeluarga($query)
+    {
+        return $query->where('kk_status', '<>', 1);
+    }
+
+    public function scopeTidakMuncul($query, $kematian, $pindah, $kk=null)
+    {
+        $query->whereNotIn('id', $kematian)->whereNotIn('id', $pindah);
+        if($kk){
+            $query->whereNotIn('id', $kk);
+        }
+        return $query;
+    }
+
     public function getNamaDusunAttribute()
     {
     	if($this->dusun){
