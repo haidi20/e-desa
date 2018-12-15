@@ -6,4 +6,5 @@ return [
 	'status'			=> ['Menikah', 'Belum Menikah'],
 	'kewarganegaraan'	=> ['WNI', 'WNA'],
 	'status_mutasi' 	=> ['pindah', 'datang'],
+	'role' 				=> ['kepala', 'pegawai'],
 ];

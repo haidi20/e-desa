@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use App\Models\Kematian;
 
+use App\Supports\FileManager;
+
 class KematianController extends Controller
 {
 	public function __construct(
 								Request $request, 
 								Penduduk $penduduk,
-								Kematian $kematian
+								Kematian $kematian,
+                                FileManager $filemanager
 							)
 	{
 		$this->penduduk 		= $penduduk;
 		$this->kematian 		= $kematian;
 		$this->request 			= $request;
+        $this->filemanager      = $filemanager;
 	}
 
     public function index()
@@ -74,15 +78,12 @@ class KematianController extends Controller
         $input = $this->request->except('_token');
         // return $input;
 
-        // $this->validate(request(),[
-        //   'nik'  => 'required',
-        //   'nama'  => 'required',
-        // ]);
-
+        $kematian->file         = $this->filemanager->uploadFile(request()->file('file'), $kematian->file);
         $kematian->penduduk_id	= request('penduduk_id');
         $kematian->tempat		= request('tempat');
         $kematian->tanggal		= request('tanggal');
         $kematian->alasan		= request('alasan');
+
         $kematian->save();
 
         return redirect()->route('kematian.index');

@@ -52,13 +52,15 @@
               {{-- <a href="javascript;" class="dropdown-item" data-toggle="modal" data-target="#group_session">
                 <i class="icon-switch"></i> Switch Group
               </a> --}}
-              <a href="#" class="dropdown-item">
-                <i class="icon-switch"></i> Switch Group
-              </a>
-              <a href="#" class="dropdown-item"><i class="icon-profile"></i> My Profile</a>
-              <a href="#" class="dropdown-item"><i class="icon-key3"></i> Change Password</a>
+              <a href="{{route('user.index')}}" class="dropdown-item"><i class="icon-profile"></i> Pengaturan Pengguna</a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item"><i class="icon-sign-out"></i> Logout</a>
+              <a href="{{ route('logout') }}" 
+                  onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-sign-out"></i>
+                  Keluar
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form></a>
             </div>
           </li>
         </ul>

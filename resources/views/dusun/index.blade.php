@@ -117,7 +117,7 @@
 
             <div class="card-block pr-0">
                 <nav aria-label="Page navigation" class="text-xs-right">
-                    {!! $items->links() !!}
+                    {!! $dusun->links() !!}
                 </nav>
             </div>
         </div>

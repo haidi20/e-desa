@@ -17,7 +17,7 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{ url('kematian') }}" class="btn btn-secondary float-md-right mt-0">
+            <a href="{{ url('mutasi') }}" class="btn btn-secondary float-md-right mt-0">
             	<i class="icon-reply3"></i> Back
             </a>
         </div>
@@ -28,7 +28,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title" id="basic-layout-square-controls">Form Kematian</h4>
+					<h4 class="card-title" id="basic-layout-square-controls">Form User</h4>
 					<a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 					<div class="heading-elements">
 						<ul class="list-inline mb-0">
@@ -40,18 +40,26 @@
 					<div class="card-block">
 
 						{{-- {!! Form::open(['class' => 'form form-horizontal', 'novalidate']) !!} --}}
-						<form action="{{$action}}" method="post" class="form form-hotizontal" enctype="multipart/form-data">
+						<form action="{{$action}}" method="post" class="form form-hotizontal">
 							<input type="hidden" name="_method" value="{{$method}}">
           					{{ csrf_field() }}
 							<div class="form-body pt-1">
 
-								<div class="form-group row position-relative">
-									<label for="penduduk_id" class="col-md-2 label-control">NIK Penduduk</label>
+								<div class="form-group row ">
+									<label for="username" class="col-md-2 label-control">Username</label>
 									<div class="col-md-10">
-										<select class="form-control select2" name="penduduk_id" required>
-											<option value="">Pilih NIK Penduduk</option>
-											@foreach($penduduk as $index => $item)
-												<option value="{{$item->id}}" {{terpilih($item->id, 'penduduk_id')}}>{{$item->nik}} / {{$item->nama}}</option>
+										<input type="text" class="form-control" name="username" required value="{{ old('username') }}">
+										<div class="help-block font-small-3"></div>
+									</div>
+								</div>
+
+								<div class="form-group row position-relative">
+									<label for="role" class="col-md-2 label-control">Jabatan</label>
+									<div class="col-md-10">
+										<select class="form-control items" name="role" required>
+											<option value="">Pilih Jabatan</option>
+											@foreach($role as $item)
+												<option value="{{$item}}" {{terpilih($item, 'role')}}>{{$item}}</option>
 											@endforeach
 										</select>
 										<div class="form-control-position">
@@ -62,33 +70,9 @@
 								</div>
 
 								<div class="form-group row ">
-									<label for="tempat" class="col-md-2 label-control">Tempat Kematian</label>
+									<label for="password" class="col-md-2 label-control">Kata Sandi</label>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="tempat" required value="{{ old('tempat') }}">
-										<div class="help-block font-small-3"></div>
-									</div>
-								</div>
-
-								<div class="form-group row ">
-									<label for="tanggal" class="col-md-2 label-control">Tanggal Kematian</label>
-									<div class="col-md-10">
-										<input type="date" class="form-control" name="tanggal" required value="{{ old('tanggal') }}">
-										<div class="help-block font-small-3"></div>
-									</div>
-								</div>
-
-								<div class="form-group row ">
-									<label for="alasan" class="col-md-2 label-control">Alasan</label>
-									<div class="col-md-10">
-										<input type="text" class="form-control" name="alasan" required value="{{ old('alasan') }}">
-										<div class="help-block font-small-3"></div>
-									</div>
-								</div>
-
-								<div class="form-group row ">
-									<label for="file" class="col-md-2 label-control">Masukkan File Berkas</label>
-									<div class="col-md-10">
-										<input type="file" class="form-control" name="file">
+										<input type="password" class="form-control" name="password" required value="{{ old('alasan') }}">
 										<div class="help-block font-small-3"></div>
 									</div>
 								</div>
@@ -101,6 +85,7 @@
 									</button>
 								</div>
 							</div>
+						</form>
 						{{-- {!! Form::close() !!} --}}
 
 					</div>

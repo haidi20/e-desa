@@ -7,7 +7,7 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{url('kematian/create')}}" class="btn btn-primary float-md-right mt-0">
+            <a href="{{url('user/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
         </div>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card mb-0">
                 <div class="card-header">
-                    <h4 class="card-title">Daftar Kematian</h4>
+                    <h4 class="card-title">Daftar Pengguna</h4>
                     <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -75,40 +75,25 @@
                             <thead class="bg-primary bg-lighten text-white">
                             <!-- <thead class="bg-lighten"> -->
                                 <tr>
-                                    <th width="20">No.</th>
-                                    <th>Nama Penduduk</th>
-                                    <th>Nama Dusun Penduduk</th>
-                                    <th>Tempat Kematian</th>
-                                    <th>Tanggal Kematian</th>
-                                    <th>Alasan</th>
+                                    <th width="10">No.</th>
+                                    <th>Username</th>
+                                    <th>Jabatan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
-                                    <th width="250" class="text-xs-center">Actions</th>
+                                    <th width="180" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($kematian as $index => $item)
+                                @forelse($user as $index => $item)
                                     <tr>
                                         <td>{{$index + 1}}</td>
-                                        <td>{{$item->nama_penduduk}}</td>
-                                        <td>{{$item->alamat_penduduk}}</td>
-                                        <td>{{$item->tempat}}</td>
-                                        <td>{{$item->tanggal}}</td>
-                                        <td>{{$item->alasan}}</td>
+                                        <td>{{$item->username}}</td>
+                                        <td>{{$item->role}}</td>
                                         <td class="text-xs-center">
-                                            @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{$item->kk_status == 1 ? '' : 'disabled'}}">
-                                                    <i class="icon-file2"></i> Unduh Surat
-                                                </a>
-                                            @else
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setujui
-                                                </a>
-                                            @endif
-                                            <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-green">
-                                                <i class="icon-pencil3"></i> Edit
+                                            <a href="{{route('user.edit',$item->id)}}" class="btn btn-sm btn-green">
+                                                <i class="icon-pencil3"></i> edit
                                             </a>
-                                            <a href="{{ route('kematian.destroy',$item->id)}}"
+                                            <a href="{{ route('user.destroy',$item->id)}}"
                                                 data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
                                                 class="btn btn-sm btn-danger" title="Hapus Data">
                                                 <i class="icon-trash3"></i>
@@ -118,7 +103,7 @@
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">
-                                        <td colspan="7">
+                                        <td colspan="15">
                                             <strong class="text-info"><center>Data Kosong</center></strong>
                                         </td>
                                     </tr>
@@ -132,7 +117,7 @@
 
             <div class="card-block pr-0">
                 <nav aria-label="Page navigation" class="text-xs-right">
-                    {!! $kematian->links() !!}
+                    {!! $user->links() !!}
                 </nav>
             </div>
         </div>
