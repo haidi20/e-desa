@@ -48,4 +48,9 @@ class Penduduk extends Model
     		return $this->dusun->nama;
     	}
     }
+
+    public function getStatusKepalakeluargaAttribute()
+    {
+        return $this->kk_status == 1 ? 'Ya' : 'Tidak';
+    }
 }

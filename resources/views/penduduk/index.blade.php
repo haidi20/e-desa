@@ -87,6 +87,7 @@
                                     <th>Kecamatan</th>
                                     <th>Agama</th>
                                     <th>Status</th>
+                                    <th>Kepala Keluarga</th>
                                     <th>Pekerjaan</th>
                                     <th>Kewarganegaraan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
@@ -109,6 +110,7 @@
                                         <td>{{$item->kecamatan}}</td>
                                         <td>{{$item->agama}}</td>
                                         <td>{{$item->status}}</td>
+                                        <td>{{$item->status_kepalakeluarga}}</td>
                                         <td>{{$item->pekerjaan}}</td>
                                         <td>{{$item->kewarganegaraan}}</td>
                                         <td class="text-xs-center">

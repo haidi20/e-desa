@@ -68,7 +68,8 @@ class DetailKartuKeluargaController extends Controller
 
         $kematian   = $this->kematian->pluck('penduduk_id')->all();
         $pindah     = $this->mutasi->pindah()->pluck('penduduk_id')->all();
-        $penduduk   = $this->penduduk->bukanKepalaKeluarga()->tidakMuncul($kematian, $pindah)->get();
+        $kk         = $this->detailkartukeluarga->pluck('penduduk_id')->all();
+        $penduduk   = $this->penduduk->bukanKepalaKeluarga()->tidakMuncul($kematian, $pindah, $kk)->get();
 
         return view('detailkartukeluarga.form',compact(
             'action', 'method', 'penduduk'
