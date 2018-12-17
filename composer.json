@@ -6,12 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "flynsarmy/csv-seeder": "1.*",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "sentry/sentry-laravel": "^0.8.0",
-        "phpunit/phpunit": "4.7.7",
-        "phpspec/phpspec": "2.2.1"
+        "novay/laravel-word-template": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

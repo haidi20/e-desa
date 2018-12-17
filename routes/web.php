@@ -11,7 +11,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('kartukeluarga', 'KartuKeluargaController');
 	Route::resource('detailkartukeluarga', 'DetailKartuKeluargaController');
 	Route::resource('kematian', 'KematianController');
-	Route::get('kematian/persetujuan/{id}', 'KematianController@persetujuan')->name('kematian.persetujuan');
+	Route::group(['prefix' => 'kematian'], function(){
+		Route::get('persetujuan/{id}', 'KematianController@persetujuan')->name('kematian.persetujuan');
+		Route::get('file/{id}', 'KematianController@file')->name('kematian.file');
+	});
 	Route::resource('kelahiran', 'KelahiranController');
 	Route::resource('mutasi', 'MutasiController');
 	Route::resource('surat', 'SuratController');
