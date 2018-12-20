@@ -83,14 +83,22 @@ class KematianController extends Controller
 
         $input = $this->request->except('_token');
         // return $input;
+        // return request()->file('file');
+        $coba = [];
 
-        $kematian->file         = $this->filemanager->uploadFile(request()->file('file'), $kematian->file);
+        $i = 0;
+        while($i < count(request()->file('file'))){
+            // $this->filemanager->uploadFile(request()->file('file')[$i], $kematian->file);
+            request()->file('file')[$i]->move("storages/", 'coba'.$i);
+            $i++;
+        }
+        
         $kematian->penduduk_id	= request('penduduk_id');
         $kematian->tempat		= request('tempat');
         $kematian->tanggal		= request('tanggal');
         $kematian->alasan		= request('alasan');
 
-        $kematian->save();
+        // $kematian->save();
 
         return redirect()->route('kematian.index');
     }

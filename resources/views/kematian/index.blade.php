@@ -71,16 +71,16 @@
                 <!-- <div class="card-body"> -->
                 <div class="card-block">
                     <div class="table-responsive bg-white">
-                        <table class="table table-sm mb-0 table-bordered table-hover">
+                        <table class="table table-sm table-bordered table-hover font-small-4">
                             <thead class="bg-primary bg-lighten text-white">
                             <!-- <thead class="bg-lighten"> -->
                                 <tr>
-                                    <th width="20">No.</th>
-                                    <th>Nama Penduduk</th>
-                                    <th>Nama Dusun Penduduk</th>
-                                    <th>Tempat Kematian</th>
-                                    <th>Tanggal Kematian</th>
-                                    <th>Alasan</th>
+                                    <th width="5">No.</th>
+                                    <th width="10">Nama Penduduk</th>
+                                    <th width="10">Nama Dusun Penduduk</th>
+                                    <th width="10">Tempat Kematian</th>
+                                    <th width="10">Tanggal Kematian</th>
+                                    <th width="10">Alasan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
                                     <th width="250" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
@@ -89,12 +89,12 @@
                             <tbody>
                                 @forelse($kematian as $index => $item)
                                     <tr>
-                                        <td>{{$index + 1}}</td>
-                                        <td>{{$item->nama_penduduk}}</td>
-                                        <td>{{$item->alamat_penduduk}}</td>
-                                        <td>{{$item->tempat}}</td>
-                                        <td>{{$item->tanggal}}</td>
-                                        <td>{{$item->alasan}}</td>
+                                        <td class="valign-middle">{{$index + 1}}</td>
+                                        <td class="valign-middle">{{$item->nama_penduduk}}</td>
+                                        <td class="valign-middle">{{$item->alamat_penduduk}}</td>
+                                        <td class="valign-middle">{{$item->tempat}}</td>
+                                        <td class="valign-middle">{{$item->tanggal}}</td>
+                                        <td class="valign-middle">{{$item->alasan}}</td>
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
                                                 <a href="{{route('kematian.file', $item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
