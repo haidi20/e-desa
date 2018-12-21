@@ -9,6 +9,7 @@ use App\Models\Kematian;
 use App\Models\Mutasi;
 
 use App\Supports\FileManager;
+
 use WordTemplate;
 
 class KematianController extends Controller
@@ -32,7 +33,7 @@ class KematianController extends Controller
     {
     	$kematian = $this->kematian->paginate(10);
 
-    	return view('kematian.index', compact('kematian'));
+    	return view('kematian.index', compact('kematian', 'jumlah_kolom'));
     }
 
     public function create()

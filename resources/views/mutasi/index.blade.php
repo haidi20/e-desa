@@ -71,10 +71,10 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setuju
+                                                <a href="{{route('kematian.persetujuan',[$item->id, 'setuju'])}}" class="btn btn-sm btn-info">
+                                                    <i class="icon-eye6"></i> Setujui
                                                 </a>
-                                                 <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
+                                                <a href="{{route('kematian.persetujuan', [$item->id, 'tidak'])}}" class="btn btn-sm btn-danger">
                                                     Tidak Setujui
                                                 </a>
                                             @endif

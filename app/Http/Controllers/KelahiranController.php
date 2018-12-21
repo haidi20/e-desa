@@ -32,7 +32,7 @@ class KelahiranController extends Controller
 
     public function index()
     {
-    	$kelahiran = $this->kelahiran->paginate(10);
+    	$kelahiran     = $this->kelahiran->paginate(10);
 
     	return view('kelahiran.index', compact('kelahiran'));
     }
