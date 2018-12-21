@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
+            @if(Auth::user()->role == 'pegawai')
             <a href="{{url('kematian/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -82,7 +84,7 @@
                                     <th width="10">Tanggal Kematian</th>
                                     <th width="10">Alasan</th>
                                     <th width="10">Persetujuan</th>
-                                    {{-- @if(Auth::user()->permission_actions) --}}
+                                    {{-- @if(Auth::user()->role == 'pegawai') --}}
                                     <th width="250" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
                                 </tr>
@@ -106,7 +108,11 @@
                                                 <a href="{{route('kematian.persetujuan',$item->id)}}" class="btn btn-sm btn-info">
                                                     <i class="icon-eye6"></i> Setujui
                                                 </a>
+                                                <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
+                                                    Tidak Setujui
+                                                </a>
                                             @endif
+                                            @if(Auth::user()->role == 'pegawai')
                                             <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> Edit
                                             </a>
@@ -116,6 +122,7 @@
                                                 <i class="icon-trash3"></i>
                                                 Delete
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

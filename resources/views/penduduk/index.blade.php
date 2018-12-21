@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
+            @if(Auth::user()->role == 'pegawai')
             <a href="{{url('penduduk/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -90,9 +92,9 @@
                                     <th>Kepala Keluarga</th>
                                     <th>Pekerjaan</th>
                                     <th>Kewarganegaraan</th>
-                                    {{-- @if(Auth::user()->permission_actions) --}}
+                                    @if(Auth::user()->role == 'pegawai')
                                     <th width="" class="text-xs-center">Actions</th>
-                                    {{-- @endif --}}
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,6 +115,7 @@
                                         <td>{{$item->status_kepalakeluarga}}</td>
                                         <td>{{$item->pekerjaan}}</td>
                                         <td>{{$item->kewarganegaraan}}</td>
+                                        @if(Auth::user()->role == 'pegawai')
                                         <td class="text-xs-center">
                                             <a href="{{route('penduduk.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> edit
@@ -124,6 +127,7 @@
                                                 Delete
                                             </a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">

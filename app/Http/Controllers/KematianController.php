@@ -111,7 +111,12 @@ class KematianController extends Controller
     public function destroy($id)
     {
     	$kematian = $this->kematian->find($id);
-    	$kematian->delete();
+
+        $penduduk = $this->penduduk->find($kematian->penduduk_id);
+        $penduduk->status_keadaan = '';
+
+        $penduduk->save();
+        $kematian->delete();
 
     	return redirect()->back();
     }

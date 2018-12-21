@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{url('kartukeluarga/create')}}" class="btn btn-primary float-md-right mt-0">
-                <i class="icon-plus3"></i> Tambah
-            </a>
+            @if(Auth::user()->role == 'pegawai')
+                <a href="{{url('kartukeluarga/create')}}" class="btn btn-primary float-md-right mt-0">
+                    <i class="icon-plus3"></i> Tambah
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -93,15 +95,17 @@
                                             <a href="{{route('detailkartukeluarga.index', ['kk' => $item->id])}}" class="btn btn-sm btn-blue">
                                                 <i class="icon-menu5"></i> Detail
                                             </a>
-                                            <a href="{{route('kartukeluarga.edit',$item->id)}}" class="btn btn-sm btn-green">
-                                                <i class="icon-pencil3"></i> Edit
-                                            </a>
-                                            <a href="{{ route('kartukeluarga.destroy',$item->id)}}"
-                                                data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
-                                                class="btn btn-sm btn-danger" title="Hapus Data">
-                                                <i class="icon-trash3"></i>
-                                                Delete
-                                            </a>
+                                            @if(Auth::user()->role == 'pegawai')
+                                                <a href="{{route('kartukeluarga.edit',$item->id)}}" class="btn btn-sm btn-green">
+                                                    <i class="icon-pencil3"></i> Edit
+                                                </a>
+                                                <a href="{{ route('kartukeluarga.destroy',$item->id)}}"
+                                                    data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
+                                                    class="btn btn-sm btn-danger" title="Hapus Data">
+                                                    <i class="icon-trash3"></i>
+                                                    Delete
+                                                </a>
+                                            <@endif></@endif>
                                         </td>
                                     </tr>
                                 @empty

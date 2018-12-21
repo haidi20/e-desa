@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{url('dusun/create')}}" class="btn btn-primary float-md-right mt-0">
-                <i class="icon-plus3"></i> Tambah
-            </a>
+            @if(Auth::user()->role == 'pegawai')
+                <a href="{{url('dusun/create')}}" class="btn btn-primary float-md-right mt-0">
+                    <i class="icon-plus3"></i> Tambah
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -78,9 +80,9 @@
                                     <th width="20">No.</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    {{-- @if(Auth::user()->permission_actions) --}}
+                                    @if(Auth::user()->role == 'pegawai')
                                     <th width="180" class="text-xs-center">Actions</th>
-                                    {{-- @endif --}}
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,6 +91,7 @@
                                         <td>{{$index + 1}}</td>
                                         <td>{{$item->nama}}</td>
                                         <td>{{$item->alamat}}</td>
+                                        @if(Auth::user()->role == 'pegawai')
                                         <td class="text-xs-center">
                                             <a href="{{route('dusun.edit', $item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> edit
@@ -100,6 +103,7 @@
                                                 Delete
                                             </a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">

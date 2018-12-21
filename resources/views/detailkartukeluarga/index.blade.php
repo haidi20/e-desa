@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
-            <a href="{{route('detailkartukeluarga.create',['kk' => request('kk')])}}" class="btn btn-primary float-md-right mt-0">
-                <i class="icon-plus3"></i> Tambah
-            </a>
+            @if(Auth::user()->role == 'pegawai')
+                <a href="{{route('detailkartukeluarga.create',['kk' => request('kk')])}}" class="btn btn-primary float-md-right mt-0">
+                    <i class="icon-plus3"></i> Tambah
+                </a>
+            @endif
             <a href="{{url('kartukeluarga')}}" class="btn btn-warning float-md-right mt-0">
                 Kembali
             </a>
@@ -65,9 +67,9 @@
                                     <th>NIK</th>
                                     <th>Nama</th>
                                     <th>Status Hubungan Dalam Keluarga</th>
-                                    {{-- @if(Auth::user()->permission_actions) --}}
+                                    @if(Auth::user()->role == 'pegawai')
                                     <th width="180" class="text-xs-center">Actions</th>
-                                    {{-- @endif --}}
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,6 +79,7 @@
                                         <td>{{$item->nik_penduduk}}</td>
                                         <td>{{$item->nama_penduduk}}</td>
                                         <td>{{$item->role}}</td>
+                                        @if(Auth::user()->role == 'pegawai')
                                         <td class="text-xs-center">
                                             <a href="{{route('detailkartukeluarga.edit',[$item->id, 'kk' => request('kk')])}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> Edit
@@ -88,6 +91,7 @@
                                                 Delete
                                             </a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @empty
                                      <tr class="bg-info bg-lighten-4">
