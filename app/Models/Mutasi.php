@@ -18,6 +18,11 @@ class Mutasi extends Model
         return $query->where('status_mutasi', 'pindah');
     }
 
+    public function scopeDatang($query)
+    {
+        return $query->where('status_mutasi', 'datang');
+    }
+
     public function scopeKecualiPendudukid($query, $id)
     {
         return $query->where('penduduk_id', '<>', $id);

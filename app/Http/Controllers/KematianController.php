@@ -99,8 +99,11 @@ class KematianController extends Controller
         $kematian->tempat		= request('tempat');
         $kematian->tanggal		= request('tanggal');
         $kematian->alasan		= request('alasan');
-
         $kematian->save();
+
+        $penduduk = $this->penduduk->find(request('penduduk_id'));
+        $penduduk->status_keadaan = 'kematian';
+        $penduduk->save();
 
         return redirect()->route('kematian.index');
     }

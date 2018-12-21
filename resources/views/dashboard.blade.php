@@ -32,7 +32,7 @@
                                                     {{-- <span>Monthly blog posts</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>100</h1>
+                                                    <h1>{{$total_penduduk}}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                                     {{-- <span>Monthly blog comments</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>50</h1>
+                                                    <h1>{{$kepalakeluarga}}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                                     {{-- <span>Monthly blog posts</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>22</h1>
+                                                    <h1>{{$kematian}}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                                                     {{-- <span>Monthly blog comments</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>30</h1>
+                                                    <h1>{{$kelahiran}}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                         <!-- end row -->
                         <!-- start row -->
                         <div class="row">
-                            <div class="col-xl-4 col-md-12">
+                            <div class="col-xl-6 col-md-12">
                                 <div class="card overflow-hidden">
                                     <div class="card-body">
                                         <div class="card-block cleartfix">
@@ -127,27 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-loop teal font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Total Mutasi</h4>
-                                                    {{-- <span>Monthly blog comments</span> --}}
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                    <h1>6</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-12">
+                            <div class="col-xl-6 col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-block cleartfix">
@@ -160,7 +140,51 @@
                                                     {{-- <span>Monthly blog comments</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>10</h1>
+                                                    <h1>{{$surat}}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <!-- start row -->
+                        <div class="row">
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-enlarge2 cyan font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Penduduk Pindah</h4>
+                                                    {{-- <span>Monthly blog posts</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>{{$pindah}}</h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="icon-shrink2 cyan font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Total Penduduk Datang</h4>
+                                                    {{-- <span>Monthly blog comments</span> --}}
+                                                </div>
+                                                <div class="media-right media-middle">
+                                                    <h1>{{$datang}}</h1>
                                                 </div>
                                             </div>
                                         </div>

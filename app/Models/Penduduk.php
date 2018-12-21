@@ -53,4 +53,11 @@ class Penduduk extends Model
     {
         return $this->kk_status == 1 ? 'Ya' : 'Tidak';
     }
+
+    public function getClassStatusKeadaanAttribute()
+    {
+        if($this->status_keadaan == 'kematian' || $this->status_keadaan == 'pindah'){
+            return 'bg-danger bg-lighten-2';
+        }
+    }
 }

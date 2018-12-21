@@ -97,7 +97,7 @@
                             </thead>
                             <tbody>
                                 @forelse($penduduk as $index => $item)
-                                    <tr>
+                                    <tr class="{{$item->class_status_keadaan}}">
                                         <td>{{$index + 1}}</td>
                                         <td>{{$item->nik}}</td>
                                         <td>{{$item->nama}}</td>
