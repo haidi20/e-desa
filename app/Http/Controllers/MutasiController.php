@@ -51,13 +51,17 @@ class MutasiController extends Controller
             session()->flashInput($carimutasi->toArray());
             $action = route('mutasi.update',$id);
             $method = 'PUT';
+
+            $penduduk_id = $carimutasi->penduduk_id;
         }else{
             $action = route('mutasi.store');
             $method = 'POST';
+
+            $penduduk_id = '';
         }
 
-       	$kematian       = $this->kematian->pluck('penduduk_id')->all();
-        $pindah         = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+       	$kematian       = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $pindah         = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk       = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
        	$status_mutasi	= config('library.status_mutasi');
 

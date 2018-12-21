@@ -26,7 +26,7 @@
             <div class="card-title text-xs-center">
               <div class="p-1">
                 {{-- <h1 class="text-bold-800">BOS</h1> --}}
-                <h5>Sistem Informasi Desa</h5>
+                <h3>Sistem Informasi Desa</h3>
 
                 {{-- <img src="{{ asset('img/png/logo-kemenperin.png') }}" alt="company logo" width="300"> --}}
               </div>

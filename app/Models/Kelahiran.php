@@ -26,4 +26,15 @@ class Kelahiran extends Model
     		return $this->penduduk->dusun->nama;
     	}
     }
+
+    public function getAlasanPersetujuanAttribute()
+    {
+        if($this->persetujuan == 1){
+            return 'Disetujui';
+        }elseif($this->persetujuan == 2){
+            return 'Tidak disetujui';
+        }else{
+            return 'Belum ada persetujuan';
+        }
+    }
 }

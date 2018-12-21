@@ -28,6 +28,8 @@ class CreatePenduduksTable extends Migration
             $table->string('kecamatan')->nullable();
             $table->string('agama')->nullable();
             $table->string('status')->nullable();
+            // status kematian, kelahira, pindah, datang,
+            $table->string('status_keadaan')->nullable(); 
             $table->string('pekerjaan')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->timestamps();

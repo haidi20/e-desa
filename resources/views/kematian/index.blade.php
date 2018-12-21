@@ -81,6 +81,7 @@
                                     <th width="10">Tempat Kematian</th>
                                     <th width="10">Tanggal Kematian</th>
                                     <th width="10">Alasan</th>
+                                    <th width="10">Persetujuan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
                                     <th width="250" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
@@ -95,6 +96,7 @@
                                         <td class="valign-middle">{{$item->tempat}}</td>
                                         <td class="valign-middle">{{$item->tanggal}}</td>
                                         <td class="valign-middle">{{$item->alasan}}</td>
+                                        <td class="valign-middle">{{$item->alasan_persetujuan}}</td>
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
                                                 <a href="{{route('kematian.file', $item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
@@ -118,7 +120,7 @@
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">
-                                        <td colspan="7">
+                                        <td colspan="8">
                                             <strong class="text-info"><center>Data Kosong</center></strong>
                                         </td>
                                     </tr>

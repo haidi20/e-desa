@@ -81,6 +81,7 @@
                                     <th>Tempat Kelahiran</th>
                                     <th>Tanggal Kelahiran</th>
                                     <th>Jenis Kelamin</th>
+                                    <th>Persetujuan</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
                                     <th width="180" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
@@ -95,6 +96,7 @@
                                         <td>{{$item->tempat}}</td>
                                         <td>{{$item->tanggal}}</td>
                                         <td>{{$item->jenis_kelamin}}</td>
+                                        <td>{{$item->alasan_persetujuan}}</td>
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
                                                 <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
@@ -118,7 +120,7 @@
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">
-                                        <td colspan="7">
+                                        <td colspan="8">
                                             <strong class="text-info"><center>Data Kosong</center></strong>
                                         </td>
                                     </tr>

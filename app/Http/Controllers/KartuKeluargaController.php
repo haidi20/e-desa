@@ -50,14 +50,18 @@ class KartuKeluargaController extends Controller
             session()->flashInput($cariKartuKeluarga->toArray());
             $action = route('kartukeluarga.update',$id);
             $method = 'PUT';
+
+            $penduduk_id = $cariKartuKeluarga->penduduk_id;
         }else{
             $action = route('kartukeluarga.store');
             $method = 'POST';
+
+            $penduduk_id = '';
         }
 
-        $kematian   = $this->kematian->pluck('penduduk_id')->all();
-        $pindah     = $this->mutasi->pindah()->pluck('penduduk_id')->all();
-        $kk         = $this->kartukeluarga->pluck('penduduk_id')->all();
+        $kematian   = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $pindah     = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $kk         = $this->kartukeluarga->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk   = $this->penduduk->kepalaKeluarga()->tidakMuncul($kematian, $pindah, $kk)->get();
 
         return view('kartukeluarga.form',compact(

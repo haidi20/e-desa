@@ -55,20 +55,24 @@ class DetailKartuKeluargaController extends Controller
     }
 
     public function form($id = null){
-        $cariDetailKartuKeluarga = $this->detailkartukeluarga->find($id);
+        $caridetailkartukeluarga = $this->detailkartukeluarga->find($id);
 
-        if ($cariDetailKartuKeluarga) {
-            session()->flashInput($cariDetailKartuKeluarga->toArray());
-            $action = route('detailkartukeluarga.update',$id);
+        if ($caridetailkartukeluarga) {
+            session()->flashInput($caridetailkartukeluarga->toArray());
+            $action = route('detailkartukeluarga.update', $id);
             $method = 'PUT';
+
+            $penduduk_id = $caridetailkartukeluarga->penduduk_id;
         }else{
             $action = route('detailkartukeluarga.store');
             $method = 'POST';
+            
+            $penduduk_id = '';
         }
 
-        $kematian   = $this->kematian->pluck('penduduk_id')->all();
-        $pindah     = $this->mutasi->pindah()->pluck('penduduk_id')->all();
-        $kk         = $this->detailkartukeluarga->pluck('penduduk_id')->all();
+        $kematian   = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $pindah     = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $kk         = $this->detailkartukeluarga->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk   = $this->penduduk->bukanKepalaKeluarga()->tidakMuncul($kematian, $pindah, $kk)->get();
 
         return view('detailkartukeluarga.form',compact(

@@ -54,13 +54,17 @@ class KelahiranController extends Controller
             session()->flashInput($carikelahiran->toArray());
             $action = route('kelahiran.update',$id);
             $method = 'PUT';
+
+            $penduduk_id = $carikelahiran->penduduk_id;
         }else{
             $action = route('kelahiran.store');
             $method = 'POST';
+
+            $penduduk_id = '';
         }
 
-        $kematian       = $this->kematian->pluck('penduduk_id')->all();
-        $pindah         = $this->mutasi->pindah()->pluck('penduduk_id')->all();
+        $kematian       = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $pindah         = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
        	$penduduk 		= $this->penduduk->tidakMuncul($kematian, $pindah)->get();
        	$jenis_kelamin	= config('library.jenis_kelamin');
 

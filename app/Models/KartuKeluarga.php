@@ -18,6 +18,11 @@ class KartuKeluarga extends Model
         return $this->hasMany('App\Models\DetailKartuKeluarga', 'kartukeluarga_id', 'id');
     }
 
+    public function scopeKecualiPendudukid($query, $id)
+    {
+        return $query->where('penduduk_id', '<>', $id);
+    }
+
     public function getNamaPendudukAttribute()
     {
     	if($this->penduduk){
