@@ -42,13 +42,13 @@
                {{ csrf_field() }}
               <input type="hidden" name="open_from" value="web apps">
               @if (count($errors) > 0)
-                      <div class="alert alert-danger alert-icon-left alert-dismissible fade in mb-2" role="alert">
-                <strong>Maaf!</strong><br>
-                @foreach ($errors->all() as $error)
-                              {{ $error }}<br>
-                          @endforeach
-              </div>
-                      @endif
+                <div class="alert alert-danger alert-icon-left alert-dismissible fade in mb-2" role="alert">
+                  <strong>Maaf!</strong><br>
+                  @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                  @endforeach
+                </div>
+              @endif
               <fieldset class="form-group position-relative has-icon-left">
                 <input type="username" class="form-control input-lg" id="user-name" placeholder="Your Username" tabindex="1" required data-validation-required-message= "Please enter your username." name="username" autofocus>
                 <div class="form-control-position"><i class="icon-user"></i></div>

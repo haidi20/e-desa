@@ -63,12 +63,14 @@
                                         <td>{{$item->alasan_persetujuan}}</td>
                                         <td class="text-xs-center">
                                              @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
-                                                    <i class="icon-file2"></i> Unduh Surat
-                                                </a>
+                                                @if($item->status_mutasi == 'pindah')
+                                                    <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
+                                                        <i class="icon-file2"></i> Unduh Surat
+                                                    </a>
+                                                @endif
                                             @else
                                                 <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setujui
+                                                    <i class="icon-eye6"></i> Setuju
                                                 </a>
                                             @endif
                                             <a href="{{route('mutasi.edit',$item->id)}}" class="btn btn-sm btn-green">
