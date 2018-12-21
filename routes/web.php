@@ -12,7 +12,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('detailkartukeluarga', 'DetailKartuKeluargaController');
 	Route::resource('kematian', 'KematianController');
 	Route::group(['prefix' => 'kematian'], function(){
-		Route::get('persetujuan/{id}', 'KematianController@persetujuan')->name('kematian.persetujuan');
+		Route::get('persetujuan/{id}/{kondisi}', 'KematianController@persetujuan')->name('kematian.persetujuan');
 		Route::get('file/{id}', 'KematianController@file')->name('kematian.file');
 	});
 	Route::resource('kelahiran', 'KelahiranController');

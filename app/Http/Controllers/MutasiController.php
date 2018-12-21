@@ -101,12 +101,23 @@ class MutasiController extends Controller
         $mutasi->file         = $this->filemanager->uploadFile(request()->file('file'), $mutasi->file);
         $mutasi->save();
 
+        if(request('status_mutasi') == 'pindah'){
+            $penduduk = $this->penduduk->find(request('penduduk_id'));
+            $penduduk->status_keadaan = 'pindah';
+            $penduduk->save();
+        }
+
         return redirect()->route('mutasi.index');
     }
 
     public function destroy($id)
     {
     	$mutasi = $this->mutasi->find($id);
+
+        $penduduk = $this->penduduk->find($mutasi->penduduk_id);
+        $penduduk->status_keadaan = '';
+
+        $penduduk->save();
     	$mutasi->delete();
 
     	return redirect()->back();

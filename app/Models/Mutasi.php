@@ -35,6 +35,13 @@ class Mutasi extends Model
     	}
     }
 
+    public function getClassStatusMutasiAttribute()
+    {
+        if($this->status_mutasi == 'pindah'){
+            return 'bg-danger bg-lighten-4';
+        }
+    }
+
     public function getAlasanPersetujuanAttribute()
     {
         if($this->persetujuan == 1){

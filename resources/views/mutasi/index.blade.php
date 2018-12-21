@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
+            @if(Auth::user()->role == 'pegawai')
             <a href="{{url('mutasi/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -53,7 +55,7 @@
                             </thead>
                             <tbody>
                                 @forelse($mutasi as $index => $item)
-                                    <tr>
+                                    <tr class="{{$item->class_status_mutasi}}">
                                         <td>{{$index + 1}}</td>
                                         <td>{{$item->nama_penduduk}}</td>
                                         <td>{{$item->alamat_datang}}</td>
@@ -72,7 +74,11 @@
                                                 <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info">
                                                     <i class="icon-eye6"></i> Setuju
                                                 </a>
+                                                 <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
+                                                    Tidak Setujui
+                                                </a>
                                             @endif
+                                            @if(Auth::user()->role == 'pegawai')
                                             <a href="{{route('mutasi.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> Edit
                                             </a>
@@ -82,6 +88,7 @@
                                                 <i class="icon-trash3"></i>
                                                 Delete
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

@@ -46,7 +46,7 @@ class DashboardController extends Controller
     	$pindah 		= $this->mutasi->pindah()->count();
     	$penduduk 		= $this->penduduk->count();
 
-    	$total_penduduk = $penduduk - ($kematian + $pindah) + ($datang + $kelahiran);
+    	$total_penduduk = $penduduk - ($kematian + $pindah);
 
     	return view('dashboard', compact(
     		'kepalakeluarga', 'kematian', 'kelahiran','dusun',

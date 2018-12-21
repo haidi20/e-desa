@@ -7,9 +7,11 @@
             {{-- @include('_layout.breadcrumb') --}}
         </div>
         <div class="col-md-6">
+            @if(Auth::user()->role == 'pegawai')
             <a href="{{url('kelahiran/create')}}" class="btn btn-primary float-md-right mt-0">
                 <i class="icon-plus3"></i> Tambah
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -107,8 +109,12 @@
                                                     <i class="icon-eye6"></i> Setujui
                                                 </a>
                                             @endif
+                                            @if(Auth::user()->role == 'pegawai')
                                             <a href="{{route('kelahiran.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> Edit
+                                            </a>
+                                             <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
+                                                Tidak Setujui
                                             </a>
                                             <a href="{{ route('kelahiran.destroy',$item->id)}}"
                                                 data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
@@ -116,6 +122,7 @@
                                                 <i class="icon-trash3"></i>
                                                 Delete
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

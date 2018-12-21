@@ -121,10 +121,10 @@ class KematianController extends Controller
     	return redirect()->back();
     }
 
-    public function persetujuan($id)
+    public function persetujuan($id, $kondisi)
     {
         $kematian = $this->kematian->find($id);
-        $kematian->persetujuan = 1;
+        $kematian->persetujuan = $kondisi == 'setuju' ? 1 : 2;
         $kematian->save();
 
         return redirect()->back();

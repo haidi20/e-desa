@@ -56,8 +56,10 @@ class Penduduk extends Model
 
     public function getClassStatusKeadaanAttribute()
     {
-        if($this->status_keadaan == 'kematian' || $this->status_keadaan == 'pindah'){
+        if($this->status_keadaan == 'kematian'){
             return 'bg-danger bg-lighten-4';
+        }elseif($this->status_keadaan == 'pindah'){
+            return 'bg-warning bg-lighten-4';
         }
     }
 }

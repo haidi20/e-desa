@@ -7,29 +7,6 @@
 @section('script-bottom')
 <script src="{{asset('robust/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"> </script>
 <script src="{{asset('robust/app-assets/js/scripts/forms/validation/form-validation.min.js')}}"> </script>
-<script>
-	var links = [
-  'https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.exe',
-  '{{asset('storages/surat_pertanyaan.rtf')}}',
-  'https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar'
-];
-
-function downloadAll(urls) {
-  var link = document.createElement('a');
-
-  link.setAttribute('download', null);
-  link.style.display = 'none';
-
-  document.body.appendChild(link);
-
-  for (var i = 0; i < urls.length; i++) {
-    link.setAttribute('href', urls[i]);
-    link.click();
-  }
-
-  document.body.removeChild(link);
-}
-</script>
 @endsection
 
 @section('content')
@@ -118,13 +95,11 @@ function downloadAll(urls) {
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Masukkan Berkas Pendukung</label>
 										<div class="col-md-10">
-											<input type="file" class="form-control" name="file[]" multiple="multiple">
+											<input type="file" class="form-control" name="file[]" multiple="multiple" required>
 											<div class="help-block font-small-3"></div>
 										</div>
 									</div>
 								@endif
-
-								<a href="#" onClick="downloadAll(window.links)">coba</a>
 
 								<hr>
 

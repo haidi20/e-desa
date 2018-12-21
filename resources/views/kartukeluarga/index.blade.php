@@ -105,7 +105,7 @@
                                                     <i class="icon-trash3"></i>
                                                     Delete
                                                 </a>
-                                            <@endif></@endif>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

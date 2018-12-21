@@ -84,6 +84,9 @@
                                     <th width="10">Tanggal Kematian</th>
                                     <th width="10">Alasan</th>
                                     <th width="10">Persetujuan</th>
+                                    @if(Auth::user()->role == 'kepala')
+                                    <th width="10">Lampiran</th>
+                                    @endif
                                     {{-- @if(Auth::user()->role == 'pegawai') --}}
                                     <th width="250" class="text-xs-center">Actions</th>
                                     {{-- @endif --}}
@@ -99,16 +102,24 @@
                                         <td class="valign-middle">{{$item->tanggal}}</td>
                                         <td class="valign-middle">{{$item->alasan}}</td>
                                         <td class="valign-middle">{{$item->alasan_persetujuan}}</td>
+                                        @if(Auth::user()->role == 'kepala')
+                                        <td class="valign-middle">
+                                            <a href="#" class="btn btn-sm btn-info">File 1</a>
+                                            <a href="#" class="btn btn-sm btn-info">File 2</a>
+                                            <a href="#" class="btn btn-sm btn-info">File 3</a>
+                                            dummy
+                                        </td>
+                                        @endif
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
                                                 <a href="{{route('kematian.file', $item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else
-                                                <a href="{{route('kematian.persetujuan',$item->id)}}" class="btn btn-sm btn-info">
+                                                <a href="{{route('kematian.persetujuan',[$item->id, 'setuju'])}}" class="btn btn-sm btn-info">
                                                     <i class="icon-eye6"></i> Setujui
                                                 </a>
-                                                <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
+                                                <a href="{{route('kematian.persetujuan', [$item->id, 'tidak'])}}" class="btn btn-sm btn-danger">
                                                     Tidak Setujui
                                                 </a>
                                             @endif
