@@ -11,14 +11,17 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('kartukeluarga', 'KartuKeluargaController');
 	Route::resource('detailkartukeluarga', 'DetailKartuKeluargaController');
 	Route::resource('kematian', 'KematianController');
-	Route::group(['prefix' => 'kematian'], function(){
-		Route::get('persetujuan/{id}/{kondisi}', 'KematianController@persetujuan')->name('kematian.persetujuan');
-		Route::get('file/{id}', 'KematianController@file')->name('kematian.file');
-	});
 	Route::resource('kelahiran', 'KelahiranController');
 	Route::resource('mutasi', 'MutasiController');
 	Route::resource('surat', 'SuratController');
 	Route::resource('user', 'UserController');
+
+	Route::get('persetujuan/{id}/{table}/{kondisi}', 'SupportController@persetujuan')->name('persetujuan');
 });
 //auth laravel
 Auth::routes();
+
+// Route::group(['prefix' => 'kematian'], function(){
+// 	Route::get('persetujuan/{id}/{kondisi}', 'KematianController@persetujuan')->name('kematian.persetujuan');
+// 	Route::get('file/{id}', 'KematianController@file')->name('kematian.file');
+// });

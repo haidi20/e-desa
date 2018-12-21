@@ -44,12 +44,14 @@ class Mutasi extends Model
 
     public function getAlasanPersetujuanAttribute()
     {
-        if($this->persetujuan == 1){
-            return 'Disetujui';
-        }elseif($this->persetujuan == 2){
-            return 'Tidak disetujui';
-        }else{
-            return 'Belum ada persetujuan';
+        if($this->status_mutasi == 'pindah'){
+            if($this->persetujuan == 1){
+                return 'Disetujui';
+            }elseif($this->persetujuan == 2){
+                return 'Tidak disetujui';
+            }else{
+                return 'Belum ada persetujuan';
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Mutasi;
 use App\Supports\FileManager;
 
 use WordTemplate;
+use App;
 
 class KematianController extends Controller
 {
@@ -120,34 +121,5 @@ class KematianController extends Controller
         $kematian->delete();
 
     	return redirect()->back();
-    }
-
-    public function persetujuan($id, $kondisi)
-    {
-        $kematian = $this->kematian->find($id);
-        $kematian->persetujuan = $kondisi == 'setuju' ? 1 : 2;
-        $kematian->save();
-
-        return redirect()->back();
-    }
-
-    public function file($id)
-    {
-        $file = public_path('storages/surat_pernyataan.rtf');
-    
-        $array = array(
-            '[NOMOR_SURAT]' => '015/BT/SK/V/2017',
-            '[PERUSAHAAN]' => 'CV. Borneo Teknomedia',
-            '[NAMA]' => 'Haidi',
-            '[NIP]' => '6472065508XXXXX',
-            '[ALAMAT]' => 'Jl. Manunggal Gg. 8 Loa Bakung, Samarinda',
-            '[PERMOHONAN]' => 'Permohonan pengurusan pembuatan NPWP',
-            '[KOTA]' => 'Samarinda',
-            '[DIRECTOR]' => 'Noviyanto Rahmadi',
-            '[TANGGAL]' => date('d F Y'),
-        );
-        $nama_file = 'surat-keterangan-kerja.doc';
-
-        return WordTemplate::export($file, $array, $nama_file);
     }
 }

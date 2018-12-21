@@ -71,12 +71,14 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <a href="{{route('kematian.persetujuan',[$item->id, 'setuju'])}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setujui
-                                                </a>
-                                                <a href="{{route('kematian.persetujuan', [$item->id, 'tidak'])}}" class="btn btn-sm btn-danger">
-                                                    Tidak Setujui
-                                                </a>
+                                                @if($item->status_mutasi == 'pindah')
+                                                    <a href="{{route('persetujuan',[$item->id, 'Mutasi', 'setuju'])}}" class="btn btn-sm btn-info">
+                                                        <i class="icon-eye6"></i> Setujui
+                                                    </a>
+                                                    <a href="{{route('persetujuan', [$item->id, 'Mutasi', 'tidak'])}}" class="btn btn-sm btn-danger">
+                                                        Tidak Setujui
+                                                    </a>
+                                                @endif
                                             @endif
                                             @if(Auth::user()->role == 'pegawai')
                                             <a href="{{route('mutasi.edit',$item->id)}}" class="btn btn-sm btn-green">

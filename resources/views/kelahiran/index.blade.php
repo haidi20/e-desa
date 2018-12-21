@@ -116,10 +116,10 @@
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else
-                                                <a href="{{route('kematian.persetujuan',[$item->id, 'setuju'])}}" class="btn btn-sm btn-info">
+                                                 <a href="{{route('persetujuan',[$item->id, 'Kelahiran', 'setuju'])}}" class="btn btn-sm btn-info">
                                                     <i class="icon-eye6"></i> Setujui
                                                 </a>
-                                                <a href="{{route('kematian.persetujuan', [$item->id, 'tidak'])}}" class="btn btn-sm btn-danger">
+                                                <a href="{{route('persetujuan', [$item->id, 'Kelahiran', 'tidak'])}}" class="btn btn-sm btn-danger">
                                                     Tidak Setujui
                                                 </a>
                                             @endif
