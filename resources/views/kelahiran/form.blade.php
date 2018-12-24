@@ -93,11 +93,13 @@
 									</div>
 								</div>
 
-								@if(old('file'))
+								@if(!$file->isEmpty())
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Unduh Berkas</label>
 										<div class="col-md-10">
-											<a href="{{asset('storages')}}/{{old('file')}}" class="btn btn-md btn-success">Berkas</a>
+											@foreach($file as $index => $item)
+												<a href="{{asset('storages')}}/{{$item->nama}}" class="btn btn-md btn-success">Lampiran {{$index + 1}}</a>
+											@endforeach
 										</div>
 									</div>
 								@else

@@ -8,6 +8,7 @@ use App\Models\Kelahiran;
 use App\Models\Penduduk;
 use App\Models\Kematian;
 use App\Models\Mutasi;
+use App\Models\File;
 
 use App\Supports\FileManager;
 
@@ -19,6 +20,7 @@ class KelahiranController extends Controller
 								Kelahiran $kelahiran,
                                 FileManager $filemanager,
                                 Kematian $kematian,
+                                File $file,
                                 Mutasi $mutasi
 							)
 	{
@@ -26,15 +28,23 @@ class KelahiranController extends Controller
 		$this->kelahiran 		= $kelahiran;
 		$this->request 			= $request;
         $this->mutasi           = $mutasi;
+        $this->file             = $file;
         $this->kematian         = $kematian;
         $this->filemanager      = $filemanager;
 	}
 
     public function index()
     {
-    	$kelahiran     = $this->kelahiran->paginate(10);
+    	$kelahiran     = $this->kelahiran;
+        $file          = []; 
 
-    	return view('kelahiran.index', compact('kelahiran'));
+        foreach($kelahiran->get() as $index => $item){
+            $file[$item->id] =  $this->file->kondisi($item->penduduk_id, 'kelahiran')->pluck('nama');
+        }
+
+        $kelahiran = $kelahiran->paginate(10);
+
+    	return view('kelahiran.index', compact('kelahiran', 'file'));
     }
 
     public function create()
@@ -66,10 +76,11 @@ class KelahiranController extends Controller
         $kematian       = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah         = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
        	$penduduk 		= $this->penduduk->tidakMuncul($kematian, $pindah)->get();
+        $file           = $this->file->kondisi($penduduk_id, 'kelahiran')->get();
        	$jenis_kelamin	= config('library.jenis_kelamin');
 
         return view('kelahiran.form',compact(
-        	'action', 'method', 'penduduk', 'jenis_kelamin'
+        	'action', 'method', 'penduduk', 'jenis_kelamin', 'file'
         ));
     }
 
@@ -91,16 +102,17 @@ class KelahiranController extends Controller
         $input = $this->request->except('_token');
         // return $input;
 
-        // $this->validate(request(),[
-        //   'nik'  => 'required',
-        //   'nama'  => 'required',
-        // ]);
+        // upload file ke table file //
+        $this->filemanager->uploadFile(
+            request()->file('file'), 
+            request('penduduk_id'), 
+            'kelahiran'
+        );
 
         $kelahiran->penduduk_id		= request('penduduk_id');
         $kelahiran->tempat			= request('tempat');
         $kelahiran->tanggal			= request('tanggal');
         $kelahiran->jenis_kelamin	= request('jenis_kelamin');
-        $kelahiran->file         = $this->filemanager->uploadFile(request()->file('file'), $kelahiran->file);
         $kelahiran->save();
 
         return redirect()->route('kelahiran.index');

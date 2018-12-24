@@ -60,7 +60,7 @@
                                             <input type="text" name="q" id="search" class="form-control" value="{{ request('q') }}" placeholder="Type here...">
                                             <span class="input-group-btn">
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="icon-search"></i>
+                            <i class="icon-cross2"></i>                        <i class="icon-search"></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -104,10 +104,9 @@
                                         <td>{{$item->alasan_persetujuan}}</td>
                                         @if(Auth::user()->role == 'kepala')
                                         <td class="valign-middle">
-                                            <a href="#" class="btn btn-sm btn-info">File 1</a>
-                                            <a href="#" class="btn btn-sm btn-info">File 2</a>
-                                            <a href="#" class="btn btn-sm btn-info">File 3</a>
-                                            dummy
+                                            @foreach($file[$item->id] as $index => $value)
+                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-xs btn-success">Lampiran {{$index + 1}}</a>
+                                            @endforeach
                                         </td>
                                         @endif
                                         <td class="text-xs-center">
@@ -117,10 +116,10 @@
                                                 </a>
                                             @else
                                                  <a href="{{route('persetujuan',[$item->id, 'Kelahiran', 'setuju'])}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setujui
+                                                    <i class="icon-check2"></i> Setujui
                                                 </a>
                                                 <a href="{{route('persetujuan', [$item->id, 'Kelahiran', 'tidak'])}}" class="btn btn-sm btn-danger">
-                                                    Tidak Setujui
+                                                    <i class="icon-cross2"></i> Tidak Setujui
                                                 </a>
                                             @endif
                                             @if(Auth::user()->role == 'pegawai')
@@ -128,7 +127,7 @@
                                                 <i class="icon-pencil3"></i> Edit
                                             </a>
                                              <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
-                                                Tidak Setujui
+                                                <i class="icon-cross2"></i> Tidak Setujui
                                             </a>
                                             <a href="{{ route('kelahiran.destroy',$item->id)}}"
                                                 data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"

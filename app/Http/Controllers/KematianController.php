@@ -28,7 +28,7 @@ class KematianController extends Controller
 		$this->penduduk   = $penduduk;
         $this->kematian   = $kematian;
 		$this->mutasi 	  = $mutasi;
-        $this->file = $file;
+        $this->file       = $file;
 		$this->request 	  = $request;
         $this->filemanager= $filemanager;
 	}
@@ -41,8 +41,6 @@ class KematianController extends Controller
         foreach($kematian->get() as $index => $item){
             $file[$item->id] =  $this->file->kondisi($item->penduduk_id, 'kematian')->pluck('nama');
         }
-
-        // return $file[7];
 
         $kematian = $kematian->paginate(10);
 
@@ -78,7 +76,7 @@ class KematianController extends Controller
        	$kematian   = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah     = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk   = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
-        $file       = $this->file->where(['penduduk_id' => $penduduk_id, 'fungsi' => 'kematian'])->get();
+        $file       = $this->file->kondisi($penduduk_id, 'kematian')->get();
 
         return view('kematian.form',compact(
         	'action', 'method', 'penduduk', 'file'
@@ -116,8 +114,8 @@ class KematianController extends Controller
         $kematian->alasan		= request('alasan');
         $kematian->save();
 
-        $penduduk = $this->penduduk->find(request('penduduk_id'));
-        $penduduk->status_keadaan = 'kematian';
+        $penduduk                   = $this->penduduk->find(request('penduduk_id'));
+        $penduduk->status_keadaan   = 'kematian';
         $penduduk->save();
 
         return redirect()->route('kematian.index');

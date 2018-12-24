@@ -18,10 +18,7 @@ class FileManager
 	        while($i < count($files)){
 	        	$file = new $this->file;
 	            $file->penduduk_id  = $penduduk_id;
-		            $extension[$i]      = $files[$i]->getClientOriginalExtension();
-			        $fileName[$i]       = str_random(8) . '.' . $extension[$i];
-			        $files[$i]->move("storages/", $fileName[$i]);
-	            $file->nama         = $fileName[$i];
+	            $file->nama         = $this->getFileName($fileName[$i]);
 	            $file->fungsi       = $fungsi;
 	            $file->save();
 
@@ -30,5 +27,13 @@ class FileManager
         }else{
         	return $beforeName;
         }
+	}
+
+	public function getFileName($files)
+	{
+		$extension      = $files->getClientOriginalExtension();
+	    $fileName       = str_random(8) . '.' . $extension;
+	    $files->move("storages/", $fileName);
+	    return $fileName;
 	}
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use App\Models\Mutasi;
 use App\Models\Kematian;
+use App\Models\File;
 
 use App\Supports\FileManager;
 
@@ -16,12 +17,14 @@ class MutasiController extends Controller
 								Request $request, 
 								Penduduk $penduduk,
 								Mutasi $mutasi,
+                                File $file,
                                 Kematian $kematian,
                                 FileManager $filemanager
 							)
 	{
 		$this->penduduk 	= $penduduk;
 		$this->mutasi 		= $mutasi;
+        $this->file         = $file;
 		$this->request 		= $request;
         $this->kematian     = $kematian;
         $this->filemanager  = $filemanager;
@@ -29,9 +32,16 @@ class MutasiController extends Controller
 
     public function index()
     {
-    	$mutasi = $this->mutasi->paginate(10);
+    	$mutasi = $this->mutasi;
+        $file          = []; 
 
-    	return view('mutasi.index', compact('mutasi'));
+        foreach($mutasi->get() as $index => $item){
+            $file[$item->id] =  $this->file->kondisi($item->penduduk_id, 'mutasi')->pluck('nama');
+        }
+
+        $mutasi = $mutasi->paginate(10);
+
+    	return view('mutasi.index', compact('mutasi', 'file'));
     }
 
     public function create()
@@ -63,10 +73,11 @@ class MutasiController extends Controller
        	$kematian       = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah         = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk       = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
+        $file           = $this->file->kondisi($penduduk_id, 'mutasi')->get();
        	$status_mutasi	= config('library.status_mutasi');
 
         return view('mutasi.form',compact(
-        	'action', 'method', 'penduduk', 'status_mutasi'
+        	'action', 'method', 'penduduk', 'status_mutasi', 'file'
         ));
     }
 
@@ -88,17 +99,18 @@ class MutasiController extends Controller
         $input = $this->request->except('_token');
         // return $input;
 
-        // $this->validate(request(),[
-        //   'nik'  => 'required',
-        //   'nama'  => 'required',
-        // ]);
+        // upload file ke table file //
+        $this->filemanager->uploadFile(
+            request()->file('file'), 
+            request('penduduk_id'), 
+            'mutasi'
+        );
 
         $mutasi->penduduk_id	= request('penduduk_id');
         $mutasi->alamat_datang	= request('alamat_datang');
         $mutasi->alamat_pergi	= request('alamat_pergi');
         $mutasi->status_mutasi	= request('status_mutasi');
         $mutasi->alasan			= request('alasan');
-        $mutasi->file         = $this->filemanager->uploadFile(request()->file('file'), $mutasi->file);
         $mutasi->save();
 
         if(request('status_mutasi') == 'pindah'){

@@ -105,7 +105,7 @@
                                         @if(Auth::user()->role == 'kepala')
                                         <td class="valign-middle">
                                             @foreach($file[$item->id] as $index => $value)
-                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-md btn-success">Lampiran {{$index + 1}}</a>
+                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-sm btn-success">Lampiran {{$index + 1}}</a>
                                             @endforeach
                                         </td>
                                         @endif
@@ -116,10 +116,10 @@
                                                 </a>
                                             @else
                                                 <a href="{{route('persetujuan',[$item->id, 'Kematian', 'setuju'])}}" class="btn btn-sm btn-info">
-                                                    <i class="icon-eye6"></i> Setujui
+                                                    <i class="icon-check2"></i> Setujui
                                                 </a>
                                                 <a href="{{route('persetujuan', [$item->id, 'Kematian', 'tidak'])}}" class="btn btn-sm btn-danger">
-                                                    Tidak Setujui
+                                                    <i class="icon-cross2"></i> Tidak Setujui
                                                 </a>
                                             @endif
                                             @if(Auth::user()->role == 'pegawai')
