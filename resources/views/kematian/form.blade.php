@@ -84,12 +84,12 @@
 									</div>
 								</div>
 
-								@if(is_null($file))
+								@if(!$file->isEmpty())
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Unduh Berkas</label>
 										<div class="col-md-10">
-											@foreach($file as $item)
-												<a href="{{asset('storages')}}/{{$item->nama}}" class="btn btn-md btn-success">Berkas</a>
+											@foreach($file as $index => $item)
+												<a href="{{asset('storages')}}/{{$item->nama}}" class="btn btn-md btn-success">Lampiran {{$index + 1}}</a>
 											@endforeach
 										</div>
 									</div>

@@ -104,10 +104,9 @@
                                         <td class="valign-middle">{{$item->alasan_persetujuan}}</td>
                                         @if(Auth::user()->role == 'kepala')
                                         <td class="valign-middle">
-                                            <a href="#" class="btn btn-sm btn-info">File 1</a>
-                                            <a href="#" class="btn btn-sm btn-info">File 2</a>
-                                            <a href="#" class="btn btn-sm btn-info">File 3</a>
-                                            dummy
+                                            @foreach($file[$item->id] as $index => $value)
+                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-md btn-success">Lampiran {{$index + 1}}</a>
+                                            @endforeach
                                         </td>
                                         @endif
                                         <td class="text-xs-center">

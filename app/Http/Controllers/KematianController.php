@@ -35,9 +35,18 @@ class KematianController extends Controller
 
     public function index()
     {
-    	$kematian = $this->kematian->paginate(10);
+    	$kematian  = $this->kematian;
+        $file      = []; 
 
-    	return view('kematian.index', compact('kematian', 'jumlah_kolom'));
+        foreach($kematian->get() as $index => $item){
+            $file[$item->id] =  $this->file->kondisi($item->penduduk_id, 'kematian')->pluck('nama');
+        }
+
+        // return $file[7];
+
+        $kematian = $kematian->paginate(10);
+
+    	return view('kematian.index', compact('kematian', 'file'));
     }
 
     public function create()
@@ -69,7 +78,7 @@ class KematianController extends Controller
        	$kematian   = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah     = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk   = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
-        $file       = $this->file->where(['penduduk_id' => $carikematian->penduduk_id, 'fungsi' => 'kematian'])->get();
+        $file       = $this->file->where(['penduduk_id' => $penduduk_id, 'fungsi' => 'kematian'])->get();
 
         return view('kematian.form',compact(
         	'action', 'method', 'penduduk', 'file'
