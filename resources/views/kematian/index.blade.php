@@ -112,7 +112,7 @@
                                         @endif
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('kematian.file', $item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
+                                                <a href="{{route('file', [$item->id, 'kematian'])}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else

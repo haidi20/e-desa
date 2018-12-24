@@ -17,7 +17,12 @@ class SupportController extends Controller
         return redirect()->back();
     }
 
-    public function file($id)
+    public function file($id, $table)
+    {
+        echo $id . ' ' . $table;
+    }
+
+    public function unduhFile()
     {
         $file = public_path('storages/surat_pernyataan.rtf');
     

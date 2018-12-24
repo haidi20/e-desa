@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use App\Models\Kematian;
 use App\Models\Mutasi;
+use App\Models\File;
 
 use App\Supports\FileManager;
 
@@ -20,12 +21,14 @@ class KematianController extends Controller
 								Penduduk $penduduk,
 								Kematian $kematian,
                                 Mutasi $mutasi,
+                                File $file,
                                 FileManager $filemanager
 							)
 	{
 		$this->penduduk   = $penduduk;
         $this->kematian   = $kematian;
 		$this->mutasi 	  = $mutasi;
+        $this->file = $file;
 		$this->request 	  = $request;
         $this->filemanager= $filemanager;
 	}
@@ -66,9 +69,10 @@ class KematianController extends Controller
        	$kematian   = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah     = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $penduduk   = $this->penduduk->tidakMuncul($kematian, $pindah)->get();
+        $file       = $this->file->where(['penduduk_id' => $carikematian->penduduk_id, 'fungsi' => 'kematian'])->get();
 
         return view('kematian.form',compact(
-        	'action', 'method', 'penduduk'
+        	'action', 'method', 'penduduk', 'file'
         ));
     }
 
@@ -90,12 +94,12 @@ class KematianController extends Controller
         $input = $this->request->except('_token');
         // return $input;
 
-        // $i = 0;
-        // while($i < count(request()->file('file'))){
-        //     // $this->filemanager->uploadFile(request()->file('file')[$i], $kematian->file);
-        //     request()->file('file')[$i]->move("storages/", 'coba'.$i);
-        //     $i++;
-        // }
+        // upload file ke table file //
+        $this->filemanager->uploadFile(
+            request()->file('file'), 
+            request('penduduk_id'), 
+            'kematian'
+        );
         
         $kematian->penduduk_id	= request('penduduk_id');
         $kematian->tempat		= request('tempat');

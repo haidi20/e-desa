@@ -84,11 +84,13 @@
 									</div>
 								</div>
 
-								@if(old('file'))
+								@if(is_null($file))
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Unduh Berkas</label>
 										<div class="col-md-10">
-											<a href="{{asset('storages')}}/{{old('file')}}" class="btn btn-md btn-success">Berkas</a>
+											@foreach($file as $item)
+												<a href="{{asset('storages')}}/{{$item->nama}}" class="btn btn-md btn-success">Berkas</a>
+											@endforeach
 										</div>
 									</div>
 								@else
