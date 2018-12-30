@@ -111,14 +111,14 @@
                                         @endif
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('file', [$item->id, 'kematian'])}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
+                                                <a href="{{route('file', [$item->penduduk_id, 'kematian'])}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else
-                                                <a href="{{route('persetujuan',[$item->id, 'Kematian', 'setuju'])}}" class="btn btn-sm btn-info">
+                                                <a href="{{route('persetujuan',[$item->id, 'kematian', 'setuju'])}}" class="btn btn-sm btn-info">
                                                     <i class="icon-check2"></i> Setujui
                                                 </a>
-                                                <a href="{{route('persetujuan', [$item->id, 'Kematian', 'tidak'])}}" class="btn btn-sm btn-danger">
+                                                <a href="{{route('persetujuan', [$item->id, 'kematian', 'tidak'])}}" class="btn btn-sm btn-danger">
                                                     <i class="icon-cross2"></i> Tidak Setujui
                                                 </a>
                                             @endif

@@ -7,4 +7,13 @@ return [
 	'kewarganegaraan'	=> ['WNI', 'WNA'],
 	'status_mutasi' 	=> ['pindah', 'datang'],
 	'role' 				=> ['kepala', 'pegawai'],
+	'day' => [
+        'Sunday'    => 'Minggu',
+        'Monday'    => 'Senin',
+        'Tuesday'   => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday'  => 'Kamis',
+        'Friday'    => 'Jum\'at',
+        'Saturday'  => 'Sabtu'
+    ],
 ];

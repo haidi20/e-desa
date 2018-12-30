@@ -16,8 +16,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('surat', 'SuratController');
 	Route::resource('user', 'UserController');
 
-	Route::get('persetujuan/{id}/{table}/{kondisi}', 'SupportController@persetujuan')->name('persetujuan');
-	Route::get('file/{id}/{table}', 'SupportController@file')->name('file');
+	Route::get('persetujuan/{id}/{fungsi}/{kondisi}', 'SupportController@persetujuan')->name('persetujuan');
+	Route::get('file/{id}/{fungsi}', 'SupportController@file')->name('file');
 });
 //auth laravel
 Auth::routes();

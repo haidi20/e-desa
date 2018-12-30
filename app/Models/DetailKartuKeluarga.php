@@ -8,9 +8,9 @@ class DetailKartuKeluarga extends Model
 {
     protected $table = 'detail_kartu_keluarga';
 
-    public function kartuKeluarga()
+    public function kartukeluarga()
     {
-    	return $this->belongsTo('App\Models\KartuKeluarga');
+    	return $this->belongsTo('App\Models\KartuKeluarga', 'kartukeluarga_id');
     }
 
     public function penduduk()
@@ -34,6 +34,27 @@ class DetailKartuKeluarga extends Model
     {
         if($this->penduduk){
             return $this->penduduk->nik;
+        }
+    }
+
+    public function getNomorKartuKeluargaAttribute()
+    {
+        if($this->kartukeluarga){
+            return $this->kartukeluarga->nomor;
+        }
+    }
+
+    public function getNamaKepalaKeluargaAttribute()
+    {
+        if($this->kartukeluarga){
+            return $this->kartukeluarga->penduduk->nama;
+        }
+    }
+
+    public function getNikKepalaKeluargaAttribute()
+    {
+        if($this->kartukeluarga){
+            return $this->kartukeluarga->penduduk->nik;
         }
     }
 }

@@ -76,16 +76,16 @@
                                         <td class="text-xs-center">
                                              @if(Auth::user()->role == 'pegawai')
                                                 @if($item->status_mutasi == 'pindah')
-                                                    <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
+                                                    <a href="{{route('file', [$item->penduduk_id, 'mutasi'])}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                         <i class="icon-file2"></i> Unduh Surat
                                                     </a>
                                                 @endif
                                             @else
                                                 @if($item->status_mutasi == 'pindah')
-                                                    <a href="{{route('persetujuan',[$item->id, 'Mutasi', 'setuju'])}}" class="btn btn-sm btn-info">
+                                                    <a href="{{route('persetujuan',[$item->id, 'mutasi', 'setuju'])}}" class="btn btn-sm btn-info">
                                                         <i class="icon-check2"></i> Setujui
                                                     </a>
-                                                    <a href="{{route('persetujuan', [$item->id, 'Mutasi', 'tidak'])}}" class="btn btn-sm btn-danger">
+                                                    <a href="{{route('persetujuan', [$item->id, 'mutasi', 'tidak'])}}" class="btn btn-sm btn-danger">
                                                          <i class="icon-cross2"></i> Tidak Setujui
                                                     </a>
                                                 @endif

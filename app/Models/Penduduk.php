@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class Penduduk extends Model
 {
     protected $table = 'penduduk';
@@ -13,14 +15,24 @@ class Penduduk extends Model
     	return $this->belongsTo('App\Models\Dusun');
     }
 
+    public function mutasi()
+    {
+        return $this->hasOne('App\Models\Mutasi');
+    }
+
     public function kartukeluarga()
     {
-        return $this->hasMany('App\Models\KartuKeluarga', 'penduduk_id');
+        return $this->hasOne('App\Models\KartuKeluarga', 'penduduk_id');
+    }
+
+    public function detailkartukeluarga()
+    {
+        return $this->hasOne('App\Models\DetailKartuKeluarga', 'penduduk_id');
     }
 
     public function kematian()
     {
-        return $this->hasMany('App\Models\Kematian', 'penduduk_id');
+        return $this->hasOne('App\Models\Kematian', 'penduduk_id');
     }
 
     public function scopeKepalaKeluarga($query)
@@ -49,9 +61,89 @@ class Penduduk extends Model
     	}
     }
 
+    public function getAlamatTujuanAttribute()
+    {
+        if($this->mutasi){
+            return $this->mutasi->alamat_pergi;
+        }
+    }
+
+    public function getNamaAlamatAttribute()
+    {
+        if($this->dusun){
+            return $this->dusun->alamat;
+        }
+    }
+
+    public function getTanggalKematianAttribute()
+    {
+        if($this->kematian){
+            return $this->kematian->tanggal;
+        }
+    }
+
+    public function getTempatKematianAttribute()
+    {
+        if($this->kematian){
+            return $this->kematian->tempat;
+        }
+    }
+
+    public function getAlasanKematianAttribute()
+    {
+        if($this->kematian){
+            return $this->kematian->alasan;
+        }
+    }
+
+    public function getHariKematianAttribute()
+    {
+        if($this->kematian){
+            $tanggal = Carbon::parse($this->kematian->tanggal);
+            $tanggal = $tanggal->format('l');
+            $tanggal = config('library.day.'.$tanggal);
+            return $tanggal;
+        }
+    }
+
     public function getStatusKepalakeluargaAttribute()
     {
         return $this->kk_status == 1 ? 'Ya' : 'Tidak';
+    }
+
+    public function getNamaKepalaKeluargaAttribute()
+    {
+        if($this->kk_status == 1){
+            return $this->nama;
+        }else{
+            if($this->detailkartukeluarga){
+                return $this->detailkartukeluarga->nama_kepala_keluarga;
+            }
+        }
+    }
+
+    public function getNikKepalaKeluargaAttribute()
+    {
+        if($this->kk_status == 1){
+            return $this->nik;
+        }else{
+            if($this->detailkartukeluarga){
+                return $this->detailkartukeluarga->nik_kepala_keluarga;
+            }
+        }
+    }
+
+    public function getNomorKartuKeluargaAttribute()
+    {
+        if($this->kk_status == 1){
+            if($this->kartukeluarga){
+                return $this->kartukeluarga->nomor;
+            }
+        }else{
+            if($this->detailkartukeluarga){
+                return $this->detailkartukeluarga->nomor_kartu_keluarga;
+            }
+        }
     }
 
     public function getClassStatusKeadaanAttribute()

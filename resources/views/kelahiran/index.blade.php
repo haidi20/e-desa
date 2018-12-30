@@ -111,23 +111,20 @@
                                         @endif
                                         <td class="text-xs-center">
                                             @if(Auth::user()->role == 'pegawai')
-                                                <a href="{{route('kematian.edit',$item->id)}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
+                                                <a href="{{route('file', [$item->penduduk_id, 'kelahiran'])}}" class="btn btn-sm btn-info {{tombol_berkas($item->persetujuan)}}">
                                                     <i class="icon-file2"></i> Unduh Surat
                                                 </a>
                                             @else
-                                                 <a href="{{route('persetujuan',[$item->id, 'Kelahiran', 'setuju'])}}" class="btn btn-sm btn-info">
+                                                 <a href="{{route('persetujuan',[$item->id, 'kelahiran', 'setuju'])}}" class="btn btn-sm btn-info">
                                                     <i class="icon-check2"></i> Setujui
                                                 </a>
-                                                <a href="{{route('persetujuan', [$item->id, 'Kelahiran', 'tidak'])}}" class="btn btn-sm btn-danger">
+                                                <a href="{{route('persetujuan', [$item->id, 'kelahiran', 'tidak'])}}" class="btn btn-sm btn-danger">
                                                     <i class="icon-cross2"></i> Tidak Setujui
                                                 </a>
                                             @endif
                                             @if(Auth::user()->role == 'pegawai')
                                             <a href="{{route('kelahiran.edit',$item->id)}}" class="btn btn-sm btn-green">
                                                 <i class="icon-pencil3"></i> Edit
-                                            </a>
-                                             <a href="{{route('kematian.persetujuan', $item->id)}}" class="btn btn-sm btn-danger">
-                                                <i class="icon-cross2"></i> Tidak Setujui
                                             </a>
                                             <a href="{{ route('kelahiran.destroy',$item->id)}}"
                                                 data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
