@@ -35,6 +35,11 @@ class Penduduk extends Model
         return $this->hasOne('App\Models\Kematian', 'penduduk_id');
     }
 
+    public function kelahiran()
+    {
+        return $this->hasOne('App\Models\Kelahiran', 'penduduk_id');
+    }
+
     public function scopeKepalaKeluarga($query)
     {
         return $query->where('kk_status', 1);
@@ -52,6 +57,20 @@ class Penduduk extends Model
             $query->whereNotIn('id', $kk);
         }
         return $query;
+    }
+
+    public function getAnakKeberapaAttribute()
+    {
+        if($this->kelahiran){
+            return $this->kelahiran->anak_ke;
+        }
+    }
+
+    public function getTempatLahirAttribute()
+    {
+        if($this->kelahiran){
+            return $this->kelahiran->tempat_lahir;
+        }
     }
 
     public function getNamaDusunAttribute()

@@ -15,10 +15,13 @@ class FileManager
 	{
         if($files){
     		$i = 0;
-	        while($i < count($files)){
+    		$jumlah = is_array($files) ? count($files) : 0;
+	        while($i < $jumlah){
+	        	// $data = is_array($files) ? $files[$i] : $files;
+
 	        	$file = new $this->file;
 	            $file->penduduk_id  = $penduduk_id;
-	            $file->nama         = $this->getFileName($fileName[$i]);
+	            $file->nama         = $this->getFileName($files[$i]);
 	            $file->fungsi       = $fungsi;
 	            $file->save();
 

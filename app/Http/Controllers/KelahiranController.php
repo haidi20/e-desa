@@ -110,7 +110,8 @@ class KelahiranController extends Controller
         );
 
         $kelahiran->penduduk_id		= request('penduduk_id');
-        $kelahiran->tempat			= request('tempat');
+        $kelahiran->tempat          = request('tempat');
+        $kelahiran->anak_ke			= request('anak_ke');
         $kelahiran->tanggal			= request('tanggal');
         $kelahiran->jenis_kelamin	= request('jenis_kelamin');
         $kelahiran->save();

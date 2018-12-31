@@ -15,7 +15,8 @@ class CreateSuratsTable extends Migration
     {
         Schema::create('surat', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama')->nullable();
+            $table->string('penduduk_id')->nullable();
+            $table->string('jenis')->nullable();
             $table->string('nomor')->nullable();
             $table->timestamps();
         });

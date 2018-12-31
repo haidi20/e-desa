@@ -70,6 +70,14 @@
 								</div>
 
 								<div class="form-group row ">
+									<label for="anak_ke" class="col-md-2 label-control">Anak Ke-</label>
+									<div class="col-md-10">
+										<input type="text" class="form-control" name="anak_ke" required value="{{ old('anak_ke') }}">
+										<div class="help-block font-small-3"></div>
+									</div>
+								</div>
+
+								<div class="form-group row ">
 									<label for="tanggal" class="col-md-2 label-control">Tanggal Kelahiran</label>
 									<div class="col-md-10">
 										<input type="date" class="form-control" name="tanggal" required value="{{ old('tanggal') }}">
@@ -106,7 +114,7 @@
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Masukkan Berkas Pendukung</label>
 										<div class="col-md-10">
-											<input type="file" class="form-control" name="file">
+											<input type="file" class="form-control" name="file[]" multiple="multiple" required>
 											<div class="help-block font-small-3"></div>
 										</div>
 									</div>

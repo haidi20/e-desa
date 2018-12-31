@@ -76,10 +76,10 @@
                             <!-- <thead class="bg-lighten"> -->
                                 <tr>
                                     <th width="20">No.</th>
-                                    <th>Nama Surat</th>
-                                    <th>Nomor Surat</th>
+                                    <th>Nama Penduduk</th>
+                                    <th>Jenis Surat</th>
                                     {{-- @if(Auth::user()->permission_actions) --}}
-                                    <th width="180" class="text-xs-center">Actions</th>
+                                    {{-- <th width="180" class="text-xs-center">Actions</th> --}}
                                     {{-- @endif --}}
                                 </tr>
                             </thead>
@@ -87,8 +87,8 @@
                                 @forelse($surat as $index => $item)
                                     <tr>
                                         <td>{{$index + 1}}</td>
-                                        <td>{{$item->nama}}</td>
-                                        <td>{{$item->nomor}}</td>
+                                        <td>{{$item->nama_penduduk}}</td>
+                                        <td>{{$item->jenis}}</td>
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">
