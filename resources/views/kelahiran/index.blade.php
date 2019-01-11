@@ -105,7 +105,7 @@
                                         @if(Auth::user()->role == 'kepala')
                                         <td class="valign-middle">
                                             @foreach($file[$item->id] as $index => $value)
-                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-xs btn-success">Lampiran {{$index + 1}}</a>
+                                            <a href="{{asset('storages')}}/{{$value}}" class="btn btn-sm btn-success">Lampiran {{$index + 1}}</a>
                                             @endforeach
                                         </td>
                                         @endif
