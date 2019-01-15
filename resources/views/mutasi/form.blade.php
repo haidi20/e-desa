@@ -114,8 +114,10 @@
 									<div class="form-group row ">
 										<label for="file" class="col-md-2 label-control">Masukkan Berkas Pendukung</label>
 										<div class="col-md-10">
-											<input type="file" class="form-control" name="file">
-											<div class="help-block font-small-3"></div>
+											<input type="file" class="form-control" name="file[]" multiple="multiple" required>
+											<div class="help-block font-small-3">
+												
+											</div>
 										</div>
 									</div>
 								@endif
