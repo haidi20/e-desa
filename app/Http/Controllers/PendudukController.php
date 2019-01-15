@@ -52,7 +52,7 @@ class PendudukController extends Controller
        $dusun 			= $this->dusun->get();
 
         return view('penduduk.form',compact(
-        	'action','method','penduduk', 'jenis_kelamin', 'agama', 
+        	'action', 'method', 'jenis_kelamin', 'agama', 
         	'status', 'kewarganegaraan', 'dusun'
         ));
     }

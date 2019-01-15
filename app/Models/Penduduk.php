@@ -66,7 +66,7 @@ class Penduduk extends Model
         }
     }
 
-    public function getTempatLahirAttribute()
+    public function getTempatKelahiranAttribute()
     {
         if($this->kelahiran){
             return $this->kelahiran->tempat_lahir;
