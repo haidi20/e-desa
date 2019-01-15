@@ -131,7 +131,7 @@
                                     </tr>
                                 @empty
                                     <tr class="bg-info bg-lighten-4">
-                                        <td colspan="15">
+                                        <td colspan="16">
                                             <strong class="text-info"><center>Data Kosong</center></strong>
                                         </td>
                                     </tr>

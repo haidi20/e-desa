@@ -120,7 +120,7 @@
                                                     {{-- <span>Monthly blog posts</span> --}}
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <h1>5</h1>
+                                                    <h1>{{$dusun}}</h1>
                                                 </div>
                                             </div>
                                         </div>

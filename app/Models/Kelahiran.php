@@ -13,6 +13,11 @@ class Kelahiran extends Model
     	return $this->belongsTo('App\Models\Penduduk');
     }
 
+    public function scopeKecualiPendudukid($query, $id)
+    {
+        return $query->where('penduduk_id', '<>', $id);
+    }
+
 	public function getNamaPendudukAttribute()
     {
     	if($this->penduduk){

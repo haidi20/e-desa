@@ -74,8 +74,9 @@ class KelahiranController extends Controller
         }
 
         $kematian       = $this->kematian->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
+        $kelahiran      = $this->kelahiran->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
         $pindah         = $this->mutasi->pindah()->kecualiPendudukid($penduduk_id)->pluck('penduduk_id');
-       	$penduduk 		= $this->penduduk->tidakMuncul($kematian, $pindah)->get();
+       	$penduduk 		= $this->penduduk->tidakMuncul($kematian, $pindah, $kelahiran)->get();
         $file           = $this->file->kondisi($penduduk_id, 'kelahiran')->get();
        	$jenis_kelamin	= config('library.jenis_kelamin');
 
@@ -101,6 +102,10 @@ class KelahiranController extends Controller
 
         $input = $this->request->except('_token');
         // return $input;
+
+        // $this->validate($this->request,[
+        //   'file'  => 'size:2000'
+        // ]);
 
         // upload file ke table file //
         $this->filemanager->uploadFile(
