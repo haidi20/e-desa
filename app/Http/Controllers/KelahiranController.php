@@ -127,7 +127,12 @@ class KelahiranController extends Controller
     public function destroy($id)
     {
     	$kelahiran = $this->kelahiran->find($id);
+        $file      = $this->file->where('penduduk_id', $kelahiran->penduduk_id);
+
+        $file->delete();
     	$kelahiran->delete();
+
+
 
     	return redirect()->back();
     }

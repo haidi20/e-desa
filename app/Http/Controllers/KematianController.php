@@ -127,7 +127,9 @@ class KematianController extends Controller
 
         $penduduk = $this->penduduk->find($kematian->penduduk_id);
         $penduduk->status_keadaan = '';
+        $file      = $this->file->where('penduduk_id', $kematian->penduduk_id);
 
+        $file->delete();
         $penduduk->save();
         $kematian->delete();
 

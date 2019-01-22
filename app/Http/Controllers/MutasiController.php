@@ -128,7 +128,9 @@ class MutasiController extends Controller
 
         $penduduk = $this->penduduk->find($mutasi->penduduk_id);
         $penduduk->status_keadaan = '';
+        $file      = $this->file->where('penduduk_id', $mutasi->penduduk_id);
 
+        $file->delete();
         $penduduk->save();
     	$mutasi->delete();
 

@@ -43,6 +43,7 @@ class SupportController extends Controller
             '[NO_KK]'           => $penduduk->nomor_kartu_keluarga,
             '[NAMA_KK]'         => $penduduk->nama_kepala_keluarga,
             '[ALAMAT]'          => $penduduk->nama_alamat,
+            '[PEKERJAAN]'       => $penduduk->pekerjaan,
             '[RT]'              => $penduduk->rt,
             '[RW]'              => $penduduk->rw,
             '[NIK]'             => $penduduk->nik,
@@ -51,7 +52,7 @@ class SupportController extends Controller
             '[ALAMAT_TUJUAN]'   => $penduduk->alamat_tujuan,
             '[TANGGAL_LAHIR]'   => $penduduk->tanggal_lahir,
             '[AGAMA]'           => $penduduk->agama,
-            '[TANGGAL_SEKARANG]'=> Carbon::now()->format('d-m-Y'),
+            '[TANGGAL_SEKARANG]'=> Carbon::now()->format('d-m-Y'), 
             '[HARI_KEMATIAN]'   => $penduduk->hari_kematian,
             '[JENIS_KELAMIN]'   => $penduduk->jenis_kelamin,
             '[TANGGAL_KEMATIAN]'=> $penduduk->tanggal_kematian,
@@ -81,7 +82,7 @@ class SupportController extends Controller
     }
 
     public function fileKematian($id, $array){
-        $file       = public_path('storages/dokumen/surat_kematian.rtf');
+        $file       = public_path('storages/dokumen/surat_kematiann.rtf');
         $nama_file  = 'surat-kematian.doc';
         
         return WordTemplate::export($file, $array, $nama_file);
