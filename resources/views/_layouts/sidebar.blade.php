@@ -15,7 +15,7 @@
 				<a href="javascript:;" class="menu-item"><i class="icon-database"></i> Master</a>
 				<ul class="menu-content">
 					<li class="nav-item">
-						<a href="{{url('dusun')}}" class="menu-item">Dusun</a>
+						<a href="{{url('dusun')}}" id="dusun" class="menu-item">Dusun</a>
 					</li>
 					<li class="nav-item">
 						<a href="{{url('penduduk')}}" class="menu-item">Penduduk</a>

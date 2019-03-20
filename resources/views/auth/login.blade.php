@@ -50,12 +50,12 @@
                 </div>
               @endif
               <fieldset class="form-group position-relative has-icon-left">
-                <input type="username" class="form-control input-lg" id="user-name" placeholder="Your Username" tabindex="1" required data-validation-required-message= "Please enter your username." name="username" autofocus>
+                <input type="username" class="form-control input-lg" id="user-name" placeholder="Your Username" tabindex="1" required data-validation-required-message= "Please enter your username." name="username" value="" autofocus>
                 <div class="form-control-position"><i class="icon-user"></i></div>
                 <div class="help-block font-small-3"></div>
               </fieldset>
               <fieldset class="form-group position-relative has-icon-left">
-                <input type="password" class="form-control input-lg" id="password" placeholder="Enter Password" tabindex="2" required data-validation-required-message= "Please enter valid passwords." name="password">
+                <input type="password" class="form-control input-lg" id="password" placeholder="Enter Password" tabindex="2" required data-validation-required-message= "Please enter valid passwords." name="password" value="">
                 <div class="form-control-position"><i class="icon-key3"></i></div>
                 <div class="help-block font-small-3"></div>
               </fieldset>
@@ -67,7 +67,7 @@
                   </fieldset> --}}
                 </div>
               </fieldset>
-              <button type="submit" class="btn btn-green btn-block btn-lg"><i class="icon-unlock2"></i> Login</button>
+              <button type="submit" id="login" class="btn btn-green btn-block btn-lg"><i class="icon-unlock2"></i> Login</button>
             </form>
               {{-- {!! Form::close() !!} --}}
             </div>

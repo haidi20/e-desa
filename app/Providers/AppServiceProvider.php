@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
     }
 
     /**
@@ -24,5 +25,13 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         require_once app_path('Supports/Helpers.php');
+
+        if ($this->app->environment('local', 'testing')) {
+        $this->app->register(DuskServiceProvider::class);
+    }
+
+    if ($this->app->environment('local', 'testing')) {
+    $this->app->register(\Staudenmeir\DuskUpdater\DuskServiceProvider::class);
+}
     }
 }
