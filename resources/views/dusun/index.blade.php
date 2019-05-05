@@ -1,5 +1,29 @@
 @extends('_layouts.default')
 
+@section('script-bottom')
+    <script>
+        function isDelete()
+        {
+           swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this imaginary file!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                  icon: "success",
+                });
+              } else {
+                swal("Data ini tidak jadi di hapus.");
+              }
+            });
+        }
+    </script>
+@endsection
+
 @section('content')
 <div class="content-header">
     <div class="row">
@@ -97,8 +121,9 @@
                                                 <i class="icon-pencil3"></i> edit
                                             </a>
                                             <a href="{{ route('dusun.destroy', $item->id)}}"
+                                                {{-- <a href="javascript:void(0)" --}}
                                                 data-method="delete" data-confirm="Anda yakin akan menghapus data ini ?"
-                                                class="btn btn-sm btn-danger" title="Hapus Data">
+                                                class="btn btn-sm btn-danger " title="Hapus Data">
                                                 <i class="icon-trash3"></i>
                                                 Delete
                                             </a>

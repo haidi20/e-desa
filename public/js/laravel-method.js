@@ -41,7 +41,7 @@
             }else{
               submit()
             }
-            // laravel.verifyConfirm(link, submit)
+            laravel.verifyConfirm(link, submit)
 
         }else{
           submit()
@@ -52,17 +52,24 @@
 
     verifyConfirm: function(link, callback) {
       let text = link.data('confirm')
-      return confirm(text)
-      /*swal({
-        title: 'Yakin?',
-        text: link.data('confirm'),
-        type: (link.data('type') || 'warning'),
-        showCancelButton: true,
-        confirmButtonColor: '#bf5329',
-        confirmButtonText: 'Ya, ' + (link.data('title') || 'Yakin') + '!',
-        cancelButtonText: 'Batal',
-        closeOnConfirm: false,
-      }, callback)*/
+      // return confirm(text)
+       swal({
+        title: "Peringatan",
+        text: text,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("data telah di hapus!", {
+            icon: "success",
+          });
+          form.submit();
+        } else {
+          swal("Data ini tidak jadi di hapus.");
+        }
+      });
     },
 
     createForm: function(link) {

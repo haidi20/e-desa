@@ -13,21 +13,49 @@ class ExampleTest extends DuskTestCase
      *
      * @return void
      */
-    public function testBasicExample()
+
+    public function link()
     {
-        $this->browse(function (Browser $browser) {
-            $link = '/e-desa/public';
+        return '/e-desa/public';
+    }
+
+    public function testFutureDashboard()
+    {
+        $this->browse(function (Browser $browser){
+            $link = $this->link() .'/dashboard';
             $browser->visit('')
                     // ->value('input[name=username]', 'haidi')
                     ->type('username', 'pegawai')
                     ->type('password', 'samarinda')
                     ->click('#login')
-                    // check what link goals.
-                    ->assertPathIs($link.'/dashboard')
-                    // check id true of false
-                    ->attribute('a#dusun', 'href')
-                    ->element('#dusun').click()
-                    ->click('#dusun');
+                    ->assertPathIs($link)
+                    ->assertSee('Dashboard');
+        });
+    }
+
+    public function testfutureDusun()
+    {
+        $this->browse(function (Browser $browser){
+            $link = $this->link().'/dusun';
+            $browser->click('#master')
+                    ->click('#dusun')
+                    ->assertPathIs($link)
+                    // .btn-primary is button create
+                    ->click('.btn-primary')
+                    ->assertPathIs($link.'/create')
+                    ->assertSee('Form Dusun')
+                    ->type('nama', 'sempaja')
+                    ->type('alamat', 'jl. p.m.noor')
+                    // .btn-primary is button save
+                    ->click('.btn-primary')
+                    ->assertPathIs($link)
+                    ->click('.btn-green')
+                    ->assertSee('Form Dusun')
+                    ->type('nama', 'kesejahteraan')
+                    ->type('alamat', 'jl. p.m.noor')
+                    // .btn-primary is button save
+                    ->click('.btn-primary')
+                    ->assertPathIs($link);
         });
     }
 }

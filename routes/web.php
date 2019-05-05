@@ -1,7 +1,7 @@
 <?php
 Route::get('/',function(){
   return redirect()->route('login');
-  // return view('dashboard');
+//   return redirect('dashboard');
 });
 
 Route::group(['middleware' => 'auth'], function(){

@@ -38,6 +38,7 @@
 <script src="{{asset('robust/app-assets/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"> </script>
 <script src="{{asset('robust/app-assets/js/scripts/forms/select/form-select2.min.js')}}" type="text/javascript"> </script>
 <script src="{{asset('js/laravel-method.js')}}"> </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- /build-->
 <!-- END ROBUST JS-->
 

@@ -12,7 +12,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="javascript:;" class="menu-item"><i class="icon-database"></i> Master</a>
+				<a href="javascript:;" id="master" class="menu-item"><i class="icon-database"></i> Master</a>
 				<ul class="menu-content">
 					<li class="nav-item">
 						<a href="{{url('dusun')}}" id="dusun" class="menu-item">Dusun</a>
@@ -41,7 +41,7 @@
 				</ul>
 			</li>
 			<li class="nav-item">
-				<a href="{{url('kematian')}}" class="menu-item"><i class="icon-flag4"></i> Kematian
+				<a href="{{url('kematian')}}" id="kematian" class="menu-item"><i class="icon-flag4"></i> Kematian
 					{{-- <span class="tag tag tag-primary tag-pill float-xs-right mr-2">5</span> --}}
 				</a>
 			</li>

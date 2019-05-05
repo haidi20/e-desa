@@ -22,3 +22,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Dusun::class, function (Faker\Generator $faker) {
+
+    return [
+        'nama' 		=> 'sempaja',
+        'alamat'	=> 'p.m.noor',
+    ];
+});

@@ -28,7 +28,7 @@ class DusunController extends Controller
 
     public function edit($id)
     {
-    	return $this->form();
+    	return $this->form($id);
     }
 
     public function form($id = null){
@@ -36,7 +36,7 @@ class DusunController extends Controller
 
         if ($cariDusun) {
             session()->flashInput($cariDusun->toArray());
-            $action = route('dusun.update',$id) ;
+            $action = route('dusun.update', $id) ;
             $method = 'PUT';
         }else{
             $action = route('dusun.store');
