@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
     {
         require_once app_path('Supports/Helpers.php');
 
-        if ($this->app->environment('local', 'testing')) {
-        $this->app->register(DuskServiceProvider::class);
-    }
+        // if ($this->app->environment('local', 'testing')) {
+        //     $this->app->register(DuskServiceProvider::class);
+        // }
 
-    if ($this->app->environment('local', 'testing')) {
-    $this->app->register(\Staudenmeir\DuskUpdater\DuskServiceProvider::class);
-}
+        // if ($this->app->environment('local', 'testing')) {
+        //     $this->app->register(\Staudenmeir\DuskUpdater\DuskServiceProvider::class);
+        // }
     }
 }
